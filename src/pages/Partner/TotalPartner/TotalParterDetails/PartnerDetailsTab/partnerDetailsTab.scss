@@ -1,0 +1,9 @@
+.customer-details {
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .customer-details {
+    display: block;
+  }
+}

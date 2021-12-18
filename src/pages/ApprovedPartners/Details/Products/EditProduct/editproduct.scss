@@ -1,0 +1,62 @@
+@import "../../../../../assets/scss/variables";
+
+.edit-product-content {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 30px;
+  margin: 3rem 0;
+}
+
+.edit-product-content {
+  input,
+  textarea,
+  select {
+    border: 1px solid gray;
+    border-radius: $input-border-radius;
+    outline: none;
+    padding: 0.5rem 1rem;
+    resize: none;
+    width: 22rem;
+  }
+}
+
+.edit-product-btn {
+  outline: none;
+  border: none;
+  background: $primary;
+  color: $white;
+  font-weight: $font-weight-bold;
+  padding: $button-padding;
+  border-radius: $button-radius;
+  margin-top: 2rem;
+}
+
+.edit-product-btn:hover {
+  opacity: $button-opacity;
+}
+
+@media (max-width: 500px) {
+  .edit-product-content {
+    grid-template-columns: auto !important;
+  }
+  .edit-product-content {
+    input,
+    textarea,
+    select {
+      width: 100% !important;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .edit-product-content {
+    grid-template-columns: auto auto;
+  }
+  .edit-product-content {
+    input,
+    textarea,
+    select {
+      width: 21rem;
+    }
+  }
+}

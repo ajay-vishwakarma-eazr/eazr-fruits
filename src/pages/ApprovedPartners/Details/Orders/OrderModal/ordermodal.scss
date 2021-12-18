@@ -1,0 +1,175 @@
+@import "../../../../../assets/scss/variables";
+.view-modal .modal-content {
+  border: none;
+}
+
+.view-order-btn {
+  background: $eazr-color;
+  color: #fff;
+  padding: $table-button-padding;
+  border-radius: $button-radius;
+  border: none;
+  outline: none;
+  font-weight: $font-weight-bold;
+}
+.view-order-btn:hover {
+  opacity: $button-opacity;
+}
+/* Styling the modal header */
+
+.view-modal-header {
+  width: 100%;
+}
+
+.modal-header-img img {
+  width: 70% !important;
+}
+.modal-order-details {
+  width: 100%;
+}
+.modal-order-details .user-details .user-info p {
+  font-size: 0.7rem;
+  margin: 0;
+}
+.modal-order-details .user-details .user-info h6 {
+  margin: 0;
+}
+.reject-order button {
+  outline: none;
+  border: none;
+  padding: $button-padding;
+  background: $danger;
+  font-size: 0.8rem;
+  color: #ffffff;
+  border-radius: $button-radius;
+}
+.reject-order button:hover {
+  opacity: $button-opacity;
+}
+
+.modal-order-details .order-details p {
+  font-size: 0.7rem;
+  margin: 0;
+}
+.modal-order-details .order-details h6 {
+  font-size: 0.7rem;
+  margin: 0;
+}
+
+.modal-header-img {
+  width: 25%;
+}
+
+.view-modal-transaction-type p {
+  background: $eazr-color;
+  border-radius: 2px;
+  text-align: center;
+  color: #fff;
+}
+
+/* Styling View Modal Body */
+
+.view-modal-body {
+  display: flex;
+}
+
+/* 
+Styling View Modal left side body */
+
+.view-modal-left-body-side {
+  width: 60% !important;
+  padding: 0 1rem;
+  border-right: 1px solid $admin-border-color;
+}
+.view-modal-right-body-side {
+  width: 40% !important;
+}
+
+.view-modal-delivery-address {
+  width: 100%;
+}
+
+.view-modal-delivery-address-heading h6 {
+  font-size: 0.8rem;
+  color: #000;
+}
+
+.view-modal-delivery-address p {
+  color: #000;
+  font-size: 0.7rem !important;
+}
+.view-modal-delivery-address span {
+  color: #df8f60;
+  font-size: 0.7rem;
+}
+
+.view-modal-left-body-side .ordered-item-name {
+  width: 50%;
+}
+.view-modal-left-body-side .ordered-item-qty {
+  width: 10%;
+  border-right: 1px solid #707070;
+}
+
+.view-modal-left-body-side .ordered-item-cost {
+  width: 10%;
+  text-align: center;
+}
+
+.view-modal-ordered-items-header h6 {
+  font-size: 0.8rem;
+  color: #000;
+}
+
+.view-modal-ordered-items p {
+  color: #000;
+}
+
+.view-modal-additional-info h6 {
+  font-size: 0.8rem;
+  color: #000;
+}
+.view-modal-additional-info p {
+  font-size: 0.8rem;
+  color: #000;
+}
+
+/* 
+Styling View Modal Right side body */
+
+.view-modal-right-other-details-heading h6,
+.view-modal-right-transaction-details-heading h6 {
+  color: #000;
+  font-size: 0.8rem;
+}
+
+.view-modal-right-other-details p,
+.view-modal-right-transaction-details p {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  color: #000;
+  margin: 0.5rem 0;
+}
+
+.view-modal-right-transaction-details-total-amount span {
+  color: #3a955e !important;
+  font-weight: 900 !important;
+}
+
+.view-modal-right-accept-order-btn {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+.view-modal-right-accept-order-btn button {
+  outline: none;
+  border: none;
+  padding: $button-padding;
+  background: #3a955e;
+  color: #ffffff;
+  font-weight: $font-weight-bold;
+  border-radius: $button-radius;
+}
+.view-modal-right-accept-order-btn button:hover {
+  opacity: $button-opacity;
+}

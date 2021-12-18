@@ -1,0 +1,23 @@
+@import "../../../../assets/scss/variables";
+
+.reports-table {
+  text-align: center;
+}
+.reports-table td {
+  vertical-align: middle !important;
+}
+
+.report-options {
+  select {
+    margin-right: 1rem;
+  }
+  button {
+    outline: none;
+    border: none;
+    border-radius: $button-radius;
+    padding: $button-padding;
+    color: #fff;
+    background: $eazr-color;
+    font-weight: $font-weight-bold;
+  }
+}

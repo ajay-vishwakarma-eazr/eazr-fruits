@@ -1,0 +1,41 @@
+@import "../../../assets/scss/variables";
+
+.search-customer {
+  display: flex;
+
+  padding: 1rem;
+  align-items: center;
+}
+.search-customer input {
+  border: none;
+  border-radius: $button-radius;
+  padding: $input-padding;
+  background: $table-input-background;
+  outline: none;
+  margin-right: 1rem;
+  color: $input-color;
+  font-weight: $font-weight-bold;
+}
+.search-customer button {
+  border-radius: $button-radius;
+  padding: $button-padding;
+  background-color: $primary;
+  outline: none;
+  border: none;
+  color: $button-text-color;
+  font-weight: $font-weight-bold;
+}
+.search-customer button:hover {
+  opacity: $button-opacity;
+}
+
+@media (max-width: 500px) {
+  .search-customer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .search-customer input {
+    width: 100%;
+    margin: 1rem 0;
+  }
+}

@@ -1,0 +1,63 @@
+@import "../../../../assets/scss/variables";
+
+.products .card {
+  background: $table-card;
+  border-radius: $table-card-radius;
+}
+
+.product-table {
+  text-align: center;
+  align-items: center;
+}
+.product-table td {
+  vertical-align: middle !important;
+}
+.product-table tr {
+  cursor: pointer;
+}
+// .product-table tr:nth-child(even) {
+//   background: $input-background;
+// }
+
+.product-img {
+  width: 20px !important;
+}
+
+.product-img img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.ri-pencil-fill {
+  font-size: 1.5rem;
+  color: $eazr-color;
+  cursor: pointer;
+}
+
+.products .product-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.product-table-card input {
+  background: $table-input-background;
+  padding: $input-padding;
+  border-radius: $button-radius;
+  outline: none;
+  border: none;
+}
+
+.products .product-heading button {
+  border: none;
+  outline: none;
+  background: $success;
+  border-radius: $button-radius;
+  padding: $button-padding;
+  color: $white;
+  font-weight: $font-weight-bold;
+}
+.products .product-heading button:hover {
+  opacity: $button-opacity;
+}

@@ -1,0 +1,32 @@
+@import "../../../../../../assets/scss/variables";
+
+.stored-bank {
+  background: $table-card;
+  margin: 1rem 0;
+}
+.default-bank-btn {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.default-bank-btn button {
+  background: $eazr-color;
+  padding: $button-padding;
+  border-radius: $button-radius;
+  color: $white;
+  font-weight: $font-weight-bold;
+  border: none;
+  outline: none;
+  width: 100%;
+}
+.default-bank-btn i {
+  margin: 0;
+  font-size: 1.2rem;
+  color: $eazr-color;
+  cursor: pointer;
+}
+
+.default-bank-btn button:hover {
+  opacity: $button-opacity;
+}

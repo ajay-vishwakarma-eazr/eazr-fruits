@@ -1,0 +1,17 @@
+@import "../../assets/scss/variables";
+
+.breadcrumb {
+  padding: 0 !important;
+  display: flex;
+  background: none !important;
+  align-items: center;
+}
+
+.breadcrumb-item {
+  font-size: 1rem;
+}
+.breadcrumb .mdi-arrow-left-circle {
+  margin-right: 0.5rem;
+  font-size: $back-btn-icon-size;
+  color: $eazr-color;
+}

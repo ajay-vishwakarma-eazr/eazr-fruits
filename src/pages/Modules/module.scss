@@ -1,0 +1,41 @@
+@import "../../assets/scss/variables";
+
+.modules-nav {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.modules-nav a {
+  margin-right: 5rem;
+}
+
+.module-grid {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 50px;
+  margin: 2rem 0;
+}
+
+.module-card {
+  display: flex;
+  background: $table-card;
+  align-items: center;
+  padding: 1rem;
+  justify-content: space-between;
+  border-radius: $table-card-radius;
+}
+
+@media (max-width: 500px) {
+  .module-grid {
+    grid-template-columns: auto !important;
+  }
+  .modules-nav {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .module-grid {
+    grid-template-columns: auto auto;
+  }
+}

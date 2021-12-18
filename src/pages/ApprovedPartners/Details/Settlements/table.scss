@@ -1,0 +1,18 @@
+@import "../../../../assets/scss/variables";
+
+.settlement-table {
+  text-align: center;
+}
+.settlement-table .status {
+  border: 1px solid #000;
+  border-radius: $status-radius;
+  padding: $status-padding;
+  margin: 0;
+}
+.settlement-table tr {
+  cursor: pointer;
+}
+
+.settlement-table td {
+  vertical-align: middle !important;
+}

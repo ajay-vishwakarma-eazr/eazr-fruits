@@ -1,0 +1,11 @@
+@import "../../assets/scss/variables";
+
+.appbtn {
+  // background: $primary;
+  padding: $table-button-padding;
+  border-radius: $button-radius;
+  outline: none;
+  border: none;
+  color: $white;
+  font-weight: $font-weight-bold;
+}

@@ -1,0 +1,63 @@
+@import "../../../assets/scss/variables";
+
+// ===========================
+//     Table Row Styles
+// ===========================
+
+// .table tr:nth-child(even) {
+//   background: $input-background;
+// }
+
+.customer-table-row i {
+  font-size: 1.4rem;
+  margin: 0;
+  align-self: center;
+  cursor: pointer;
+}
+
+.customer-table-row .mdi-account-edit {
+  color: $eazr-color;
+}
+.customer-table-row .mdi-trash-can,
+.customer-table-row .fa-ban {
+  color: $danger;
+}
+.mdi-account-edit {
+  color: $info;
+}
+.customer-table-row .fa-ban {
+  margin: 0 1rem;
+  // font-size: 1.2rem;
+}
+
+.mdi-delete {
+  color: $danger;
+}
+
+.customer-table-row td {
+  font-size: $table-td-font-size;
+  vertical-align: middle !important;
+}
+
+.view-customer-btn {
+  background: $eazr-color;
+  color: #fff;
+  padding: $table-button-padding;
+  border-radius: $button-radius;
+  outline: none;
+  border: none;
+}
+
+// ============================
+//     Table Heading Styles
+// =============================
+.customer-table-heading th {
+  font-size: $table-heading-font-size;
+  font-weight: $font-weight-bolder;
+}
+
+@media (max-width: 500px) {
+  .customer-table-row .mdi-account-edit {
+    margin-right: 0;
+  }
+}

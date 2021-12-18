@@ -1,0 +1,110 @@
+@import "../../../../assets/scss/variables";
+
+.onhold-back-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.onhold-back-div a {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: 120px;
+}
+
+.onhold-back-div h6 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+.onhold-back-div h6:hover {
+  color: $eazr-color;
+}
+
+.onhold-back-div i {
+  color: $eazr-color;
+  font-size: 1.5rem;
+  margin-right: 0.5rem !important;
+}
+.onhold-back-div i:hover {
+  opacity: $button-opacity;
+}
+
+.onhold-partner-details {
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto auto;
+  padding: 1rem 0;
+  grid-gap: 20px;
+}
+.onhold-partner-details div {
+  border: 1px solid $admin-border-color;
+  border-radius: 20px;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.onhold-partner-details h5,
+.onhold-partner-details p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.onhold-page-btns button {
+  color: #fff;
+  outline: none;
+  border: none;
+  border-radius: $button-radius;
+  background: $success;
+  padding: $button-padding;
+  font-weight: $font-weight-bold;
+}
+.onhold-page-btns button:hover {
+  opacity: $button-opacity;
+}
+
+.onhold-page-btns .reject {
+  background-color: $danger;
+  margin-left: 1rem;
+}
+
+.onhold-documents {
+  padding: 1rem;
+  width: 100%;
+  height: rem;
+  display: flex;
+  border: 1px solid $admin-border-color;
+  border-radius: 20px;
+}
+
+.onhold-documents div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.onhold-documents embed {
+  width: 35%;
+  height: 80%;
+  cursor: pointer;
+}
+
+.send-mail {
+  display: flex;
+  margin: 2rem 0;
+}
+.send-mail h6 {
+  margin-top: -0.1rem;
+  margin-left: 0.5rem;
+}
+
+@media (max-width: 500px) {
+  .onhold-partner-details {
+    grid-template-columns: auto;
+  }
+  .onhold-documents embed {
+    width: 70%;
+  }
+}

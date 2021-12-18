@@ -1,0 +1,44 @@
+@import "../../assets/scss/variables";
+
+.partner .card {
+  background: $table-card;
+  border-radius: $table-card-radius;
+}
+
+.partner-approval-table {
+  text-align: center;
+}
+.partner-approval-table td {
+  vertical-align: middle !important;
+}
+
+.spinner-div {
+  height: 70vh;
+  width: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 12rem;
+}
+
+.partner {
+  .search-partner {
+    display: flex;
+    justify-content: space-between;
+
+    select {
+      background: $table-input-background;
+      padding: $input-padding;
+      border-radius: $button-radius;
+      outline: none;
+      border: 1px solid $admin-border-color;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .spinner-div {
+    width: auto;
+    margin-left: -0.5rem;
+  }
+}

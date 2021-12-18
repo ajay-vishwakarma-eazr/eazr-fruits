@@ -1,0 +1,107 @@
+@import "../../../../assets/scss/variables";
+
+.customer-page {
+  .credit-details-div {
+    padding: 1rem;
+    width: 55%;
+    .total-credit {
+      background: $table-card;
+      border-left: 8px solid $eazr-color;
+      padding: 1rem;
+      .due-date-div {
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px dashed $admin-border-color;
+      }
+      div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      h6,
+      p {
+        margin: 0;
+        font-size: 0.9rem;
+        font-weight: $font-weight-bold;
+        color: $eazr-color;
+      }
+      h6 {
+        border: 1px solid $eazr-color;
+        padding: 0.5rem;
+        border-radius: $button-radius;
+      }
+      p {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .available-credit-div {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    background: $table-card;
+    border-left: 8px solid $danger;
+    padding: 1rem;
+    align-items: center;
+    h6,
+    p {
+      font-size: 0.9rem;
+      font-weight: $font-weight-bold;
+      color: $danger;
+      margin: 0;
+    }
+
+    h6 {
+      padding: 0.5rem;
+      border-radius: $button-radius;
+      border: 1px solid $danger;
+    }
+
+    p {
+      font-size: 1rem;
+      color: $danger;
+    }
+  }
+
+  .late-fee-div {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    background: $table-card;
+    border-left: 8px solid $success;
+    padding: 1rem;
+    align-items: center;
+
+    h6 {
+      margin: 0;
+      font-size: 0.9rem;
+      font-weight: $font-weight-bold;
+    }
+
+    span {
+      color: $success;
+      margin-left: 1rem;
+    }
+
+    button {
+      background: $danger;
+      padding: $button-padding;
+      border-radius: $button-radius;
+      color: #fff;
+      outline: none;
+      border: none;
+      font-weight: $font-weight-bold;
+    }
+
+    button:hover {
+      opacity: $button-opacity;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .credit-details-div {
+    width: 100% !important;
+  }
+}

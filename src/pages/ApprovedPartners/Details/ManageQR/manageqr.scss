@@ -1,0 +1,176 @@
+@import "../../../../assets/scss/variables";
+
+.qr-content {
+  display: flex;
+  width: 100%;
+  height: 75vh;
+  margin-bottom: 2rem;
+}
+.qr-image {
+  width: 30%;
+  height: 31rem;
+  background: $table-card;
+  padding: 2rem;
+  border-radius: 15px;
+  text-align: center;
+}
+.qr-image .eazr-logo {
+  width: 6rem;
+}
+.qr-image .qr {
+  width: 12rem;
+  margin-bottom: 1rem;
+}
+.qr-image h6 {
+  margin: 1rem 0;
+}
+
+.qr-name {
+  border-top: 1px solid $admin-border-color;
+  border-bottom: 1px solid $admin-border-color;
+  padding: 1rem 0;
+  color: $eazr-color;
+  font-size: 1rem;
+}
+
+.qr-image button {
+  margin-top: 1rem;
+  background: $eazr-color;
+  color: #fff;
+  font-weight: $font-weight-bold;
+  padding: $button-padding;
+  border-radius: $button-radius;
+  border: none;
+}
+.qr-image button:hover {
+  opacity: $button-opacity;
+}
+
+.qr-details {
+  margin-left: 6rem;
+  width: 70%;
+  overflow: scroll;
+}
+
+.qr-details .qr-download {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.qr-details .select-qr-name {
+  width: 70%;
+}
+.qr-details .qr-download select {
+  padding: $input-padding;
+  width: 100%;
+  outline: none;
+  border: none;
+  background: $input-background;
+  border-radius: $input-border-radius;
+}
+.qr-details .qr-download button,
+.add-display-name button,
+.add-upi button {
+  margin-top: 1.5rem;
+  background: $eazr-color;
+  padding: $button-padding;
+  border-radius: $button-radius;
+  color: #fff;
+  outline: none;
+  border: none;
+}
+.qr-details .qr-download button:hover,
+.add-display-name button:hover,
+.add-upi button:hover {
+  opacity: $button-opacity;
+}
+
+.add-display-name,
+.add-upi {
+  margin: 2rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.add-display-name .input-div,
+.add-upi .input-div {
+  width: 70%;
+}
+.add-display-name input,
+.add-upi input {
+  width: 100%;
+  padding: $input-padding;
+  background: $input-background;
+  outline: none;
+  border: none;
+  outline: none;
+  border-radius: $input-border-radius;
+}
+
+.upi-list {
+  margin: 1rem 0;
+  background: $table-card;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  overflow-y: scroll;
+}
+
+.upi-list .enable-disable,
+.upi-list h6 {
+  margin: 0;
+}
+
+.upi-list .enable-disable {
+  margin-top: -1rem;
+}
+
+.upi-list i {
+  font-size: 2rem;
+  color: $eazr-color;
+  cursor: pointer;
+}
+.upi-list i:hover {
+  opacity: $button-opacity;
+}
+
+@media (max-width: 500px) {
+  .qr-content {
+    display: block;
+    height: auto !important;
+  }
+  .qr-image {
+    margin-bottom: 1rem;
+    height: auto !important;
+    width: 100% !important;
+  }
+  .qr-details {
+    margin-left: 0;
+    width: 100%;
+    overflow: scroll;
+  }
+}
+
+@media (max-width: 768px) {
+  .qr-image {
+    width: 50%;
+    height: 45vh;
+  }
+  .qr-content {
+    height: 60vh;
+  }
+  .qr-details div,
+  .qr-details .qr-download {
+    display: block;
+  }
+  .add-display-name .input-div,
+  .add-upi .input-div,
+  .qr-details .select-qr-name {
+    width: 100%;
+  }
+  .upi-list {
+    display: flex !important;
+  }
+}

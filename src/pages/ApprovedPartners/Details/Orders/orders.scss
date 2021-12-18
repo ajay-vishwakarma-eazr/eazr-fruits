@@ -1,0 +1,49 @@
+@import "../../../../assets/scss/variables";
+
+.orders-table {
+  text-align: center;
+}
+
+.orders-table td {
+  vertical-align: middle !important;
+}
+
+.approved-back-btn {
+  margin-bottom: 1rem;
+}
+.approved-back-btn a {
+  display: flex;
+  align-items: center;
+}
+.approved-back-btn a i {
+  margin-right: 0.5rem;
+  color: $back-btn-icon-color;
+  font-size: $back-btn-icon-size;
+}
+.approved-back-btn a h6 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.approved-back-btn h6:hover {
+  color: $eazr-color;
+}
+
+.detail-search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.detail-search h5 {
+  margin: 0;
+}
+
+.detail-search input {
+  background: $table-input-background;
+  padding: $input-padding;
+  border-radius: $button-radius;
+  outline: none;
+  border: none;
+}

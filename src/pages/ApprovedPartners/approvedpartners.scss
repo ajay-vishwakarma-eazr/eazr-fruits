@@ -1,0 +1,96 @@
+@import "../../assets/scss/variables";
+
+.approved-partners-search input {
+  background: $table-input-background;
+  padding: $input-padding;
+  border-radius: $button-radius;
+  outline: none;
+  border: none;
+}
+
+// .table tr:nth-child(even) {
+//   background: $input-background;
+// }
+
+.approved-partners .card {
+  background: $white-table-card;
+  border-radius: $table-card-radius;
+}
+
+.approved-partners-table {
+  text-align: center;
+  margin: 1rem 0;
+}
+.approved-partners-table tr {
+  cursor: pointer;
+}
+
+.search-filter {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+
+.search-filter div {
+  padding: 0 1rem;
+}
+
+.search-filter {
+  input,
+  select {
+    height: 30px;
+    margin: 0;
+    width: 100%;
+    padding: 0 1rem;
+    outline: none;
+    border: 1px solid $admin-border-color;
+    border-radius: $input-border-radius;
+    color: grey;
+  }
+  input {
+    padding: 0 2rem;
+    background: #f1f5f6;
+    border: none;
+  }
+  input::placeholder {
+    font-size: 0.7rem;
+  }
+  h6 {
+    color: #000;
+    font-weight: $font-weight-bold;
+  }
+
+  .fa-search {
+    color: grey;
+    position: absolute;
+    left: 0;
+    margin-left: 3rem;
+    margin-top: 0.5rem;
+  }
+  .search-btn {
+    display: flex;
+    align-items: center;
+
+    button {
+      width: 100%;
+      background: $eazr-color;
+      color: #fff;
+      padding: $button-padding;
+      border-radius: $button-radius;
+      outline: none;
+      border: none;
+      margin-top: 1.2rem;
+    }
+    button:hover {
+      opacity: $button-opacity;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .search-filter {
+    grid-template-columns: auto;
+    h6 {
+      margin: 0.5rem 0;
+    }
+  }
+}

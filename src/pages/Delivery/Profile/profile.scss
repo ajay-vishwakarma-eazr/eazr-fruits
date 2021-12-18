@@ -1,0 +1,150 @@
+@import "../../../assets/scss/variables";
+
+.delivery-profile-pic-div {
+  width: 10rem;
+  margin-right: 3rem;
+}
+
+.delivery-profile-pic-div img {
+  // box-shadow: 9px 10px 10px -10px rgba(0, 0, 0, 0.75);
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.delivery-partner-profile {
+  display: flex;
+  align-items: center;
+}
+
+.delivery-partner-details h6 {
+  font-size: 1rem;
+  font-weight: $font-weight-bold;
+  margin: 0;
+  margin-bottom: -1rem;
+}
+
+.delivery-partner-ratings i {
+  color: rgb(255, 174, 0);
+}
+
+.number-of-reviews {
+  color: $admin-border-color;
+}
+
+.delivery-partner-personal-details {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 50px;
+  div {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.delivery-partner-personal-details p {
+  margin: 0;
+  font-size: 0.9rem;
+  // font-weight: $font-weight-bold;
+  color: #bbbbbb;
+}
+
+.delivery-profile-btn button {
+  outline: none;
+  border: none;
+  border-radius: $button-radius;
+  color: #fff;
+  font-weight: $font-weight-bold;
+  padding: $button-padding;
+  margin-top: 1rem;
+  margin-right: 1rem;
+}
+
+.delivery-profile-btn .edit-btn {
+  background: $eazr-color;
+}
+
+.delivery-profile-btn .delete-btn {
+  background: $danger;
+}
+
+.delivery-profile-btn button:hover {
+  opacity: $button-opacity;
+}
+
+.update-delivery-partner-section {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 20px;
+  margin-top: 2rem;
+}
+
+.update-delivery-partner-section h6 {
+  font-size: 0.9rem;
+  margin-bottom: -1rem;
+}
+
+.update-delivery-partner-section input {
+  background: none;
+  border: 1px solid $admin-border-color;
+  border-radius: $input-border-radius;
+  outline: none;
+  padding: $input-padding;
+  margin: 0;
+  width: 100%;
+}
+
+.delivery-partner-update-btn button {
+  background: $eazr-color;
+  outline: none;
+  border: none;
+  padding: $button-padding;
+  border-radius: $button-radius;
+  color: #fff;
+  font-weight: $font-weight-bold;
+}
+
+.delivery-partner-update-btn button:hover {
+  opacity: $button-opacity;
+}
+
+.delivery-partner-status {
+  display: grid;
+  grid-template-columns: auto auto;
+  margin-top: 2rem;
+  align-items: center;
+}
+
+.delivery-partner-status div {
+  display: flex;
+  align-items: center;
+}
+
+.delivery-partner-status i,
+.delivery-partner-status h6 {
+  margin: 0;
+}
+
+.delivery-partner-status i {
+  font-size: 2rem;
+  color: $admin-border-color;
+  margin-right: 1rem;
+}
+
+.delivery-partner-status h6 {
+  font-size: 1.5rem;
+  color: $admin-border-color;
+}
+
+@media (max-width: 660px) {
+  .delivery-partner-profile {
+    display: block;
+  }
+  .delivery-partner-personal-details {
+    overflow-x: scroll;
+  }
+  .update-delivery-partner-section {
+    grid-template-columns: auto;
+  }
+}

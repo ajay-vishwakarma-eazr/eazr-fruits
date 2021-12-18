@@ -1,0 +1,16 @@
+@import "../../assets/scss/variables";
+@import "./Table/customertable.scss";
+@import "./AddCustomer/addcustomer.scss";
+@import "./SearchCustomer/searchcustomer.scss";
+
+.customer .card {
+  border-radius: $table-card-radius;
+  background: $white-table-card;
+}
+.inner-user-page .card {
+  background: $table-card;
+}
+
+.customer-table {
+  text-align: center;
+}

@@ -1,0 +1,116 @@
+@import "../../../../../assets/scss/variables";
+
+.settlement-inner-page p,
+.settlement-inner-page .left-side h6 {
+  margin: 0;
+  font-weight: $font-weight-bold;
+}
+
+.settlement-inner-page .first-row {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.settlement-inner-page .first-row h6 {
+  margin: 0;
+}
+.settlement-inner-page .first-row p {
+  margin: 0 0.5rem;
+}
+.settlement-inner-page .first-row i {
+  font-size: 1rem;
+}
+
+.settlement-inner-page .second-row {
+  display: flex;
+}
+.settlement-inner-page .left-side {
+  width: 40%;
+}
+.settlement-inner-page .left-side div {
+  margin: 0.5rem 0;
+  display: flex;
+  justify-content: flex-start !important;
+}
+
+.settlement-inner-page .left-side h6 {
+  width: 30%;
+}
+
+.settlement-inner-page .second-row .left-side div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-side .status {
+  background: $success;
+  color: #fff;
+  border-radius: $button-radius;
+  padding: 0 0.5rem;
+}
+
+.settlement-inner-page .right-side {
+  width: 50%;
+}
+
+.settlement-inner-page .right-side span {
+  color: gray;
+}
+
+.right-side .green-card,
+.right-side .red-card {
+  background: $table-card;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+
+.right-side .green-card {
+  border-left: 8px solid $success;
+  margin: 0 0 2rem 0;
+}
+.right-side .red-card {
+  border-left: 8px solid $danger;
+  margin: 0.5rem 0;
+}
+
+.right-side .green-card div,
+.right-side .red-card div {
+  text-align: center;
+}
+
+.right-side button {
+  background: $primary;
+  border: none;
+  border-radius: $button-radius;
+  padding: $button-padding;
+  outline: none;
+  color: #fff;
+  font-weight: $font-weight-bold;
+  margin-top: 1rem;
+}
+
+.right-side button:hover {
+  opacity: $button-opacity;
+}
+
+.right-side .mdi-arrow-up-drop-circle-outline,
+.right-side .mdi-arrow-down-drop-circle-outline {
+  font-size: 1rem;
+  margin-left: 0.5rem;
+}
+
+@media (max-width: 500px) {
+  .settlement-inner-page .second-row {
+    display: block;
+  }
+  .settlement-inner-page .left-side {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+  .settlement-inner-page .right-side {
+    width: 100%;
+  }
+}

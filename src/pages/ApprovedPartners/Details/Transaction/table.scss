@@ -1,0 +1,16 @@
+@import "../../../../assets/scss/variables";
+
+.transaction-table {
+  text-align: center;
+}
+
+.transaction-table p {
+  border: 1px solid #000;
+  border-radius: $status-radius;
+  padding: $status-padding;
+  margin: 0;
+}
+
+.transaction-table td {
+  vertical-align: middle !important;
+}

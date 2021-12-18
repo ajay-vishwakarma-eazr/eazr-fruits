@@ -1,0 +1,155 @@
+@import "../../../assets/scss/variables";
+
+.details-nav {
+  display: flex;
+  // justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid #f2f2f2;
+}
+.details-nav a {
+  padding: 0 2rem;
+  color: #000;
+  font-size: 1rem;
+  line-height: 1rem;
+  line-height: 4;
+  margin: -1.1rem 0;
+}
+.details-nav a::after {
+  display: block;
+  content: "";
+  border-bottom: solid 2px $eazr-color;
+  transform: scaleX(0);
+  transition: transform 200ms ease-in-out;
+}
+.details-nav a:hover {
+  font-weight: $font-weight-bold;
+  color: $eazr-color;
+}
+.details-nav a:hover::after {
+  transform: scaleX(1.17);
+}
+
+.approved-partners-details .mdi-arrow-left-circle {
+  font-size: $back-btn-icon-size;
+  color: $back-btn-icon-color;
+}
+
+.approved-partners-details .go-back-to-partner {
+  margin-bottom: 1rem;
+}
+.approved-partners-details h5 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.detail-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+// .approved-partners-details .detail-heading button {
+//   background: $success;
+//   padding: $button-padding;
+//   color: $button-text-color;
+//   border-radius: $button-radius;
+//   font-weight: $font-weight-bold;
+//   outline: none;
+//   border: none;
+// }
+
+.detail-heading select,
+.detail-heading input {
+  background: $table-input-background;
+  border-radius: $button-radius;
+  padding: $input-padding;
+  outline: none;
+  border: none;
+  font-weight: $font-weight-bold;
+  // appearance: none;
+}
+
+.detail-heading button:hover {
+  opacity: $button-opacity;
+}
+
+.all-settlements h5,
+.all-orders h5,
+.all-transactions h5 {
+  font-size: 1rem;
+}
+
+.approved-partners-details .card {
+  border-radius: $table-card-radius;
+  background: $table-card;
+}
+
+.detail-heading div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.detail-heading div i {
+  color: $eazr-color;
+  font-size: 1.5rem;
+  margin-left: 1rem;
+  cursor: pointer;
+  transition: ease-in 0.5s;
+}
+.detail-heading div i:hover {
+  transform: rotate(180deg);
+}
+.approved-back-btn {
+  display: flex;
+  justify-content: space-between;
+}
+
+.approved-back-btn .profile-pic {
+  width: 40px;
+  height: 40px;
+  margin-right: 1rem;
+}
+.approved-back-btn .profile-pic img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.approved-back-btn .profile-pic .fa-edit {
+  position: absolute;
+  font-size: 1rem;
+  margin-top: 1rem;
+  margin-left: -0.5rem;
+  cursor: pointer;
+  color: $eazr-color;
+}
+
+.approved-back-btn .partner-profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.approved-back-btn .partner-profile h5 {
+  font-size: 0.9rem;
+}
+
+@media (max-width: 500px) {
+  .detail-heading {
+    display: block;
+  }
+  .detail-heading select,
+  .detail-heading input {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+  .nav-container {
+    overflow-x: scroll;
+  }
+  .details-nav {
+    width: 330%;
+    border-radius: 0;
+  }
+}

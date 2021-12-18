@@ -1,0 +1,23 @@
+#topnav-menu-content > ul > li.nav-item.dropdown > div {
+  position: absolute;
+  background: #ffffff;
+  z-index: 99;
+  top: 60px;
+  box-shadow: 2px 3px 5px 0px #ccc;
+}
+
+@media (max-width: 500px) {
+  #topnav-menu-content > ul > li.nav-item.dropdown > div {
+    position: relative;
+    top: 0;
+  }
+  #topnav-menu-content > ul > li.nav-item.dropdown > div {
+    box-shadow: none;
+  }
+}
+
+@media (max-width: 800px) {
+  #topnav-menu-content > ul > li.nav-item.dropdown > div {
+    box-shadow: none;
+  }
+}

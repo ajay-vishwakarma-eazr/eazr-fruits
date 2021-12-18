@@ -1,0 +1,73 @@
+//Import Icon scss
+@import "./assets/scss/icons.scss";
+
+//import App scss
+@import "./assets/scss/bootstrap.scss";
+@import "./assets/scss/app.scss";
+
+//Import Dark theme
+// @import "./assets/scss/bootstrap-dark.scss";
+// @import "./assets/scss/app-dark.scss";
+
+// RTL mode
+// @import "./assets/scss/bootstrap.scss";
+// @import "./assets/scss/app-rtl.scss";
+
+.nav-link {
+  cursor: pointer;
+}
+
+select,
+input,
+label {
+  font-weight: 300 !important;
+}
+
+.dataTables_filter,
+.dataTables_paginate {
+  float: right;
+  .pagination {
+    .page-link {
+      border-radius: 30px !important;
+      margin: 0 3px;
+      border: none;
+      text-align: center;
+      cursor: pointer;
+    }
+  }
+}
+
+.rdw-editor-main {
+  border: 1px solid $gray-300;
+  height: 239px;
+}
+.dz-message {
+  text-align: center;
+  padding: 100px;
+}
+
+.react-datepicker-wrapper {
+  width: 100% !important;
+}
+
+.ReactModal__Overlay {
+  z-index: 1001 !important;
+}
+
+.rangeslider__fill {
+  background-color: $primary !important;
+}
+
+.react-bootstrap-table {
+  padding-top: 0px !important;
+}
+
+.square-switch {
+  .react-switch-bg {
+    border-radius: 5px !important;
+  }
+}
+
+input[type="range"] {
+  -webkit-appearance: auto !important;
+}

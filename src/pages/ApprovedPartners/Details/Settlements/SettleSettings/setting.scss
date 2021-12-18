@@ -1,0 +1,173 @@
+@import "../../../../../assets/scss/variables";
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.settlement-settings .go-back-to-partner i {
+  font-size: $back-btn-icon-size;
+  color: $eazr-color;
+}
+.settlement-settings .go-back-to-partner {
+  margin-bottom: 1rem;
+}
+
+.selected-account {
+  background: $selected-bank-background;
+  width: 100%;
+  border-radius: $bank-card-radius;
+  border: 1px solid #ebebeb;
+}
+
+.selected-account div {
+  display: flex;
+  padding: 0 1rem;
+}
+.selected-account div h6 {
+  width: 180px;
+  color: gray;
+}
+.selected-account div p {
+  color: gray;
+  font-weight: $font-weight-bold;
+}
+.bank-name {
+  font-size: 1rem;
+  padding: 0 1rem;
+  margin: 1rem 0;
+}
+.selected-account div span {
+  margin-right: 1.5rem;
+  font-weight: 900;
+}
+
+.selected-account-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $white;
+  border-top-left-radius: $bank-card-radius;
+  border-top-right-radius: $bank-card-radius;
+  padding: 1rem 0 !important;
+  // border-bottom: 1px solid #ebebeb;
+}
+.selected-account-heading h5 {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.selected-account-heading i {
+  color: $eazr-color;
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+}
+
+.mdi-card-account-details {
+  float: right;
+  font-size: 2.5rem;
+  color: gray;
+  margin-top: -4rem;
+  margin-right: 1rem;
+}
+
+.account-details {
+  display: flex;
+  height: 80vh;
+  overflow: hidden !important;
+  border: 1px solid $admin-border-color;
+  padding: 1rem;
+  border-radius: 20px;
+}
+
+.account-details .left-side {
+  width: 80%;
+  overflow-y: auto;
+  // padding-right: 2rem;
+}
+
+.account-details .right-side {
+  margin-left: 3rem;
+  width: 100%;
+  grid-template-columns: auto auto;
+  grid-gap: 20px;
+  border-left: 1px solid $input-border-color;
+  padding-left: 2rem;
+}
+
+.account-details .right-side h5 {
+  font-size: 1rem;
+}
+
+.account-details .right-side .container-div {
+  display: flex;
+  justify-content: space-between;
+
+  margin: 1rem 0;
+}
+
+.account-details .right-side .container-div input {
+  border-radius: $input-border-radius;
+  border: 1px solid $admin-border-color;
+  outline: none;
+  padding: 0.5rem 1rem;
+  width: 16rem;
+}
+
+.account-details .right-side button {
+  background: $eazr-color;
+}
+
+@media (max-width: 500px) {
+  .selected-account {
+    width: 100% !important;
+  }
+  .account-details {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: none;
+  }
+  .account-details .left-side {
+    width: 100%;
+    padding-right: 0;
+    height: 55vh;
+    margin-bottom: 1rem;
+    border: 1px solid $admin-border-color;
+    padding: 1rem 0.5rem;
+    border-radius: 10px;
+  }
+  .selected-account div h6 {
+    width: 150px;
+  }
+  .account-details .right-side {
+    margin-left: 0;
+    border: none;
+    padding: 0;
+  }
+
+  .account-details .right-side {
+    width: 100% !important  ;
+  }
+}
+
+@media (max-width: 800px) {
+  .selected-account {
+    width: 100%;
+  }
+  .account-details .left-side {
+    width: 100%;
+  }
+  .account-details .right-side {
+    width: 50%;
+  }
+  .account-details .right-side .container-div {
+    display: block;
+    margin: 0;
+  }
+  .account-details .right-side .container-div div {
+    margin: 1rem 0;
+  }
+  .account-details .right-side .container-div input {
+    width: 100%;
+  }
+}

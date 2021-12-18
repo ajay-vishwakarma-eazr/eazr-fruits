@@ -1,0 +1,21 @@
+@import "../../assets/scss/variables";
+
+.delivery-partner-table {
+  text-align: center;
+}
+
+.delivery-partner-table tr {
+  cursor: pointer;
+}
+
+.inner-delivery-page .card {
+  background: $table-card;
+}
+
+.inner-delivery-page .table {
+  text-align: center;
+}
+
+.inner-delivery-page .table .delivery-status {
+  border-radius: $button-radius;
+}
