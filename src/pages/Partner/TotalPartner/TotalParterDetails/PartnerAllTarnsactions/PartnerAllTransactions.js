@@ -111,7 +111,7 @@ class PartnerAllTransactions extends Component {
     }
 
     return (
-      <div className="page-content partner">
+      <div className="partner">
         <Container fluid>
           <Card className="partner-table-approval">
             <div className="search-partner">

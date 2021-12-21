@@ -41,7 +41,6 @@ import DeliveryModules from "../pages/Modules/DeliveryModules";
 import UserModules from "../pages/Modules/UserModules";
 import Profile from "../pages/ApprovedPartners/Details/Profile/Profile";
 import CustomerDetails from "../pages/Customer/CustomerDetails/CustomerDetails";
-
 import UserTransaction from "../pages/Customer/Transactions/Transaction";
 import CustomerModules from "../pages/Customer/Modules/UserModules";
 import CustomerOrders from "../pages/Customer/Orders/Orders";
@@ -69,10 +68,8 @@ import SupportLogs from "../pages/Logs/SupportLogs/UsersLog";
 import AdminUsers from "../pages/AdminUsers/AdminUsers";
 import TotalPartner from "../pages/Partner/TotalPartner/TotalPartner";
 import PartnerDetailsNav from "../pages/Partner/TotalPartner/TotalParterDetails/PartnerDetailsNav";
-import Test from "../pages/Dashboard/PartnerDashboard/Test";
-import TestPage from "../pages/TestPage";
-import TestDemo from "../pages/TestDemo";
 import PartnerAllTransactions from "../pages/Partner/TotalPartner/TotalParterDetails/PartnerAllTarnsactions/PartnerAllTransactions";
+import PartnerProfile from "../pages/Partner/TotalPartner/TotalParterDetails/PartnerProfile/PartnerProfile";
 const authProtectedRoutes = [
   { path: "/partner-dashboard", component: PartnerDashboard },
   { path: "/dashboard", component: AdminDashboard },
@@ -82,7 +79,7 @@ const authProtectedRoutes = [
   { path: "/auth-lock-screen", component: AuthLockScreen },
   // {path:"/allusers",component:AllUsers},
   { path: "/users", component: Customer },
-  { path: "/user-profile", component: CustomerDetails },
+  { path: "/user-profile/:id", component: CustomerDetails },
   { path: "/user/:id", component: UserTransaction },
   { path: "/user-module", component: CustomerModules },
   { path: "/user-orders", component: CustomerOrders },
@@ -109,7 +106,7 @@ const authProtectedRoutes = [
   { path: "/total-partner", component: TotalPartner },
   { path: "/partner-details-tab", component: PartnerDetailsNav },
   { path: "/partner-transactions", component: PartnerAllTransactions },
-
+  { path: "/partner-profile", component:PartnerProfile },
   // { path: "/user-approval", component: User },
 
   //Admin Module Routes

@@ -6,7 +6,7 @@ import SalesAnalytics from "../SalesAnalytics";
 import EarningReports from "../EarningReports";
 import "../dashboard.scss";
 import ShowTotalNumberOfOnboardingPartner from "./ShowTotalNumberOfOnboardingPartner";
-import Test from "./Test";
+import ShowTotalNumberOfPartner from "./ShowTotalNumberOfPartner";
 
 class StarterPage extends Component {
   
@@ -18,7 +18,7 @@ class StarterPage extends Component {
         {
           icon: "fas fa-user",
           title: "Total Partners",
-          value: <Test/>,
+          value: <ShowTotalNumberOfPartner />,
           rate: "2.4%",
           desc: "From previous period",
           route: "/total-partner",

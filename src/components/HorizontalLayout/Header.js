@@ -299,7 +299,7 @@ class Header extends Component {
                   color="none"
                   className="header-item noti-icon right-bar-toggle waves-effect"
                 >
-                  <i className="ri-settings-2-line"></i>
+                  {/* <i className="ri-settings-2-line"></i> */}
                 </Button>
               </div>
             </div>

@@ -2,17 +2,20 @@ import React, { useDebugValue, useEffect, useState } from "react";
 import { Container, Row, Col, Card, CardBody, Table } from "reactstrap";
 import CustomerTableHeading from "./Table/CustomerTableHeading";
 import CustomerTableRow from "./Table/CustomerTableRow";
-import "./Table/customertable.scss"
+import "./Table/customertable.scss";
 import { connect, useDispatch, useSelector } from "react-redux";
 import BackBtn from "../BackBtn";
 import ClipLoader from "react-spinners/ClipLoader";
 import EmptySection from "../../components/EmptySection/EmptySection";
 import { fetchAdminUsers } from "../../store/adminusers/actions/actions";
 import SearchAdminUsers from "./SearchAdminUsers";
+import ReactPaginate from "react-paginate";
 const Customer = () => {
   const [searchAdminUser, setSearchAdminUser] = useState(null);
   const [filteredAdminUser, setFilteredAdminUser] = useState(null);
-
+  const [pageNumber, setPageNumber] = useState(0);
+  const usersPerPage = 10;
+  const pagesVisited = pageNumber * usersPerPage;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -20,7 +23,6 @@ const Customer = () => {
   }, []);
   const { loading } = useSelector((state) => state.adminUsers);
   const { adminusers } = useSelector((state) => state.adminUsers);
-  console.log("all admin users", adminusers);
   const getSearchAdminUserValue = (value) => {
     setSearchAdminUser(value);
   };
@@ -41,7 +43,6 @@ const Customer = () => {
       });
       setFilteredAdminUser(filter);
       console.log(filteredAdminUser);
-      debugger;
     }
   };
   let data;
@@ -81,18 +82,20 @@ const Customer = () => {
                         />
                       );
                     })
-                  : adminusers.map((users) => {
-                      return (
-                        <CustomerTableRow
-                          key={users._id}
-                          id={users.user?._id}
-                          name={users.user?.name}
-                          email={users.user?.email}
-                          phone={users.user?.phone}
-                          password={users.user?.password}
-                        />
-                      );
-                    })}
+                  : adminusers
+                      .slice(pagesVisited, pagesVisited + usersPerPage)
+                      .map((users) => {
+                        return (
+                          <CustomerTableRow
+                            key={users._id}
+                            id={users.user?._id}
+                            name={users.user?.name}
+                            email={users.user?.email}
+                            phone={users.user?.phone}
+                            password={users.user?.password}
+                          />
+                        );
+                      })}
               </Table>
             </div>
           </div>
@@ -103,6 +106,11 @@ const Customer = () => {
     data = <EmptySection />;
   }
 
+  const pageCount = Math.ceil(adminusers.length / usersPerPage);
+
+  const changePage = ({ selected }) => {
+    setPageNumber(selected);
+  };
   return (
     <>
       <div className="page-content approved-partners">
@@ -119,6 +127,17 @@ const Customer = () => {
                 </CardBody>
               </Card>
               {data}
+              <ReactPaginate
+                previousLabel={"Previous"}
+                nextLabel={"Next"}
+                pageCount={pageCount}
+                onPageChange={changePage}
+                containerClassName={"paginationBttns"}
+                previousLinkClassName={"previousBttn"}
+                nextLinkClassName={"nextBttn"}
+                disabledClassName={"paginationDisabled"}
+                activeClassName={"paginationActive"}
+              />
             </Col>
           </Row>
         </Container>

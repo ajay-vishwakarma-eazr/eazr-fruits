@@ -6,6 +6,7 @@ import SalesAnalytics from "../SalesAnalytics";
 import EarningReports from "../EarningReports";
 import RecentlyActivity from "../RecentlyActivity";
 import "../dashboard.scss";
+import ShowTotalNumberOfUsers from "./ShowTotalNumberOfUsers";
 
 class UserDashboard extends Component {
   constructor(props) {
@@ -15,19 +16,19 @@ class UserDashboard extends Component {
         {
           icon: "fas fa-user",
           title: "Total Users",
-          value: "1452",
+          value: <ShowTotalNumberOfUsers/>,
           route: "users",
           rate: "2.4%",
           desc: "From previous period",
         },
-        {
-          icon: "fas fa-user-tie",
-          title: "New Users",
-          value: "300",
-          rate: "2.4%",
-          route: "/users",
-          desc: "From previous period",
-        },
+        // {
+        //   icon: "fas fa-user-tie",
+        //   title: "New Users",
+        //   value: "300",
+        //   rate: "2.4%",
+        //   route: "/users",
+        //   desc: "From previous period",
+        // },
 
         {
           icon: "fas fa-users",

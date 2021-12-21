@@ -7,6 +7,7 @@ import "./Table/partnerTable.scss";
 import { connect } from "react-redux";
 import ClipLoader from "react-spinners/ClipLoader";
 //Actions
+import ReactPaginate from "react-paginate";
 import { getPartners } from "../../store/partners/actions";
 import BackBtn from "../BackBtn";
 import EmptySection from "../../components/EmptySection/EmptySection";
@@ -16,6 +17,7 @@ class Partner extends Component {
     this.state = {
       searchPartner: "",
       partnerList: null,
+      pageNumber: 0,
     };
   }
   componentDidMount() {
@@ -66,9 +68,17 @@ class Partner extends Component {
 
   render() {
     const { partners } = this.props;
+    const usersPerPage = 10;
+    const pageVisited = this.state.pageNumber * usersPerPage;
 
-    console.log(partners);
+    const pageCount = Math.ceil(this.props.partners.partners?.length / usersPerPage);
+
+    const changePage = ({ selected }) => {
+      this.setState({ pageNumber: selected });
+    };
+  
     let data;
+
     if (partners.loading === true) {
       data = (
         <div className="spinner-div">
@@ -105,22 +115,24 @@ class Partner extends Component {
                       history={this.props.history}
                     />
                   ))
-                : partners.partners.map((item, index) => {
-                    return (
-                      <PartnerTableRow
-                        key={index}
-                        brandName={item.businessName}
-                        enrollmentId={item.serviceNumber}
-                        serviceNumber={item.serviceNumber}
-                        contact={item.phone}
-                        email={item.businessEmail}
-                        status={item.status}
-                        id={item._id}
-                        history={this.props.history}
-                        serviceIds={item.serviceIds}
-                      />
-                    );
-                  })}
+                : partners.partners
+                    .slice(pageVisited, pageVisited + usersPerPage)
+                    .map((item, index) => {
+                      return (
+                        <PartnerTableRow
+                          key={index}
+                          brandName={item.businessName}
+                          enrollmentId={item.serviceNumber}
+                          serviceNumber={item.serviceNumber}
+                          contact={item.phone}
+                          email={item.businessEmail}
+                          status={item.status}
+                          id={item._id}
+                          history={this.props.history}
+                          serviceIds={item.serviceIds}
+                        />
+                      );
+                    })}
             </Table>
           </div>
         </div>
@@ -155,6 +167,17 @@ class Partner extends Component {
             </div>
 
             <CardBody>{data}</CardBody>
+            <ReactPaginate
+              previousLabel={"Previous"}
+              nextLabel={"Next"}
+              pageCount={pageCount}
+              onPageChange={changePage}
+              containerClassName={"paginationBttns"}
+              previousLinkClassName={"previousBttn"}
+              nextLinkClassName={"nextBttn"}
+              disabledClassName={"paginationDisabled"}
+              activeClassName={"paginationActive"}
+            />
           </Card>
         </Container>
       </div>

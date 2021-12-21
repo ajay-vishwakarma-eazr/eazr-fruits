@@ -16,9 +16,7 @@ const fakeBackend = () => {
 
   mock.onPost("/post-register").reply(function (config) {
     const user = JSON.parse(config["data"]);
-    debugger;
     users.push(user);
-    debugger;
     return new Promise(function (resolve, reject) {
       setTimeout(function () {
         resolve([200, user]);

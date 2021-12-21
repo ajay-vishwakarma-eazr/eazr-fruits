@@ -9,7 +9,6 @@ import { store } from "./store";
 // Import Routes
 import { authProtectedRoutes, publicRoutes } from "./routes/";
 import AppRoute from "./routes/route";
-import TestPage from "./pages/TestPage";
 // layouts
 import VerticalLayout from "./components/VerticalLayout/";
 import HorizontalLayout from "./components/HorizontalLayout/";
@@ -69,7 +68,6 @@ class App extends Component {
     const Layout = this.getLayout();
 
     return (
-      /*<TestPage/>*/
       <>
         <Router>
           <Switch>

@@ -42,7 +42,6 @@ const AdminUsers = () => {
       });
       setFilteredAdminUser(filter);
       console.log(filteredAdminUser);
-      debugger;
     }
   };
   let data;

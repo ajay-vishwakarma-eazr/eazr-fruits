@@ -6,7 +6,7 @@ const PartnerDetailsTab = () => {
     <div className="nav-container">
       <div className="details-nav">
         <NavLink
-          to="/partner-transactions"
+          to="/partner-details-tab"
           activeStyle={{
             borderBottom: "2px solid #0371e3",
             color: "#0371e3",
@@ -46,18 +46,8 @@ const PartnerDetailsTab = () => {
         >
           Reports
         </NavLink>
-        {/* <NavLink
-          to="/user-manageQR"
-          activeStyle={{
-            borderBottom: "2px solid #0371e3",
-            color: "#0371e3",
-            fontWeight: "bold",
-          }}
-        >
-          Manage QR
-        </NavLink> */}
         <NavLink
-          to="/user-profile"
+          to="/partner-profile"
           activeStyle={{
             borderBottom: "2px solid #0371e3",
             color: "#0371e3",

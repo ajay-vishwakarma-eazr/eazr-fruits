@@ -28,7 +28,6 @@ export const checkLogin = (user, history) => {
 
 export const login = (phone) => {
   console.log(phone);
-  debugger;
   return (dispatch) => {
     dispatch(setLoginLoading());
 

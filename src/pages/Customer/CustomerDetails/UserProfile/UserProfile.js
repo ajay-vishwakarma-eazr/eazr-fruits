@@ -1,15 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import avatar from "../../../../assets/images/users/avatar-3.jpg";
+import { fetchPartners } from "../../../../store/businessprofiles/actions/actions";
 import AuthModal from "../../../Partner/PartnerDetails/AuthModal";
 import "./userprofile.scss";
-
+import { connect, useDispatch, useSelector } from "react-redux";
+import { fetchAdminUsers, fetchUserById } from "../../../../store/adminusers/actions/actions";
+import { useParams } from "react-router";
 const UserProfile = () => {
   const [edit, setEdit] = useState(true);
+  const dispatch = useDispatch();
+  const {id}=useParams();
+  useEffect(() => {
+    dispatch(fetchUserById(id));
+  }, []);
+const { adminusers } = useSelector((state) => state.adminUsers);
 
-  const [formData, setFormData] = useState({
+console.log("userprofile",adminusers[1].user.email); 
+const [formData, setFormData] = useState({
     name: "Govind Sharma",
     email: "govind.s@eazr.in",
-    dob: "05/01/2000",
+    dob: "26/01/2000",
     contact: "9876787837",
     address: "3rd Floor, We Work, JVLR, Powai, Mumbai-400072",
     pan: "ABCDE1234E",
@@ -17,16 +27,8 @@ const UserProfile = () => {
     profileImg: avatar,
   });
 
-  const {
-    name,
-    email,
-    dob,
-    contact,
-    address,
-    pan,
-    aadhaarNo,
-    profileImg,
-  } = formData;
+  const { name, email, dob, contact, address, pan, aadhaarNo, profileImg } =
+    formData;
 
   const handleChange = (e) => {
     setFormData({
@@ -66,7 +68,7 @@ const UserProfile = () => {
         type="text"
         name="name"
         className="name-input"
-        value={name}
+        value={adminusers[1]?.user?.email}
         onChange={(e) => handleChange(e)}
       />
 

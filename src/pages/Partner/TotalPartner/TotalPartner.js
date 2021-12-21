@@ -7,6 +7,7 @@ import "./partnerTable.scss";
 import { connect } from "react-redux";
 import ClipLoader from "react-spinners/ClipLoader";
 //Actions
+import ReactPaginate from "react-paginate";
 import { getPartners } from "../../../store/partners/actions";
 import BackBtn from "../../BackBtn";
 import EmptySection from "../../../components/EmptySection/EmptySection";
@@ -16,10 +17,12 @@ class TotalPartner extends Component {
     this.state = {
       searchPartner: "",
       partnerList: null,
+      pageNumber: 0,
     };
   }
   componentDidMount() {
-    this.props.getPartners();
+    const test = this.props.getPartners();
+    console.log("partnerv data", test);
   }
 
   handleSearch = (e) => {
@@ -65,6 +68,18 @@ class TotalPartner extends Component {
 
   render() {
     const { partners } = this.props;
+    const usersPerPage = 10;
+    const pageVisited = this.state.pageNumber * usersPerPage;
+    const pageCount = Math.ceil(
+      this.props.partners.partners?.filter(
+        (item) => item.status.status === "Accepted"
+      )?.length / usersPerPage
+    );
+
+    const changePage = ({ selected }) => {
+      this.setState({ pageNumber: selected });
+    };
+
     let data;
     if (partners.loading === true) {
       data = (
@@ -93,32 +108,23 @@ class TotalPartner extends Component {
                       key={index}
                       brandName={item.businessName}
                       enrollmentId={item.serviceNumber}
-                      serviceNumber={item.serviceNumber}
                       contact={item.phone}
                       email={item.businessEmail}
-                      status={item.status}
-                      id={item._id}
-                      history={this.props.history}
                     />
                   ))
                 : partners.partners
                     .filter((item) => item.status.status === "Accepted")
+                    .slice(pageVisited, pageVisited + usersPerPage)
                     .map((item, index) => {
-                      
-                        return (
-                          <PartnerTableRow
-                            key={index}
-                            brandName={item.businessName}
-                            enrollmentId={item.serviceNumber}
-                            serviceNumber={item.serviceNumber}
-                            contact={item.phone}
-                            email={item.businessEmail}
-                            status={item.status}
-                            id={item._id}
-                            history={this.props.history}
-                            serviceIds={item.serviceIds}
-                          />
-                        );
+                      return (
+                        <PartnerTableRow
+                          key={index}
+                          brandName={item.businessName}
+                          enrollmentId={item.serviceNumber}
+                          contact={item.phone}
+                          email={item.businessEmail}
+                        />
+                      );
                     })}
             </Table>
           </div>
@@ -154,6 +160,17 @@ class TotalPartner extends Component {
             </div>
 
             <CardBody>{data}</CardBody>
+            <ReactPaginate
+              previousLabel={"Previous"}
+              nextLabel={"Next"}
+              pageCount={pageCount}
+              onPageChange={changePage}
+              containerClassName={"paginationBttns"}
+              previousLinkClassName={"previousBttn"}
+              nextLinkClassName={"nextBttn"}
+              disabledClassName={"paginationDisabled"}
+              activeClassName={"paginationActive"}
+            />
           </Card>
         </Container>
       </div>

@@ -1,10 +1,4 @@
 import React, { Component } from "react";
-import { Container, Row, Col } from "reactstrap";
-import MiniWidgets from "../MiniWidgets";
-import RevenueAnalytics from "../RevenueAnalytics";
-import SalesAnalytics from "../SalesAnalytics";
-import EarningReports from "../EarningReports";
-import RecentlyActivity from "../RecentlyActivity";
 import { connect } from "react-redux";
 import "../dashboard.scss";
 import { getPartners } from "../../../store/partners/actions";

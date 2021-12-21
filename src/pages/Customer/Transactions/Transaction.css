@@ -1,8 +1,9 @@
 .paginationBttns {
-  width: 80%;
-  height: 40px;
+  width:auto;
+  height: 85px;
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }
 

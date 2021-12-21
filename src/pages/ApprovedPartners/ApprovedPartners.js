@@ -4,20 +4,18 @@ import TableHeading from "./TableHeading";
 import TableRow from "./TableRow";
 import "./approvedpartners.scss";
 import SearchPartner from "./SearchPartner";
-import { getApprovedPartners } from "../../store/partners/actions";
 import { connect, useDispatch, useSelector } from "react-redux";
 import BackBtn from "../BackBtn";
 import ClipLoader from "react-spinners/ClipLoader";
 import EmptySection from "../../components/EmptySection/EmptySection";
 import { fetchPartners } from "../../store/businessprofiles/actions/actions";
-import { fetchOrders } from "../../store/orders/actions/actions";
-import axios from "axios";
-import { ip } from "./../../config/config";
+import ReactPaginate from "react-paginate";
 const ApprovedPartners = ({ getApprovedPartners }) => {
-  //const partnersList = partners.approvedPartners;
   const [searchPartner, setSearchPartner] = useState(null);
   const [filteredPartner, setFilteredPartner] = useState(null);
-  
+   const [pageNumber, setPageNumber] = useState(0);
+   const usersPerPage = 10;
+   const pagesVisited = pageNumber * usersPerPage;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,8 +25,6 @@ const ApprovedPartners = ({ getApprovedPartners }) => {
   const { modules } = useSelector((state) => state.partnerModules);
   const { partners } = useSelector((state) => state.businessPartner);
   const { loading } = useSelector((state) => state.businessPartner);
-  console.log(modules);
-  console.log("All patners", partners);
   const getSearchPartnerValue = (value) => {
     setSearchPartner(value);
   };
@@ -87,19 +83,21 @@ const ApprovedPartners = ({ getApprovedPartners }) => {
                         />
                       );
                     })
-                  : partners.map((partner) => {
-                      const { _id, businessName, email, mobile, address } =
-                        partner;
-                      return (
-                        <TableRow
-                          key={_id}
-                          businessName={businessName}
-                          email={email}
-                          contact={mobile}
-                          address={address.area}
-                        />
-                      );
-                    })}
+                  : partners
+                      .slice(pagesVisited, pagesVisited + usersPerPage)
+                      .map((partner) => {
+                        const { _id, businessName, email, mobile, address } =
+                          partner;
+                        return (
+                          <TableRow
+                            key={_id}
+                            businessName={businessName}
+                            email={email}
+                            contact={mobile}
+                            address={address.area}
+                          />
+                        );
+                      })}
               </Table>
             </div>
           </div>
@@ -109,7 +107,11 @@ const ApprovedPartners = ({ getApprovedPartners }) => {
   } else {
     data = <EmptySection />;
   }
+const pageCount = Math.ceil(partners?.length / usersPerPage);
 
+const changePage = ({ selected }) => {
+  setPageNumber(selected);
+};
   return (
     <div className="page-content approved-partners">
       <Container fluid>
@@ -125,6 +127,17 @@ const ApprovedPartners = ({ getApprovedPartners }) => {
               </CardBody>
             </Card>
             {data}
+            <ReactPaginate
+              previousLabel={"Previous"}
+              nextLabel={"Next"}
+              pageCount={pageCount}
+              onPageChange={changePage}
+              containerClassName={"paginationBttns"}
+              previousLinkClassName={"previousBttn"}
+              nextLinkClassName={"nextBttn"}
+              disabledClassName={"paginationDisabled"}
+              activeClassName={"paginationActive"}
+            />
           </Col>
         </Row>
       </Container>
@@ -132,12 +145,3 @@ const ApprovedPartners = ({ getApprovedPartners }) => {
   );
 };
 export default ApprovedPartners;
-/*const mapStateToProps = (state) => {
-  return {
-    partners: state.partners,
-  };
-};*/
-
-/*export default connect(mapStateToProps, { getApprovedPartners })(
-  ApprovedPartners
-);*/

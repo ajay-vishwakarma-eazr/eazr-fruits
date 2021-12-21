@@ -9,7 +9,7 @@ import TableHeading from "./TableHeading";
 import "./Transaction.css";
 import TableRow from "./TableRow";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory,Redirect } from "react-router-dom";
+import { useParams, useHistory, Redirect } from "react-router-dom";
 import { getTranscationById } from "../../../store/transactions/actions/action";
 import ReactPaginate from "react-paginate";
 const Transaction = () => {
@@ -21,10 +21,9 @@ const Transaction = () => {
   let history = useHistory();
   const dispatch = useDispatch();
   const { id } = useParams();
-  console.log(id);
   useEffect(() => {
-    if (id == undefined) {
-      <Redirect to="/dashboard"/>
+    if (id === undefined) {
+      <Redirect to="/dashboard" />;
     } else {
       dispatch(getTranscationById(id));
     }
@@ -81,6 +80,7 @@ const Transaction = () => {
                 // striped
                 // bordered
                 responsive
+         
                 className="transaction-table"
               >
                 <TableHeading />
