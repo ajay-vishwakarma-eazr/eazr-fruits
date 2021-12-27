@@ -1,12 +1,17 @@
 import React, { Component } from "react";
-import {Switch, Route, BrowserRouter as Router, withRouter } from "react-router-dom";
+import {
+  Switch,
+  Route,
+  BrowserRouter as Router,
+  withRouter,
+} from "react-router-dom";
 import { connect } from "react-redux";
 
 import setAuthToken from "./utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 import { store } from "./store";
 
-// kamlesh
+// testing
 
 // Import Routes
 import { authProtectedRoutes, publicRoutes } from "./routes/";
@@ -47,7 +52,6 @@ class App extends Component {
     this.state = {};
     this.getLayout = this.getLayout.bind(this);
   }
-
 
   /**
    * Returns the layout
@@ -98,7 +102,6 @@ class App extends Component {
     );
   }
 }
-
 
 const mapStateToProps = (state) => {
   return {
