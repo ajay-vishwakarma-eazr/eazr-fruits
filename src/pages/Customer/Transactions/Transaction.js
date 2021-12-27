@@ -22,7 +22,7 @@ const Transaction = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   useEffect(() => {
-    if (id === undefined) {
+    if (id === "undefined") {
       <Redirect to="/dashboard" />;
     } else {
       dispatch(getTranscationById(id));

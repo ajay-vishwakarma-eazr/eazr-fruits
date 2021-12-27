@@ -1,7 +1,8 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 
-const TableSearch = ({getSearchTransactionValue,filterArray}) => {
+const TableSearch = ({ getSearchTransactionValue, filterArray }) => {
   const [search, setSearch] = useState(null);
+  const [selectSearch, setSelectSearch] = useState(null);
   const onChange = (e) => {
     getSearchTransactionValue(e.target.value);
     setSearch(e.target.value);
@@ -15,12 +16,20 @@ const TableSearch = ({getSearchTransactionValue,filterArray}) => {
         placeholder="Search..."
         onChange={(e) => onChange(e)}
       />
-      <select name="" id="">
-        <option>All Transactions</option>
-        <option>Completed Transactions</option>
-        <option>Refunded Transactions</option>
-        <option>Failed Transactions</option>
-      </select>
+      {/* <select
+        name=""
+        id=""
+        value={selectSearch}
+        onchange={(e) => {
+          const selectedData = e.target.value;
+          setSelectSearch(selectedData);
+        }}
+      >
+        <option value="All">All Transactions</option>
+        <option value="Completed">Completed Transactions</option>
+        <option value="Refund">Refunded Transactions</option>
+        <option value="Failed">Failed Transactions</option>
+      </select> */}
     </div>
   );
 };
