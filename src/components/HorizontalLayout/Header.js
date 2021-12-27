@@ -55,6 +55,11 @@ class Header extends Component {
     this.toggleRightbar = this.toggleRightbar.bind(this);
     this.toggleFullscreen = this.toggleFullscreen.bind(this);
     this.toggleSearch = this.toggleSearch.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit() {
+    
   }
 
   toggleSearch = () => {
@@ -175,7 +180,7 @@ class Header extends Component {
                   }
                   aria-labelledby="page-header-search-dropdown"
                 >
-                  <Form className="p-3">
+                  <Form className="p-3" onSubmit={this.handleSubmit}>
                     <FormGroup className="m-0">
                       <InputGroup>
                         <Input
