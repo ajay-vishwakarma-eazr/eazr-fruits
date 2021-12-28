@@ -16,10 +16,10 @@ class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name:"",
+      name: "",
       email: "",
       phone: "",
-      roles:""
+      roles: "",
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -114,12 +114,9 @@ class Register extends Component {
                           <div className=" mt-5">
                             <AvForm className="form-horizontal">
                               <FormGroup className="auth-form-group-custom mb-4">
-                                <i className="ri-mail-line auti-custom-input-icon"></i>
-                                <Label
-                                  htmlFor="name"
-                                  className="font-size-18"
-                                >
-                                Name
+                                <i className="ri-user-2-line auti-custom-input-icon"></i>
+                                <Label htmlFor="name" className="font-size-18">
+                                  Name
                                 </Label>
                                 <AvField
                                   name="name"
@@ -135,7 +132,6 @@ class Register extends Component {
                                   autoComplete="off"
                                 />
                               </FormGroup>
-
 
                               <FormGroup className="auth-form-group-custom mb-4">
                                 <i className="ri-mail-line auti-custom-input-icon"></i>
@@ -161,7 +157,7 @@ class Register extends Component {
                               </FormGroup>
 
                               <FormGroup className="auth-form-group-custom mb-4">
-                                <i className="ri-user-2-line auti-custom-input-icon"></i>
+                                <i className="ri-phone-line auti-custom-input-icon"></i>
                                 <Label htmlFor="phone" className="font-size-18">
                                   phone
                                 </Label>
@@ -170,6 +166,8 @@ class Register extends Component {
                                   value={this.state.phone}
                                   onChange={(e) => {
                                     this.state.phone = e.target.value;
+                               
+                               
                                   }}
                                   type="text"
                                   className="form-control font-size-16"
@@ -186,28 +184,30 @@ class Register extends Component {
                               )}
 
                               <FormGroup className="auth-form-group-custom mb-4">
-                                <i className="ri-lock-2-line auti-custom-input-icon"></i>
-                                <Label
-                                  htmlFor="userpassword"
-                                  className="font-size-18"
-                                >
+                                <i className="ri-user-settings-line auti-custom-input-icon"></i>
+                                <Label htmlFor="roles" className="font-size-18">
                                   Roles
                                 </Label>
                                 <AvField
-                                  name="password"
-                                  value={this.state.password}
+                                  name="roles"
+                                  value={this.state.roles}
                                   onChange={(e) => {
-                                    this.state.password = e.target.value;
+                                    this.state.roles = e.target.value;
                                   }}
-                                  type="password"
-                                  className="form-control font-size-16"
-                                  id="userpassword"
-                                  placeholder="Enter password"
-                                />
+                                  type="select"
+                                  className="form-control
+                                  font-size-16"
+                                  id="roles"
+                                  placeholder="Select
+                                  Role"
+                                >
+                                  <option>Super Admin</option>
+                                  <option>Admin</option>
+                                </AvField>
                               </FormGroup>
                               {this.props.errors && (
                                 <p style={{ color: "red" }}>
-                                  {this.props.errors.password}
+                                  {this.props.errors.roles}
                                 </p>
                               )}
                               <Link to={"/login"}>
