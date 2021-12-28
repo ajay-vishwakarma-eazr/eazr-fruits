@@ -114,7 +114,11 @@ class Register extends Component {
                           <div className=" mt-5">
                             <AvForm className="form-horizontal">
                               <FormGroup className="auth-form-group-custom mb-4">
+
                                 <i className="ri-user-2-line auti-custom-input-icon"></i>
+
+                                <i className="ri-mail-line auti-custom-input-icon"></i>
+
                                 <Label htmlFor="name" className="font-size-18">
                                   Name
                                 </Label>
