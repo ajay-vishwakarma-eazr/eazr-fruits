@@ -93,8 +93,8 @@ class AuthLockScreen extends Component {
                                 to="auth-login"
                                 className="font-weight-medium text-primary"
                               >
-                                {" "}
-                                Log in{" "}
+                          
+                                Log in
                               </Link>{" "}
                             </p>
                             <p>

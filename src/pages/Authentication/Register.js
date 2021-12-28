@@ -16,9 +16,10 @@ class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      name:"",
       email: "",
       phone: "",
-      password: "",
+      roles:""
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -30,15 +31,14 @@ class Register extends Component {
   registerHandler(e) {
     e.preventDefault();
     let data = {
+      name: this.props.name,
       email: this.state.email,
       phone: this.state.phone,
-      password: this.state.password,
+      roles: this.state.roles,
     };
 
     postRegister(`${ip}/admin/auth/registeradmin`, data);
     console.log("data >>", data);
-    // axios.post
-    // console.log("email >>", this.state.email);
   }
 
   componentDidMount() {
@@ -51,9 +51,6 @@ class Register extends Component {
             value: result.value,
           });
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
         (error) => {
           this.setState({
             isLoaded: true,
@@ -119,6 +116,30 @@ class Register extends Component {
                               <FormGroup className="auth-form-group-custom mb-4">
                                 <i className="ri-mail-line auti-custom-input-icon"></i>
                                 <Label
+                                  htmlFor="name"
+                                  className="font-size-18"
+                                >
+                                Name
+                                </Label>
+                                <AvField
+                                  name="name"
+                                  value={this.state.name}
+                                  onChange={(e) => {
+                                    this.state.name = e.target.value;
+                                  }}
+                                  validate={{ name: true, required: true }}
+                                  type="name"
+                                  className="form-control font-size-16"
+                                  id="name"
+                                  placeholder="Enter full name"
+                                  autoComplete="off"
+                                />
+                              </FormGroup>
+
+
+                              <FormGroup className="auth-form-group-custom mb-4">
+                                <i className="ri-mail-line auti-custom-input-icon"></i>
+                                <Label
                                   htmlFor="useremail"
                                   className="font-size-18"
                                 >
@@ -170,7 +191,7 @@ class Register extends Component {
                                   htmlFor="userpassword"
                                   className="font-size-18"
                                 >
-                                  Password
+                                  Roles
                                 </Label>
                                 <AvField
                                   name="password"
