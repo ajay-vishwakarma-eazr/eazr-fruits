@@ -27,10 +27,7 @@ export const checkLogin = (user, history) => {
 };
 
 export const login = (contactNumber) => {
-<<<<<<< HEAD
   console.log(contactNumber);
-=======
->>>>>>> 24448d50d3e681f61c1b62ad06370c2e692e12f1
   return (dispatch) => {
     dispatch(setLoginLoading());
 
@@ -57,33 +54,17 @@ export const verify = (contactNumber, otp, history) => {
     });
 
     axios
-<<<<<<< HEAD
       .post(`${ip}/admins/verify-otp`, { contactNumber, otp })
-=======
-      .post(`${ip}/admins/verify-otp`, {
-        contactNumber,
-        otp,
-      })
-
->>>>>>> 24448d50d3e681f61c1b62ad06370c2e692e12f1
       .then((res) => {
         debugger;
         const { token } = res.data;
-        console.log("token data", token);
         localStorage.setItem("token", token);
         //Set token to auth header
         setAuthToken(token);
 
         //Decode token to get user data
-<<<<<<< HEAD
         const decoded = jwt_decode("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiY29udGFjdE51bWJlciI6Ijg5MjgzMzc3MzkiLCJ0aW1lc3RhbXAiOiIxNjQwNjc1NTk2MzQ0IiwiaWF0IjoxNjQwNjc1NTk2LCJleHAiOjE2NDkxNDI3OTZ9.RwelAgrcfTjHNV162lbqUy6hsCj3_29A0LXEhRZcbrY");
 
-=======
-        // const decoded = jwt_decode(token);
-        const decoded = jwt_decode(
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiY29udGFjdE51bWJlciI6Ijg5MjgzMzc3MzkiLCJ0aW1lc3RhbXAiOiIxNjQwNjc1NTk2MzQ0IiwiaWF0IjoxNjQwNjc1NTk2LCJleHAiOjE2NDkxNDI3OTZ9.RwelAgrcfTjHNV162lbqUy6hsCj3_29A0LXEhRZcbrY"
-        );
->>>>>>> 24448d50d3e681f61c1b62ad06370c2e692e12f1
         dispatch(loginUserSuccessful(decoded));
         history.push("/dashboard");
         debugger;

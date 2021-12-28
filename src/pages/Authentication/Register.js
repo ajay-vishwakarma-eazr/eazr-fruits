@@ -16,10 +16,10 @@ class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name:"",
+      name: "",
       email: "",
       phone: "",
-      roles:""
+      roles: "",
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -115,11 +115,8 @@ class Register extends Component {
                             <AvForm className="form-horizontal">
                               <FormGroup className="auth-form-group-custom mb-4">
                                 <i className="ri-mail-line auti-custom-input-icon"></i>
-                                <Label
-                                  htmlFor="name"
-                                  className="font-size-18"
-                                >
-                                Name
+                                <Label htmlFor="name" className="font-size-18">
+                                  Name
                                 </Label>
                                 <AvField
                                   name="name"
@@ -135,7 +132,6 @@ class Register extends Component {
                                   autoComplete="off"
                                 />
                               </FormGroup>
-
 
                               <FormGroup className="auth-form-group-custom mb-4">
                                 <i className="ri-mail-line auti-custom-input-icon"></i>
