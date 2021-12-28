@@ -26,13 +26,12 @@ export const checkLogin = (user, history) => {
   };
 };
 
-export const login = (phone) => {
-  console.log(phone);
+export const login = (contactNumber) => {
   return (dispatch) => {
     dispatch(setLoginLoading());
 
     axios
-      .post(`${ip}/admin/auth/loginotp`, { phone })
+      .post(`${ip}/admins/send-otp`, { contactNumber })
       .then((res) => {
         dispatch({
           type: OTP_SENT,
@@ -47,14 +46,17 @@ export const login = (phone) => {
   };
 };
 
-export const verify = (phone, otp, history) => {
+export const verify = (contactNumber, otp, history) => {
   return (dispatch) => {
     dispatch({
       type: VERIFY_LOADING,
     });
 
     axios
-      .post(`${ip}/admin/auth/verifyotp`, { phone, otp })
+      .post(`${ip}/admins/verify-otp`, {
+        contactNumber,
+        otp,
+      })
       .then((res) => {
         const { token } = res.data;
         localStorage.setItem("token", token);
