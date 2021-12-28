@@ -231,6 +231,8 @@ class Register extends Component {
           </Container>
         </div>
       </React.Fragment>
+      //Phone icon>> <i class="ri-phone-line"></i>
+      // user setting >> <i class="ri-user-settings-line"></i>
     );
   }
 }
