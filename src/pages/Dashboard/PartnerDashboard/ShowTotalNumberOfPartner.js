@@ -12,7 +12,7 @@ class ShowTotalNumberOfPartner extends Component {
     return (
       <>
         <div>
-          {partners?.filter((item) => item.status.status === "Accepted").length}
+          {(!partners)? 0 :(partners?.filter((item) => item.status.status === "Accepted").length)}
         </div>
       </>
     );
