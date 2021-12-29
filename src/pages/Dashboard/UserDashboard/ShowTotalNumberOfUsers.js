@@ -1,19 +1,12 @@
-import React,{useEffect} from "react";
-import { connect, useDispatch, useSelector } from "react-redux";
-import { fetchAdminUsers } from "../../../store/adminusers/actions/actions";
-
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { ip } from "../../../config/config";
 const ShowTotalNumberOfUsers = () => {
-  const dispatch=useDispatch();
- const { adminusers } = useSelector((state) => state.adminUsers);  
+  const [numberofUsers, setNumberofUsers] = useState(0);
   useEffect(() => {
-    dispatch(fetchAdminUsers());
- }, [])
- 
-  return (
-    <>
-    {adminusers?.length}
-    </>
-  );
+    axios.get(`${ip}/users/count`).then((res) => {console.log("new ",res);});
+  }, []);
+
+  return <>{numberofUsers}</>;
 };
 export default ShowTotalNumberOfUsers;
-

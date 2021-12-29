@@ -54,29 +54,19 @@ export const verify = (contactNumber, otp, history) => {
       type: VERIFY_LOADING,
     });
 
-    axios
-
-      .post(`${ip}/admins/verify-otp`, {
-        contactNumber,
-        otp,
-      })
-
-
-      .post(`${ip}/admins/verify-otp`, { contactNumber, otp })
+      axios.post(`${ip}/admins/verify-otp`, { contactNumber, otp })
      .then((res) => {
-        const { token } = res.data;
-        localStorage.setItem("token", token);
+      const {accessToken} = res.data.admin;
+        
+        localStorage.setItem("accessToken", accessToken);
         //Set token to auth header
-        setAuthToken(token);
+        setAuthToken(accessToken);
 
         //Decode token to get user data
-
-        // const decoded = jwt_decode(token);
-        
-        const decoded = jwt_decode("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiY29udGFjdE51bWJlciI6Ijg5MjgzMzc3MzkiLCJ0aW1lc3RhbXAiOiIxNjQwNjc1NTk2MzQ0IiwiaWF0IjoxNjQwNjc1NTk2LCJleHAiOjE2NDkxNDI3OTZ9.RwelAgrcfTjHNV162lbqUy6hsCj3_29A0LXEhRZcbrY");
+         const decoded = jwt_decode(accessToken);
         dispatch(loginUserSuccessful(decoded));
         history.push("/dashboard");
-        dispatch(fetchModules());
+        // dispatch(fetchModules());
       })
       .catch((err) => {
         console.log(err);

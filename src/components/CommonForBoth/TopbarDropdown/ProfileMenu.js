@@ -30,7 +30,7 @@ class ProfileMenu extends Component {
   }
 
   handleLogout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("accessToken");
     this.props.logoutUser();
     const { history } = this.props;
     history.push("/login");
