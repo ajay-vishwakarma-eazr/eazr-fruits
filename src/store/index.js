@@ -11,17 +11,15 @@ import { persistStore, persistReducer } from "redux-persist"; // imports from re
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
 import { batchedSubscribe } from "redux-batched-subscribe";
 import { debounce } from "lodash";
-
-
-
+import hardSet from "redux-persist/lib/stateReconciler/hardSet";
 
 const persistConfig = {
   // configuration object for redux-persist
   key: "root",
 
   storage, // define which storage to use
-  whitelist: ["auth", "partners", "partnerModules"],
-  //stateReconciler: hardSet,
+  // whitelist: ["auth", "partners", "partnerModules"],
+  stateReconciler: hardSet,
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer) // create a persisted reducer
@@ -47,4 +45,4 @@ export { store, persistor };
 // );
 // // sagaMiddleware.run(rootSaga);
 
-// export default store;
+// export default  store;

@@ -24,7 +24,8 @@ export const getPartners = () => {
     dispatch(setPartersLoading());
 
     axios
-      .get(`${ip}/admin/partners`)
+      // .get(`${ip}/admin/partners`)
+      .get(`${ip}/partners`)
       .then((res) => {
         dispatch({
           type: GET_PARTNERS,

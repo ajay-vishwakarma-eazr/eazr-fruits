@@ -26,7 +26,8 @@ class StarterPage extends Component {
         {
           icon: "fas fa-user-tie",
           title: "Onboarding Partners",
-          value: <ShowTotalNumberOfOnboardingPartner />,
+          // value: <ShowTotalNumberOfOnboardingPartner />,
+          value: "0",
           rate: "2.4%",
           desc: "From previous period",
           route: "/partner-approval",

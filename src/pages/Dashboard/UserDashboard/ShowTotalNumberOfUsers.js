@@ -4,7 +4,10 @@ import { ip } from "../../../config/config";
 const ShowTotalNumberOfUsers = () => {
   const [numberofUsers, setNumberofUsers] = useState(0);
   useEffect(() => {
-    axios.get(`${ip}/users/count`).then((res) => {console.log("new ",res);});
+    axios.get(`${ip}/users/count`)
+    .then((res) => {
+      console.log("new ", res);
+    });
   }, []);
 
   return <>{numberofUsers}</>;

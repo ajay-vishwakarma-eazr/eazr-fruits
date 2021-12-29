@@ -50,14 +50,13 @@ export const login = (contactNumber) => {
 
 export const verify = (contactNumber, otp, history) => {
   return (dispatch) => {
-    dispatch({
-      type: VERIFY_LOADING,
-    });
+    // dispatch({
+    //   type: VERIFY_LOADING,
+    // });
 
       axios.post(`${ip}/admins/verify-otp`, { contactNumber, otp })
      .then((res) => {
       const {accessToken} = res.data.admin;
-        
         localStorage.setItem("accessToken", accessToken);
         //Set token to auth header
         setAuthToken(accessToken);
