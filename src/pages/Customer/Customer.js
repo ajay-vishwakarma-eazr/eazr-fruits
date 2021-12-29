@@ -7,42 +7,43 @@ import { connect, useDispatch, useSelector } from "react-redux";
 import BackBtn from "../BackBtn";
 import ClipLoader from "react-spinners/ClipLoader";
 import EmptySection from "../../components/EmptySection/EmptySection";
-import { fetchAdminUsers } from "../../store/adminusers/actions/actions";
-import SearchAdminUsers from "./SearchAdminUsers";
+import SearchUsers from "./SearchUsers";
 import ReactPaginate from "react-paginate";
+import { fetchUsers } from "../../store/adminusers/actions/actions";
 const Customer = () => {
-  const [searchAdminUser, setSearchAdminUser] = useState(null);
-  const [filteredAdminUser, setFilteredAdminUser] = useState(null);
+  const [searchUser, setSearchUser] = useState(null);
+  const [filteredUser, setFilteredUser] = useState(null);
   const [pageNumber, setPageNumber] = useState(0);
   const usersPerPage = 10;
   const pagesVisited = pageNumber * usersPerPage;
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchAdminUsers());
+    dispatch(fetchUsers());
   }, []);
-  const { loading } = useSelector((state) => state.adminUsers);
-  const { adminusers } = useSelector((state) => state.adminUsers);
-  const getSearchAdminUserValue = (value) => {
-    setSearchAdminUser(value);
+  const { loading } = useSelector((state) => state.Users);
+  const { users } = useSelector((state) => state.Users);
+  
+  const getSearchUserValue = (value) => {
+    setSearchUser(value);
   };
   const filterArray = () => {
-    if (searchAdminUser !== null && searchAdminUser.length > 0) {
-      const filter = adminusers.filter((users) => {
+    if (searchUser !== null && searchUser.length > 0) {
+      const filter = users.filter((users) => {
         return (
           users.user?.name
             ?.toLowerCase()
-            .includes(searchAdminUser.toLowerCase()) ||
+            .includes(searchUser.toLowerCase()) ||
           users.user?.email
             ?.toLowerCase()
-            .includes(searchAdminUser.toLowerCase()) ||
+            .includes(searchUser.toLowerCase()) ||
           users.user?.phone
             ?.toLowerCase()
-            .includes(searchAdminUser.toLowerCase())
+            .includes(searchUser.toLowerCase())
         );
       });
-      setFilteredAdminUser(filter);
-      console.log(filteredAdminUser);
+      setFilteredUser(filter);
+      console.log(filteredUser);
     }
   };
   let data;
@@ -53,7 +54,7 @@ const Customer = () => {
         <ClipLoader color="#bbbbbb" loading={true} size={60} />
       </div>
     );
-  } else if (adminusers !== null && adminusers.length > 0) {
+  } else if (users !== null && users.length > 0) {
     data = (
       <Card>
         <CardBody>
@@ -69,30 +70,32 @@ const Customer = () => {
                 responsive
               >
                 <CustomerTableHeading />
-                {filteredAdminUser
-                  ? filteredAdminUser.map((users) => {
+                {filteredUser
+                  ? filteredUser.map((users) => {
                       return (
                         <CustomerTableRow
                           key={users._id}
-                          id={users.user?._id}
-                          name={users.user?.name}
-                          email={users.user?.email}
-                          phone={users.user?.phone}
-                          password={users.user?.password}
+                          name={users.fullName}
+                          email={users.email}
+                          contact={users.contactNumber}
+                          gender={users.gender}
+                          creditLimit={users.creditLimit}
+                          outstandingAmount={users.outstandingAmount}
                         />
                       );
                     })
-                  : adminusers
+                  : users
                       .slice(pagesVisited, pagesVisited + usersPerPage)
                       .map((users) => {
                         return (
                           <CustomerTableRow
                             key={users._id}
-                            id={users.user?._id}
-                            name={users.user?.name}
-                            email={users.user?.email}
-                            phone={users.user?.phone}
-                            password={users.user?.password}
+                            name={users.fullName}
+                            email={users.email}
+                            contact={users.contactNumber}
+                            gender={users.gender}
+                            creditLimit={users.creditLimit}
+                            outstandingAmount={users.outstandingAmount}
                           />
                         );
                       })}
@@ -106,7 +109,7 @@ const Customer = () => {
     data = <EmptySection />;
   }
 
-  const pageCount = Math.ceil(adminusers.length / usersPerPage);
+  const pageCount = Math.ceil(users.length / usersPerPage);
 
   const changePage = ({ selected }) => {
     setPageNumber(selected);
@@ -120,8 +123,8 @@ const Customer = () => {
             <Col xs={12}>
               <Card>
                 <CardBody>
-                  <SearchAdminUsers
-                    getSearchAdminUserValue={getSearchAdminUserValue}
+                  <SearchUsers
+                    getSearchUserValue={getSearchUserValue}
                     filterArray={filterArray}
                   />
                 </CardBody>

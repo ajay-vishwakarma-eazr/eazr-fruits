@@ -1,7 +1,7 @@
 import {
-  FETCH_ADMIN_USERS_FAILURE,
-  FETCH_ADMIN_USERS_REQUEST,
-  FETCH_ADMIN_USERS_SUCCESS,
+  FETCH_USERS_FAILURE,
+  FETCH_USERS_REQUEST,
+  FETCH_USERS_SUCCESS,
   USER_LOADING,
   GET_USER_BY_ID,
   GET_USER_BY_ID_FAILED,
@@ -13,37 +13,37 @@ import {
 import axios from "axios";
 import { ip } from "../../../config/config";
 
-export const FetchAdminUsersRequest = () => {
+export const FetchUsersRequest = () => {
   return {
-    type: FETCH_ADMIN_USERS_REQUEST,
+    type: FETCH_USERS_REQUEST,
   };
 };
-export const FetchAdminUsersSuccess = (users) => {
+export const FetchUsersSuccess = (users) => {
   return {
-    type: FETCH_ADMIN_USERS_SUCCESS,
+    type: FETCH_USERS_SUCCESS,
     payload: users,
   };
 };
 
-export const FetchAdminUsersFailure = (error) => {
+export const FetchUsersFailure = (error) => {
   return {
-    type: FETCH_ADMIN_USERS_FAILURE,
+    type: FETCH_USERS_FAILURE,
     payload: error,
   };
 };
 
-export const fetchAdminUsers = () => {
+export const fetchUsers = () => {
   return function (dispatch) {
-    dispatch(FetchAdminUsersRequest);
+    dispatch(FetchUsersRequest);
     axios
-      .get(`${ip}/user/account/all`)
+      .get(`${ip}/users`)
       .then((res) => {
-        const adminusers = res.data;
-        dispatch(FetchAdminUsersSuccess(adminusers));
+        const users = res.data;
+        dispatch(FetchUsersSuccess(users));
       })
       .catch((err) => {
         console.log(err);
-        dispatch(FetchAdminUsersFailure(err.message));
+        dispatch(FetchUsersFailure(err.message));
         // alert('No data found')
       });
   };

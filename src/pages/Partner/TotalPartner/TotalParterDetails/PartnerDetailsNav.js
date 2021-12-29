@@ -8,7 +8,7 @@ const PartnerDetailsNav = () => {
   return (
     <div className="page-content customer-page ">
       <Container fluid>
-        <BackBtn route="users" />
+        <BackBtn route="total-partner" />
         <PartnerDetailsTab/>
         <div className="customer-details">
           <PartnerAllTransactions/>

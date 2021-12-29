@@ -27,7 +27,7 @@ class AdminDashboard extends Component {
           title: "Total Partners",
           value: <ShowTotalNumberOfPartner/>,
           rate: "2.4%",
-          route: "/partners",
+          route: "/total-partner",
           desc: "From previous period",
         },
 

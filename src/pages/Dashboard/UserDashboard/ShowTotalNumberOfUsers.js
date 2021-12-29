@@ -6,11 +6,12 @@ const ShowTotalNumberOfUsers = () => {
   useEffect(() => {
     axios.get(`${ip}/users/count`)
     .then((res) => {
+      setNumberofUsers(res.data);
       console.log("new ", res);
     });
   }, []);
 
-  return <>{numberofUsers}</>;
+  return <>{(!numberofUsers) ? 0 :numberofUsers}</>;
 };
 export default ShowTotalNumberOfUsers;
 // kamlesh

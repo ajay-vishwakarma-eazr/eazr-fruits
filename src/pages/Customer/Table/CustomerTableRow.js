@@ -5,7 +5,15 @@ import EditCustomer from "../EditCustomer/EditCustomer";
 import { Link } from "react-router-dom";
 
 
-const CustomerTableRow = ({ id, name, phone, email }) => {
+const CustomerTableRow = ({
+  id,
+  name,
+  email,
+  contact,
+  gender,
+  creditLimit,
+  outstandingAmount
+}) => {
   const [sweetAlerts, setSweetAlerts] = useState({
     dynamic_title: "",
     dynamic_description: "",
@@ -19,8 +27,11 @@ const CustomerTableRow = ({ id, name, phone, email }) => {
   return (
     <tr style={{ opacity: ban ? 0.5 : 1 }} className="customer-table-row">
       <td>{name}</td>
-      <td>{phone}</td>
       <td>{email}</td>
+      <td>{contact}</td>
+      <td>{gender}</td>
+      <td>{creditLimit}</td>
+      <td>{outstandingAmount}</td>
       <td>
         <Link
           to={{
@@ -38,16 +49,14 @@ const CustomerTableRow = ({ id, name, phone, email }) => {
         <UncontrolledTooltip target={"ban"} placement="top">
           Ban / Unban
         </UncontrolledTooltip>
-        {showModal && (
-          <EditCustomer showModal={showModal}  />
-        )}
-        
-          <i
-            className="mdi mdi-account-edit"
-            id="edit"
-            onClick={() => setShowModal(!showModal)}
-          ></i>
-                <i
+        {showModal && <EditCustomer showModal={showModal} />}
+
+        <i
+          className="mdi mdi-account-edit"
+          id="edit"
+          onClick={() => setShowModal(!showModal)}
+        ></i>
+        <i
           className="fas fa-ban"
           id="ban"
           style={{ color: ban && "green" }}

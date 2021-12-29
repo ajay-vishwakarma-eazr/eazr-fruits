@@ -18,7 +18,8 @@ const persistConfig = {
   key: "root",
 
   storage, // define which storage to use
-  // whitelist: ["auth", "partners", "partnerModules"],
+//   whitelist: ["auth", "partners", "partnerModules", "Account", "Forget", "Layout",
+// "adminUsers", "businessPartner", "deliveryPartners", "orders"]
   stateReconciler: hardSet,
 };
 

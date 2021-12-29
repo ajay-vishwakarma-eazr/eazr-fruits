@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "./customer.scss";
 
-const SearchAdminUsers = ({ getSearchAdminUserValue, filterArray }) => {
+const SearchUsers = ({ getSearchUserValue, filterArray }) => {
   const [search, setSearch] = useState(null);
 
   const onChange = (e) => {
-    getSearchAdminUserValue(e.target.value);
+    getSearchUserValue(e.target.value);
     setSearch(e.target.value);
   };
 
@@ -54,4 +54,4 @@ const SearchAdminUsers = ({ getSearchAdminUserValue, filterArray }) => {
   );
 };
 
-export default SearchAdminUsers;
+export default SearchUsers;

@@ -1,7 +1,7 @@
 import {
-  FETCH_ADMIN_USERS_FAILURE,
-  FETCH_ADMIN_USERS_REQUEST,
-  FETCH_ADMIN_USERS_SUCCESS,
+  FETCH_USERS_FAILURE,
+  FETCH_USERS_REQUEST,
+  FETCH_USERS_SUCCESS,
   USER_LOADING,
   GET_USER_BY_ID,
   GET_USER_BY_ID_FAILED,
@@ -13,11 +13,11 @@ import {
 
 export const initialState = {
   loading: false,
-  adminusers: [],
+  users: [],
   errror: "",
 };
  
-export const AdminUserReducer = (state = initialState, action) => {
+export const UserReducer = (state = initialState, action) => {
   switch (action.type) {
     case USER_LOADING:
       return {
@@ -25,32 +25,32 @@ export const AdminUserReducer = (state = initialState, action) => {
         loading: true,
         errors: null,
       };
-    case FETCH_ADMIN_USERS_REQUEST:
+    case FETCH_USERS_REQUEST:
       return {
         ...state,
         loading: true,
       };
 
-    case FETCH_ADMIN_USERS_SUCCESS:
+    case FETCH_USERS_SUCCESS:
       return {
         ...state,
         loading: false,
-        adminusers: action.payload,
+        users: action.payload,
         error: null,
       };
 
-    case FETCH_ADMIN_USERS_FAILURE:
+    case FETCH_USERS_FAILURE:
       return {
         ...state,
         loading: false,
-        adminusers: [],
+        users: [],
         error: action.payload,
       };
     case GET_USER_BY_ID:
       return {
         ...state,
         loading: false,
-        adminusers: action.payload,
+        users: action.payload,
         errors: null,
       };
     case GET_USER_BY_ID_FAILED:
@@ -63,12 +63,12 @@ export const AdminUserReducer = (state = initialState, action) => {
     case SET_USER:
       return {
         ...state,
-        adminusers: action.payload,
+        users: action.payload,
       };
     case UPDATE_PROFILE_SUCCESS:
       return {
         ...state,
-        adminusers: action.payload,
+        users: action.payload,
       };
     case UPDATE_PROFILE_FAILED:
       return {
@@ -77,14 +77,14 @@ export const AdminUserReducer = (state = initialState, action) => {
       };
 
     case ONCLICK_ID:
-      const newAdminuser = state.adminusers.map((userObj) =>
+      const newuser = state.users.map((userObj) =>
         userObj.id === action.id
           ? { userObj: action.payload }
           : userObj
       );
       return {
         loading: false,
-        adminusers: newAdminuser,
+        users: newuser,
         error: action.payload,
       };
 

@@ -22,7 +22,7 @@ class TotalPartner extends Component {
   }
   componentDidMount() {
     const test = this.props.getPartners();
-    console.log("partnerv data", test);
+    console.log("partner data", test);
   }
 
   handleSearch = (e) => {
@@ -39,17 +39,17 @@ class TotalPartner extends Component {
           .split(" ")
           .join("")
           .includes(searchablePartner.toLowerCase().split(" ").join("")) ||
-        filter.businessEmail
+        filter.email
           .toLowerCase()
           .split(" ")
           .join("")
           .includes(searchablePartner.toLowerCase().split(" ").join("")) ||
-        filter.serviceNumber
+        filter.contact
           .toLowerCase()
           .split(" ")
           .join("")
           .includes(searchablePartner.toLowerCase().split(" ").join("")) ||
-        filter.status.status
+        filter.plan?.name
           .toLowerCase()
           .split(" ")
           .join("")
@@ -106,23 +106,27 @@ class TotalPartner extends Component {
                 ? this.state.partnerList.map((item, index) => (
                     <PartnerTableRow
                       key={index}
-                      brandName={item.businessName}
-                      enrollmentId={item.serviceNumber}
-                      contact={item.phone}
-                      email={item.businessEmail}
+                      name={item.businessName}
+                      contact={item.contactNumber}
+                      email={item.email}
+                      description={item.businessDescription}
+                      partnerType={item.partnerType.type}
+                      plan={item.plan?.name}
                     />
                   ))
                 : partners.partners
-                    .filter((item) => item.status.status === "Accepted")
+                    // .filter((item) => item.status.status === "Accepted")
                     .slice(pageVisited, pageVisited + usersPerPage)
                     .map((item, index) => {
                       return (
                         <PartnerTableRow
                           key={index}
-                          brandName={item.businessName}
-                          enrollmentId={item.serviceNumber}
-                          contact={item.phone}
-                          email={item.businessEmail}
+                          name={item.businessName}
+                          contact={item.contactNumber}
+                          email={item.email}
+                          description={item.businessDescription}
+                          partnerType={item.partnerType.type}
+                          plan={item.plan?.name}
                         />
                       );
                     })}

@@ -3,11 +3,12 @@ import React from "react";
 const PartnerTableHeading = () => {
   return (
     <thead className="partner-table-heading">
-      <th>Brand Name</th>
-      <th>Enroll Id</th>
+      <th>Name</th>
       <th>Contact</th>
       <th>Email</th>
-      {/* <th>Status</th> */}
+      <th>Description</th>
+      <th>Partner Type</th>
+      <th>Plan</th>
       <th>View</th>
     </thead>
   );

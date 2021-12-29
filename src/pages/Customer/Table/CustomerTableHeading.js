@@ -2,14 +2,16 @@ import React from "react";
 
 const CustomerTableHeading = () => {
   return (
-    
-      <thead className="customer-table-heading">
-        <th>Customer Name</th>
-        <th>Contact</th>
-        <th>Email</th>
-        <th>View</th>
-        <th>Action</th>
-      </thead>
+    <thead className="customer-table-heading">
+      <th>Name</th>
+      <th>Email</th>
+      <th>Contact</th>
+      <th>Gender</th>
+      <th>Credit Limit</th>
+      <th>Outstanding Amount</th>
+      <th>Details</th>
+      <th>Actions</th>
+    </thead>
   );
 };
 
