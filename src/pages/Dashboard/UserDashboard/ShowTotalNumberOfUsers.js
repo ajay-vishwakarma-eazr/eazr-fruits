@@ -7,7 +7,6 @@ const ShowTotalNumberOfUsers = () => {
     axios.get(`${ip}/users/count`)
     .then((res) => {
       setNumberofUsers(res.data);
-      console.log("new ", res);
     });
   }, []);
 

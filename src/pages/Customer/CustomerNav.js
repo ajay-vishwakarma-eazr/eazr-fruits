@@ -6,7 +6,7 @@ const CustomersNav = () => {
     <div className="nav-container">
       <div className="details-nav">
         <NavLink
-          to="/user/:id"
+          to="/user/id"
           activeStyle={{
             borderBottom: "2px solid #0371e3",
             color: "#0371e3",
@@ -47,8 +47,8 @@ const CustomersNav = () => {
           Manage QR
         </NavLink> */}
         <NavLink
-         // to="/user-profile/id"
-          to="/user-profile"
+          // to="/user-profile/id"
+          to={`/user-profile`}
           activeStyle={{
             borderBottom: "2px solid #0371e3",
             color: "#0371e3",

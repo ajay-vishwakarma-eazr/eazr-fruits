@@ -67,23 +67,23 @@ class ProfileMenu extends Component {
             <i className="mdi mdi-chevron-down d-none ml-1 d-xl-inline-block"></i>
           </DropdownToggle>
           <DropdownMenu right>
-            <DropdownItem href="#">
+            <DropdownItem href="AdminProfile">
               <i className="ri-user-line align-middle mr-1"></i>{" "}
               {this.props.t("Profile")}
             </DropdownItem>
-            <DropdownItem href="#">
+            {/* <DropdownItem href="#">
               <i className="ri-wallet-2-line align-middle mr-1"></i>{" "}
               {this.props.t("My Wallet")}
-            </DropdownItem>
-            <DropdownItem className="d-block" href="#">
+            </DropdownItem> */}
+            {/* <DropdownItem className="d-block" href="#">
               <span className="badge badge-success float-right mt-1">11</span>
               <i className="ri-settings-2-line align-middle mr-1"></i>{" "}
               {this.props.t("Settings")}
-            </DropdownItem>
-            <DropdownItem href="#">
+            </DropdownItem> */}
+            {/* <DropdownItem href="#">
               <i className="ri-lock-unlock-line align-middle mr-1"></i>{" "}
               {this.props.t("Lock screen")}
-            </DropdownItem>
+            </DropdownItem> */}
             <DropdownItem divider />
             <DropdownItem className="text-danger" onClick={this.handleLogout}>
               <i className="ri-shut-down-line align-middle mr-1 text-danger"></i>{" "}

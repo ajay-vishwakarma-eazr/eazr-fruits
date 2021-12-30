@@ -41,6 +41,7 @@ import DeliveryModules from "../pages/Modules/DeliveryModules";
 import UserModules from "../pages/Modules/UserModules";
 import Profile from "../pages/ApprovedPartners/Details/Profile/Profile";
 import CustomerDetails from "../pages/Customer/CustomerDetails/CustomerDetails";
+import AdminProfile from "../pages/Admin/AdminProfile";
 import UserTransaction from "../pages/Customer/Transactions/Transaction";
 import CustomerModules from "../pages/Customer/Modules/UserModules";
 import CustomerOrders from "../pages/Customer/Orders/Orders";
@@ -70,6 +71,7 @@ import TotalPartner from "../pages/Partner/TotalPartner/TotalPartner";
 import PartnerDetailsNav from "../pages/Partner/TotalPartner/TotalParterDetails/PartnerDetailsNav";
 import PartnerAllTransactions from "../pages/Partner/TotalPartner/TotalParterDetails/PartnerAllTarnsactions/PartnerAllTransactions";
 import PartnerProfile from "../pages/Partner/TotalPartner/TotalParterDetails/PartnerProfile/PartnerProfile";
+import UserProfile from "../pages/Customer/CustomerDetails/UserProfile/UserProfile";
 const authProtectedRoutes = [
   { path: "/partner-dashboard", component: PartnerDashboard },
   { path: "/dashboard", component: AdminDashboard },
@@ -79,8 +81,7 @@ const authProtectedRoutes = [
   { path: "/auth-lock-screen", component: AuthLockScreen },
   // {path:"/allusers",component:AllUsers},
   { path: "/users", component: Customer },
-  // { path: "/user-profile/:id", component: CustomerDetails },
-  { path: "/user-profile", component: CustomerDetails },
+  { path: "/user-profile/:id", component:CustomerDetails },
   { path: "/user/:id", component: UserTransaction },
   { path: "/user-module", component: CustomerModules },
   { path: "/user-orders", component: CustomerOrders },
@@ -128,6 +129,7 @@ const authProtectedRoutes = [
   { path: "/manageQr", component: ManageQR },
   { path: "/settlement/id", component: InnerSettlement },
   { path: "/profile", component: Profile },
+  { path: "/adminprofile", component: AdminProfile },
   { path: "/modules", component: Modules },
   { path: "/delivery-modules", component: DeliveryModules },
   { path: "/user-modules", component: UserModules },

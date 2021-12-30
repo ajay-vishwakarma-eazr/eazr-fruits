@@ -6,6 +6,7 @@ import "./customerdetails.scss";
 import BackBtn from "../BackBtn";
 import CustomersNav from "../CustomerNav";
 const CustomerDetails = () => {
+
   return (
     <div className="page-content customer-page ">
       <Container fluid>

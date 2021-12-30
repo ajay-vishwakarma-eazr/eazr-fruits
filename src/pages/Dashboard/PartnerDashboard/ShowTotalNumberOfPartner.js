@@ -8,7 +8,6 @@ function ShowTotalNumberOfPartner() {
   useEffect(() => {
     axios.get(`${ip}/partners/count`).then((res) => {
       setNumberOfPartners(res.data);
-      console.log("new ", res);
     });
   }, []);
   return <div>{!numberOfPartners ? 0 : numberOfPartners}</div>;

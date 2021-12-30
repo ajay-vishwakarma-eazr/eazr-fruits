@@ -14,11 +14,8 @@ const AuthModal = ({
 }) => {
   const [modal, setModal] = useState(false);
   const [success_msg, setSuccess_Msg] = useState(false);
-
   const disableEdit = true;
-
   const toggle = () => setModal(!modal);
-  console.log(errors);
 
   return (
     <div>
@@ -36,7 +33,6 @@ const AuthModal = ({
           <button
             className="partner-auth-btn"
             onClick={() => {
-              // setSuccess_Msg(true);
               onSave();
             }}
           >

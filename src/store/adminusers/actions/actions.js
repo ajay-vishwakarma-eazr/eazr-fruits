@@ -75,7 +75,7 @@ export const fetchUserById = (id) => {
     axios
       .get(`${ip}/users/${id}`)
       .then((res) => {
-        console.log("user",res);
+        console.log("user by id",res);
         dispatch({
           type: GET_USER_BY_ID,
           payload: res.data,
