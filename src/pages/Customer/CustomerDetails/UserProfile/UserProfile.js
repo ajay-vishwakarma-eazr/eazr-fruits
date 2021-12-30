@@ -4,19 +4,21 @@ import { fetchPartners } from "../../../../store/businessprofiles/actions/action
 import AuthModal from "../../../Partner/PartnerDetails/AuthModal";
 import "./userprofile.scss";
 import { connect, useDispatch, useSelector } from "react-redux";
-import { fetchAdminUsers, fetchUserById } from "../../../../store/adminusers/actions/actions";
+import {
+  fetchUsers,
+  fetchUserById,
+} from "../../../../store/adminusers/actions/actions";
 import { useParams } from "react-router";
 const UserProfile = () => {
   const [edit, setEdit] = useState(true);
   const dispatch = useDispatch();
-  const {id}=useParams();
+  const { id } = useParams();
   useEffect(() => {
     dispatch(fetchUserById(id));
   }, []);
-const { adminusers } = useSelector((state) => state.adminUsers);
+  const { users } = useSelector((state) => state.Users);
 
-console.log("userprofile",adminusers[1].user.email); 
-const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState({
     name: "Govind Sharma",
     email: "govind.s@eazr.in",
     dob: "26/01/2000",
@@ -68,7 +70,7 @@ const [formData, setFormData] = useState({
         type="text"
         name="name"
         className="name-input"
-        value={adminusers[1]?.user?.email}
+        value={name}
         onChange={(e) => handleChange(e)}
       />
 

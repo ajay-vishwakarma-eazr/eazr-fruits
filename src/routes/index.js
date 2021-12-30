@@ -79,7 +79,8 @@ const authProtectedRoutes = [
   { path: "/auth-lock-screen", component: AuthLockScreen },
   // {path:"/allusers",component:AllUsers},
   { path: "/users", component: Customer },
-  { path: "/user-profile/:id", component: CustomerDetails },
+  // { path: "/user-profile/:id", component: CustomerDetails },
+  { path: "/user-profile", component: CustomerDetails },
   { path: "/user/:id", component: UserTransaction },
   { path: "/user-module", component: CustomerModules },
   { path: "/user-orders", component: CustomerOrders },
@@ -106,7 +107,7 @@ const authProtectedRoutes = [
   { path: "/total-partner", component: TotalPartner },
   { path: "/partner-details-tab", component: PartnerDetailsNav },
   { path: "/partner-transactions", component: PartnerAllTransactions },
-  { path: "/partner-profile", component:PartnerProfile },
+  { path: "/partner-profile", component: PartnerProfile },
   // { path: "/user-approval", component: User },
 
   //Admin Module Routes

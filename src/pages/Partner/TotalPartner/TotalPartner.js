@@ -44,20 +44,15 @@ class TotalPartner extends Component {
           .split(" ")
           .join("")
           .includes(searchablePartner.toLowerCase().split(" ").join("")) ||
-        filter.contact
-          .toLowerCase()
+        filter.contactNumber
           .split(" ")
           .join("")
-          .includes(searchablePartner.toLowerCase().split(" ").join("")) ||
+          .includes(searchablePartner.split(" ").join("")) ||
         filter.plan?.name
           .toLowerCase()
           .split(" ")
           .join("")
-          .includes(searchablePartner.toLowerCase().split(" ").join("")) ||
-        filter.phone.includes(searchablePartner) ||
-        filter.serviceIds.some((sId) =>
-          sId.serviceId.includes(searchablePartner)
-        )
+          .includes(searchablePartner.toLowerCase().split(" ").join(""))
       );
     });
 

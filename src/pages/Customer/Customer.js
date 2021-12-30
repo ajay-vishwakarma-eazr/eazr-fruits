@@ -22,8 +22,6 @@ const Customer = () => {
   const pagesVisited = pageNumber * usersPerPage;
   const dispatch = useDispatch();
   const { id } = useParams();
-  console.log("kamlesh id", id);
-
   useEffect(() => {
     dispatch(fetchUsers());
     // dispatch(fetchUserById(id));
@@ -36,15 +34,18 @@ const Customer = () => {
   };
   const filterArray = () => {
     if (searchUser !== null && searchUser.length > 0) {
-      const filter = users.filter((users) => {
+      const filter = users.filter((filterUserData) => {
         return (
-          users.user?.name?.toLowerCase().includes(searchUser.toLowerCase()) ||
-          users.user?.email?.toLowerCase().includes(searchUser.toLowerCase()) ||
-          users.user?.phone?.toLowerCase().includes(searchUser.toLowerCase())
+          filterUserData?.fullName
+            ?.toLowerCase()
+            ?.includes(searchUser?.toLowerCase()) ||
+          filterUserData?.email
+            ?.toLowerCase()
+            ?.includes(searchUser?.toLowerCase()) ||
+          filterUserData?.contactNumber?.includes(searchUser)
         );
       });
       setFilteredUser(filter);
-      console.log(filteredUser);
     }
   };
   let data;

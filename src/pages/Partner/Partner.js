@@ -53,13 +53,9 @@ class Partner extends Component {
           .split(" ")
           .join("")
           .includes(searchablePartner.toLowerCase().split(" ").join("")) ||
-        filter.phone.includes(searchablePartner) ||
-        filter.serviceIds.some((sId) =>
-          sId.serviceId.includes(searchablePartner)
-        )
+        filter.phone.includes(searchablePartner)
       );
     });
-    console.log(filtered);
 
     this.setState({
       partnerList: filtered,
@@ -71,12 +67,14 @@ class Partner extends Component {
     const usersPerPage = 10;
     const pageVisited = this.state.pageNumber * usersPerPage;
 
-    const pageCount = Math.ceil(this.props.partners.partners?.length / usersPerPage);
+    const pageCount = Math.ceil(
+      this.props.partners.partners?.length / usersPerPage
+    );
 
     const changePage = ({ selected }) => {
       this.setState({ pageNumber: selected });
     };
-  
+
     let data;
 
     if (partners.loading === true) {

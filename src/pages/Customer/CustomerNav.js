@@ -47,7 +47,8 @@ const CustomersNav = () => {
           Manage QR
         </NavLink> */}
         <NavLink
-          to="/user-profile/id"
+         // to="/user-profile/id"
+          to="/user-profile"
           activeStyle={{
             borderBottom: "2px solid #0371e3",
             color: "#0371e3",

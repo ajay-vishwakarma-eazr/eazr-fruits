@@ -27,8 +27,6 @@ export const checkLogin = (user, history) => {
 };
 
 export const login = (contactNumber) => {
-
-  console.log(contactNumber);
   return (dispatch) => {
     dispatch(setLoginLoading());
 
@@ -50,9 +48,7 @@ export const login = (contactNumber) => {
 
 export const verify = (contactNumber, otp, history) => {
   return (dispatch) => {
-    // dispatch({
-    //   type: VERIFY_LOADING,
-    // });
+    
 
       axios.post(`${ip}/admins/verify-otp`, { contactNumber, otp })
      .then((res) => {
