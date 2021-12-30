@@ -73,7 +73,7 @@ export const fetchUserById = (id) => {
   return (dispatch) => {
     dispatch(setUserLoading());
     axios
-      .get(`${ip}/user/account/all/?id=${id}`)
+      .get(`${ip}/users/${id}`)
       .then((res) => {
         console.log("user",res);
         dispatch({

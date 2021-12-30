@@ -2,6 +2,7 @@ import React, { useDebugValue, useEffect, useState } from "react";
 import { Container, Row, Col, Card, CardBody, Table } from "reactstrap";
 import CustomerTableHeading from "./Table/CustomerTableHeading";
 import CustomerTableRow from "./Table/CustomerTableRow";
+import { useParams } from "react-router-dom";
 import "./Table/customertable.scss";
 import { connect, useDispatch, useSelector } from "react-redux";
 import BackBtn from "../BackBtn";
@@ -9,7 +10,10 @@ import ClipLoader from "react-spinners/ClipLoader";
 import EmptySection from "../../components/EmptySection/EmptySection";
 import SearchUsers from "./SearchUsers";
 import ReactPaginate from "react-paginate";
-import { fetchUsers } from "../../store/adminusers/actions/actions";
+import {
+  fetchUserById,
+  fetchUsers,
+} from "../../store/adminusers/actions/actions";
 const Customer = () => {
   const [searchUser, setSearchUser] = useState(null);
   const [filteredUser, setFilteredUser] = useState(null);
@@ -17,13 +21,16 @@ const Customer = () => {
   const usersPerPage = 10;
   const pagesVisited = pageNumber * usersPerPage;
   const dispatch = useDispatch();
+  const { id } = useParams();
+  console.log("kamlesh id", id);
 
   useEffect(() => {
     dispatch(fetchUsers());
+    // dispatch(fetchUserById(id));
   }, []);
   const { loading } = useSelector((state) => state.Users);
   const { users } = useSelector((state) => state.Users);
-  
+
   const getSearchUserValue = (value) => {
     setSearchUser(value);
   };
@@ -31,15 +38,9 @@ const Customer = () => {
     if (searchUser !== null && searchUser.length > 0) {
       const filter = users.filter((users) => {
         return (
-          users.user?.name
-            ?.toLowerCase()
-            .includes(searchUser.toLowerCase()) ||
-          users.user?.email
-            ?.toLowerCase()
-            .includes(searchUser.toLowerCase()) ||
-          users.user?.phone
-            ?.toLowerCase()
-            .includes(searchUser.toLowerCase())
+          users.user?.name?.toLowerCase().includes(searchUser.toLowerCase()) ||
+          users.user?.email?.toLowerCase().includes(searchUser.toLowerCase()) ||
+          users.user?.phone?.toLowerCase().includes(searchUser.toLowerCase())
         );
       });
       setFilteredUser(filter);
@@ -74,7 +75,8 @@ const Customer = () => {
                   ? filteredUser.map((users) => {
                       return (
                         <CustomerTableRow
-                          key={users._id}
+                          key={users.id}
+                          id={users.id}
                           name={users.fullName}
                           email={users.email}
                           contact={users.contactNumber}
@@ -89,7 +91,8 @@ const Customer = () => {
                       .map((users) => {
                         return (
                           <CustomerTableRow
-                            key={users._id}
+                            key={users.id}
+                            id={users.id}
                             name={users.fullName}
                             email={users.email}
                             contact={users.contactNumber}

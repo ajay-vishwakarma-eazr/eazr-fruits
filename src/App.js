@@ -21,14 +21,14 @@ import "./theme.scss";
 import { setCurrentUser, setPartnerModules } from "./store/auth/login/actions";
 
 //Check for token
-if (localStorage.token) {
+if (localStorage.accessToken) {
   //Set auth token header auth
-  setAuthToken(localStorage.token);
+  setAuthToken(localStorage.accessToken);
   //decode token and get user info and exp
-  const decoded = jwt_decode(localStorage.token);
+  const decoded = jwt_decode(localStorage.accessToken);
 
   //Set user and isAuthenticated
-  store.dispatch(setCurrentUser(decoded.user, localStorage.token));
+  store.dispatch(setCurrentUser(decoded.user, localStorage.accessToken));
   // window.location.href = "/dashboard";
 
   //Check for expired token

@@ -51,11 +51,19 @@ const CustomerTableRow = ({
         </UncontrolledTooltip>
         {showModal && <EditCustomer showModal={showModal} />}
 
-        <i
+        
+          <Link
+            to={{
+              pathname: `/user/${id}`,
+            }}
+          >
+            <i
           className="mdi mdi-account-edit"
           id="edit"
           onClick={() => setShowModal(!showModal)}
         ></i>
+            
+          </Link>
         <i
           className="fas fa-ban"
           id="ban"
