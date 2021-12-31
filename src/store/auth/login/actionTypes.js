@@ -1,5 +1,5 @@
 export const CHECK_LOGIN = "check_login";
-export const LOGIN_USER_SUCCESSFUL = "login_user_successfull";
+export const LOGIN_USER_SUCCESSFUL = "LOGIN_USER_SUCCESSFUL";
 export const LOGIN_USER_FAILED = "LOGIN_USER_FAILED";
 export const LOGIN_LOADING = "LOGIN_LOADING";
 export const VERIFY_LOADING = "VERIFY_LOADING";

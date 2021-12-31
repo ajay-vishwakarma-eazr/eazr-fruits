@@ -1,28 +1,19 @@
 import React, { useState, useEffect } from "react";
 import avatar from "../../assets/images/users/avatar-2.jpg";
-// import { fetchPartners } from "../../../../store/businessprofiles/actions/actions";
 import AuthModal from "../Partner/PartnerDetails/AuthModal";
 import "../../pages/Customer/CustomerDetails/UserProfile/userprofile.scss";
 import "../../pages/Customer/CustomerDetails/customerdetails.scss";
-// import "./adminprofile.scss";
 import { connect, useDispatch, useSelector } from "react-redux";
-// import {
-//   fetchUsers,
-//   fetchUserById,
-// } from "../../../../store/adminusers/actions/actions";
 import { useParams } from "react-router";
 // import { Avatar } from "@material-ui/core";
 const AdminProfile = () => {
   const [edit, setEdit] = useState(true);
   const dispatch = useDispatch();
   const { id } = useParams();
-  useEffect(() => {
-    "";
-    // dispatch(fetchUserById(id));
-  }, []);
-  const { users } = useSelector((state) => state.Users);
 
-  const [formData, setFormData] = useState({
+const {user}= useSelector((state)=>state.auth)
+console.log("auth",user);  
+const [formData, setFormData] = useState({
     name: "Govind Sharma",
     email: "govind.s@eazr.in",
     dob: "26/01/2000",

@@ -16,7 +16,8 @@ const initialState = {
   loading: false,
   errors: null,
   showOtpModal: false,
-  isAuthenticated : false
+  isAuthenticated: false,
+  user: [],
 };
 
 const login = (state = initialState, action) => {
@@ -53,8 +54,8 @@ const login = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        isAuthenticated : true,
-        user : action.payload.user
+        isAuthenticated: true,
+        user: action.payload.user,
       };
 
     case LOGOUT_USER:

@@ -1,26 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
-import {
-  fetchUserById,
-  updateUserDetails,
-} from "../../../store/adminusers/actions/actions";
-const EditCustomer = ({ userDetails, showModal }) => {
+import { fetchUserById } from "../../../store/adminusers/actions/actions";
+import { useParams } from "react-router-dom";
+const EditCustomer = ({ user, showModal }) => {
   const dispatch = useDispatch();
+  const { id } = useParams();
   const [modal, setModal] = useState(showModal);
   const toggle = () => setModal(!modal);
   const { users } = useSelector((state) => state.Users);
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    contact: "",
-    gender: "",
-    dob: ""
+    name: users.fullName,
+    email:users.email,
+    contact: users.contactNumber,
+    gender: users.gender,
+    dob: users.dob,
   });
-  const id = users[1]._id;
+  
   useEffect(() => {
-    dispatch(fetchUserById(id))
+    dispatch(fetchUserById(id));
   }, []);
   const handleChange = (e) => {
     setFormData({
@@ -36,54 +34,50 @@ const EditCustomer = ({ userDetails, showModal }) => {
         <ModalHeader toggle={toggle}>Edit Customer</ModalHeader>
 
         <ModalBody className="auth-modal-body  ">
-          {users.slice(1,2).map((details) => {
-            return (
-              <>
-                <label>Name</label>
-                <input
-                  value={details?.name}
-                  type="text"
-                  name="name"
-                  placeholder="Enter name"
-                  onChange={(e) => handleChange(e)}
-                />
-                <label>Email</label>
-                <input
-                  value={details}
-                  type="email"
-                  name="email"
-                  placeholder="Enter email"
-                  onChange={(e) => handleChange(e)}
-                />
-                <label>Contact</label>
-                <input
-                  value={details?.contact}
-                  type="tel"
-                  name="contact"
-                  placeholder="Enter contact"
-                  onChange={(e) => handleChange(e)}
-                />
-                <label>Gender</label>
-                <input
-                  value={details?.gender}
-                  type="text"
-                  name="gender"
-                  placeholder="Enter Gender"
-                  onChange={(e) => handleChange(e)}
-                />
-                <label>Date of birth</label>
-                <input
-                  value={details?.phone}
-                  type="date"
-                  name="dob"
-                  placeholder="Enter DOB"
-                  onChange={(e) => handleChange(e)}
-                />
-                
-              </>
-            );
-          })}
-
+          return (
+          <>
+            <label>Name</label>
+            <input
+              value={name}
+              type="text"
+              name="name"
+              placeholder="Enter name"
+              onChange={(e) => handleChange(e)}
+            />
+            <label>Email</label>
+            <input
+              value={email}
+              type="email"
+              name="email"
+              placeholder="Enter email"
+              onChange={(e) => handleChange(e)}
+            />
+            <label>Contact</label>
+            <input
+              value={contact}
+              type="tel"
+              name="contact"
+              placeholder="Enter contact"
+              onChange={(e) => handleChange(e)}
+            />
+            <label>Gender</label>
+            <input
+              value={gender}
+              type="text"
+              name="gender"
+              placeholder="Enter Gender"
+              onChange={(e) => handleChange(e)}
+            />
+            <label>Date of birth</label>
+            <input
+              value={dob}
+              type="date"
+              name="dob"
+              placeholder="Enter DOB"
+              onChange={(e) => handleChange(e)}
+            />
+          </>
+          );
           <button className="partner-auth-btn" onClick={toggle}>
             Save
           </button>

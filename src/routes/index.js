@@ -79,7 +79,6 @@ const authProtectedRoutes = [
   { path: "/delivery-dashboard", component: DeliveryDashboard },
   { path: "/support-dashboard", component: SupportDashboard },
   { path: "/auth-lock-screen", component: AuthLockScreen },
-  // {path:"/allusers",component:AllUsers},
   { path: "/users", component: Customer },
   { path: "/user-profile/:id", component:CustomerDetails },
   { path: "/user/:id", component: UserTransaction },
