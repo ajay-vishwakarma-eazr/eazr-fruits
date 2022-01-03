@@ -4,7 +4,7 @@ import "../../../partner.scss";
 import { connect } from "react-redux";
 import ClipLoader from "react-spinners/ClipLoader";
 //Actions
-import { getPartners } from "../../../../../store/partners/actions";
+import { getTranscationById } from "../../../../../store/transactions/actions/action";
 import EmptySection from "../../../../../components/EmptySection/EmptySection";
 import PartnerTrancationsRow from "./PartnerTrancationsRow";
 import PartnerTranscationsHeading from "./PartnerTranscationsHeading";
@@ -17,7 +17,7 @@ class PartnerAllTransactions extends Component {
     };
   }
   componentDidMount() {
-    this.props.getPartners();
+    this.props.getTranscationById();
   }
 
   handleSearch = (e) => {
@@ -136,10 +136,10 @@ class PartnerAllTransactions extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    partners: state.partners,
+    transactions: state.transactions,
   };
 };
 
-export default connect(mapStateToProps, { getPartners })(
+export default connect(mapStateToProps, { getTranscationById })(
   PartnerAllTransactions
 );

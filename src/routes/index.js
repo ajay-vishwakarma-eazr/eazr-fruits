@@ -41,7 +41,6 @@ import DeliveryModules from "../pages/Modules/DeliveryModules";
 import UserModules from "../pages/Modules/UserModules";
 import Profile from "../pages/ApprovedPartners/Details/Profile/Profile";
 import CustomerDetails from "../pages/Customer/CustomerDetails/CustomerDetails";
-import AdminProfile from "../pages/Admin/AdminProfile";
 import UserTransaction from "../pages/Customer/Transactions/Transaction";
 import CustomerModules from "../pages/Customer/Modules/UserModules";
 import CustomerOrders from "../pages/Customer/Orders/Orders";
@@ -72,6 +71,7 @@ import PartnerDetailsNav from "../pages/Partner/TotalPartner/TotalParterDetails/
 import PartnerAllTransactions from "../pages/Partner/TotalPartner/TotalParterDetails/PartnerAllTarnsactions/PartnerAllTransactions";
 import PartnerProfile from "../pages/Partner/TotalPartner/TotalParterDetails/PartnerProfile/PartnerProfile";
 import UserProfile from "../pages/Customer/CustomerDetails/UserProfile/UserProfile";
+import AdminProfilePage from "../pages/AdminProfilePage/AdminProfilePage";
 const authProtectedRoutes = [
   { path: "/partner-dashboard", component: PartnerDashboard },
   { path: "/dashboard", component: AdminDashboard },
@@ -80,8 +80,8 @@ const authProtectedRoutes = [
   { path: "/support-dashboard", component: SupportDashboard },
   { path: "/auth-lock-screen", component: AuthLockScreen },
   { path: "/users", component: Customer },
-  { path: "/user-profile/:id", component:CustomerDetails },
-  { path: "/user/:id", component: UserTransaction },
+  { path: "/user-profile/:id", component: CustomerDetails },
+  { path: "/user/:id", component: Customer },
   { path: "/user-module", component: CustomerModules },
   { path: "/user-orders", component: CustomerOrders },
   { path: "/user-reports", component: CustomerReports },
@@ -128,7 +128,8 @@ const authProtectedRoutes = [
   { path: "/manageQr", component: ManageQR },
   { path: "/settlement/id", component: InnerSettlement },
   { path: "/profile", component: Profile },
-  { path: "/adminprofile", component: AdminProfile },
+  // { path: "/adminprofile", component: AdminProfile },
+  { path: "/admin-profile", component: AdminProfilePage },
   { path: "/modules", component: Modules },
   { path: "/delivery-modules", component: DeliveryModules },
   { path: "/user-modules", component: UserModules },

@@ -111,16 +111,19 @@ export const fetchUserById = (id) => {
 
 
 
-export const updateUserDetails = (id, updateObj) => {
+
+
+
+
+
+export const updateUserDetails = (id, formData) => {
   return (dispatch) => {
     dispatch(setUserLoading());
     axios
-      .patch(`${ip}/business/profile/all/updateuser`, {
-        userId: id,
-        updateObj,
-      })
+      .patch(`${ip}/users/${id}`,formData)
       .then((res) => {
         const updateObj = res.data;
+        console.log(updateObj);
         dispatch(UpdateProfileSuccess(updateObj));
       })
       .catch((err) => {

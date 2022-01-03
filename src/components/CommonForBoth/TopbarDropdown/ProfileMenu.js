@@ -7,7 +7,8 @@ import {
 } from "reactstrap";
 import {connect} from "react-redux";
 import { logoutUser } from "../../../store/auth/login/actions";
-import { withRouter} from "react-router-dom";
+
+import { Link, withRouter} from "react-router-dom";
 //i18n
 import { withNamespaces } from "react-i18next";
 
@@ -67,10 +68,13 @@ class ProfileMenu extends Component {
             <i className="mdi mdi-chevron-down d-none ml-1 d-xl-inline-block"></i>
           </DropdownToggle>
           <DropdownMenu right>
-            <DropdownItem href="AdminProfile">
-              <i className="ri-user-line align-middle mr-1"></i>{" "}
-              {this.props.t("Profile")}
-            </DropdownItem>
+            <Link to="/admin-profile">
+              <DropdownItem>
+                <i className="ri-user-line align-middle mr-1"></i>{" "}
+                {this.props.t("Profile")}
+              </DropdownItem>
+            </Link>
+
             {/* <DropdownItem href="#">
               <i className="ri-wallet-2-line align-middle mr-1"></i>{" "}
               {this.props.t("My Wallet")}

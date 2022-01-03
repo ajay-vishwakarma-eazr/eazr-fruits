@@ -4,7 +4,6 @@ import { UncontrolledTooltip } from "reactstrap";
 import EditCustomer from "../EditCustomer/EditCustomer";
 import { Link } from "react-router-dom";
 
-
 const CustomerTableRow = ({
   id,
   name,
@@ -12,7 +11,7 @@ const CustomerTableRow = ({
   contact,
   gender,
   creditLimit,
-  outstandingAmount
+  outstandingAmount,
 }) => {
   const [sweetAlerts, setSweetAlerts] = useState({
     dynamic_title: "",
@@ -33,9 +32,7 @@ const CustomerTableRow = ({
       <td>{creditLimit}</td>
       <td>{outstandingAmount}</td>
       <td>
-        <Link
-          to={`/user-profile/${id}`}
-        >
+        <Link to={`/user-profile/${id}`}>
           <button className="view-customer-btn">View</button>
         </Link>
       </td>
@@ -47,19 +44,28 @@ const CustomerTableRow = ({
         <UncontrolledTooltip target={"ban"} placement="top">
           Ban / Unban
         </UncontrolledTooltip>
-        {showModal && <EditCustomer showModal={showModal} />}
+        {showModal && (
+          <EditCustomer
+            showModal={showModal}
+            id={id}
+            name={name}
+            email={email}
+            contact={contact}
+            gender={gender}
+          />
+        )}
 
-        <Link
+        {/* <Link
           to={{
             pathname: `/user/${id}`,
           }}
-        >
-          <i
-            className="mdi mdi-account-edit"
-            id="edit"
-            onClick={() => setShowModal(!showModal)}
-          ></i>
-        </Link>
+        ></Link> */}
+        <i
+          className="mdi mdi-account-edit"
+          id="edit"
+          onClick={() => setShowModal(!showModal)}
+        ></i>
+
         <i
           className="fas fa-ban"
           id="ban"

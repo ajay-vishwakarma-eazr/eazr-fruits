@@ -98,19 +98,18 @@ class Partner extends Component {
               className="partner-approval-table"
             >
               <PartnerTableHeading />
-
               {this.state.searchPartner
                 ? this.state.partnerList.map((item, index) => (
                     <PartnerTableRow
                       key={index}
-                      brandName={item.businessName}
-                      enrollmentId={item.serviceNumber}
-                      serviceNumber={item.serviceNumber}
-                      contact={item.phone}
-                      email={item.businessEmail}
-                      status={item.status}
                       id={item._id}
-                      history={this.props.history}
+                      brandName={item.businessName}
+                      contact={item.contactNumber}
+                      email={item.email}
+                      type={item.partnerType?.type}
+                      category={item.partnerCategory?.name}
+                      plan={item.plan?.name}
+                      status={item.status}
                     />
                   ))
                 : partners.partners
@@ -120,14 +119,12 @@ class Partner extends Component {
                         <PartnerTableRow
                           key={index}
                           brandName={item.businessName}
-                          enrollmentId={item.serviceNumber}
-                          serviceNumber={item.serviceNumber}
-                          contact={item.phone}
-                          email={item.businessEmail}
+                          contact={item.contactNumber}
+                          email={item.email}
+                          type={item.partnerType?.type}
+                          category={item.partnerCategory?.name}
+                          plan={item.plan?.name}
                           status={item.status}
-                          id={item._id}
-                          history={this.props.history}
-                          serviceIds={item.serviceIds}
                         />
                       );
                     })}
@@ -184,6 +181,7 @@ class Partner extends Component {
 }
 
 const mapStateToProps = (state) => {
+  debugger;
   return {
     partners: state.partners,
   };

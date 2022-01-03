@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import avatar from "../../../../assets/images/users/avatar-3.jpg";
 import AuthModal from "../../../Partner/PartnerDetails/AuthModal";
-// import "./userprofile.scss";
+import "./userprofile.scss";
 import { connect, useDispatch, useSelector } from "react-redux";
 import {
   fetchUserById,
 } from "../../../../store/adminusers/actions/actions";
-import { useParams } from "react-router-dom";
+
+import { useParams, useHistory } from "react-router-dom";
 const UserProfile = () => {
   const [edit, setEdit] = useState(true);
   const dispatch = useDispatch();
+  let history = useHistory();
   const { id } = useParams();
   useEffect(() => {
     dispatch(fetchUserById(id));

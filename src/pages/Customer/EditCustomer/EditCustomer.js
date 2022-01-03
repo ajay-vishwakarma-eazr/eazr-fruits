@@ -1,25 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUserById } from "../../../store/adminusers/actions/actions";
-import { useParams } from "react-router-dom";
-const EditCustomer = ({ user, showModal }) => {
+import { useHistory } from "react-router-dom";
+import {
+  fetchUserById,
+  updateUserDetails,
+} from "../../../store/adminusers/actions/actions";
+const EditCustomer = ({ showModal, id, name, email, contact, gender }) => {
   const dispatch = useDispatch();
-  const { id } = useParams();
+  let history = useHistory();
   const [modal, setModal] = useState(showModal);
-  const toggle = () => setModal(!modal);
-  const { users } = useSelector((state) => state.Users);
+  const toggle = () => {
+    setModal(!modal);
+    console.log(formData);
+    // dispatch(updateUserDetails(id, formData));
+    // history.push("/users")
+  };
   const [formData, setFormData] = useState({
-    name: users.fullName,
-    email:users.email,
-    contact: users.contactNumber,
-    gender: users.gender,
-    dob: users.dob,
+    name,
+    email,
+    contact,
+    gender,
   });
-  
-  useEffect(() => {
-    dispatch(fetchUserById(id));
-  }, []);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -27,18 +30,15 @@ const EditCustomer = ({ user, showModal }) => {
     });
   };
 
-  const { name, email, contact, gender, dob } = formData;
   return (
     <div className="">
       <Modal isOpen={modal} toggle={toggle} centered className="">
         <ModalHeader toggle={toggle}>Edit Customer</ModalHeader>
-
         <ModalBody className="auth-modal-body  ">
-          return (
           <>
             <label>Name</label>
             <input
-              value={name}
+              value={formData.name}
               type="text"
               name="name"
               placeholder="Enter name"
@@ -46,7 +46,7 @@ const EditCustomer = ({ user, showModal }) => {
             />
             <label>Email</label>
             <input
-              value={email}
+              value={formData.email}
               type="email"
               name="email"
               placeholder="Enter email"
@@ -54,7 +54,7 @@ const EditCustomer = ({ user, showModal }) => {
             />
             <label>Contact</label>
             <input
-              value={contact}
+              value={formData.contact}
               type="tel"
               name="contact"
               placeholder="Enter contact"
@@ -62,22 +62,14 @@ const EditCustomer = ({ user, showModal }) => {
             />
             <label>Gender</label>
             <input
-              value={gender}
+              value={formData.gender}
               type="text"
               name="gender"
               placeholder="Enter Gender"
               onChange={(e) => handleChange(e)}
             />
-            <label>Date of birth</label>
-            <input
-              value={dob}
-              type="date"
-              name="dob"
-              placeholder="Enter DOB"
-              onChange={(e) => handleChange(e)}
-            />
           </>
-          );
+
           <button className="partner-auth-btn" onClick={toggle}>
             Save
           </button>

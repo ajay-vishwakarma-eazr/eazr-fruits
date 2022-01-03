@@ -32,7 +32,7 @@ export const fetchTransactions = () => {
   return function (dispatch) {
     dispatch(FetchTransactionRequest);
     axios
-      .get(`${ip}/user/transactions`)
+      .get(`${ip}/transactions`)
       .then((res) => {
         const transactions = res.data;
         console.log(transactions);
@@ -55,7 +55,7 @@ export const getTranscationById = (id) => {
   return (dispatch) => {
     dispatch(setPartersLoading());
     axios
-      .get(`${ip}/user/transactions?id=${id}`)
+      .get(`${ip}/transactions/${id}`)
       .then((res) => {
         dispatch({
           type: GET_TRANSACTION_BY_ID,

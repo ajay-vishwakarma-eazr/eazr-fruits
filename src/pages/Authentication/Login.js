@@ -56,9 +56,12 @@ class Login extends Component {
     this.props.login(this.state.phone, this.state.otp, this.props.history);
   };
 
+  
   onVerify = () => {
     this.props.verify(this.state.phone, this.state.otp, this.props.history);
   };
+
+  
 
   onOtpChange = (value) => {
     this.setState({
@@ -67,8 +70,7 @@ class Login extends Component {
   };
 
   render() {
-    //console.log(localStorage.getItem("authUser"));
-    return (
+      return (
       <>
         {/* <div className="home-btn d-none d-sm-block" style={{ height: "100vh" }}>
           <p className="font-size-16">
@@ -185,6 +187,7 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => {
+
   return {
     auth: state.auth,
   };

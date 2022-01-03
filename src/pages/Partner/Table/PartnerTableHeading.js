@@ -4,11 +4,13 @@ const PartnerTableHeading = () => {
   return (
     <thead className="partner-table-heading">
       <th>Brand Name</th>
-      <th>Enroll Id</th>
       <th>Contact</th>
       <th>Email</th>
-      <th>View</th>
+      <th>Type</th>
+      <th>Category</th>
+      <th>Plan</th>
       <th>Status</th>
+      <th>View</th>
       {/* <th>Transaction</th> */}
     </thead>
   );

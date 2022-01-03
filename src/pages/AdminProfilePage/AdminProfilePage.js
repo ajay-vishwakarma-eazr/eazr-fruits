@@ -1,26 +1,27 @@
 import React, { useState, useEffect } from "react";
 import avatar from "../../assets/images/users/avatar-2.jpg";
-import AuthModal from "../Partner/PartnerDetails/AuthModal";
-import "../../pages/Customer/CustomerDetails/UserProfile/userprofile.scss";
-import "../../pages/Customer/CustomerDetails/customerdetails.scss";
+// import AuthModal from "../../../Partner/PartnerDetails/AuthModal";
+import "./adminProfilePage.scss";
 import { connect, useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
-// import { Avatar } from "@material-ui/core";
-const AdminProfile = () => {
+import { fetchUserById } from "../../store/adminusers/actions/actions";
+import { useParams } from "react-router-dom";
+const AdminProfilePage = () => {
   const [edit, setEdit] = useState(true);
   const dispatch = useDispatch();
   const { id } = useParams();
+  useEffect(() => {
+    dispatch(fetchUserById(id));
+  }, []);
+  const { users } = useSelector((state) => state.Users);
 
-const {user}= useSelector((state)=>state.auth)
-console.log("auth",user);  
-const [formData, setFormData] = useState({
-    name: "Govind Sharma",
-    email: "govind.s@eazr.in",
-    dob: "26/01/2000",
-    contact: "9876787837",
-    address: "1st Floor, We Work, JVLR, Powai, Mumbai-400072",
-    pan: "ABCDE1234E",
-    aadhaarNo: "456398393893",
+  const [formData, setFormData] = useState({
+    name: users.fullName,
+    email: users.email,
+    dob: users.dob,
+    contact: users.contactNumber,
+    address: users.address,
+    pan: users.pan,
+    aadhaarNo: users.aadhaar,
     profileImg: avatar,
   });
 
@@ -36,11 +37,11 @@ const [formData, setFormData] = useState({
 
   return (
     <div className="user-profile-div shadow">
-      {edit ? (
+      {/* {edit ? (
         <i className="fa fa-user-edit" onClick={() => setEdit(false)}></i>
       ) : (
         <AuthModal />
-      )}
+      )} */}
 
       <div className="user-img">
         <img src={profileImg} alt="" />
@@ -51,7 +52,7 @@ const [formData, setFormData] = useState({
         <input
           type="file"
           id="profileImg"
-          style={{ display: "none" }}
+          style={{ display: " none" }}
           onChange={(e) =>
             setFormData({
               profileImg: URL.createObjectURL(e.target.files[0]),
@@ -134,4 +135,4 @@ const [formData, setFormData] = useState({
   );
 };
 
-export default AdminProfile;
+export default AdminProfilePage;
