@@ -5,10 +5,10 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 import { logoutUser } from "../../../store/auth/login/actions";
-
-import { Link, withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 //i18n
 import { withNamespaces } from "react-i18next";
 
@@ -67,15 +67,15 @@ class ProfileMenu extends Component {
             </span>
             <i className="mdi mdi-chevron-down d-none ml-1 d-xl-inline-block"></i>
           </DropdownToggle>
+
           <DropdownMenu right>
-            <Link to="/admin-profile">
+            <Link to="Admin-Profile">
               <DropdownItem>
-                <i className="ri-user-line align-middle mr-1"></i>{" "}
+                <i className="ri-user-line align-middle mr-1"></i>
                 {this.props.t("Profile")}
               </DropdownItem>
             </Link>
-
-            {/* <DropdownItem href="#">
+            {/* <DropdownItem href="Admin-profile">
               <i className="ri-wallet-2-line align-middle mr-1"></i>{" "}
               {this.props.t("My Wallet")}
             </DropdownItem> */}

@@ -1,0 +1,105 @@
+@import "../../assets/scss/variables";
+
+.customer-page {
+  .user-profile-div {
+    padding: 1rem;
+    border-radius: 10px;
+    width: 40%;
+
+    .auth-modal-toggler {
+      background: $eazr-color;
+      border: none;
+      float: right;
+      margin-top: 0.5rem !important;
+    }
+  }
+  .fa-user-edit {
+    color: $eazr-color;
+    font-size: 1.2rem;
+    float: right;
+    cursor: pointer;
+  }
+
+  .save-btn {
+    float: right;
+    background: $eazr-color;
+    outline: none;
+    border: none;
+    padding: $button-padding;
+    border-radius: $button-radius;
+    color: #fff;
+    font-weight: $font-weight-bold;
+  }
+  .save-btn:hover {
+    opacity: $button-opacity;
+  }
+
+  .user-img {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+    .fa-edit {
+      position: absolute;
+      margin-top: 2.2rem;
+      margin-left: -1.5rem;
+      color: $eazr-color;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+  }
+
+  .name-input,
+  .email-input {
+    background: transparent;
+    font-size: 1rem;
+    color: #000;
+    font-weight: $font-weight-bold !important;
+    width: 100%;
+    text-align: center;
+    outline: none;
+    border: none;
+  }
+
+  .email-input {
+    font-size: 0.9rem;
+    color: grey;
+    margin-bottom: 1rem;
+  }
+  .input-div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0 0.5rem 4rem;
+
+    h6 {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #000;
+      font-weight: $font-weight-bold;
+    }
+    input,
+    textarea {
+      background: transparent;
+      width: 60%;
+      padding: $input-padding;
+      border-radius: $input-border-radius;
+      outline: none;
+      border: none;
+      resize: none;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .user-profile-div {
+    width: 100% !important;
+  }
+}

@@ -15,7 +15,8 @@ import { SettlementReducer } from "./settlement/reducers/reducer";
 import { BusinessPartnerReducer } from "./businessprofiles/reducer/reducer";
 import { transactionReducer } from "./transactions/reducers/reducer";
 import { partnerModuleReducer } from "./partnerModules/reducers/reducer";
-import{UserReducer} from "../store/adminusers/reducer/reducer";
+import { UserReducer } from "../store/adminusers/reducer/reducer";
+import { AdminProfileReducer } from "./adminprofile/reducer/reducer";
 const rootReducer = combineReducers({
   //order
   orders: OrderReducer,
@@ -31,6 +32,9 @@ const rootReducer = combineReducers({
 
   //users
   Users: UserReducer,
+
+  // AdminProfile
+  AdminProfile: AdminProfileReducer,
 
   //Transaction
   transactions: transactionReducer,
