@@ -71,7 +71,7 @@ import PartnerDetailsNav from "../pages/Partner/TotalPartner/TotalParterDetails/
 import PartnerAllTransactions from "../pages/Partner/TotalPartner/TotalParterDetails/PartnerAllTarnsactions/PartnerAllTransactions";
 import PartnerProfile from "../pages/Partner/TotalPartner/TotalParterDetails/PartnerProfile/PartnerProfile";
 import UserProfile from "../pages/Customer/CustomerDetails/UserProfile/UserProfile";
-import AdminProfilePage from "../pages/AdminProfilePage/AdminProfilePage";
+
 const authProtectedRoutes = [
   { path: "/partner-dashboard", component: PartnerDashboard },
   { path: "/dashboard", component: AdminDashboard },
@@ -128,8 +128,6 @@ const authProtectedRoutes = [
   { path: "/manageQr", component: ManageQR },
   { path: "/settlement/id", component: InnerSettlement },
   { path: "/profile", component: Profile },
-  // { path: "/adminprofile", component: AdminProfile },
-  { path: "/admin-profile", component: AdminProfilePage },
   { path: "/modules", component: Modules },
   { path: "/delivery-modules", component: DeliveryModules },
   { path: "/user-modules", component: UserModules },
