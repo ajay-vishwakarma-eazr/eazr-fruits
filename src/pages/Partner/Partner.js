@@ -102,7 +102,7 @@ class Partner extends Component {
                 ? this.state.partnerList.map((item, index) => (
                     <PartnerTableRow
                       key={index}
-                      id={item._id}
+                      id={item.id}
                       brandName={item.businessName}
                       contact={item.contactNumber}
                       email={item.email}
@@ -118,6 +118,7 @@ class Partner extends Component {
                       return (
                         <PartnerTableRow
                           key={index}
+                          id={item.id}
                           brandName={item.businessName}
                           contact={item.contactNumber}
                           email={item.email}
@@ -181,7 +182,6 @@ class Partner extends Component {
 }
 
 const mapStateToProps = (state) => {
-  debugger;
   return {
     partners: state.partners,
   };

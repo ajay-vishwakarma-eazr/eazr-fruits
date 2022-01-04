@@ -19,7 +19,7 @@ import {
 import axios from "axios";
 import { ip } from "../../config/config";
 
-export const getPartners = () => {  
+export const getPartners = () => {
   return (dispatch) => {
     dispatch(setPartersLoading());
 
@@ -36,11 +36,10 @@ export const getPartners = () => {
         dispatch({
           type: GET_PARTNERS_FAILED,
           payload: err.response.data,
-        }) ;
+        });
       });
   };
 };
-
 
 export const getPartnersTranscationById = (id) => {
   return (dispatch) => {
@@ -63,18 +62,12 @@ export const getPartnersTranscationById = (id) => {
   };
 };
 
-
-
 export const getPartnerById = (id) => {
   return (dispatch) => {
     dispatch(setPartersLoading());
 
     axios
-      .get(`${ip}/admin/partners/getpartnerbyid`, {
-        params: {
-          id,
-        },
-      })
+      .get(`${ip}/partners/${id}`)
       .then((res) => {
         dispatch({
           type: GET_PARTNER_BY_ID,
@@ -129,19 +122,23 @@ export const addTicket = (data) => {
 export const getApprovedPartners = () => async (dispatch) => {
   try {
     const res = await axios.get(`${ip}/admin/partners/approvedpartners`);
-
     dispatch({
       type: GET_APPROVED_PARTNERS,
       payload: res.data,
     });
   } catch (err) {
-    console.log('Error: ' + err.message);
+    console.log("Error: " + err.message);
     dispatch({
       type: GET_APPROVED_PARTNERS_FAILED,
       payload: err.response.data,
     });
   }
 };
+
+
+
+
+
 
 export const setPartersLoading = () => {
   return {

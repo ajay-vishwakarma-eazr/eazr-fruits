@@ -53,7 +53,7 @@ class App extends Component {
   getLayout = () => {
     let layoutCls = VerticalLayout;
 
-    switch (this.props.layout.layoutType) {
+    switch (this.props.layout?.layoutType) {
       case "horizontal":
         layoutCls = HorizontalLayout;
         break;

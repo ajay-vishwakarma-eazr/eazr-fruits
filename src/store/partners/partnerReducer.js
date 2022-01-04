@@ -126,6 +126,7 @@ const login = (state = initialState, action) => {
         loading: false,
         errors: action.payload,
       };
+
     default:
       return { ...state };
   }

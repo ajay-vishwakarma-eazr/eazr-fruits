@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Colors from "../../../components/Config/Colors";
 import AuthModal from "./AuthModal";
 import SweetAlert from "react-bootstrap-sweetalert";
-
 import { connect } from "react-redux";
 
 //actions
@@ -60,13 +59,16 @@ const BrandInformation = (props) => {
             className="mdi mdi-account-edit"
             onClick={() => setEdit(!edit)}
           ></i>
-        ) : (
-          <AuthModal
-            getDisableEdit={getDisableEdit}
-            onSave={onSave}
-            setPassword={setPassword}
-          />
-        )}
+        ) : 
+        // (
+        //   <AuthModal
+        //     getDisableEdit={getDisableEdit}
+        //     onSave={onSave}
+        //     setPassword={setPassword}
+        //   />
+        // )
+        ""
+        }
       </div>
       <div className="brand-name">
         <h3>Brand Name</h3>

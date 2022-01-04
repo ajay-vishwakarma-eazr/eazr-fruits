@@ -114,7 +114,7 @@ const authProtectedRoutes = [
   //Admin Module Routes
   { path: "/admin-users", component: AdminUsers },
   { path: "/help-and-support", component: HelpAndSupport },
-  { path: "/partner-details", component: PartnerDetails },
+  { path: "/partner-details/:id", component: PartnerDetails },
   { path: "/onhold-details/:serviceId", component: OnHoldDetails },
   { path: "/partners", component: ApprovedPartners },
   { path: "/approved-partner-details", component: TranDetails },

@@ -45,12 +45,7 @@ const PartnerTableRow = ({
           </button>
         </td>
         <td className="approval-view-btn">
-          <Link
-            to={{
-              pathname: "/partner-details",
-              partnerId: id,
-            }}
-          >
+          <Link to={`/partner-details/${id}`}>
             <button>Details</button>
           </Link>
         </td>

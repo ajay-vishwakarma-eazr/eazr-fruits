@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Colors from "../../../components/Config/Colors";
 import AuthModal from "./AuthModal";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SweetAlert from "react-bootstrap-sweetalert";
 
 //actions
@@ -9,34 +9,39 @@ import {
   updatePartnerDetails,
   clearErrors,
 } from "../../../store/partners/actions";
+import { getBankDetails } from "../../../store/partners/Bank/actions";
 
-const BankAccount = (props) => {
+const BankAccountDetails = ({ id }) => {
+  const dispatch = useDispatch();
   const [edit, setEdit] = useState(true);
-
+  useEffect(() => {
+    dispatch(getBankDetails(id));
+  }, []);
+  const { bank } = useSelector((state) => state.bank);
+  console.log(bank);
   const [partnerBankDetail, setPartnerBankDetails] = useState({
-    beneficiaryName: props.partner.bankDetails.beneficiaryName,
-    ifscCode: props.partner.bankDetails.ifscCode,
-    accountNumber: props.partner.bankDetails.accountNumber,
+    beneficiaryName: bank.beneficiaryName,
+    ifscCode: bank.ifscCode,
+    accountNumber: bank.accountNumber,
   });
 
   const getDisableEdit = (disableEdit) => {
     setEdit(disableEdit);
   };
-
   const [password, setPassword] = useState("");
 
   const onSave = () => {
-    props.updatePartnerDetails(
-      props.partner._id,
-      {
-        bankDetails: {
-          beneficiaryName: partnerBankDetail.beneficiaryName,
-          ifscCode: partnerBankDetail.ifscCode,
-          accountNumber: partnerBankDetail.accountNumber,
-        },
-      },
-      password
-    );
+    // props.updatePartnerDetails(
+    //   props.partner._id,
+    //   {
+    //     bankDetails: {
+    //       beneficiaryName: partnerBankDetail.beneficiaryName,
+    //       ifscCode: partnerBankDetail.ifscCode,
+    //       accountNumber: partnerBankDetail.accountNumber,
+    //     },
+    //   },
+    //   password
+    // );
   };
 
   return (
@@ -44,7 +49,7 @@ const BankAccount = (props) => {
       className="bank-account"
       style={{ background: !edit && Colors.infoBody }}
     >
-      {props.errors && props.errors.password ? (
+      {/* {props.errors && props.errors.password ? (
         <SweetAlert
           title="Wrong Password"
           danger
@@ -56,7 +61,7 @@ const BankAccount = (props) => {
             // setSuccess_Msg(false);
           }}
         />
-      ) : null}
+      ) : null} */}
       <div>
         <h1>Bank Account</h1>
         {edit ? (
@@ -115,13 +120,4 @@ const BankAccount = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    partner: state.partners.partner,
-    errors: state.partners.errors,
-  };
-};
-
-export default connect(mapStateToProps, { updatePartnerDetails, clearErrors })(
-  BankAccount
-);
+export default BankAccountDetails;

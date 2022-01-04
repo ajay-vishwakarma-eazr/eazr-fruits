@@ -4,27 +4,28 @@ import "./partnerdetails.scss";
 import SweetAlert from "react-bootstrap-sweetalert";
 import BrandInformation from "./BrandInformation";
 import LegalInformation from "./LegalInformation";
-import BankAccount from "./BankAccount";
+import BankAccountDetails from "./BankAccountDetails";
 import ShowDocuments from "./ShowDocuments";
 import { Link } from "react-router-dom";
 import BusinessDescription from "./BusinessDescription";
 import { connect } from "react-redux";
 import ClipLoader from "react-spinners/ClipLoader";
 
+import { useParams } from "react-router-dom";
 //actions
 import { getPartnerById, addTicket } from "../../../store/partners/actions";
 import HoldModal from "./HoldModal";
 
 const PartnerDetails = (props) => {
+  const { id } = useParams();
   useEffect(() => {
-    props.getPartnerById(props.location.partnerId);
+    props.getPartnerById(id);
   }, []);
 
   const [success_msg, setSuccess_Msg] = useState(false);
-
   const [fields, setFields] = useState({
-    businessEmail: false,
-    businessName: false,
+    businessEmail: props.partners.partner.email,
+    businessName: props.partners.partner.businessName,
     businessType: false,
     businessCategory: false,
     businessDescription: false,
@@ -32,6 +33,7 @@ const PartnerDetails = (props) => {
     acceptPayment: false,
     pan: false,
     panName: false,
+    businessPan: false,
     businessPan: false,
     address: false,
     pincode: false,
@@ -82,17 +84,18 @@ const PartnerDetails = (props) => {
     );
   } else if (props.partners.partner) {
     const { partner } = props.partners;
+
     const statusColor = () => {
-      if (partner.status._id === "607d530bf896e32250192195") {
+      if (partner.status === 0) {
         return "#0371e3";
       }
-      if (partner.status._id === "607d534de36c5111dc63fe4f") {
+      if (partner.status === 1) {
         return "#eed202";
       }
-      if (partner.status._id === "607d535ce36c5111dc63fe50") {
+      if (partner.status === 2) {
         return "#df4759";
       }
-      if (partner.status._id === "607fcc9c6e04510a48a07767") {
+      if (partner.status === 3) {
         return "#4bb543";
       }
     };
@@ -105,7 +108,7 @@ const PartnerDetails = (props) => {
               borderColor: statusColor(),
             }}
           >
-            {partner.status.status}
+            {partner.status}
           </h1>
         </div>
 
@@ -114,7 +117,7 @@ const PartnerDetails = (props) => {
 
           <div className="right-partner-details-div">
             <LegalInformation />
-            <BankAccount />
+            <BankAccountDetails id={id} />
           </div>
         </div>
         <BusinessDescription />
@@ -125,15 +128,16 @@ const PartnerDetails = (props) => {
               {Object.keys(props.partners.partner?.documents).map(
                 (key, index) => {
                   return (
-                    <ShowDocuments
-                      img={props.partners.partner.documents[key]}
-                    />
+                    // <ShowDocuments
+                    //   img={props.partners.partner.documents[key]}
+                    // />
+                    <></>
                   );
                 }
               )}
             </div>
 
-            <div className="partner-btn">
+            {/* <div className="partner-btn">
               {partner.status._id !== "607fcc9c6e04510a48a07767" ? (
                 <button
                   className="accept"
@@ -148,19 +152,19 @@ const PartnerDetails = (props) => {
                 onClick={() => onTicketSubmit("607d535ce36c5111dc63fe50")}
               >
                 Reject
-              </button>
+              </button> */}
 
-              {/* {partner.status._id !== "607d534de36c5111dc63fe4f" ? ( */}
-              <HoldModal
+            {/* {partner.status._id !== "607d534de36c5111dc63fe4f" ? ( */}
+            {/* <HoldModal
                 fields={fields}
                 setFields={setFields}
                 remark={remark}
                 setRemark={setRemark}
                 onTicketSubmit={onTicketSubmit}
-              />
-              {/* ) : null} */}
-            </div>
+              /> */}
+            {/* ) : null} */}
           </div>
+          {/* </div> */}
         </div>
       </>
     );
@@ -194,7 +198,6 @@ const PartnerDetails = (props) => {
             </Link>
           </div>
           {data}
-          
         </Container>
       </div>
     </>

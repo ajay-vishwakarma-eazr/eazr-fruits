@@ -17,10 +17,10 @@ const LegalInformation = (props) => {
     pan: props.partner.pan,
     panName: props.partner.panName,
     businessPan: props.partner.businessPan ? props.partner.businessPan : "",
-    address: props.partner.address,
-    pincode: props.partner.pincode,
-    city: props.partner.city,
-    state: props.partner.state,
+    address: props.partner.address.buildingName,
+    pincode: props.partner.address.pincode,
+    city: props.partner.address.city,
+    state: props.partner.address.state,
   });
 
   const getDisableEdit = (disableEdit) => {

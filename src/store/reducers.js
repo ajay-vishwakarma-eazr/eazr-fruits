@@ -17,6 +17,7 @@ import { transactionReducer } from "./transactions/reducers/reducer";
 import { partnerModuleReducer } from "./partnerModules/reducers/reducer";
 import { UserReducer } from "../store/adminusers/reducer/reducer";
 import { AdminProfileReducer } from "./adminprofile/reducer/reducer";
+import {bankReducer} from "../store/partners/Bank/bankReducer"
 const rootReducer = combineReducers({
   //order
   orders: OrderReducer,
@@ -44,6 +45,9 @@ const rootReducer = combineReducers({
 
   // public
   Layout,
+
+  //bank details
+  bank: bankReducer,
 
   // Authentication
   Account,
