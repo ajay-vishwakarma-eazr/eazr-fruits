@@ -83,7 +83,7 @@ const Customer = () => {
                           contact={users.contactNumber}
                           gender={users.gender}
                           creditLimit={users.creditLimit}
-                          outstandingAmount={users.outstandingAmount}
+                          outstandingAmount={users.totalOutstandingAmount}
                         />
                       );
                     })
@@ -99,7 +99,7 @@ const Customer = () => {
                             contact={users.contactNumber}
                             gender={users.gender}
                             creditLimit={users.creditLimit}
-                            outstandingAmount={users.outstandingAmount}
+                            outstandingAmount={users.totalOutstandingAmount}
                           />
                         );
                       })}

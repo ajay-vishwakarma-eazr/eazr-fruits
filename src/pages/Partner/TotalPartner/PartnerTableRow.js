@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 //Import Breadcrumb
 
 const PartnerTableRow = ({
+  id,
   name,
   contact,
   email,
@@ -48,7 +49,8 @@ const PartnerTableRow = ({
         <td>{partnerType}</td>
         <td>{plan}</td>
         <td className="approval-view-btn">
-          <Link to="/partner-details-tab">
+          {/* <Link to="/partner-details-tab/${id}"> */}
+            <Link to={`/partner-details-tab/${id}`}>
             <button>Details</button>
           </Link>
         </td>

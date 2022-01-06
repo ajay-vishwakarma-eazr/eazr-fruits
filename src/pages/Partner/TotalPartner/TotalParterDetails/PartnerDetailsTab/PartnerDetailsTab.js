@@ -26,7 +26,7 @@ const PartnerDetailsTab = () => {
         >
           Sattlements
         </NavLink>
-        <NavLink
+        {/* <NavLink
           to="/user-reports"
           activeStyle={{
             borderBottom: "2px solid #0371e3",
@@ -35,8 +35,8 @@ const PartnerDetailsTab = () => {
           }}
         >
           Order
-        </NavLink>
-        <NavLink
+        </NavLink> */}
+        {/* <NavLink
           to="/user-reports"
           activeStyle={{
             borderBottom: "2px solid #0371e3",
@@ -45,8 +45,8 @@ const PartnerDetailsTab = () => {
           }}
         >
           Reports
-        </NavLink>
-        <NavLink
+        </NavLink> */}
+        {/* <NavLink
           to="/partner-profile"
           activeStyle={{
             borderBottom: "2px solid #0371e3",
@@ -55,7 +55,7 @@ const PartnerDetailsTab = () => {
           }}
         >
           Profile
-        </NavLink>
+        </NavLink> */}
       </div>
     </div>
   );
