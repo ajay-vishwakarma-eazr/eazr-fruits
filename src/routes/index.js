@@ -69,6 +69,7 @@ import AdminUsers from "../pages/AdminUsers/AdminUsers";
 import TotalPartner from "../pages/Partner/TotalPartner/TotalPartner";
 import PartnerDetailsNav from "../pages/Partner/TotalPartner/TotalParterDetails/PartnerDetailsNav";
 import PartnerAllTransactions from "../pages/Partner/TotalPartner/TotalParterDetails/PartnerAllTarnsactions/PartnerAllTransactions";
+import PartnerSattlements from "../../src/pages/ApprovedPartners/Details/Settlements/Settlements"
 import PartnerProfile from "../pages/Partner/TotalPartner/TotalParterDetails/PartnerProfile/PartnerProfile";
 import UserProfile from "../pages/Customer/CustomerDetails/UserProfile/UserProfile";
 import AdminProfile from "../pages/Admin/AdminProfile";
@@ -109,6 +110,7 @@ const authProtectedRoutes = [
   { path: "/total-partner", component: TotalPartner },
   { path: "/partner-details-tab", component: PartnerDetailsNav },
   { path: "/partner-transactions", component: PartnerAllTransactions },
+  { path: "/partner-sattlements", component: PartnerSattlements },
   { path: "/partner-profile", component: PartnerProfile },
   // { path: "/user-approval", component: User },
 

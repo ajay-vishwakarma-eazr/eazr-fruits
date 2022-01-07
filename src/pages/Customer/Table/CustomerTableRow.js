@@ -11,7 +11,7 @@ const CustomerTableRow = ({
   contact,
   gender,
   creditLimit,
-  outstandingAmount,
+  totalOutstandingAmount,
 }) => {
   const [sweetAlerts, setSweetAlerts] = useState({
     dynamic_title: "",
@@ -30,7 +30,7 @@ const CustomerTableRow = ({
       <td>{contact}</td>
       <td>{gender}</td>
       <td>{creditLimit}</td>
-      <td>{outstandingAmount}</td>
+      <td>{totalOutstandingAmount}</td>
       <td>
         <Link to={`/user-profile/${id}`}>
           <button className="view-customer-btn">View</button>

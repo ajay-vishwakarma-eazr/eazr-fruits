@@ -9,9 +9,10 @@ const CreditDetails = () => {
     creditLimit: users.creditLimit,
     dueDate: users.dueDate,
     availableCreditLimit: users.availableCreditLimit,
+    fineAmount: users.fineAmount,
   });
 
-  const { creditLimit, dueDate, availableCreditLimit } = formData;
+  const { creditLimit, dueDate, availableCreditLimit, fineAmount } = formData;
 
   const creditDetail = (e) => {
     setFormData({
@@ -35,10 +36,15 @@ const CreditDetails = () => {
       <div className="available-credit-div">
         <h6>Available Credit</h6>
         <p>{availableCreditLimit}</p>
+      </div> 
+
+      <div className="late-fee-div">
+        <h6>Fine Amount : <span>₹ {fineAmount}</span></h6>
+
       </div>
       <div className="late-fee-div">
         <h6>
-          Late Fee : <span>₹ 10</span>{" "}
+          Late Fee : <span>₹ 0</span>{" "}
         </h6>
         <button>Wave Off</button>
       </div>

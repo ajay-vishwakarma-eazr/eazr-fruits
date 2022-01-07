@@ -34,24 +34,26 @@ const Settlements = (props) => {
           <TableHeading />
 
           {settlements
-            .filter((settlement) => {
-              if (PassedText !== "") {
-                return Object.values(settlement)
-                  .join(" ")
-                  .toLowerCase()
-                  .includes(PassedText.toLowerCase());
-              } else {
-                return settlement;
-              }
-            })
+            // .filter((settlement) => {
+            //   if (PassedText !== "") {
+            //     return Object.values(settlement)
+            //       .join(" ")
+            //       .toLowerCase()
+            //       .includes(PassedText.toLowerCase());
+            //   } else {
+            //     return settlement;
+            //   }
+            // })
+
             .map((settlement) =>
               settlement.businessPartner == partner.businessPartner ? (
                 <TableRow
-                  setttlementId={settlement._id.substr(20)}
+                  setttlementId={settlement.id}
                   amount={settlement.amount}
-                  fees="₹80"
+                  partnerAmount={settlement.partnerAmount}
                   tax="₹30"
-                  createdAt={settlement.createdAt.substr(0, 10)}
+                  createdAt={settlement.createdTimestamp}
+                  // createdAt={settlement.createdAt.substr(0, 10)}
                   status="Completed"
                 />
               ) : null
@@ -61,5 +63,6 @@ const Settlements = (props) => {
     </div>
   );
 };
+
 
 export default Settlements;

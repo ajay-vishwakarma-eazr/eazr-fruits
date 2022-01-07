@@ -29,7 +29,7 @@ export const fetchSettlements = () => {
   return function (dispatch) {
     dispatch(FetchSettlementRequest);
     axios
-      .get(`${ip}/admin/settlements/settlements`)
+      .get(`${ip}/settlements`)
       .then((res) => {
         //const users=res.data.map(user=>user.id)
         const settlements = res.data;

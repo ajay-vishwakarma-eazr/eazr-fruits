@@ -193,7 +193,7 @@ const PartnerDetails = (props) => {
 
         <Container fluid>
           <div className="go-back-to-partner">
-            <Link to="/partner-approval">
+            <Link to="/partner-Fapproval">
               <i className="mdi mdi-arrow-left-circle"></i> <h6>Go back</h6>
             </Link>
           </div>

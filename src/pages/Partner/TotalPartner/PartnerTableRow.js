@@ -38,7 +38,7 @@ const PartnerTableRow = ({
   //   serviceIds != undefined && serviceIds.length != 0
   //     ? (sIds.length = 0)
   //     : null;
-
+console.log("id",id);
   return (
     <tbody>
       <tr>

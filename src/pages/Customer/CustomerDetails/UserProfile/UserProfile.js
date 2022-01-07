@@ -3,9 +3,7 @@ import avatar from "../../../../assets/images/users/avatar-3.jpg";
 import AuthModal from "../../../Partner/PartnerDetails/AuthModal";
 import "./userprofile.scss";
 import { connect, useDispatch, useSelector } from "react-redux";
-import {
-  fetchUserById,
-} from "../../../../store/adminusers/actions/actions";
+import { fetchUserById } from "../../../../store/adminusers/actions/actions";
 
 import { useParams, useHistory } from "react-router-dom";
 const UserProfile = () => {
@@ -24,13 +22,23 @@ const UserProfile = () => {
     dob: users.dob,
     contact: users.contactNumber,
     address: users.address,
+    pin: users.pincode,
     pan: users.pan,
-    aadhaarNo: users.aadhaar,
+    aadhaarNo: users.aadhar,
     profileImg: avatar,
   });
 
-  const { name, email, dob, contact, address, pan, aadhaarNo, profileImg } =
-    formData;
+  const {
+    name,
+    email,
+    dob,
+    contact,
+    address,
+    pin,
+    pan,
+    aadhaarNo,
+    profileImg,
+  } = formData;
 
   const handleChange = (e) => {
     setFormData({
@@ -112,6 +120,19 @@ const UserProfile = () => {
           cols="30"
           rows="2"
           value={address}
+          onChange={(e) => handleChange(e)}
+        ></textarea>
+      </div>
+
+      <div className="input-div">
+        <h6>Pin</h6>
+        <textarea
+          disabled={edit}
+          name="pin"
+          id=""
+          cols="30"
+          rows="1"
+          value={pin}
           onChange={(e) => handleChange(e)}
         ></textarea>
       </div>

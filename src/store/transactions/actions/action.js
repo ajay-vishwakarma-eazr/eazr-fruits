@@ -45,7 +45,7 @@ export const fetchTransactions = () => {
 };
 
 
-export const setPartersLoading = () => {
+export const setPartnersLoading = () => {
   return {
     type: PARTNERS_LOADING,
   };
@@ -53,7 +53,7 @@ export const setPartersLoading = () => {
 
 export const getTranscationById = (id) => {
   return (dispatch) => {
-    dispatch(setPartersLoading());
+    dispatch(setPartnersLoading());
     axios
       .get(`${ip}/transactions/${id}`)
       .then((res) => {

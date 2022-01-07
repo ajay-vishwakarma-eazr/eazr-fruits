@@ -2,6 +2,7 @@
 
 .settlement-table {
   text-align: center;
+  // overflow-x: scroll;
 }
 .settlement-table .status {
   border: 1px solid #000;
@@ -9,6 +10,11 @@
   padding: $status-padding;
   margin: 0;
 }
+.table-heding th {
+  font-size: $table-heading-font-size;
+  font-weight: $font-weight-bolder;
+}
+
 .settlement-table tr {
   cursor: pointer;
 }

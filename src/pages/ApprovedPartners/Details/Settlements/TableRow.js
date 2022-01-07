@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter} from "react-router-dom";
 
-const TableRow = ({ setttlementId, amount, fees, tax, createdAt, status }) => {
+const TableRow = ({ setttlementId, amount,partnerAmount, fees, tax, date, createdAt, status }) => {
   const statusColor = () => {
     if (status === "Completed") {
       return "#4bb543";
@@ -14,16 +14,18 @@ const TableRow = ({ setttlementId, amount, fees, tax, createdAt, status }) => {
     }
   };
 
-  const history = withRouter();
+  // const history = withRouter();
 
-  const handleClick = () => {
-    history.push("/settlement/id");
-  };
+  // const handleClick = () => {
+  //   history.push("/settlement/id");
+  // };
 
   return (
-    <tr onClick={handleClick}>
+    // <tr onClick={handleClick}>
+    <tr onClick={""}>
       <td>{setttlementId}</td>
       <td>{amount}</td>
+      <td>{partnerAmount}</td>
       <td>{fees}</td>
       <td>{tax}</td>
       <td>{createdAt}</td>

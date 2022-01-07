@@ -101,6 +101,7 @@ class TotalPartner extends Component {
                 ? this.state.partnerList.map((item, index) => (
                     <PartnerTableRow
                       key={index}
+                      id={item.id}
                       name={item.businessName}
                       contact={item.contactNumber}
                       email={item.email}
@@ -116,6 +117,7 @@ class TotalPartner extends Component {
                       return (
                         <PartnerTableRow
                           key={index}
+                          id={item.id}
                           name={item.businessName}
                           contact={item.contactNumber}
                           email={item.email}

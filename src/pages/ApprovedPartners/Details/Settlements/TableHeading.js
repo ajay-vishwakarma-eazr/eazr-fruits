@@ -2,7 +2,7 @@ import React from "react";
 
 const TableHeading = () => {
   return (
-    <thead>
+    <thead className="table-heading">
       <th>Settlement Id</th>
       <th>Amount</th>
       <th>Fees</th>

@@ -8,7 +8,7 @@ const CustomerTableHeading = () => {
       <th>Contact</th>
       <th>Gender</th>
       <th>Credit Limit</th>
-      <th>Outstanding Amount</th>
+      <th>Total Outstanding Amount</th>
       <th>Details</th>
       <th>Actions</th>
     </thead>
