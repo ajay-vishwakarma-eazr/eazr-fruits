@@ -26,6 +26,7 @@ const UserProfile = () => {
     pan: users.pan,
     aadhaarNo: users.aadhar,
     profileImg: avatar,
+    selfie:users.selfie
   });
 
   const {
@@ -38,6 +39,7 @@ const UserProfile = () => {
     pan,
     aadhaarNo,
     profileImg,
+    selfie
   } = formData;
 
   const handleChange = (e) => {
@@ -56,7 +58,7 @@ const UserProfile = () => {
       )}
 
       <div className="user-img">
-        <img src={profileImg} alt="" />
+        <img src={selfie} alt="" />
         <label htmlFor="profileImg">
           <i className="fa fa-edit"></i>
         </label>

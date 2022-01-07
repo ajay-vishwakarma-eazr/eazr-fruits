@@ -20,23 +20,26 @@ class ProfileMenu extends Component {
     super(props);
     this.state = {
       menu: false,
+      profilePhoto: "",
+      fullName:""
     };
     this.toggle = this.toggle.bind(this);
   }
 
+  
   toggle() {
     this.setState((prevState) => ({
       menu: !prevState.menu,
     }));
   }
-
+  
   handleLogout = () => {
     localStorage.removeItem("accessToken");
     this.props.logoutUser();
     const { history } = this.props;
     history.push("/login");
   };
-
+  
   render() {
     let username = "Admin";
     if (localStorage.getItem("authUser")) {
@@ -44,6 +47,10 @@ class ProfileMenu extends Component {
       const uNm = obj.email.split("@")[0];
       username = uNm.charAt(0).toUpperCase() + uNm.slice(1);
     }
+    const data = {
+        profilePhoto: this.props.profilePhoto,  
+        fullName: this.props.fullName
+      };
 
     return (
       <>
@@ -59,11 +66,12 @@ class ProfileMenu extends Component {
           >
             <img
               className="rounded-circle header-profile-user mr-1"
+              // src={data.profilePhoto}
               src={avatar2}
-              alt="Header Avatar"
+              alt="Header avatar"
             />
             <span className="d-none d-xl-inline-block ml-1 text-transform">
-              {username}
+              {data.fullName}
             </span>
             <i className="mdi mdi-chevron-down d-none ml-1 d-xl-inline-block"></i>
           </DropdownToggle>

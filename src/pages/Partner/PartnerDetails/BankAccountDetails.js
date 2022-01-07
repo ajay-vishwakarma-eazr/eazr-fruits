@@ -18,11 +18,11 @@ const BankAccountDetails = ({ id }) => {
     dispatch(getBankDetails(id));
   }, []);
   const { bank } = useSelector((state) => state.bank);
-  console.log(bank);
+  console.log("bank ", bank[0]);
   const [partnerBankDetail, setPartnerBankDetails] = useState({
-    beneficiaryName: bank.beneficiaryName,
-    ifscCode: bank.ifscCode,
-    accountNumber: bank.accountNumber,
+    beneficiaryName: bank[0]?.beneficiaryName,
+    ifscCode: bank[0]?.ifscCode,
+    accountNumber: bank[0]?.accountNumber,
   });
 
   const getDisableEdit = (disableEdit) => {

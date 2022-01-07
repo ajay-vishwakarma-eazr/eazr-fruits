@@ -45,7 +45,7 @@ export const fetchTransactions = () => {
 };
 
 
-export const setPartnersLoading = () => {
+export const setPartnersLoading = (id) => {
   return {
     type: PARTNERS_LOADING,
   };
