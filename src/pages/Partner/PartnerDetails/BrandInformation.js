@@ -11,12 +11,13 @@ import {
 } from "../../../store/partners/actions";
 
 const BrandInformation = (props) => {
+  
   const [edit, setEdit] = useState(true);
   const [brandInformation, setBrandInformation] = useState({
     businessName: props.partner.businessName,
-    businessEmail: props.partner.businessEmail,
+    businessEmail: props.partner.email,
     businessType: props.partner.businessType,
-    businessCategory: props.partner.businessCategory,
+    businessCategory: props.partner.partnerType.name,
     averageOrderValue: props.partner.averageOrderValue,
     paymentOnline: props.partner.paymentOnline,
     paymentAtStore: props.partner.paymentAtStore,
@@ -30,7 +31,7 @@ const BrandInformation = (props) => {
   };
 
   const onSave = () => {
-    props.updatePartnerDetails(props.partner._id, brandInformation, password);
+    props.updatePartnerDetails(props.partner.id, brandInformation, password);
   };
 
   return (
@@ -60,14 +61,15 @@ const BrandInformation = (props) => {
             onClick={() => setEdit(!edit)}
           ></i>
         ) : 
-        // (
-        //   <AuthModal
-        //     getDisableEdit={getDisableEdit}
-        //     onSave={onSave}
-        //     setPassword={setPassword}
-        //   />
-        // )
-        ""
+        (
+          <AuthModal
+            getDisableEdit={getDisableEdit}
+            onSave={onSave}
+            type={password}
+            setPassword={setPassword}
+          />
+        )
+        
         }
       </div>
       <div className="brand-name">
@@ -197,6 +199,7 @@ const BrandInformation = (props) => {
 };
 
 const mapStateToProps = (state) => {
+  
   return {
     partner: state.partners.partner,
     errors: state.partners.errors,

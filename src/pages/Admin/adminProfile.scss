@@ -1,10 +1,10 @@
 @import "../../assets/scss/variables";
 
-.customer-page {
+// .customer-page {
   .user-profile-div {
     padding: 1rem;
     border-radius: 10px;
-    width: 40%;
+    // width: 40%;
 
     .auth-modal-toggler {
       background: $eazr-color;
@@ -96,7 +96,7 @@
       resize: none;
     }
   }
-}
+
 
 @media (max-width: 768px) {
   .user-profile-div {

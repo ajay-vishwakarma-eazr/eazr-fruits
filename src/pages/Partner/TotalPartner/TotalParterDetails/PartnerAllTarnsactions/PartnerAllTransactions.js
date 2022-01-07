@@ -5,6 +5,7 @@ import "../../../partner.scss";
 import { connect } from "react-redux";
 import ClipLoader from "react-spinners/ClipLoader";
 //Actions
+import ReactPaginate from "react-paginate";
 import { getTranscationById } from "../../../../../store/transactions/actions/action";
 import EmptySection from "../../../../../components/EmptySection/EmptySection";
 import PartnerTrancationsRow from "./PartnerTrancationsRow";
@@ -16,6 +17,7 @@ class PartnerAllTransactions extends Component {
     this.state = {
       searchTransactions: "",
       transactionList: null,
+      pageNumber: 0,
     };
   }
 
@@ -63,6 +65,18 @@ class PartnerAllTransactions extends Component {
 
   render() {
     const { transactions } = this.props;
+
+    const usersPerPage = 10;
+    const pageVisited = this.state.pageNumber * usersPerPage;
+
+    const pageCount = Math.ceil(
+      this.props.transactions.transactions?.length / usersPerPage
+    );
+
+    const changePage = ({ selected }) => {
+      this.setState({ pageNumber: selected });
+    };
+
     let data;
     if (transactions?.loading === true) {
       data = (
@@ -99,18 +113,20 @@ class PartnerAllTransactions extends Component {
                       settled={item.settled}
                     />
                   ))
-                : transactions?.transactions.map((item, index) => {
-                    return (
-                      <PartnerTrancationsRow
-                        key={index}
-                        amount={item.amount}
-                        status={item.status}
-                        debit={item.debit}
-                        refund={item.refund}
-                        settled={item.settled}
-                      />
-                    );
-                  })}
+                : transactions?.transactions
+                    .slice(pageVisited, pageVisited + usersPerPage)
+                    .map((item, index) => {
+                      return (
+                        <PartnerTrancationsRow
+                          key={index}
+                          amount={item.amount}
+                          status={item.status}
+                          debit={item.debit}
+                          refund={item.refund}
+                          settled={item.settled}
+                        />
+                      );
+                    })}
             </Table>
           </div>
         </div>
@@ -136,6 +152,19 @@ class PartnerAllTransactions extends Component {
             </div>
 
             <CardBody>{data}</CardBody>
+
+            <ReactPaginate
+              previousLabel={"Previous"}
+              nextLabel={"Next"}
+              pageCount={pageCount}
+              onPageChange={changePage}
+              containerClassName={"paginationBttns"}
+              previousLinkClassName={"previousBttn"}
+              nextLinkClassName={"nextBttn"}
+              disabledClassName={"paginationDisabled"}
+              activeClassName={"paginationActive"}
+            />
+            
           </Card>
         </Container>
       </div>

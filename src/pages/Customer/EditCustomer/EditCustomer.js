@@ -13,8 +13,8 @@ const EditCustomer = ({ showModal, id, name, email, contact, gender }) => {
   const toggle = () => {
     setModal(!modal);
     console.log(formData);
-    // dispatch(updateUserDetails(id, formData));
-    // history.push("/users")
+    dispatch(updateUserDetails(id, formData));
+    history.push("/users")
   };
   const [formData, setFormData] = useState({
     name,

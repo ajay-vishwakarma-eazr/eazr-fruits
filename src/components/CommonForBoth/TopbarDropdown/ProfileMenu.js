@@ -4,6 +4,10 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
 } from "reactstrap";
 import { connect } from "react-redux";
 import { logoutUser } from "../../../store/auth/login/actions";
@@ -14,6 +18,7 @@ import { withNamespaces } from "react-i18next";
 
 // users
 import avatar2 from "../../../assets/images/users/avatar-2.jpg";
+import AdminProfile from "../../../pages/Admin/AdminProfile";
 
 class ProfileMenu extends Component {
   constructor(props) {
@@ -21,25 +26,31 @@ class ProfileMenu extends Component {
     this.state = {
       menu: false,
       profilePhoto: "",
-      fullName:""
+      fullName: "",
+      modal: false,
     };
     this.toggle = this.toggle.bind(this);
   }
 
-  
   toggle() {
     this.setState((prevState) => ({
       menu: !prevState.menu,
     }));
   }
-  
+
+  profileToggle = () => {
+    this.setState({
+      modal: !this.state.modal,
+    });
+  };
+
   handleLogout = () => {
     localStorage.removeItem("accessToken");
     this.props.logoutUser();
     const { history } = this.props;
     history.push("/login");
   };
-  
+
   render() {
     let username = "Admin";
     if (localStorage.getItem("authUser")) {
@@ -48,9 +59,9 @@ class ProfileMenu extends Component {
       username = uNm.charAt(0).toUpperCase() + uNm.slice(1);
     }
     const data = {
-        profilePhoto: this.props.profilePhoto,  
-        fullName: this.props.fullName
-      };
+      profilePhoto: this.props.profilePhoto,
+      fullName: this.props.fullName,
+    };
 
     return (
       <>
@@ -77,12 +88,23 @@ class ProfileMenu extends Component {
           </DropdownToggle>
 
           <DropdownMenu right>
-            <Link to="Admin-Profile">
-              <DropdownItem>
-                <i className="ri-user-line align-middle mr-1"></i>
-                {this.props.t("Profile")}
-              </DropdownItem>
-            </Link>
+            {/* <Link to="Admin-Profile"> */}
+            <DropdownItem onClick={this.profileToggle}>
+              <i className="ri-user-line align-middle mr-1"></i>
+              {this.props.t("Profile")}
+              <Modal
+                funk={true}
+                isOpen={this.state.modal}
+                toggle={this.profileToggle}
+                centered
+              >
+                <ModalHeader toggle={this.profileToggle}>Profile</ModalHeader>
+                <ModalBody>
+                  <AdminProfile />
+                </ModalBody>
+              </Modal>
+            </DropdownItem>
+            {/* </Link> */}
             {/* <DropdownItem href="Admin-profile">
               <i className="ri-wallet-2-line align-middle mr-1"></i>{" "}
               {this.props.t("My Wallet")}

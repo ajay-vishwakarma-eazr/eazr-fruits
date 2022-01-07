@@ -17,7 +17,7 @@ const LegalInformation = (props) => {
     pan: props.partner.pan,
     panName: props.partner.panName,
     businessPan: props.partner.businessPan ? props.partner.businessPan : "",
-    address: props.partner.address.buildingName,
+    address: props.partner.address.buildingName ,
     pincode: props.partner.address.pincode,
     city: props.partner.address.city,
     state: props.partner.address.state,
@@ -30,7 +30,7 @@ const LegalInformation = (props) => {
   const [password, setPassword] = useState("");
 
   const onSave = () => {
-    props.updatePartnerDetails(props.partner._id, legalInformation, password);
+    props.updatePartnerDetails(props.partner.id, legalInformation, password);
   };
 
   return (
