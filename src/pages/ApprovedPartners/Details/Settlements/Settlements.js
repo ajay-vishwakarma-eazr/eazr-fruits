@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import TableHeading from "./TableHeading";
 import TableRow from "./TableRow";
-import { Table } from "reactstrap";
-import { fetchSettlements } from "../../../../store/settlement/actions/action";
+import { Table, Container } from "reactstrap";
+import BackBtn from "../../../../pages/BackBtn"
+import {
+  fetchSettlements,
+  fetchSettlementsById,
+} from "../../../../store/settlement/actions/action";
 import { useDispatch, useSelector } from "react-redux";
 import "./table.scss";
 
@@ -23,42 +27,51 @@ const Settlements = (props) => {
 
   return (
     <div className="table-rep-plugin">
+      {/* <BackBtn route="total-partner" /> */}
       <div className="table-responsive mb-0" data-pattern="priority-columns">
-        <Table
-          center
-          // striped
-          // bordered
-          responsive
-          className="settlement-table"
-        >
-          <TableHeading />
+        <Container fluid>
+          {/* <BackBtn route="total-partner" /> */}
+          <div style={{ paddingTop: "6rem" }}>
+            <BackBtn route="total-partner" />
+          </div>
+          <Table
+            center
+            striped
+            // bordered
+            responsive
+            className="settlement-table"
+          >
+            <TableHeading />
 
-          {settlements
-            // .filter((settlement) => {
-            //   if (PassedText !== "") {
-            //     return Object.values(settlement)
-            //       .join(" ")
-            //       .toLowerCase()
-            //       .includes(PassedText.toLowerCase());
-            //   } else {
-            //     return settlement;
-            //   }
-            // })
+            {settlements
+              // .filter((settlement) => {
+              //   if (PassedText !== "") {
+              //     return Object.values(settlement)
+              //       .join(" ")
+              //       .toLowerCase()
+              //       .includes(PassedText.toLowerCase());
+              //   } else {
+              //     return settlement;
+              //   }
+              // })
 
-            .map((settlement) =>
-              settlement.businessPartner == partner.businessPartner ? (
-                <TableRow
-                  setttlementId={settlement.id}
-                  amount={settlement.amount}
-                  partnerAmount={settlement.partnerAmount}
-                  tax="₹30"
-                  createdAt={settlement.createdTimestamp}
-                  // createdAt={settlement.createdAt.substr(0, 10)}
-                  status="Completed"
-                />
-              ) : null
-            )}
-        </Table>
+              .map((settlement) =>
+                settlement.businessPartner == partner.businessPartner ? (
+                  <TableRow
+                    setttlementId={settlement.id}
+                    amount={settlement.amount}
+                    partnerAmount={settlement.partnerAmount}
+                    partnerId={settlement.partnerId}
+                    upi={settlement.partner.upi}
+                    gst={settlement.gst}
+                    createdAt={settlement.createdTimestamp}
+                    // createdAt={settlement.createdAt.substr(0, 10)}
+                    status="Completed"
+                  />
+                ) : null
+              )}
+          </Table>
+        </Container>
       </div>
     </div>
   );

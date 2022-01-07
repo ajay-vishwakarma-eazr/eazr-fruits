@@ -110,7 +110,7 @@ const authProtectedRoutes = [
   { path: "/total-partner", component: TotalPartner },
   { path: "/partner-details-tab", component: PartnerDetailsNav },
   { path: "/partner-transactions", component: PartnerAllTransactions },
-  { path: "/partner-sattlements", component: PartnerSattlements },
+  { path: "/partner-sattlements/:id", component: PartnerSattlements },
   { path: "/partner-profile", component: PartnerProfile },
   // { path: "/user-approval", component: User },
 

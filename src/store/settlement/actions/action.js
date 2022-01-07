@@ -2,6 +2,7 @@ import {
   FETCH_SETTLEMENT_FAILURE,
   FETCH_SETTLEMENT_REQUEST,
   FETCH_SETTLEMENT_SUCCESS,
+  PARTNERS_SETTLEMENTS_LOADING,
 } from "./actiontypes";
 import axios from "axios";
 import { ip } from "../../../config/config";
@@ -32,6 +33,28 @@ export const fetchSettlements = () => {
       .get(`${ip}/settlements`)
       .then((res) => {
         //const users=res.data.map(user=>user.id)
+        const settlements = res.data;
+        console.log(settlements);
+        dispatch(FetchSettlementSuccess(settlements));
+      })
+      .catch((err) => {
+        dispatch(FetchSettlementFailure(err.message));
+      });
+  };
+};
+
+export const setPartnersSettlementsLoading = (id) => {
+  return {
+    type: PARTNERS_SETTLEMENTS_LOADING,
+  };
+};
+
+export const fetchSettlementsById = (id) => {
+  return function (dispatch) {
+    dispatch(FetchSettlementRequest);
+    axios
+      .get(`${ip}/settlements?filter=partnerId||eq||${id}`)
+      .then((res) => {
         const settlements = res.data;
         console.log(settlements);
         dispatch(FetchSettlementSuccess(settlements));

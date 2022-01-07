@@ -11,13 +11,14 @@ function ShowTotalNumberOfOnboardingPartner() {
   useEffect(() => {
     axios.get(`${ip}/partners`).then((res) => {
       setNumberOfOnboardingPartners(res.data);
-      // console.log("data", res.data.filter(res.data.length));
     });
   }, []);
 
   return (
     <>
-      <div>{numberOfOnboardingPartners?.length}</div>
+      <div>
+        {numberOfOnboardingPartners?.filter((data) => data.status != 1)?.length}
+      </div>
     </>
   );
 }

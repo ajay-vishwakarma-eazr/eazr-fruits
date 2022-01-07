@@ -1,16 +1,29 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import "../dashboard.scss";
+import { getPartners } from "../../../store/partners/actions";
 import { ip } from "../../../config/config";
 import axios from "axios";
-import "../dashboard.scss";
 function ShowTotalNumberOfPartner() {
-  const [numberOfPartners, setNumberOfPartners] = useState();
+  const [numberOfOnboardingPartners, setNumberOfOnboardingPartners] =
+    useState();
 
   useEffect(() => {
-    axios.get(`${ip}/partners/count`).then((res) => {
-      setNumberOfPartners(res.data);
+    axios.get(`${ip}/partners`).then((res) => {
+      setNumberOfOnboardingPartners(res.data);
     });
   }, []);
-  return <div>{!numberOfPartners ? 0 : numberOfPartners}</div>;
+
+  return (
+    <>
+      <div>
+        {
+          numberOfOnboardingPartners?.filter((data) => data.status === 1)
+            ?.length
+        }
+      </div>
+    </>
+  );
 }
 
-export default ShowTotalNumberOfPartner
+export default ShowTotalNumberOfPartner;

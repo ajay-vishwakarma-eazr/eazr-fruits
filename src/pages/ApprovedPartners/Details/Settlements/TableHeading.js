@@ -4,9 +4,11 @@ const TableHeading = () => {
   return (
     <thead className="table-heading">
       <th>Settlement Id</th>
+      <th>Partner Id</th>
       <th>Amount</th>
-      <th>Fees</th>
-      <th>Tax</th>
+      <th>PartnerAmount</th>
+      <th>UPI</th>
+      <th>GST</th>
       <th>Created At</th>
       <th>Status</th>
     </thead>

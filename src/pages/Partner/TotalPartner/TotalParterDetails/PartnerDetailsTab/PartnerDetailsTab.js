@@ -1,7 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-const PartnerDetailsTab = () => {
+const PartnerDetailsTab = (props) => {
+  const { id } = useParams();
   return (
     <div className="nav-container">
       <div className="details-nav">
@@ -17,7 +19,7 @@ const PartnerDetailsTab = () => {
         </NavLink>
 
         <NavLink
-          to="/partner-sattlements"
+          to={`/partner-sattlements/${id}`}
           activeStyle={{
             borderBottom: "2px solid #0371e3",
             color: "#0371e3",

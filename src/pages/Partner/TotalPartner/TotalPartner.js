@@ -98,20 +98,22 @@ class TotalPartner extends Component {
             >
               <PartnerTableHeading />
               {this.state.searchPartner
-                ? this.state.partnerList.map((item, index) => (
-                    <PartnerTableRow
-                      key={index}
-                      id={item.id}
-                      name={item.businessName}
-                      contact={item.contactNumber}
-                      email={item.email}
-                      description={item.businessDescription}
-                      partnerType={item.partnerType.type}
-                      plan={item.plan?.name}
-                    />
-                  ))
+                ? this.state.partnerList
+                    .filter((item) => item.status === 1)
+                    .map((item, index) => (
+                      <PartnerTableRow
+                        key={index}
+                        id={item.id}
+                        name={item.businessName}
+                        contact={item.contactNumber}
+                        email={item.email}
+                        description={item.businessDescription}
+                        partnerType={item.partnerType.type}
+                        plan={item.plan?.name}
+                      />
+                    ))
                 : partners.partners
-                    // .filter((item) => item.status.status === "Accepted")
+                    .filter((item) => item.status === 1)
                     .slice(pageVisited, pageVisited + usersPerPage)
                     .map((item, index) => {
                       return (

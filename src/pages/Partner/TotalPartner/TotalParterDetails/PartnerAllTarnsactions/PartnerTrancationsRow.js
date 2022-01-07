@@ -3,19 +3,17 @@ import { Link } from "react-router-dom";
 
 //Import Breadcrumb
 
-const PartnerTrancationsRow = ({
-  id,
-  transactions
-}) => {
-  const statusColor = () => {
-     };
-
+const PartnerTrancationsRow = ({ amount, status, debit, refund, settled }) => {
+  const statusColor = () => {};
 
   return (
     <tbody>
       <tr>
-        <td>{id}</td>
-        <td>{transactions}</td>
+        <td>{amount}</td>
+        <td>{status}</td>
+        <td>{debit}</td>
+        <td>{refund}</td>
+        <td>{settled}</td>
       </tr>
     </tbody>
   );

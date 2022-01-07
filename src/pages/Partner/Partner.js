@@ -99,20 +99,23 @@ class Partner extends Component {
             >
               <PartnerTableHeading />
               {this.state.searchPartner
-                ? this.state.partnerList.map((item, index) => (
-                    <PartnerTableRow
-                      key={index}
-                      id={item.id}
-                      brandName={item.businessName}
-                      contact={item.contactNumber}
-                      email={item.email}
-                      type={item.partnerType?.type}
-                      category={item.partnerCategory?.name}
-                      plan={item.plan?.name}
-                      status={item.status}
-                    />
-                  ))
+                ? this.state.partnerList
+                    .filter((item) => item.status != 1)
+                    .map((item, index) => (
+                      <PartnerTableRow
+                        key={index}
+                        id={item.id}
+                        brandName={item.businessName}
+                        contact={item.contactNumber}
+                        email={item.email}
+                        type={item.partnerType?.type}
+                        category={item.partnerCategory?.name}
+                        plan={item.plan?.name}
+                        status={item.status}
+                      />
+                    ))
                 : partners.partners
+                    .filter((item) => item.status != 1)
                     .slice(pageVisited, pageVisited + usersPerPage)
                     .map((item, index) => {
                       return (

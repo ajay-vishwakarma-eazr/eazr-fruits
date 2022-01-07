@@ -10,93 +10,70 @@ import EmptySection from "../../../../../components/EmptySection/EmptySection";
 import PartnerTrancationsRow from "./PartnerTrancationsRow";
 import PartnerTranscationsHeading from "./PartnerTranscationsHeading";
 
-// import React, { useEffect, useState } from "react";
-
-// const PartnerAllTransactions = () => {
-//   const [searchPartner, setSearchPartner] = useState("");
-//   const [partnerList, setpartnerList] = useState(null);
-//   const handleSearch = (e) => {
-//     setSearchPartner(e.target.value);
-//   };
-//   useEffect(() => {
-//     let tid = this.props.location.pathname.split("/partner-details-tab/")[1];
-
-//     getTranscationById(tid);
-//   });
-//   return <div></div>;
-// };
-
-// export default PartnerAllTransactions;
-
 class PartnerAllTransactions extends Component {
   constructor() {
     super();
     this.state = {
-      searchPartner: "",
-      partnerList: null,
+      searchTransactions: "",
+      transactionList: null,
     };
   }
 
   componentDidMount() {
-    this.props.getTranscationById(2);
+    const id = this.props.match.params.id;
+    this.props.getTranscationById(id);
   }
 
   handleSearch = (e) => {
     this.setState({
-      searchPartner: e.target.value,
+      searchTransactions: e.target.value,
     });
 
-    const searchablePartner = e.target.value;
+    const searchableTransactions = e.target.value;
 
-    const filtered = this.props.partners.partners.filter((filter) => {
+    const filtered = this.props.transactions.transactions.filter((filter) => {
       return (
-        filter.businessName
+        filter?.amount?.includes(searchableTransactions) ||
+        filter?.debit
           .toLowerCase()
           .split(" ")
           .join("")
-          .includes(searchablePartner.toLowerCase().split(" ").join("")) ||
-        filter.businessEmail
+          ?.includes(
+            searchableTransactions.toLowerCase().split(" ").join("")
+          ) ||
+        filter.status
           .toLowerCase()
           .split(" ")
           .join("")
-          .includes(searchablePartner.toLowerCase().split(" ").join("")) ||
-        filter.serviceNumber
+          ?.includes(
+            searchableTransactions.toLowerCase().split(" ").join("")
+          ) ||
+        filter.refund
           .toLowerCase()
           .split(" ")
           .join("")
-          .includes(searchablePartner.toLowerCase().split(" ").join("")) ||
-        filter.status.status
-          .toLowerCase()
-          .split(" ")
-          .join("")
-          .includes(searchablePartner.toLowerCase().split(" ").join("")) ||
-        filter.phone.includes(searchablePartner) ||
-        filter.serviceIds.some((sId) =>
-          sId.serviceId.includes(searchablePartner)
-        )
+          ?.includes(searchableTransactions.toLowerCase().split(" ").join(""))
       );
     });
 
     this.setState({
-      partnerList: filtered,
+      transactionList: filtered,
     });
   };
 
   render() {
-    // let tid = this.props.location.pathname.split("/partner-details-tab/")[1];
-
-    // this.props.getTranscationById();
-
-    const { partners } = this.props;
-    console.log("parttners", partners);
+    const { transactions } = this.props;
     let data;
-    if (partners?.loading === true) {
+    if (transactions?.loading === true) {
       data = (
         <div className="spinner-div">
           <ClipLoader color="#bbbbbb" loading={true} size={60} />
         </div>
       );
-    } else if (partners?.partners && partners?.partners.length > 0) {
+    } else if (
+      transactions?.transactions &&
+      transactions?.transactions.length > 0
+    ) {
       data = (
         <div className="table-rep-plugin">
           <div
@@ -111,20 +88,26 @@ class PartnerAllTransactions extends Component {
               className="partner-approval-table"
             >
               <PartnerTranscationsHeading />
-              {this.state.searchPartner
-                ? this.state.partnerList.map((item, index) => (
+              {this.state.searchTransactions
+                ? this.state.transactionList.map((item, index) => (
                     <PartnerTrancationsRow
                       key={index}
-                      id={item._id}
-                      // transactions={item.transactions}
+                      amount={item.amount}
+                      status={item.status}
+                      debit={item.debit}
+                      refund={item.refund}
+                      settled={item.settled}
                     />
                   ))
-                : partners?.partners.map((item, index) => {
+                : transactions?.transactions.map((item, index) => {
                     return (
                       <PartnerTrancationsRow
                         key={index}
-                        id={item._id}
-                        transactions={item.transactions}
+                        amount={item.amount}
+                        status={item.status}
+                        debit={item.debit}
+                        refund={item.refund}
+                        settled={item.settled}
                       />
                     );
                   })}
@@ -142,12 +125,12 @@ class PartnerAllTransactions extends Component {
           <Card className="partner-table-approval">
             <div className="search-partner">
               <div>
-                <label htmlFor="">Search Partner: </label>
+                <label htmlFor="">Search transactions: </label>
                 <input
                   type="text"
                   placeholder="Search..."
                   onChange={this.handleSearch}
-                  value={this.state.searchPartner}
+                  value={this.state.searchTransactions}
                 />
               </div>
             </div>

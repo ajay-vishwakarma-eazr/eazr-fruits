@@ -1,7 +1,8 @@
 import React from "react";
 import { withRouter} from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-const TableRow = ({ setttlementId, amount,partnerAmount, fees, tax, date, createdAt, status }) => {
+const TableRow = ({ setttlementId, partnerId, amount,partnerAmount, upi, gst, date, createdAt, status }) => {
   const statusColor = () => {
     if (status === "Completed") {
       return "#4bb543";
@@ -14,6 +15,8 @@ const TableRow = ({ setttlementId, amount,partnerAmount, fees, tax, date, create
     }
   };
 
+  const { partner } = useSelector((state) => state.businessPartner);
+
   // const history = withRouter();
 
   // const handleClick = () => {
@@ -24,10 +27,11 @@ const TableRow = ({ setttlementId, amount,partnerAmount, fees, tax, date, create
     // <tr onClick={handleClick}>
     <tr onClick={""}>
       <td>{setttlementId}</td>
-      <td>{amount}</td>
-      <td>{partnerAmount}</td>
-      <td>{fees}</td>
-      <td>{tax}</td>
+      <td>{partnerId}</td>
+      <td>₹ {amount}</td>
+      <td>₹ {partnerAmount}</td>
+      <td>{partner.upi}</td>
+      <td>{gst}</td>
       <td>{createdAt}</td>
       <td>
         <p
