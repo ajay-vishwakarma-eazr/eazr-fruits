@@ -14,8 +14,8 @@ const BrandInformation = (props) => {
   const [edit, setEdit] = useState(true);
   const [brandInformation, setBrandInformation] = useState({
     businessName: props.partner.businessName,
-    businessEmail: props.partner.businessEmail,
-    businessType: props.partner.businessType,
+    businessEmail: props.partner.email,
+    businessType: props.partner.partnerType.name,
     businessCategory: props.partner.businessCategory,
     averageOrderValue: props.partner.averageOrderValue,
     paymentOnline: props.partner.paymentOnline,

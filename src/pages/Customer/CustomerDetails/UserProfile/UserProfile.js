@@ -26,7 +26,7 @@ const UserProfile = () => {
     pan: users.pan,
     aadhaarNo: users.aadhar,
     profileImg: avatar,
-    selfie:users.selfie
+    selfie: users.selfie,
   });
 
   const {
@@ -39,7 +39,7 @@ const UserProfile = () => {
     pan,
     aadhaarNo,
     profileImg,
-    selfie
+    selfie,
   } = formData;
 
   const handleChange = (e) => {
