@@ -3,7 +3,7 @@ import Colors from "../../../components/Config/Colors";
 import AuthModal from "./AuthModal";
 import { connect } from "react-redux";
 import SweetAlert from "react-bootstrap-sweetalert";
-
+import { useParams } from "react-router-dom";
 //actions
 import {
   updatePartnerDetails,
@@ -11,26 +11,25 @@ import {
 } from "../../../store/partners/actions";
 
 const LegalInformation = (props) => {
+ const { id } = useParams();
   const [edit, setEdit] = useState(true);
 
   const [legalInformation, setLegalInformation] = useState({
     pan: props.partner.pan,
     panName: props.partner.panName,
+    address: props.partner.address,
     businessPan: props.partner.businessPan ? props.partner.businessPan : "",
-    address: props.partner.address.buildingName ,
-    pincode: props.partner.address.pincode,
-    city: props.partner.address.city,
-    state: props.partner.address.state,
+    // pincode: props.partner.address.pincode,
+    // city: props.partner.address.city,
+    // state: props.partner.address.state,
   });
 
   const getDisableEdit = (disableEdit) => {
     setEdit(disableEdit);
   };
 
-  const [password, setPassword] = useState("");
-
   const onSave = () => {
-    props.updatePartnerDetails(props.partner.id, legalInformation, password);
+    props.updatePartnerDetails(id, legalInformation);
   };
 
   return (
@@ -38,7 +37,7 @@ const LegalInformation = (props) => {
       className="legal-information"
       style={{ background: !edit && Colors.infoBody }}
     >
-      {props.errors && props.errors.password ? (
+      {/* {props.errors && props.errors.password ? (
         <SweetAlert
           title="Wrong Password"
           danger
@@ -50,7 +49,7 @@ const LegalInformation = (props) => {
             // setSuccess_Msg(false);
           }}
         />
-      ) : null}
+      ) : null} */}
       <div>
         <h1>Legal Information</h1>
         {edit ? (
@@ -62,7 +61,6 @@ const LegalInformation = (props) => {
           <AuthModal
             getDisableEdit={getDisableEdit}
             onSave={onSave}
-            setPassword={setPassword}
           />
         )}
       </div>

@@ -9,8 +9,9 @@ import {
   updatePartnerDetails,
   clearErrors,
 } from "../../../store/partners/actions";
-
+import { useParams } from "react-router-dom";
 const BusinessDescription = (props) => {
+ const { id } = useParams();
   const [edit, setEdit] = useState(true);
 
   const [description, setBusinessDescription] = useState({
@@ -20,10 +21,8 @@ const BusinessDescription = (props) => {
     setEdit(disableEdit);
   };
 
-  const [password, setPassword] = useState("");
-
   const onSave = () => {
-    props.updatePartnerDetails(props.partner._id, description, password);
+    props.updatePartnerDetails(id, description);
   };
 
   return (
@@ -31,7 +30,7 @@ const BusinessDescription = (props) => {
       className="business-description"
       style={{ background: !edit && Colors.infoBody }}
     >
-      {props.errors && props.errors.password ? (
+      {/* {props.errors && props.errors.password ? (
         <SweetAlert
           title="Wrong Password"
           danger
@@ -43,7 +42,7 @@ const BusinessDescription = (props) => {
             // setSuccess_Msg(false);
           }}
         />
-      ) : null}
+      ) : null} */}
       <div className="heading">
         <h1>Business Description</h1>
         {edit ? (
@@ -55,7 +54,6 @@ const BusinessDescription = (props) => {
           <AuthModal
             getDisableEdit={getDisableEdit}
             onSave={onSave}
-            setPassword={setPassword}
           />
         )}
       </div>

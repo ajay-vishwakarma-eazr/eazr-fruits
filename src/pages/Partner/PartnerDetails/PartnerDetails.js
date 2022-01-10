@@ -24,29 +24,29 @@ const PartnerDetails = (props) => {
 
   const [success_msg, setSuccess_Msg] = useState(false);
   const [fields, setFields] = useState({
-    businessEmail: props.partners.partner.email,
-    businessName: props.partners.partner.businessName,
-    businessType: false,
-    businessCategory: false,
-    businessDescription: false,
-    averageOrderValue: false,
-    acceptPayment: false,
-    pan: false,
-    panName: false,
-    businessPan: false,
-    businessPan: false,
-    address: false,
-    pincode: false,
-    city: false,
-    state: false,
-    beneficiaryName: false,
-    ifscCode: false,
-    accountNumber: false,
-    aadharFront: false,
-    aadharBack: false,
-    authorizedPersonPan: false,
-    companyPan: false,
-    businessRegistrationProof: false,
+    // businessEmail: props.partners.partner.email,
+    // businessName: props.partners.partner.businessName,
+    // businessType: false,
+    // businessCategory: false,
+    // businessDescription: false,
+    // averageOrderValue: false,
+    // acceptPayment: false,
+    // pan: false,
+    // panName: false,
+    // businessPan: false,
+    // businessPan: false,
+    // address: false,
+    // pincode: false,
+    // city: false,
+    // state: false,
+    // beneficiaryName: false,
+    // ifscCode: false,
+    // accountNumber: false,
+    // aadharFront: false,
+    // aadharBack: false,
+    // authorizedPersonPan: false,
+    // companyPan: false,
+    // businessRegistrationProof: false,
   });
 
   const [remark, setRemark] = useState("");
@@ -114,7 +114,6 @@ const PartnerDetails = (props) => {
 
         <div className="partner-details-div">
           <BrandInformation />
-
           <div className="right-partner-details-div">
             <LegalInformation />
             <BankAccountDetails id={id} />
@@ -128,9 +127,10 @@ const PartnerDetails = (props) => {
               {Object.keys(props.partners.partner?.documents).map(
                 (key, index) => {
                   return (
-                    <ShowDocuments
-                      img={props.partners.partner.documents[key]}
-                    />
+                    // <ShowDocuments
+                    //   img={props.partners.partner?.documents[key]}
+                    // />
+                    <></>
                   );
                 }
               )}

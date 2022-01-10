@@ -84,19 +84,15 @@ export const getPartnerById = (id) => {
   };
 };
 
-export const updatePartnerDetails = (id, updateObj, password) => {
+export const updatePartnerDetails = (id, updateObj) => {
   return (dispatch) => {
     dispatch(setPartersLoading());
-
-    // .patch(`${ip}/admin/partners/updatepartner`, {
-        
     axios
       .patch(`${ip}/partners/${id}`, {
-        partnerId: id,
-        updateObj,
-        password,
+        ...updateObj,
       })
       .then((res) => {
+        console.log("update resposnse", res.data);
         dispatch({ type: UPDATE_PARTNER, payload: res.data });
       })
       .catch((err) => {
@@ -136,11 +132,6 @@ export const getApprovedPartners = () => async (dispatch) => {
     });
   }
 };
-
-
-
-
-
 
 export const setPartersLoading = () => {
   return {

@@ -93,6 +93,7 @@
 .auth-modal-body label {
   font-size: $label-font-size;
   font-weight: $font-weight-bold;
+  text-align: center;
 }
 
 //  =========================
@@ -263,8 +264,10 @@
   border-radius: $button-radius;
   color: $white;
   font-weight: $font-weight-bold;
-  padding: 0.5rem 0;
-  margin: 1rem 0;
+  padding: 0.5rem ;
+  
+  margin: 2rem 0;
+
 }
 .auth-modal-body button:hover {
   opacity: $button-opacity;

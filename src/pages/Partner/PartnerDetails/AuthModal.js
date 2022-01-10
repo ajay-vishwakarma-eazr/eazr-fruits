@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Modal, ModalBody } from "reactstrap";
+import { Button, Modal, ModalBody,ModalHeader } from "reactstrap";
 import { connect } from "react-redux";
 
 //actions
@@ -22,14 +22,16 @@ const AuthModal = ({
       <Button className="auth-modal-toggler" color="success" onClick={toggle}>
         Save
       </Button>
-      <Modal isOpen={modal} centered toggle={toggle}>
-        <ModalBody className="auth-modal-body">
-          <label>To make changes you need to enter your password</label>
-          <input
+      <Modal isOpen={modal} centered>
+        <ModalHeader toggle={toggle}></ModalHeader>
+        <ModalBody className="auth-modal-body" style={{ padding: "3rem" }}>
+          {/* <label>To make changes you need to enter your password</label> */}
+          <label>Want to Save changes ?</label>
+          {/* <input
             type="password"
             placeholder="Enter your password"
             onChange={(e) => setPassword(e.target.value)}
-          />
+          /> */}
           <button
             className="partner-auth-btn"
             onClick={() => {

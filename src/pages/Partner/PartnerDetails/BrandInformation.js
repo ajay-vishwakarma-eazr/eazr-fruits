@@ -3,7 +3,7 @@ import Colors from "../../../components/Config/Colors";
 import AuthModal from "./AuthModal";
 import SweetAlert from "react-bootstrap-sweetalert";
 import { connect } from "react-redux";
-
+import { useParams } from "react-router-dom";
 //actions
 import {
   updatePartnerDetails,
@@ -11,28 +11,27 @@ import {
 } from "../../../store/partners/actions";
 
 const BrandInformation = (props) => {
+  const { id } = useParams();
   const [edit, setEdit] = useState(true);
   const [brandInformation, setBrandInformation] = useState({
     businessName: props.partner.businessName,
-    businessEmail: props.partner.email,
-    businessType: props.partner.partnerType.name,
-    businessCategory: props.partner.businessCategory,
-    businessType: props.partner.businessType,
-    businessCategory: props.partner.partnerType.name,
+    email: props.partner.email,
+    partnerType: props.partner.partnerType.type,
+    partnerCategory: props.partner.partnerCategory.name,
+    // businessType: props.partner.businessType,
+     // partnerCategory: props.partner.partnerType.name,
     averageOrderValue: props.partner.averageOrderValue,
     paymentOnline: props.partner.paymentOnline,
     paymentAtStore: props.partner.paymentAtStore,
     // acceptPayment: "At Store",
   });
 
-  const [password, setPassword] = useState("");
-
   const getDisableEdit = (disableEdit) => {
     setEdit(disableEdit);
   };
 
   const onSave = () => {
-    props.updatePartnerDetails(props.partner.id, brandInformation, password);
+    props.updatePartnerDetails(id, brandInformation);
   };
 
   return (
@@ -40,7 +39,7 @@ const BrandInformation = (props) => {
       className="left-brand-information"
       style={{ background: !edit && Colors.infoBody }}
     >
-      {props.errors && props.errors.password ? (
+      {/* {props.errors && props.errors.password ? (
         <SweetAlert
           title="Wrong Password"
           danger
@@ -52,7 +51,7 @@ const BrandInformation = (props) => {
             // setSuccess_Msg(false);
           }}
         />
-      ) : null}
+      ) : null} */}
       <div className="heading">
         <h1>Brand Information</h1>
 
@@ -62,12 +61,7 @@ const BrandInformation = (props) => {
             onClick={() => setEdit(!edit)}
           ></i>
         ) : (
-          <AuthModal
-            getDisableEdit={getDisableEdit}
-            onSave={onSave}
-            type={password}
-            setPassword={setPassword}
-          />
+          <AuthModal getDisableEdit={getDisableEdit} onSave={onSave} />
         )}
       </div>
       <div className="brand-name">
@@ -89,11 +83,11 @@ const BrandInformation = (props) => {
         <input
           type="email"
           disabled={edit}
-          value={brandInformation.businessEmail}
+          value={brandInformation.email}
           onChange={(e) =>
             setBrandInformation({
               ...brandInformation,
-              businessEmail: e.target.value,
+              email: e.target.value,
             })
           }
         />
@@ -106,10 +100,10 @@ const BrandInformation = (props) => {
           onChange={(e) =>
             setBrandInformation({
               ...brandInformation,
-              businessType: e.target.value,
+              partnerType: e.target.value,
             })
           }
-          defaultValue={brandInformation.businessType}
+          defaultValue={brandInformation.partnerType}
         >
           <option value="Private Limited">Private Limited</option>
           <option value="Public Limited">Public Limited</option>
@@ -129,10 +123,10 @@ const BrandInformation = (props) => {
           onChange={(e) =>
             setBrandInformation({
               ...brandInformation,
-              businessCategory: e.target.value,
+              partnerCategory: e.target.value,
             })
           }
-          defaultValue={brandInformation.businessCategory}
+          defaultValue={brandInformation.partnerCategory}
         >
           <option value="Education and Learning">Education and Learning</option>
           <option value="Health and Fitness">Health and Fitness</option>

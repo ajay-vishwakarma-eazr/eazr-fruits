@@ -70,7 +70,7 @@ import TotalPartner from "../pages/Partner/TotalPartner/TotalPartner";
 import PartnerDetailsNav from "../pages/Partner/TotalPartner/TotalParterDetails/PartnerDetailsNav";
 import PartnerAllTransactions from "../pages/Partner/TotalPartner/TotalParterDetails/PartnerAllTarnsactions/PartnerAllTransactions";
 import PartnerSattlements from "../../src/pages/ApprovedPartners/Details/Settlements/Settlements"
-import PartnerProfile from "../pages/Partner/TotalPartner/TotalParterDetails/PartnerProfile/PartnerProfile";
+// import PartnerProfile from "../pages/Partner/TotalPartner/TotalParterDetails/PartnerProfile/PartnerProfile";
 import UserProfile from "../pages/Customer/CustomerDetails/UserProfile/UserProfile";
 
 const authProtectedRoutes = [
@@ -110,7 +110,7 @@ const authProtectedRoutes = [
   { path: "/partner-details-tab", component: PartnerDetailsNav },
   { path: "/partner-transactions", component: PartnerAllTransactions },
   { path: "/partner-sattlements/:id", component: PartnerSattlements },
-  { path: "/partner-profile", component: PartnerProfile },
+  // { path: "/partner-profile", component: PartnerProfile },
   // { path: "/user-approval", component: User },
 
   //Admin Module Routes

@@ -5,10 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import SweetAlert from "react-bootstrap-sweetalert";
 
 //actions
-import {
-  updatePartnerDetails,
-  clearErrors,
-} from "../../../store/partners/actions";
 import { getBankDetails } from "../../../store/partners/Bank/actions";
 
 const BankAccountDetails = ({ id }) => {
@@ -16,20 +12,20 @@ const BankAccountDetails = ({ id }) => {
   const [edit, setEdit] = useState(true);
   useEffect(() => {
     dispatch(getBankDetails(id));
+    console.log("bank details");
   }, []);
   const { bank } = useSelector((state) => state.bank);
-  // console.log(bank);
   const [partnerBankDetail, setPartnerBankDetails] = useState({
-    beneficiaryName: bank.beneficiaryName,
-    ifscCode: bank.ifscCode,
-    accountNumber: bank.accountNumber,
+    beneficiaryName: bank[0]?.beneficiaryName,
+    ifscCode: bank[0]?.ifscCode,
+    accountNumber: bank[0]?.accountNumber,
   });
 
   const getDisableEdit = (disableEdit) => {
     setEdit(disableEdit);
   };
   const [password, setPassword] = useState("");
-
+  
   const onSave = () => {
     // props.updatePartnerDetails(
     //   props.partner._id,

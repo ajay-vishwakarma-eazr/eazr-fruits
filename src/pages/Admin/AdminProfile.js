@@ -41,9 +41,9 @@ const AdminProfile = () => {
 
       <div className="user-img">
         <img src={profileImg ? profileImg : avatar} alt="" />
-        <label htmlFor="profileImg">
+        {/* <label htmlFor="profileImg">
           <i className="fa fa-edit"></i>
-        </label>
+        </label> */}
 
         <input
           type="file"
@@ -58,7 +58,7 @@ const AdminProfile = () => {
       </div>
 
       <input
-        disabled={edit}
+        // disabled={edit}
         type="text"
         name="name"
         className="name-input"
@@ -67,7 +67,7 @@ const AdminProfile = () => {
       />
 
       <input
-        disabled={edit}
+        // disabled={edit}
         type="email"
         name="email"
         className="email-input"
@@ -77,7 +77,7 @@ const AdminProfile = () => {
       <div className="input-div">
         <h6>Contact</h6>
         <input
-          disabled={edit}
+          // disabled={edit}
           type="text"
           name="contact"
           value={contact}
@@ -88,7 +88,7 @@ const AdminProfile = () => {
       <div className="input-div">
         <h6>AdminRole</h6>
         <input
-          disabled={edit}
+          // disabled={edit}
           type="text"
           name="adminsRole"
           value={adminsRole}
