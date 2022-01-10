@@ -12,7 +12,7 @@ const UserProfile = () => {
   let history = useHistory();
   const { id } = useParams();
   useEffect(() => {
-    dispatch(fetchUserById(id));
+    // dispatch(fetchUserById(id));
   }, []);
   const { users } = useSelector((state) => state.Users);
 

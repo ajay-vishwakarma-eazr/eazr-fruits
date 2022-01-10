@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-
 import pdfimg from "../../../assets/pdfimg.png";
 import FileSaver from "file-saver";
 
 const ShowDocuments = ({ img }) => {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
-
   let fileExtension = img.split(".").pop();
 
   const downloadImg = () => {
@@ -30,7 +28,6 @@ const ShowDocuments = ({ img }) => {
           {fileExtension !== "pdf" && fileExtension !== "PDF" && (
             <>
               <button onClick={downloadImg}>Download</button>
-
               <button className="cancel-btn" onClick={toggle}>
                 Cancel
               </button>

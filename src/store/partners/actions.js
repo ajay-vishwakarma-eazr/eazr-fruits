@@ -88,8 +88,10 @@ export const updatePartnerDetails = (id, updateObj, password) => {
   return (dispatch) => {
     dispatch(setPartersLoading());
 
+    // .patch(`${ip}/admin/partners/updatepartner`, {
+        
     axios
-      .patch(`${ip}/admin/partners/updatepartner`, {
+      .patch(`${ip}/partners/${id}`, {
         partnerId: id,
         updateObj,
         password,

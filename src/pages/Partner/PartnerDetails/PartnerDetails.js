@@ -131,7 +131,6 @@ const PartnerDetails = (props) => {
                     <ShowDocuments
                       img={props.partners.partner.documents[key]}
                     />
-                    
                   );
                 }
               )}
@@ -193,7 +192,7 @@ const PartnerDetails = (props) => {
 
         <Container fluid>
           <div className="go-back-to-partner">
-            <Link to="/partner-Fapproval">
+            <Link to="/partner-approval">
               <i className="mdi mdi-arrow-left-circle"></i> <h6>Go back</h6>
             </Link>
           </div>

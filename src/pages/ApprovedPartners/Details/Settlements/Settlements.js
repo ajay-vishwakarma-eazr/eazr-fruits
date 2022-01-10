@@ -3,6 +3,7 @@ import TableHeading from "./TableHeading";
 import TableRow from "./TableRow";
 import { Table, Container } from "reactstrap";
 import BackBtn from "../../../../pages/BackBtn"
+import ReactPaginate from "react-paginate";
 import {
   fetchSettlements,
   fetchSettlementsById,
@@ -12,6 +13,10 @@ import "./table.scss";
 
 const Settlements = (props) => {
   const PassedText = props.text;
+
+  const [pageNumber, setPageNumber] = useState(0);
+  const usersPerPage = 10;
+  const pagesVisited = pageNumber * usersPerPage;
 
   let today = new Date();
   const { settlements } = useSelector((state) => state.settlement);
@@ -31,7 +36,7 @@ const Settlements = (props) => {
       <div className="table-responsive mb-0" data-pattern="priority-columns">
         <Container fluid>
           {/* <BackBtn route="total-partner" /> */}
-          <div style={{ paddingTop: "6rem" }}>
+          <div style={{ paddingTop: "7rem" }}>
             <BackBtn route="total-partner" />
           </div>
           <Table
@@ -55,6 +60,7 @@ const Settlements = (props) => {
               //   }
               // })
 
+              .slice(pagesVisited, pagesVisited + usersPerPage)
               .map((settlement) =>
                 settlement.businessPartner == partner.businessPartner ? (
                   <TableRow

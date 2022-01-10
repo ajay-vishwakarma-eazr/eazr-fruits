@@ -17,6 +17,8 @@ const BrandInformation = (props) => {
     businessEmail: props.partner.email,
     businessType: props.partner.partnerType.name,
     businessCategory: props.partner.businessCategory,
+    businessType: props.partner.businessType,
+    businessCategory: props.partner.partnerType.name,
     averageOrderValue: props.partner.averageOrderValue,
     paymentOnline: props.partner.paymentOnline,
     paymentAtStore: props.partner.paymentAtStore,
@@ -30,7 +32,7 @@ const BrandInformation = (props) => {
   };
 
   const onSave = () => {
-    props.updatePartnerDetails(props.partner._id, brandInformation, password);
+    props.updatePartnerDetails(props.partner.id, brandInformation, password);
   };
 
   return (
@@ -59,16 +61,14 @@ const BrandInformation = (props) => {
             className="mdi mdi-account-edit"
             onClick={() => setEdit(!edit)}
           ></i>
-        ) : 
-        // (
-        //   <AuthModal
-        //     getDisableEdit={getDisableEdit}
-        //     onSave={onSave}
-        //     setPassword={setPassword}
-        //   />
-        // )
-        ""
-        }
+        ) : (
+          <AuthModal
+            getDisableEdit={getDisableEdit}
+            onSave={onSave}
+            type={password}
+            setPassword={setPassword}
+          />
+        )}
       </div>
       <div className="brand-name">
         <h3>Brand Name</h3>

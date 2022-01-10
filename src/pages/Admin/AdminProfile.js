@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import avatar from "../../assets/images/users/avatar-2.jpg";
-// import { fetchPartners } from "../../../../store/businessprofiles/actions/actions";
 import AuthModal from "../Partner/PartnerDetails/AuthModal";
-// import "../../pages/Customer/CustomerDetails/UserProfile/userprofile.scss";
-// import "../../pages/Customer/CustomerDetails/customerdetails.scss";
-
+import "./adminProfile.scss";
 import "../Customer/CustomerDetails/UserProfile/userprofile.scss";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { FetchAdminProfile } from "../../store/adminprofile/actions/action";
@@ -12,22 +9,20 @@ import { useParams } from "react-router-dom";
 const AdminProfile = () => {
   const [edit, setEdit] = useState(true);
   const dispatch = useDispatch();
-  // const { id } = useParams();
   useEffect(() => {
-    // dispatch("");
     dispatch(FetchAdminProfile());
   }, []);
   const admin = useSelector((state) => state.AdminProfile);
-  console.log("admin", admin);
+  console.log("admin", admin.admin);
   const [formData, setFormData] = useState({
     name: admin.admin.fullName,
     email: admin.admin.email,
     contact: admin.admin.contactNumber,
-    profileImg: avatar,
+    profileImg: admin.admin.profilePhoto,
+    adminsRole: admin.admin.adminsRole.name,
   });
 
-  const { name, email, dob, contact, address, pan, aadhaarNo, profileImg } =
-    formData;
+  const { name, email, contact, adminsRole, profileImg } = formData;
 
   const handleChange = (e) => {
     setFormData({
@@ -45,7 +40,7 @@ const AdminProfile = () => {
       )} */}
 
       <div className="user-img">
-        <img src={profileImg} alt="" />
+        <img src={profileImg ? profileImg : avatar} alt="" />
         <label htmlFor="profileImg">
           <i className="fa fa-edit"></i>
         </label>
@@ -79,17 +74,6 @@ const AdminProfile = () => {
         value={email}
         onChange={(e) => handleChange(e)}
       />
-
-      {/* <div className="input-div">
-        <h6>Date Of Birth</h6>
-        <input
-          disabled={edit}
-          type="email"
-          name="dob"
-          value={dob}
-          onChange={(e) => handleChange(e)}
-        />
-      </div> */}
       <div className="input-div">
         <h6>Contact</h6>
         <input
@@ -100,28 +84,17 @@ const AdminProfile = () => {
           onChange={(e) => handleChange(e)}
         />
       </div>
-      {/* <div className="input-div">
-        <h6>Address</h6>
-        <textarea
-          disabled={edit}
-          name="address"
-          id=""
-          cols="30"
-          rows="2"
-          value={address}
-          onChange={(e) => handleChange(e)}
-        ></textarea>
-      </div> */}
-      {/* <div className="input-div">
-        <h6>PAN</h6>
+
+      <div className="input-div">
+        <h6>AdminRole</h6>
         <input
           disabled={edit}
           type="text"
-          name="pan"
-          value={pan}
+          name="adminsRole"
+          value={adminsRole}
           onChange={(e) => handleChange(e)}
         />
-      </div> */}
+      </div>
       {/* <div className="input-div">
         <h6>Aadhaar No</h6>
         <input
