@@ -11,8 +11,10 @@ const BackBtn = ({ route }) => {
   const { users } = useSelector((state) => state.Users);
 
   const dispatch = useDispatch();
-  // let history = useHistory();
+  let history = useHistory();
+  // history.go(1);
   const { id } = useParams();
+  // window.location.reload(false);
   useEffect(() => {
     dispatch(fetchUserById(id));
   }, []);
@@ -38,14 +40,14 @@ const BackBtn = ({ route }) => {
       <Link to={`/${route}`}>
         <i className="mdi mdi-arrow-left-circle "></i> <h6>Go back</h6>
       </Link>
-      <Link to="user-profile">
+      {/* <Link to="user-profile"> */}  
         <div className="partner-profile">
           <div className="profile-pic">
             <img src={selfie} alt="" />
           </div>
           <h5>{name}</h5>
         </div>
-      </Link>
+      {/* </Link> */}
     </div>
   );
 };

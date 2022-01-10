@@ -1,7 +1,7 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
-const CustomersNav = () => {
+const CustomersNav = ({id}) => {
   return (
     <div className="nav-container">
       <div className="details-nav">
@@ -14,6 +14,18 @@ const CustomersNav = () => {
           }}
         >
           Transactions
+        </NavLink>
+
+        <NavLink
+          // to="/user-profile/id"
+          to={`/user-profile/${id}`}
+          activeStyle={{
+            borderBottom: "2px solid #0371e3",
+            color: "#0371e3",
+            fontWeight: "bold",
+          }}
+        >
+          Profile
         </NavLink>
 
         {/* <NavLink
@@ -46,17 +58,7 @@ const CustomersNav = () => {
         >
           Manage QR
         </NavLink> */}
-        <NavLink
-          // to="/user-profile/id"
-          to={`/user-profile`}
-          activeStyle={{
-            borderBottom: "2px solid #0371e3",
-            color: "#0371e3",
-            fontWeight: "bold",
-          }}
-        >
-          Profile
-        </NavLink>
+
         {/* <NavLink
           to="/user-module"
           activeStyle={{

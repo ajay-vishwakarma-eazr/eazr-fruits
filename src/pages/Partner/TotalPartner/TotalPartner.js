@@ -65,11 +65,15 @@ class TotalPartner extends Component {
     const { partners } = this.props;
     const usersPerPage = 10;
     const pageVisited = this.state.pageNumber * usersPerPage;
+    
     const pageCount = Math.ceil(
-      this.props.partners.partners?.filter(
-        (item) => item.status.status === "Accepted"
-      )?.length / usersPerPage
+      this.props.partners.partners.length / usersPerPage
     );
+    // const pageCount = Math.ceil(
+    //   this.props.partners.partners?.filter(
+    //     (item) => item.status.status === "Accepted"
+    //   )?.length / usersPerPage
+    // );
 
     const changePage = ({ selected }) => {
       this.setState({ pageNumber: selected });

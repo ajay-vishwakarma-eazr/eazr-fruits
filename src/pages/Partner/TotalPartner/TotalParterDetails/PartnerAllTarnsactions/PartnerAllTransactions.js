@@ -96,7 +96,7 @@ class PartnerAllTransactions extends Component {
           >
             <Table
               center
-              // striped
+              striped
               // bordered
               responsive
               className="partner-approval-table"

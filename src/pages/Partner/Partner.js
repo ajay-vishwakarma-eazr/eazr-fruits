@@ -30,30 +30,30 @@ class Partner extends Component {
     });
 
     const searchablePartner = e.target.value;
-
     const filtered = this.props.partners.partners.filter((filter) => {
+      debugger;
       return (
         filter.businessName
           .toLowerCase()
           .split(" ")
           .join("")
           .includes(searchablePartner.toLowerCase().split(" ").join("")) ||
-        filter.businessEmail
+        filter.email
           .toLowerCase()
           .split(" ")
           .join("")
           .includes(searchablePartner.toLowerCase().split(" ").join("")) ||
-        filter.serviceNumber
+        filter.partnerCategory?.name
           .toLowerCase()
           .split(" ")
           .join("")
           .includes(searchablePartner.toLowerCase().split(" ").join("")) ||
-        filter.status.status
+        filter.plan?.name
           .toLowerCase()
           .split(" ")
           .join("")
           .includes(searchablePartner.toLowerCase().split(" ").join("")) ||
-        filter.phone.includes(searchablePartner)
+        filter.contactNumber.includes(searchablePartner)
       );
     });
 

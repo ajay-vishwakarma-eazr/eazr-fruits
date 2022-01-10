@@ -30,6 +30,8 @@ const Settlements = (props) => {
 
   const { partner } = useSelector((state) => state.businessPartner);
 
+  
+
   return (
     <div className="table-rep-plugin">
       {/* <BackBtn route="total-partner" /> */}
@@ -77,6 +79,8 @@ const Settlements = (props) => {
                 ) : null
               )}
           </Table>
+
+          
         </Container>
       </div>
     </div>
