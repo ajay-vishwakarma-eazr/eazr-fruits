@@ -21,7 +21,7 @@ class StarterPage extends Component {
           value: <ShowTotalNumberOfPartner />,
           rate: "2.4%",
           desc: "From previous period",
-          route: "/total-partner",
+          route: "/approved-partner",
         },
         {
           icon: "fas fa-user-tie",

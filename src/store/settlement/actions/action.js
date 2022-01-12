@@ -56,7 +56,6 @@ export const fetchSettlementsById = (id) => {
       .get(`${ip}/settlements?filter=partnerId||eq||${id}`)
       .then((res) => {
         const settlements = res.data;
-        console.log(settlements);
         dispatch(FetchSettlementSuccess(settlements));
       })
       .catch((err) => {

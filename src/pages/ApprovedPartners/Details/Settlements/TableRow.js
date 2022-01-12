@@ -25,7 +25,7 @@ const TableRow = ({ setttlementId, partnerId, amount,partnerAmount, upi, gst, da
 
   return (
     // <tr onClick={handleClick}>
-    <tr onClick={""}>
+    <tr>
       <td>{setttlementId}</td>
       <td>{partnerId}</td>
       <td>₹ {amount}</td>

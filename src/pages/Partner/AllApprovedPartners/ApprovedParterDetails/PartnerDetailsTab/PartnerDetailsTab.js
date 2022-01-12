@@ -8,7 +8,7 @@ const PartnerDetailsTab = (props) => {
     <div className="nav-container">
       <div className="details-nav">
         <NavLink
-          to="/partner-details-tab"
+          to={`/partner-transactions/${id}`}
           activeStyle={{
             borderBottom: "2px solid #0371e3",
             color: "#0371e3",
@@ -19,7 +19,7 @@ const PartnerDetailsTab = (props) => {
         </NavLink>
 
         <NavLink
-          to={`/partner-sattlements/${id}`}
+          to={`/partner-settlements/${id}`}
           activeStyle={{
             borderBottom: "2px solid #0371e3",
             color: "#0371e3",

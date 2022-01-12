@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import PartnerTableHeading from "./PartnerTableHeading";
-import PartnerTableRow from "./PartnerTableRow";
+import ApprovedPartnersHeading from "./ApprovedPartnersHeading";
+import ApprovedPartnersRow from "./ApprovedPartnersRow";
 import { Card, CardBody, Container, Table } from "reactstrap";
 import "../partner.scss";
 import "./partnerTable.scss";
@@ -11,7 +11,7 @@ import ReactPaginate from "react-paginate";
 import { getPartners } from "../../../store/partners/actions";
 import BackBtn from "../../BackBtn";
 import EmptySection from "../../../components/EmptySection/EmptySection";
-class TotalPartner extends Component {
+class AllApprovedPartners extends Component {
   constructor() {
     super();
     this.state = {
@@ -22,7 +22,6 @@ class TotalPartner extends Component {
   }
   componentDidMount() {
     const test = this.props.getPartners();
-    console.log("partner data", test);
   }
 
   handleSearch = (e) => {
@@ -69,11 +68,6 @@ class TotalPartner extends Component {
     const pageCount = Math.ceil(
       this.props.partners.partners.length / usersPerPage
     );
-    // const pageCount = Math.ceil(
-    //   this.props.partners.partners?.filter(
-    //     (item) => item.status.status === "Accepted"
-    //   )?.length / usersPerPage
-    // );
 
     const changePage = ({ selected }) => {
       this.setState({ pageNumber: selected });
@@ -100,12 +94,12 @@ class TotalPartner extends Component {
               responsive
               className="partner-approval-table"
             >
-              <PartnerTableHeading />
+              <ApprovedPartnersHeading />
               {this.state.searchPartner
                 ? this.state.partnerList
                     .filter((item) => item.status === 1)
                     .map((item, index) => (
-                      <PartnerTableRow
+                      <ApprovedPartnersRow
                         key={index}
                         id={item.id}
                         name={item.businessName}
@@ -121,7 +115,7 @@ class TotalPartner extends Component {
                     .slice(pageVisited, pageVisited + usersPerPage)
                     .map((item, index) => {
                       return (
-                        <PartnerTableRow
+                        <ApprovedPartnersRow
                           key={index}
                           id={item.id}
                           name={item.businessName}
@@ -191,4 +185,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { getPartners })(TotalPartner);
+export default connect(mapStateToProps, { getPartners })(AllApprovedPartners);

@@ -1,6 +1,6 @@
 import React from "react";
 
-const PartnerTableHeading = () => {
+const ApprovedPartnersHeading = () => {
   return (
     <thead className="partner-table-heading">
       <th>Name</th>
@@ -14,4 +14,4 @@ const PartnerTableHeading = () => {
   );
 };
 
-export default PartnerTableHeading;
+export default ApprovedPartnersHeading;

@@ -70,3 +70,26 @@ export const getTranscationById = (id) => {
       });
   };
 };
+
+
+export const getUsersTranscationById = (id) => {
+  return (dispatch) => {
+    dispatch(setPartnersLoading());
+    axios
+      .get(`${ip}/transactions?filter=userId||eq||${id}`)
+      .then((res) => {
+        dispatch({
+          type: GET_TRANSACTION_BY_ID,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+        dispatch({
+          type: GET_TRANSACTION_BY_ID_FAILED,
+          payload: err.response.data,
+        });
+      });
+  };
+};
+

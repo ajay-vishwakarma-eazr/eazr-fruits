@@ -10,6 +10,8 @@ import { getTranscationById } from "../../../../../store/transactions/actions/ac
 import EmptySection from "../../../../../components/EmptySection/EmptySection";
 import PartnerTrancationsRow from "./PartnerTrancationsRow";
 import PartnerTranscationsHeading from "./PartnerTranscationsHeading";
+import BackBtn from "../../../../BackBtn";
+import PartnerDetailsTab from "../PartnerDetailsTab/PartnerDetailsTab";
 
 class PartnerAllTransactions extends Component {
   constructor() {
@@ -136,38 +138,43 @@ class PartnerAllTransactions extends Component {
     }
 
     return (
-      <div className="partner">
+      <><div className="page-content customer-page ">
         <Container fluid>
-          <Card className="partner-table-approval">
-            <div className="search-partner">
-              <div>
-                <label htmlFor="">Search transactions: </label>
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  onChange={this.handleSearch}
-                  value={this.state.searchTransactions}
-                />
-              </div>
-            </div>
-
-            <CardBody>{data}</CardBody>
-
-            <ReactPaginate
-              previousLabel={"Previous"}
-              nextLabel={"Next"}
-              pageCount={pageCount}
-              onPageChange={changePage}
-              containerClassName={"paginationBttns"}
-              previousLinkClassName={"previousBttn"}
-              nextLinkClassName={"nextBttn"}
-              disabledClassName={"paginationDisabled"}
-              activeClassName={"paginationActive"}
-            />
-            
-          </Card>
+          <BackBtn route="approved-partner" />
+          <PartnerDetailsTab />
         </Container>
-      </div>
+        <div className="partner">
+          <Container fluid>
+            <Card className="partner-table-approval">
+              <div className="search-partner">
+                <div>
+                  <label htmlFor="">Search transactions: </label>
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    onChange={this.handleSearch}
+                    value={this.state.searchTransactions}
+                  />
+                </div>
+              </div>
+
+              <CardBody>{data}</CardBody>
+
+              <ReactPaginate
+                previousLabel={"Previous"}
+                nextLabel={"Next"}
+                pageCount={pageCount}
+                onPageChange={changePage}
+                containerClassName={"paginationBttns"}
+                previousLinkClassName={"previousBttn"}
+                nextLinkClassName={"nextBttn"}
+                disabledClassName={"paginationDisabled"}
+                activeClassName={"paginationActive"}
+              />
+            </Card>
+          </Container>
+        </div>
+</div>      </>
     );
   }
 }

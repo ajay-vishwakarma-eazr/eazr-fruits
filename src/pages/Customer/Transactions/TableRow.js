@@ -1,44 +1,29 @@
 import React from "react";
 
 const TableRow = ({
-  paymentId,
-  eazrpayOrderId,
-  orderId,
-  amount,
-  email,
-  contact,
-  createdAt,
-  status,
+  creditScore,
+  availableCreditLimit,
+  currentOutstandingAmount,
+  dueAmount,
+  dueDate,
+  lastBillGenerationDate,
+  nextBillDate,
+  fineAmount,
 }) => {
   const statusColor = () => {
-    if (status === "Completed") {
-      return "#4bb543";
-    }
-    if (status === "Refunded") {
-      return "#df4759";
-    }
-    if (status === "Pending") {
-      return "#0371e3";
-    }
+    
   };
 
   return (
     <tr>
-      {/* <td>{paymentId}</td>
-      <td>{eazrpayOrderId}</td>
-      <td>{orderId}</td> */}
-      <td>{amount}</td>
-      <td>{email}</td>
-      <td>{contact}</td>
-      <td>{createdAt}</td>
-      <td>
-        <p
-          className="status"
-          style={{ borderColor: statusColor(), color: statusColor() }}
-        >
-          {status}
-        </p>
-      </td>
+      <td>{creditScore}</td>
+      <td>{availableCreditLimit}</td>
+      <td>{currentOutstandingAmount}</td>
+      <td>{dueAmount}</td>
+      <td>{dueDate}</td>
+      <td>{lastBillGenerationDate}</td>
+      <td>{nextBillDate}</td>
+      <td>{fineAmount}</td>
     </tr>
   );
 };

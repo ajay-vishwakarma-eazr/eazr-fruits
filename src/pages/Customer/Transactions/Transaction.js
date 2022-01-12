@@ -10,7 +10,10 @@ import "./Transaction.css";
 import TableRow from "./TableRow";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory, Redirect } from "react-router-dom";
-import { getTranscationById } from "../../../store/transactions/actions/action";
+import {
+  getTranscationById,
+  getUsersTranscationById,
+} from "../../../store/transactions/actions/action";
 import ReactPaginate from "react-paginate";
 const Transaction = () => {
   const [searchTranscation, setSearchTransaction] = useState(null);
@@ -22,15 +25,10 @@ const Transaction = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   useEffect(() => {
-    if (id === "undefined") {
-      <Redirect to="/dashboard" />;
-    } else {
-      dispatch(getTranscationById(id));
-    }
+    dispatch(getUsersTranscationById(id));
   }, []);
   const { loading } = useSelector((state) => state.transactions);
   const { transactions } = useSelector((state) => state.transactions);
-  console.log("all transcations", transactions);
   const getSearchTransactionValue = (value) => {
     setSearchTransaction(value);
   };
@@ -80,7 +78,6 @@ const Transaction = () => {
                 // striped
                 // bordered
                 responsive
-         
                 className="transaction-table"
               >
                 <TableHeading />
@@ -102,12 +99,21 @@ const Transaction = () => {
                       .map((trans) => {
                         return (
                           <TableRow
-                            key={trans._id}
-                            amount={trans?.amount}
-                            email={trans?.businessPartner?.email}
-                            contact={trans?.businessPartner?.mobile}
-                            createdAt={trans?.createdAt}
-                            status={trans.status.status}
+                            key={trans.id}
+                            creditScore={trans.user?.creditScore}
+                            availableCreditLimit={
+                              trans.user?.availableCreditLimit
+                            }
+                            currentOutstandingAmount={
+                              trans.user?.currentOutstandingAmount
+                            }
+                            dueAmount={trans.user?.dueAmount}
+                            dueDate={trans.user?.dueDate}
+                            lastBillGenerationDate={
+                              trans.user?.lastBillGenerationDate
+                            }
+                            nextBillDate={trans.user?.nextBillDate}
+                            fineAmount={trans.user.fineAmount}
                           />
                         );
                       })}

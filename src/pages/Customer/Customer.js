@@ -27,7 +27,7 @@ const Customer = () => {
   const { id } = useParams();
   useEffect(() => {
     dispatch(fetchUsers());
-  }, [users]);
+  }, []);
 
   const getSearchUserValue = (value) => {
     setSearchUser(value);

@@ -23,7 +23,6 @@ import PartnerDetails from "../pages/Partner/PartnerDetails/PartnerDetails";
 import Ticket from "../pages/Partner/Ticket";
 import OnHoldDetails from "../pages/Partner/PartnerDetails/OnHold/OnHoldDetails";
 import ApprovedPartners from "../pages/ApprovedPartners/ApprovedPartners";
-import TranDetails from "../pages/ApprovedPartners/Details/Transaction/TranDetails";
 import OrderDetails from "../pages/ApprovedPartners/Details/Orders/OrdersDetails";
 import SettleDetails from "../pages/ApprovedPartners/Details/Settlements/SettleDetails";
 import SettlementSettings from "../pages/ApprovedPartners/Details/Settlements/SettleSettings/Settings";
@@ -65,13 +64,13 @@ import OnboardingLogs from "../pages/Logs/OnboardingLogs/OnboardingLogs";
 import UsersLog from "../pages/Logs/UsersLog/UsersLog";
 import DeliveryLogs from "../pages/Logs/DeliveryLogs/DeliveryLogs";
 import SupportLogs from "../pages/Logs/SupportLogs/UsersLog";
-import AdminUsers from "../pages/AdminUsers/AdminUsers";
-import TotalPartner from "../pages/Partner/TotalPartner/TotalPartner";
-import PartnerDetailsNav from "../pages/Partner/TotalPartner/TotalParterDetails/PartnerDetailsNav";
-import PartnerAllTransactions from "../pages/Partner/TotalPartner/TotalParterDetails/PartnerAllTarnsactions/PartnerAllTransactions";
-import PartnerSattlements from "../../src/pages/ApprovedPartners/Details/Settlements/Settlements"
-// import PartnerProfile from "../pages/Partner/TotalPartner/TotalParterDetails/PartnerProfile/PartnerProfile";
+
 import UserProfile from "../pages/Customer/CustomerDetails/UserProfile/UserProfile";
+import PartnerAllTransactions from "../pages/Partner/AllApprovedPartners/ApprovedParterDetails/PartnerAllTarnsactions/PartnerAllTransactions";
+import AllApprovedPartners from "../pages/Partner/AllApprovedPartners/AllApprovedPartners";
+import PartnerSettlements from "../pages/Partner/AllApprovedPartners/ApprovedParterDetails/PartnerAllSettlements/PartnerSettlements";
+import Transaction from "../pages/Customer/Transactions/Transaction";
+
 
 const authProtectedRoutes = [
   { path: "/partner-dashboard", component: PartnerDashboard },
@@ -81,8 +80,7 @@ const authProtectedRoutes = [
   { path: "/support-dashboard", component: SupportDashboard },
   { path: "/auth-lock-screen", component: AuthLockScreen },
   { path: "/users", component: Customer },
-  { path: "/user-profile/:id", component: CustomerDetails },
-  { path: "/partner-details-tab/:id", component: PartnerDetailsNav },
+  { path: "/user-profile/:id", component: UserProfile },
   { path: "/user/:id", component: Customer },
   { path: "/user-module", component: CustomerModules },
   { path: "/user-orders", component: CustomerOrders },
@@ -106,20 +104,16 @@ const authProtectedRoutes = [
 
   //Partner Onboarding routes
   { path: "/partner-approval", component: Partner },
-  { path: "/total-partner", component: TotalPartner },
-  { path: "/partner-details-tab", component: PartnerDetailsNav },
-  { path: "/partner-transactions", component: PartnerAllTransactions },
-  { path: "/partner-sattlements/:id", component: PartnerSattlements },
-  // { path: "/partner-profile", component: PartnerProfile },
-  // { path: "/user-approval", component: User },
+  { path: "/approved-partner", component: AllApprovedPartners },
+  { path: "/partner-transactions/:id", component: PartnerAllTransactions },
+  { path: "/partner-settlements/:id", component: PartnerSettlements },
 
   //Admin Module Routes
-  { path: "/admin-users", component: AdminUsers },
+  { path: "/user-transactions/:id", component: Transaction },
   { path: "/help-and-support", component: HelpAndSupport },
   { path: "/partner-details/:id", component: PartnerDetails },
   { path: "/onhold-details/:serviceId", component: OnHoldDetails },
   { path: "/partners", component: ApprovedPartners },
-  { path: "/approved-partner-details", component: TranDetails },
   { path: "/orders", component: OrderDetails },
   { path: "/settlements", component: SettleDetails },
   { path: "/settlement-setting", component: SettlementSettings },

@@ -13,13 +13,13 @@ const AdminProfile = () => {
     dispatch(FetchAdminProfile());
   }, []);
   const admin = useSelector((state) => state.AdminProfile);
-  console.log("admin", admin.admin);
+
   const [formData, setFormData] = useState({
     name: admin.admin.fullName,
     email: admin.admin.email,
     contact: admin.admin.contactNumber,
     profileImg: admin.admin.profilePhoto,
-    adminsRole: admin.admin.adminsRole.name,
+    adminsRole: admin.admin.adminsRole?.name,
   });
 
   const { name, email, contact, adminsRole, profileImg } = formData;
