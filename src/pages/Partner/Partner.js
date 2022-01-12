@@ -31,7 +31,6 @@ class Partner extends Component {
 
     const searchablePartner = e.target.value;
     const filtered = this.props.partners.partners.filter((filter) => {
-      debugger;
       return (
         filter.businessName
           .toLowerCase()

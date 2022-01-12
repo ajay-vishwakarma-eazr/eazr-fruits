@@ -48,9 +48,9 @@ const CustomerTableRow = ({
           <EditCustomer
             showModal={showModal}
             id={id}
-            name={name}
+            fullName={name}
             email={email}
-            contact={contact}
+            contactNumber={contact}
             gender={gender}
           />
         )}

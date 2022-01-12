@@ -17,14 +17,11 @@ const BrandInformation = (props) => {
   const [brandInformation, setBrandInformation] = useState({
     businessName: props.partner.businessName,
     email: props.partner.email,
-    partnerType: props.partner.partnerType.type,
-    partnerCategory: props.partner.partnerCategory.name,
-    // businessType: props.partner.businessType,
-     // partnerCategory: props.partner.partnerType.name,
+   partnerType: props.partner.partnerType.type,
+    // partnerCategory: props.partner.partnerCategory.name,
     averageOrderValue: props.partner.averageOrderValue,
     paymentOnline: props.partner.paymentOnline,
     paymentAtStore: props.partner.paymentAtStore,
-    // acceptPayment: "At Store",
   });
 
   const getDisableEdit = (disableEdit) => {
@@ -32,7 +29,7 @@ const BrandInformation = (props) => {
   };
 
   const onSave = () => {
-    props.updatePartnerDetails(id, brandInformation);
+    props.updatePartnerDetails(id,brandInformation);
   };
 
   return (

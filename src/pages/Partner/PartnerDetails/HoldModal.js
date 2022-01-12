@@ -371,7 +371,6 @@ const HoldModal = ({
           </div>
           <div className="checkbox-save">
             <button onClick={() => onTicketSubmit("607d534de36c5111dc63fe4f")}>
-              {" "}
               Save
             </button>
           </div>

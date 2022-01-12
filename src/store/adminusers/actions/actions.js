@@ -75,7 +75,6 @@ export const fetchUserById = (id) => {
     axios
       .get(`${ip}/users/${id}`)
       .then((res) => {
-        console.log("user by id",res);
         dispatch({
           type: GET_USER_BY_ID,
           payload: res.data,
@@ -91,39 +90,14 @@ export const fetchUserById = (id) => {
   };
 };
 
-// export const updateProfile = (id,data) => {
-//   return function (dispatch) {
-//     axios
-//       .post(`${ip}/business/profile/all`, data, {
-//         headers: {
-//           "Content-Type": "multipart/form-data",
-//         },
-//       })
-//       .then((res) => {
-//         const user = res.data;
-//         dispatch(UpdateProfileSuccess(user));
-//       })
-//       .catch((err) => {
-//         dispatch(UpdateProfileFailed(err.message));
-//       });
-//   };
-// };
-
-
-
-
-
-
-
 
 export const updateUserDetails = (id, formData) => {
   return (dispatch) => {
     dispatch(setUserLoading());
     axios
-      .patch(`${ip}/users/${id}`,formData)
+      .patch(`${ip}/users/${id}`,{...formData})
       .then((res) => {
         const updateObj = res.data;
-        console.log(updateObj);
         dispatch(UpdateProfileSuccess(updateObj));
       })
       .catch((err) => {

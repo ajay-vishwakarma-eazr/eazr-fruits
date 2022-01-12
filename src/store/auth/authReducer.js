@@ -86,7 +86,6 @@ const login = (state = initialState, action) => {
       };
 
     case SET_CURRENT_USER:
-      console.log(action.payload);
       return {
         ...state,
         isAuthenticated: !isEmpty(action.payload),

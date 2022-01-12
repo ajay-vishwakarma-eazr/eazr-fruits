@@ -15,6 +15,9 @@ import {
   fetchUsers,
 } from "../../store/adminusers/actions/actions";
 const Customer = () => {
+ 
+  const { loading } = useSelector((state) => state.Users);
+  const { users } = useSelector((state) => state.Users);
   const [searchUser, setSearchUser] = useState(null);
   const [filteredUser, setFilteredUser] = useState(null);
   const [pageNumber, setPageNumber] = useState(0);
@@ -24,10 +27,7 @@ const Customer = () => {
   const { id } = useParams();
   useEffect(() => {
     dispatch(fetchUsers());
-    // dispatch(fetchUserById(id));
-  }, []);
-  const { loading } = useSelector((state) => state.Users);
-  const { users } = useSelector((state) => state.Users);
+  }, [users]);
 
   const getSearchUserValue = (value) => {
     setSearchUser(value);

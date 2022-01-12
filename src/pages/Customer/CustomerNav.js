@@ -6,7 +6,7 @@ const CustomersNav = ({id}) => {
     <div className="nav-container">
       <div className="details-nav">
         <NavLink
-          to="/user/id"
+          to="/users"
           activeStyle={{
             borderBottom: "2px solid #0371e3",
             color: "#0371e3",

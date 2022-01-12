@@ -6,20 +6,19 @@ import {
   fetchUserById,
   updateUserDetails,
 } from "../../../store/adminusers/actions/actions";
-const EditCustomer = ({ showModal, id, name, email, contact, gender }) => {
+const EditCustomer = ({ showModal, id, fullName, email, contactNumber, gender }) => {
   const dispatch = useDispatch();
   let history = useHistory();
   const [modal, setModal] = useState(showModal);
-  const toggle = () => {
-    setModal(!modal);
-    console.log(formData);
+  const toggle = (e) => {
+    e.preventDefault();
     dispatch(updateUserDetails(id, formData));
-    history.push("/users")
+    setModal(!modal);
   };
   const [formData, setFormData] = useState({
-    name,
+    fullName,
     email,
-    contact,
+    contactNumber,
     gender,
   });
 
@@ -38,9 +37,9 @@ const EditCustomer = ({ showModal, id, name, email, contact, gender }) => {
           <>
             <label>Name</label>
             <input
-              value={formData.name}
+              value={formData.fullName}
               type="text"
-              name="name"
+              name="fullName"
               placeholder="Enter name"
               onChange={(e) => handleChange(e)}
             />
@@ -54,9 +53,9 @@ const EditCustomer = ({ showModal, id, name, email, contact, gender }) => {
             />
             <label>Contact</label>
             <input
-              value={formData.contact}
+              value={formData.contactNumber}
               type="tel"
-              name="contact"
+              name="contactNumber"
               placeholder="Enter contact"
               onChange={(e) => handleChange(e)}
             />

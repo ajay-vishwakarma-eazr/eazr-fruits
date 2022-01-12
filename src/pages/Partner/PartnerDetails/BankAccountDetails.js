@@ -12,7 +12,6 @@ const BankAccountDetails = ({ id }) => {
   const [edit, setEdit] = useState(true);
   useEffect(() => {
     dispatch(getBankDetails(id));
-    console.log("bank details");
   }, []);
   const { bank } = useSelector((state) => state.bank);
   const [partnerBankDetail, setPartnerBankDetails] = useState({

@@ -3,24 +3,24 @@ import avatar from "../../../../assets/images/users/avatar-3.jpg";
 import AuthModal from "../../../Partner/PartnerDetails/AuthModal";
 import "./userprofile.scss";
 import { connect, useDispatch, useSelector } from "react-redux";
-import { fetchUserById } from "../../../../store/adminusers/actions/actions";
+import { fetchUserById, updateUserDetails } from "../../../../store/adminusers/actions/actions";
 
 import { useParams, useHistory } from "react-router-dom";
 const UserProfile = () => {
+  const { users } = useSelector((state) => state.Users);
   const [edit, setEdit] = useState(true);
   const dispatch = useDispatch();
-  let history = useHistory();
   const { id } = useParams();
   useEffect(() => {
     dispatch(fetchUserById(id));
   }, []);
-  const { users } = useSelector((state) => state.Users);
+  
 
   const [formData, setFormData] = useState({
-    name: users.fullName,
+    fullName: users.fullName,
     email: users.email,
     dob: users.dob,
-    contact: users.contactNumber,
+    contactNumber: users.contactNumber,
     address: users.address,
     pin: users.pincode,
     pan: users.pan,
@@ -30,10 +30,10 @@ const UserProfile = () => {
   });
 
   const {
-    name,
+    fullName,
     email,
     dob,
-    contact,
+    contactNumber,
     address,
     pin,
     pan,
@@ -49,12 +49,20 @@ const UserProfile = () => {
     });
   };
 
+const getDisableEdit = (disableEdit) => {
+  setEdit(disableEdit);
+};
+
+const onSave = () => {
+  dispatch(updateUserDetails(id,formData));
+};
+
   return (
     <div className="user-profile-div shadow">
       {edit ? (
-        <i className="fa fa-user-edit" onClick={() => setEdit(false)}></i>
+        <i className="fa fa-user-edit" onClick={() => setEdit(!edit)}></i>
       ) : (
-        <AuthModal />
+        <AuthModal getDisableEdit={getDisableEdit} onSave={onSave} />
       )}
 
       <div className="user-img">
@@ -78,9 +86,9 @@ const UserProfile = () => {
       <input
         disabled={edit}
         type="text"
-        name="name"
+        name="fullName"
         className="name-input"
-        value={name}
+        value={fullName}
         onChange={(e) => handleChange(e)}
       />
 
@@ -108,8 +116,8 @@ const UserProfile = () => {
         <input
           disabled={edit}
           type="text"
-          name="contact"
-          value={contact}
+          name="contactNumber"
+          value={contactNumber}
           onChange={(e) => handleChange(e)}
         />
       </div>

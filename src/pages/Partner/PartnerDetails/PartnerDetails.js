@@ -135,8 +135,8 @@ const PartnerDetails = (props) => {
               )}
             </div>
 
-            {/* <div className="partner-btn">
-              {partner.status._id !== "607fcc9c6e04510a48a07767" ? (
+            <div className="partner-btn">
+              {partner.status.id !== "607fcc9c6e04510a48a07767" ? (
                 <button
                   className="accept"
                   onClick={() => onTicketSubmit("607fcc9c6e04510a48a07767")}
@@ -150,19 +150,19 @@ const PartnerDetails = (props) => {
                 onClick={() => onTicketSubmit("607d535ce36c5111dc63fe50")}
               >
                 Reject
-              </button> */}
+              </button>
 
-            {/* {partner.status._id !== "607d534de36c5111dc63fe4f" ? ( */}
-            {/* <HoldModal
+            {partner.status.id !== "607d534de36c5111dc63fe4f" ? (
+             <HoldModal
                 fields={fields}
                 setFields={setFields}
                 remark={remark}
                 setRemark={setRemark}
                 onTicketSubmit={onTicketSubmit}
-              /> */}
-            {/* ) : null} */}
+              /> 
+          ) : null}
           </div>
-          {/* </div> */}
+         </div>
         </div>
       </>
     );
