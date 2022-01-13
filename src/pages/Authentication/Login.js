@@ -15,7 +15,7 @@ import { AvForm, AvField } from "availity-reactstrap-validation";
 import {
   login,
   verify,
-  resend,
+  // resend,
   showOtpModal,
   hideOtpModal,
 } from "../../store/auth/login/actions";
@@ -197,7 +197,7 @@ export default withRouter(
   connect(mapStateToProps, {
     login,
     verify,
-    resend,
+    // resend,
     showOtpModal,
     hideOtpModal,
   })(Login)

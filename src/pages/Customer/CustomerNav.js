@@ -7,6 +7,17 @@ const CustomersNav = () => {
     <div className="nav-container">
       <div className="details-nav">
         <NavLink
+          to={`/user-profile/${id}`}
+          activeStyle={{
+            borderBottom: "2px solid #0371e3",
+            color: "#0371e3",
+            fontWeight: "bold",
+          }}
+        >
+          Profile
+        </NavLink>
+        
+        <NavLink
           to={`/user-transactions/${id}`}
           activeStyle={{
             borderBottom: "2px solid #0371e3",
@@ -15,17 +26,6 @@ const CustomersNav = () => {
           }}
         >
           Transactions
-        </NavLink>
-
-        <NavLink
-        to={`/user-profile/${id}`}
-          activeStyle={{
-            borderBottom: "2px solid #0371e3",
-            color: "#0371e3",
-            fontWeight: "bold",
-          }}
-        >
-          Profile
         </NavLink>
 
         {/* <NavLink

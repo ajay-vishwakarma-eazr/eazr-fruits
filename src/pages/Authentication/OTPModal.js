@@ -40,7 +40,6 @@ const OTPModal = (props) => {
             "Log-In"
           )}
         </Button>
-        
 
         <Modal
           isOpen={props.show}
@@ -100,13 +99,31 @@ const OTPModal = (props) => {
 
               <br />
 
-              <Link to
+              <Button
+                color="primary"
+                className=" resend-otp-text"
+                style={{ background: "#0371e3" }}
+                onClick={() => props.onLogin()}
+              >
+                {props.loading === true ? (
+                  <ClipLoader
+                    color="#fff"
+                    loading={true}
+                    // css={override}
+                    size={20}
+                  />
+                ) : (
+                  "Resend OTP"
+                )}
+              </Button>
+
+              {/* <Link to
                 className="resend-otp-text" style=
                 {{
                   color: "#0371e3",
                 }}
                 > Resend OTP
-              </Link>
+              </Link> */}
             </div>
           </div>
         </Modal>

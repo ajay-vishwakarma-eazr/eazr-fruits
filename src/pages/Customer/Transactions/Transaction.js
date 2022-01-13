@@ -99,6 +99,7 @@ const Transaction = () => {
                       .map((trans) => {
                         return (
                           <TableRow
+                            className="transaction-table"
                             key={trans.id}
                             creditScore={trans.user?.creditScore}
                             availableCreditLimit={

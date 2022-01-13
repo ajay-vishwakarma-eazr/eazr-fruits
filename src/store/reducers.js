@@ -18,6 +18,7 @@ import { partnerModuleReducer } from "./partnerModules/reducers/reducer";
 import { UserReducer } from "../store/adminusers/reducer/reducer";
 import { AdminProfileReducer } from "./adminprofile/reducer/reducer";
 import {bankReducer} from "../store/partners/Bank/bankReducer"
+import { TicketReducer } from "./supportTickets/reducers/reducer";
 const rootReducer = combineReducers({
   //order
   orders: OrderReducer,
@@ -27,6 +28,9 @@ const rootReducer = combineReducers({
 
   //Settlement
   settlement: SettlementReducer,
+
+  // Support-Tickets
+  tickets: TicketReducer,
 
   //Business Profiles
   businessPartner: BusinessPartnerReducer,

@@ -25,8 +25,17 @@
   background-color: #0371e3;
 }
 
+.transaction-table tr td {
+  text-align: center;
+}
+
 .paginationDisabled a {
   color: #6c757d;
   background-color: #eff2f7;
-  
 }
+
+/* @media (min-width: 900px) {
+   .transaction-table {
+    margin-right: 0;
+  }
+} */

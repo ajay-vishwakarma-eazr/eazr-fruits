@@ -1,65 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "reactstrap";
 import BackBtn from "../../BackBtn";
 import SupportNav from "../SupportNav";
 import SingleTicket from "./SingleTicket";
+import { useDispatch, useSelector } from "react-redux";
 
 const Tickets = () => {
-  const tickets = [
-    {
-      ticketId: "#12396543",
-      ticketStatus: "Open",
-      ticketTitle: "I cannot upload .PNG image onto my widget",
-      ticketTime: "14 minutes ago",
-      ticketDescription:
-        "I cannot upload .PNG image onto your widget, does your widget not accept .PNG image?",
-      ticketAssignedTo: "Govind Sharma",
-      ticketRaisedBy: "Siddhesh Bakshi",
-      ticketPriority: "Low",
-      ticketCategory: "Technical Support",
-      ticketDue: "In 1 Day",
-    },
-    {
-      ticketId: "#12396543",
-      ticketStatus: "New",
-      ticketTitle: "I cannot upload .PNG image onto my widget",
-      ticketTime: "14 minutes ago",
-      ticketDescription:
-        "I cannot upload .PNG image onto your widget, does your widget not accept .PNG image?",
-      ticketAssignedTo: "Govind Sharma",
-      ticketRaisedBy: "Siddhesh Bakshi",
-      ticketPriority: "Medium",
-      ticketCategory: "Customer Support",
-      ticketDue: "In 1 Day",
-    },
-    {
-      ticketId: "#12396543",
-      ticketStatus: "Closed",
-      ticketTitle: "I cannot upload .PNG image onto my widget",
-      ticketTime: "14 minutes ago",
-      ticketDescription:
-        "I cannot upload .PNG image onto your widget, does your widget not accept .PNG image?",
-      ticketAssignedTo: "Govind Sharma",
-      ticketRaisedBy: "Siddhesh Bakshi",
-      ticketPriority: "Critical",
-      ticketCategory: "Billing",
-      ticketDue: "In 1 Day",
-    },
-    {
-      ticketId: "#12396543",
-      ticketStatus: "Open",
-      ticketTitle: "I cannot upload .PNG image onto my widget",
-      ticketTime: "14 minutes ago",
-      ticketDescription:
-        "I cannot upload .PNG image onto your widget, does your widget not accept .PNG image?",
-      ticketAssignedTo: "Govind Sharma",
-      ticketRaisedBy: "Siddhesh Bakshi",
-      ticketPriority: "Low",
-      ticketCategory: "Customer Support",
-      ticketDue: "In 1 Day",
-    },
-  ];
+  debugger;
 
+  const dispatch = useDispatch();
+  const { tickets } = useSelector((state) => state.tickets);
+  useEffect(() => {
+    debugger;
+    // dispatch(fetchTickets());
+    console.log(tickets);
+  }, []);
   return (
     <div className="page-content">
       <Container fluid>
@@ -68,13 +23,15 @@ const Tickets = () => {
 
         {tickets.map((ticket, index) => {
           return (
-            <SingleTicket key = {index}
+            <SingleTicket
+              key={index}
               ticketId={ticket.ticketId}
+              ticketImage={ticket?.file[0]}
               ticketStatus={ticket.ticketStatus}
               ticketTitle={ticket.ticketTitle}
               ticketTime={ticket.ticketTime}
               ticketDescription={ticket.ticketDescription}
-              ticketAssignedTo={ticket.ticketAssignedTo}
+              ticketAssignedTo={ticket.title}
               ticketRaisedBy={ticket.ticketRaisedBy}
               ticketPriority={ticket.ticketPriority}
               ticketCategory={ticket.ticketCategory}

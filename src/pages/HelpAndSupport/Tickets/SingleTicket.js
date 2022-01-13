@@ -5,6 +5,7 @@ import avatar2 from "../../../assets/images/users/avatar-3.jpg";
 
 const SingleTicket = ({
   ticketId,
+  ticketImage,
   ticketStatus,
   ticketTitle,
   ticketTime,
@@ -50,7 +51,7 @@ const SingleTicket = ({
           <i className="mdi mdi-message-minus-outline"></i>
         </div>
         <div className="ticket-assign">
-          <img src={avatar} alt="" />
+          <img src={ticketImage} alt="" />
           <div>
             <p>Assigned To</p>
             <h6>{ticketAssignedTo}</h6>
