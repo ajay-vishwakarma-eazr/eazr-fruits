@@ -32,7 +32,7 @@ const CustomerTableRow = ({
       <td>{creditLimit}</td>
       <td>{totalOutstandingAmount}</td>
       <td>
-        <Link to={`/user-profile/${id}`}>
+        <Link to={`/user-transactions/${id}`}>
           <button className="view-customer-btn">View</button>
         </Link>
       </td>

@@ -35,27 +35,24 @@ class PartnerAllTransactions extends Component {
 
     const searchableTransactions = e.target.value;
 
-    const filtered = this.props.transactions.transactions.filter((filter) => {
+    const filtered = this.props.transactions?.transactions.filter((filter) => {
+      debugger;
       return (
-        filter?.amount?.includes(searchableTransactions) ||
-        filter?.debit
-          .toLowerCase()
-          .split(" ")
-          .join("")
-          ?.includes(
-            searchableTransactions.toLowerCase().split(" ").join("")
-          ) ||
-        filter.status
-          .toLowerCase()
-          .split(" ")
-          .join("")
-          ?.includes(
-            searchableTransactions.toLowerCase().split(" ").join("")
-          ) ||
+        filter?.amount.includes(searchableTransactions) ||
+        // filter?.debit
+        //   ?.includes(
+        //     searchableTransactions.split(" ").join("")
+        //   ) ||
+        // filter.status
+        //   ?.split(" ")
+        //   .join("")
+        //   ?.includes(
+        //     searchableTransactions.split(" ").join("")
+        //   ) ||
         filter.refund
-          .toLowerCase()
-          .split(" ")
-          .join("")
+          ?.toLowerCase()
+          ?.split(" ")
+          ?.join("")
           ?.includes(searchableTransactions.toLowerCase().split(" ").join(""))
       );
     });
@@ -105,14 +102,14 @@ class PartnerAllTransactions extends Component {
             >
               <PartnerTranscationsHeading />
               {this.state.searchTransactions
-                ? this.state.transactionList.map((item, index) => (
+                ? this.state.transactionList?.map((item, index) => (
                     <PartnerTrancationsRow
                       key={index}
-                      amount={item.amount}
-                      status={item.status}
-                      debit={item.debit}
-                      refund={item.refund}
-                      settled={item.settled}
+                      amount={item?.amount}
+                      status={item?.status}
+                      debit={item?.debit.toString()}
+                      refund={item?.refund.toString()}
+                      settled={item?.settled.toString()}
                     />
                   ))
                 : transactions?.transactions
@@ -121,11 +118,11 @@ class PartnerAllTransactions extends Component {
                       return (
                         <PartnerTrancationsRow
                           key={index}
-                          amount={item.amount}
-                          status={item.status}
-                          debit={item.debit}
-                          refund={item.refund}
-                          settled={item.settled}
+                          amount={item?.amount}
+                          status={item?.status}
+                          debit={item?.debit.toString()}
+                          refund={item?.refunded.toString()}
+                          settled={item?.settled.toString()}
                         />
                       );
                     })}
@@ -138,43 +135,45 @@ class PartnerAllTransactions extends Component {
     }
 
     return (
-      <><div className="page-content customer-page ">
-        <Container fluid>
-          <BackBtn route="approved-partner" />
-          <PartnerDetailsTab />
-        </Container>
-        <div className="partner">
+      <>
+        <div className="page-content customer-page ">
           <Container fluid>
-            <Card className="partner-table-approval">
-              <div className="search-partner">
-                <div>
-                  <label htmlFor="">Search transactions: </label>
-                  <input
-                    type="text"
-                    placeholder="Search..."
-                    onChange={this.handleSearch}
-                    value={this.state.searchTransactions}
-                  />
-                </div>
-              </div>
-
-              <CardBody>{data}</CardBody>
-
-              <ReactPaginate
-                previousLabel={"Previous"}
-                nextLabel={"Next"}
-                pageCount={pageCount}
-                onPageChange={changePage}
-                containerClassName={"paginationBttns"}
-                previousLinkClassName={"previousBttn"}
-                nextLinkClassName={"nextBttn"}
-                disabledClassName={"paginationDisabled"}
-                activeClassName={"paginationActive"}
-              />
-            </Card>
+            <BackBtn route="approved-partner" />
+            <PartnerDetailsTab />
           </Container>
-        </div>
-</div>      </>
+          <div className="partner">
+            <Container fluid>
+              <Card className="partner-table-approval">
+                <div className="search-partner">
+                  <div>
+                    <label htmlFor="">Search transactions: </label>
+                    <input
+                      type="text"
+                      placeholder="Search..."
+                      onChange={this.handleSearch}
+                      value={this.state.searchTransactions}
+                    />
+                  </div>
+                </div>
+
+                <CardBody>{data}</CardBody>
+
+                <ReactPaginate
+                  previousLabel={"Previous"}
+                  nextLabel={"Next"}
+                  pageCount={pageCount}
+                  onPageChange={changePage}
+                  containerClassName={"paginationBttns"}
+                  previousLinkClassName={"previousBttn"}
+                  nextLinkClassName={"nextBttn"}
+                  disabledClassName={"paginationDisabled"}
+                  activeClassName={"paginationActive"}
+                />
+              </Card>
+            </Container>
+          </div>
+        </div>{" "}
+      </>
     );
   }
 }

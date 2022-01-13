@@ -1,12 +1,12 @@
 @import "../../../../assets/scss/variables";
 
-.customer-page {
-  .user-profile-div {
+
+  .userprofile-div {
     padding: 1rem;
     border-radius: 10px;
     width: 40%;
-    // margin-top: -4%;
-    // margin-left: -6%;
+    margin-top: -4%;
+    margin-left: 6%;
 
     .auth-modal-toggler {
       background: $eazr-color;
@@ -15,7 +15,7 @@
       margin-top: 0.5rem !important;
     }
   }
-  .fa-user-edit {
+  .fa-user-profile-edit {
     color: $eazr-color;
     font-size: 1.2rem;
     float: right;
@@ -98,10 +98,10 @@
       resize: none;
     }
   }
-}
+
 
 @media (max-width: 768px) {
-  .user-profile-div {
+  .userprofile-div {
     width: 100% !important;
   }
 }

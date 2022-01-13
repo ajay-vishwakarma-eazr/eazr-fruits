@@ -72,9 +72,9 @@ const UserProfile = () => {
             <CustomersNav id={id} />
           </Container>
         </div>
-        <div className="user-profile-div shadow">
+        <div className="userprofile-div shadow">
           {edit ? (
-            <i className="fa fa-user-edit" onClick={() => setEdit(!edit)}></i>
+            <i className="fa fa-user-profile-edit" onClick={() => setEdit(!edit)}></i>
           ) : (
             <AuthModal getDisableEdit={getDisableEdit} onSave={onSave} />
           )}

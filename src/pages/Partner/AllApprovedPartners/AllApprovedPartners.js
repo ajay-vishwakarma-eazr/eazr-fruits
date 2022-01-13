@@ -64,7 +64,7 @@ class AllApprovedPartners extends Component {
     const { partners } = this.props;
     const usersPerPage = 10;
     const pageVisited = this.state.pageNumber * usersPerPage;
-    
+
     const pageCount = Math.ceil(
       this.props.partners.partners.length / usersPerPage
     );

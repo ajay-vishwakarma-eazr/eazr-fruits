@@ -1,7 +1,8 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link ,useParams} from "react-router-dom";
 
-const CustomersNav = ({id}) => {
+const CustomersNav = () => {
+  const {id}=useParams();
   return (
     <div className="nav-container">
       <div className="details-nav">
@@ -17,8 +18,7 @@ const CustomersNav = ({id}) => {
         </NavLink>
 
         <NavLink
-          // to="/user-profile/id"
-          to={`/user-profile/${id}`}
+        to={`/user-profile/${id}`}
           activeStyle={{
             borderBottom: "2px solid #0371e3",
             color: "#0371e3",
@@ -47,8 +47,8 @@ const CustomersNav = ({id}) => {
           }}
         >
           Reports
-        </NavLink> */}
-        {/* <NavLink
+        </NavLink>
+        <NavLink
           to="/user-manageQR"
           activeStyle={{
             borderBottom: "2px solid #0371e3",
@@ -57,9 +57,9 @@ const CustomersNav = ({id}) => {
           }}
         >
           Manage QR
-        </NavLink> */}
+        </NavLink>
 
-        {/* <NavLink
+        <NavLink
           to="/user-module"
           activeStyle={{
             borderBottom: "2px solid #0371e3",
