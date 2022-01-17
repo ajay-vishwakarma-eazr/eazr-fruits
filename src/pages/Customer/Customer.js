@@ -15,7 +15,6 @@ import {
   fetchUsers,
 } from "../../store/adminusers/actions/actions";
 const Customer = () => {
- 
   const { loading } = useSelector((state) => state.Users);
   const { users } = useSelector((state) => state.Users);
   const [searchUser, setSearchUser] = useState(null);
@@ -25,7 +24,7 @@ const Customer = () => {
   const pagesVisited = pageNumber * usersPerPage;
   const dispatch = useDispatch();
   const { id } = useParams();
-  useEffect(() => {
+useEffect(() => {
     dispatch(fetchUsers());
   }, []);
 
@@ -35,6 +34,7 @@ const Customer = () => {
   const filterArray = () => {
     if (searchUser !== null && searchUser.length > 0) {
       const filter = users.filter((filterUserData) => {
+        debugger;
         return (
           filterUserData?.fullName
             ?.toLowerCase()
@@ -74,6 +74,7 @@ const Customer = () => {
                 <CustomerTableHeading />
                 {filteredUser
                   ? filteredUser.map((users) => {
+                      debugger;
                       return (
                         <CustomerTableRow
                           key={users.id}
@@ -99,8 +100,11 @@ const Customer = () => {
                             contact={users.contactNumber}
                             gender={users.gender}
                             creditLimit={users.creditLimit}
-                            totalOutstandingAmount={users.totalOutstandingAmount
+                            totalOutstandingAmount={
+                              users.totalOutstandingAmount
                             }
+                            enabled={users.enabled}
+                            kycVerified={users.kycVerified}
                           />
                         );
                       })}

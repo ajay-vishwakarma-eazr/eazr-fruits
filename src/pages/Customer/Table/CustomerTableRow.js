@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import SweetAlert from "react-bootstrap-sweetalert";
 import { UncontrolledTooltip } from "reactstrap";
 import EditCustomer from "../EditCustomer/EditCustomer";
-import { Link } from "react-router-dom";
-
+import { Link, withRouter } from "react-router-dom";
+import { connect, useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import {
+  updateUserDetails,
+  fetchUsers,
+} from "../../../store/adminusers/actions/actions";
 const CustomerTableRow = ({
   id,
   name,
@@ -12,6 +17,8 @@ const CustomerTableRow = ({
   gender,
   creditLimit,
   totalOutstandingAmount,
+  enabled,
+  kycVerified,
 }) => {
   const [sweetAlerts, setSweetAlerts] = useState({
     dynamic_title: "",
@@ -19,10 +26,19 @@ const CustomerTableRow = ({
     success_confirm: false,
     alert_confirm: false,
   });
-
+  let history = useHistory();
+  const dispatch = useDispatch();
+  const { users } = useSelector((state) => state.Users);
   const [showModal, setShowModal] = useState(false);
+  const [ban, setBan] = useState(!enabled);
 
-  const [ban, setBan] = useState(false);
+  const handleBanUser = () => {
+    const banToggler = {
+      enabled: !enabled,
+    };
+    dispatch(updateUserDetails(id, banToggler));
+  };
+
   return (
     <tr style={{ opacity: ban ? 0.5 : 1 }} className="customer-table-row">
       <td>{name}</td>
@@ -31,6 +47,7 @@ const CustomerTableRow = ({
       <td>{gender}</td>
       <td>{creditLimit}</td>
       <td>{totalOutstandingAmount}</td>
+      <td>{kycVerified ===0 ? "NO":"YES"}</td>
       <td>
         <Link to={`/user-transactions/${id}`}>
           <button className="view-customer-btn">View</button>
@@ -54,7 +71,6 @@ const CustomerTableRow = ({
             gender={gender}
           />
         )}
-
         {/* <Link
           to={{
             pathname: `/user/${id}`,
@@ -70,7 +86,7 @@ const CustomerTableRow = ({
           className="fas fa-ban"
           id="ban"
           style={{ color: ban && "green" }}
-          onClick={() => setBan(!ban)}
+          onClick={() => handleBanUser()}
         ></i>
         {/* onClick={() => { this.onClick(this.props.email) }} */}
         {sweetAlerts.success_confirm ? (
@@ -90,5 +106,16 @@ const CustomerTableRow = ({
     </tr>
   );
 };
+
+// const mapStatetoProps = (state) => {
+//   debugger;
+//   return {
+//     details: state.Users.users,
+//   };
+// };
+
+// export default withRouter(
+//   connect(mapStatetoProps, { fetchUsers })(CustomerTableRow)
+// );
 
 export default CustomerTableRow;

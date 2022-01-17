@@ -9,8 +9,6 @@ import ShowTotalNumberOfOnboardingPartner from "./ShowTotalNumberOfOnboardingPar
 import ShowTotalNumberOfPartner from "./ShowTotalNumberOfPartner";
 
 class StarterPage extends Component {
-  
-
   constructor(props) {
     super(props);
     this.state = {
@@ -34,7 +32,7 @@ class StarterPage extends Component {
         {
           icon: "fas fa-users",
           title: "Partners Online",
-          value: "171",
+          value: "0",
           rate: "2.4%",
           desc: "From previous period",
           route: "#",

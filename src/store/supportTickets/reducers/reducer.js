@@ -3,7 +3,7 @@ import {
   FETCH_TICKETS_SUCCESS,
   FETCH_TICKETS_FAILURE,
   FETCH_TICKETS_LOADING,
-} from "../actions/actiontypes.js"
+} from "../actions/actiontypes.js";
 
 export const initialState = {
   loading: false,

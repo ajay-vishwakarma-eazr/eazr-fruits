@@ -26,7 +26,7 @@ const PartnerDetailsTab = (props) => {
             fontWeight: "bold",
           }}
         >
-          Sattlements
+          Settlements
         </NavLink>
         {/* <NavLink
           to="/user-reports"

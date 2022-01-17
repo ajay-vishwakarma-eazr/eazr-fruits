@@ -35,17 +35,10 @@ const Transaction = () => {
   const filterArray = () => {
     if (searchTranscation !== null && searchTranscation.length > 0) {
       const filter = transactions.filter((trans) => {
+        debugger;
         return (
-          trans?.amount?.includes(searchTranscation) ||
-          trans?.businessPartner?.email
-            ?.toLowerCase()
-            .includes(searchTranscation.toLowerCase()) ||
-          trans?.businessPartner?.contact
-            ?.toLowerCase()
-            .includes(searchTranscation.toLowerCase()) ||
-          trans?.status?.status
-            ?.toLowerCase()
-            .includes(searchTranscation.toLowerCase())
+          trans?.creditScore?.includes(searchTranscation) ||
+          trans?.availableCreditLimit?.includes(searchTranscation)
         );
       });
       setFilteredTransaction(filter);
@@ -85,12 +78,13 @@ const Transaction = () => {
                   ? filteredTransaction.map((trans) => {
                       return (
                         <TableRow
-                          key={trans._id}
+                          className="transaction-table"
+                          key={trans.id}
                           amount={trans?.amount}
-                          email={trans?.businessPartner?.email}
-                          contact={trans?.businessPartner?.mobile}
-                          createdAt={trans?.createdAt}
-                          status={trans.status.status}
+                          status={trans.status}
+                          partnerName={trans?.partner.businessName}
+                          debit={trans.debit.toString()}
+                          createAt={trans.createdTimestamp}
                         />
                       );
                     })
@@ -101,20 +95,11 @@ const Transaction = () => {
                           <TableRow
                             className="transaction-table"
                             key={trans.id}
-                            creditScore={trans.user?.creditScore}
-                            availableCreditLimit={
-                              trans.user?.availableCreditLimit
-                            }
-                            currentOutstandingAmount={
-                              trans.user?.currentOutstandingAmount
-                            }
-                            dueAmount={trans.user?.dueAmount}
-                            dueDate={trans.user?.dueDate}
-                            lastBillGenerationDate={
-                              trans.user?.lastBillGenerationDate
-                            }
-                            nextBillDate={trans.user?.nextBillDate}
-                            fineAmount={trans.user.fineAmount}
+                            amount={trans?.amount}
+                            status={trans.status}
+                            partnerName={trans?.partner.businessName}
+                            debit={trans.debit.toString()}
+                            createAt={trans.createdTimestamp}
                           />
                         );
                       })}

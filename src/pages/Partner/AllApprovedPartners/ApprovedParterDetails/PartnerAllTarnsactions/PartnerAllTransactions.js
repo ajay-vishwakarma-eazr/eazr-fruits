@@ -34,27 +34,20 @@ class PartnerAllTransactions extends Component {
     });
 
     const searchableTransactions = e.target.value;
-
     const filtered = this.props.transactions?.transactions.filter((filter) => {
-      debugger;
-      return (
-        filter?.amount.includes(searchableTransactions) ||
-        // filter?.debit
-        //   ?.includes(
-        //     searchableTransactions.split(" ").join("")
-        //   ) ||
-        // filter.status
-        //   ?.split(" ")
-        //   .join("")
-        //   ?.includes(
-        //     searchableTransactions.split(" ").join("")
-        //   ) ||
-        filter.refund
-          ?.toLowerCase()
-          ?.split(" ")
-          ?.join("")
-          ?.includes(searchableTransactions.toLowerCase().split(" ").join(""))
-      );
+  debugger;
+      filter.status.includes(searchableTransactions)
+      //  ||
+      //   filter?.debit?.includes(searchableTransactions.split(" ").join("")) ||
+      //   filter.status
+      //     ?.split(" ")
+      //     .join("")
+      //     ?.includes(searchableTransactions.split(" ").join("")) ||
+      //   filter.refund
+      //     ?.toLowerCase()
+      //     ?.split(" ")
+      //     ?.join("")
+      //     ?.includes(searchableTransactions.toLowerCase().split(" ").join(""));
     });
 
     this.setState({
@@ -118,6 +111,7 @@ class PartnerAllTransactions extends Component {
                       return (
                         <PartnerTrancationsRow
                           key={index}
+                          userName={item.user.fullName}
                           amount={item?.amount}
                           status={item?.status}
                           debit={item?.debit.toString()}

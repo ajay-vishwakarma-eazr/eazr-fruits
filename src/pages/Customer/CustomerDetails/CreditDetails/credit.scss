@@ -1,9 +1,12 @@
 @import "../../../../assets/scss/variables";
 
-.customer-page {
+
   .credit-details-div {
     padding: 1rem;
-    width: 55%;
+    width: 40%;
+    margin-top: -2%;
+    margin-left: 5%;
+    margin-bottom: 5%;
     .total-credit {
       background: $table-card;
       border-left: 8px solid $eazr-color;
@@ -98,7 +101,7 @@
       opacity: $button-opacity;
     }
   }
-}
+
 
 @media (max-width: 768px) {
   .credit-details-div {

@@ -3,15 +3,14 @@ import { Modal, ModalHeader, ModalBody } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {
-  fetchUserById,
+  fetchUsers,
   updateUserDetails,
 } from "../../../store/adminusers/actions/actions";
 const EditCustomer = ({ showModal, id, fullName, email, contactNumber, gender }) => {
   const dispatch = useDispatch();
   let history = useHistory();
   const [modal, setModal] = useState(showModal);
-  const toggle = (e) => {
-    e.preventDefault();
+  const toggle = () => {
     dispatch(updateUserDetails(id, formData));
     setModal(!modal);
   };

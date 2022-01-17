@@ -9,17 +9,18 @@ const PartnerSettlementsRow = ({
   amount,
   partnerAmount,
   commision,
-gst,
+  gst,
   createdAt,
   status,
+  partnerName,
 }) => {
   const statusColor = () => {};
 
   return (
     <tbody>
       <tr>
-        <td>{setttlementId}</td>
-        <td>{partnerId}</td>
+        {/* <td>{setttlementId}</td> */}
+        <td>{partnerName}</td>
         <td>₹ {amount}</td>
         <td>₹ {partnerAmount}</td>
         <td>{commision}</td>

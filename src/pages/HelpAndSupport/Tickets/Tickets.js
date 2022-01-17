@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "reactstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTickets } from "../../../store/supportTickets/actions/action";
 import BackBtn from "../../BackBtn";
 import SupportNav from "../SupportNav";
 import SingleTicket from "./SingleTicket";
-import { useDispatch, useSelector } from "react-redux";
+// import { fetchTickets } from "../../store/supportTickets/actions/action";
 
 const Tickets = () => {
-  debugger;
-
   const dispatch = useDispatch();
   const { tickets } = useSelector((state) => state.tickets);
   useEffect(() => {
-    debugger;
-    // dispatch(fetchTickets());
-    console.log(tickets);
+    dispatch(fetchTickets());
   }, []);
   return (
     <div className="page-content">
@@ -25,17 +23,17 @@ const Tickets = () => {
           return (
             <SingleTicket
               key={index}
-              ticketId={ticket.ticketId}
+              ticketId={ticket.id}
               ticketImage={ticket?.file[0]}
-              ticketStatus={ticket.ticketStatus}
-              ticketTitle={ticket.ticketTitle}
-              ticketTime={ticket.ticketTime}
-              ticketDescription={ticket.ticketDescription}
+              ticketStatus={ticket.status}
+              ticketTitle={ticket.title}
+              ticketTime={ticket.createdTimestamp}
+              ticketDescription={ticket.description}
               ticketAssignedTo={ticket.title}
-              ticketRaisedBy={ticket.ticketRaisedBy}
-              ticketPriority={ticket.ticketPriority}
-              ticketCategory={ticket.ticketCategory}
-              ticketDue={ticket.ticketDue}
+              ticketRaisedBy={ticket.partner.businessName}
+              // ticketPriority={ticket.ticketPriority}
+              // ticketCategory={ticket.ticketCategory}
+              // ticketDue={ticket.ticketDue}
             />
           );
         })}

@@ -16,7 +16,7 @@ export const initialState = {
   users: [],
   errror: "",
 };
- 
+
 export const UserReducer = (state = initialState, action) => {
   switch (action.type) {
     case USER_LOADING:
@@ -61,8 +61,6 @@ export const UserReducer = (state = initialState, action) => {
       };
 
     case SET_USER:
-
-    
       return {
         ...state,
         users: action.payload,
@@ -70,6 +68,7 @@ export const UserReducer = (state = initialState, action) => {
     case UPDATE_PROFILE_SUCCESS:
       return {
         ...state,
+        loading: false,
         users: action.payload,
       };
     case UPDATE_PROFILE_FAILED:
@@ -80,9 +79,7 @@ export const UserReducer = (state = initialState, action) => {
 
     case ONCLICK_ID:
       const newuser = state.users.map((userObj) =>
-        userObj.id === action.id
-          ? { userObj: action.payload }
-          : userObj
+        userObj.id === action.id ? { userObj: action.payload } : userObj
       );
       return {
         loading: false,

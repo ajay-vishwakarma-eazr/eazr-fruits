@@ -5,16 +5,21 @@ import { useDispatch, useSelector } from "react-redux";
 import SweetAlert from "react-bootstrap-sweetalert";
 
 //actions
-import { getBankDetails } from "../../../store/partners/Bank/actions";
+import {
+  getBankDetails,
+  updateBankDetails,
+} from "../../../store/partners/Bank/actions";
 
 const BankAccountDetails = ({ id }) => {
+  const { bank } = useSelector((state) => state.bank);
   const dispatch = useDispatch();
   const [edit, setEdit] = useState(true);
   useEffect(() => {
     dispatch(getBankDetails(id));
   }, []);
-  const { bank } = useSelector((state) => state.bank);
+
   const [partnerBankDetail, setPartnerBankDetails] = useState({
+    bankName: bank[0]?.bankName,
     beneficiaryName: bank[0]?.beneficiaryName,
     ifscCode: bank[0]?.ifscCode,
     accountNumber: bank[0]?.accountNumber,
@@ -23,20 +28,8 @@ const BankAccountDetails = ({ id }) => {
   const getDisableEdit = (disableEdit) => {
     setEdit(disableEdit);
   };
-  const [password, setPassword] = useState("");
-  
   const onSave = () => {
-    // props.updatePartnerDetails(
-    //   props.partner._id,
-    //   {
-    //     bankDetails: {
-    //       beneficiaryName: partnerBankDetail.beneficiaryName,
-    //       ifscCode: partnerBankDetail.ifscCode,
-    //       accountNumber: partnerBankDetail.accountNumber,
-    //     },
-    //   },
-    //   password
-    // );
+    dispatch(updateBankDetails(bank[0]?.id, partnerBankDetail));
   };
 
   return (
@@ -65,13 +58,23 @@ const BankAccountDetails = ({ id }) => {
             onClick={() => setEdit(!edit)}
           ></i>
         ) : (
-          <AuthModal
-            getDisableEdit={getDisableEdit}
-            onSave={onSave}
-            setPassword={setPassword}
-          />
+          <AuthModal getDisableEdit={getDisableEdit} onSave={onSave} />
         )}
       </div>
+      <div>
+        <h3>Bank Name</h3>
+        <input
+          disabled={edit}
+          value={partnerBankDetail.bankName}
+          onChange={(e) =>
+            setPartnerBankDetails({
+              ...partnerBankDetail,
+              bankName: e.target.value,
+            })
+          }
+        />
+      </div>
+
       <div>
         <h3>Account Beneficiary Name</h3>
         <input

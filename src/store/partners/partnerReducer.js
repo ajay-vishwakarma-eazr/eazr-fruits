@@ -6,10 +6,7 @@ import {
   CHANGE_PARTNER_STATUS,
   CHANGE_PARTNER_STATUS_FAILED,
   PARTNERS_LOADING,
-  UPDATE_PARTNER,
-  UPDATE_PARTNER_FAILED,
   ADD_TICKET,
-  ADD_TICKET_FAILED,
   CLEAR_ERRORS,
   GET_APPROVED_PARTNERS,
   GET_APPROVED_PARTNERS_FAILED,
@@ -80,19 +77,6 @@ const login = (state = initialState, action) => {
         errors: action.payload,
       };
 
-    case UPDATE_PARTNER:
-      return {
-        ...state,
-        loading: false,
-        errors: null,
-        partner: action.payload,
-      };
-    case UPDATE_PARTNER_FAILED:
-      return {
-        ...state,
-        loading: false,
-        errors: action.payload,
-      };
     case CHANGE_PARTNER_STATUS:
       return {
         ...state,

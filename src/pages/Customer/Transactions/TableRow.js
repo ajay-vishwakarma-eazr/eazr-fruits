@@ -1,14 +1,7 @@
 import React from "react";
 
 const TableRow = ({
-  creditScore,
-  availableCreditLimit,
-  currentOutstandingAmount,
-  dueAmount,
-  dueDate,
-  lastBillGenerationDate,
-  nextBillDate,
-  fineAmount,
+  amount,status,partnerName,debit,createAt
 }) => {
   const statusColor = () => {
     
@@ -16,14 +9,11 @@ const TableRow = ({
 
   return (
     <tr>
-      <td>{creditScore}</td>
-      <td>{availableCreditLimit}</td>
-      <td>{currentOutstandingAmount}</td>
-      <td>{dueAmount}</td>
-      <td>{dueDate}</td>
-      <td>{lastBillGenerationDate}</td>
-      <td>{nextBillDate}</td>
-      <td>{fineAmount}</td>
+      <td>{partnerName}</td>
+      <td>{amount}</td>
+      <td>{status === 0 ? "Initiated" : status === 1 ? "Failed" : "Succes"}</td>
+      <td>{debit ==="true"? "Yes":"No"}</td>
+      <td>{createAt.slice(0, 10)}</td>
     </tr>
   );
 };

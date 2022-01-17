@@ -1,4 +1,9 @@
-import { GET_BANK_DETAILS, GET_BANK_DETAILS_FAILED } from "./type";
+import {
+  GET_BANK_DETAILS,
+  GET_BANK_DETAILS_FAILED,
+  UPDATE_BANK,
+  UPDATE_BANK_FAILED,
+} from "./type";
 
 const initialState = {
   errors: null,
@@ -15,9 +20,21 @@ export const bankReducer = (state = initialState, action) => {
     case GET_BANK_DETAILS_FAILED:
       return {
         ...state,
-        error:action.payload,
+        error: action.payload,
       };
+    case UPDATE_BANK:
+      return {
+        ...state,
+        bank: action.payload,
+      };
+
+    case UPDATE_BANK_FAILED:
+      return {
+        ...state,
+        error: action.payload,
+      };
+
     default:
-      return{...state};
+      return { ...state };
   }
 };

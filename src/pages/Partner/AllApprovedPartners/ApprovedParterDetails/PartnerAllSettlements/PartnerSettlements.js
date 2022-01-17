@@ -34,28 +34,8 @@ class PartnerSettlements extends Component {
     });
 
     const searchableSettlements = e.target.value;
-
-    const filtered = this.props.settlements.filter((filter) => {
-      return (
-        filter?.amount?.includes(searchableSettlements) ||
-        filter?.debit
-          .toLowerCase()
-          .split(" ")
-          .join("")
-          ?.includes(searchableSettlements.toLowerCase().split(" ").join("")) ||
-        filter.status
-          .toLowerCase()
-          .split(" ")
-          .join("")
-          ?.includes(searchableSettlements.toLowerCase().split(" ").join("")) ||
-        filter.refund
-          .toLowerCase()
-          .split(" ")
-          .join("")
-          ?.includes(searchableSettlements.toLowerCase().split(" ").join(""))
-      );
-    });
-
+    const filtered = this.props.settlements.settlements.filter((filter) => filter.amount.includes(searchableSettlements));
+    debugger;
     this.setState({
       settlementsList: filtered,
     });
@@ -104,13 +84,12 @@ class PartnerSettlements extends Component {
                 ? this.state.settlementsList.map((settlement, index) => (
                     <PartnerSettlementsRow
                       key={index}
-                      setttlementId={settlement.id}
+                      c
                       amount={settlement.amount}
                       partnerAmount={settlement.partnerAmount}
-                      partnerId={settlement.partnerId}
                       upi={settlement.partner.upi}
                       gst={settlement.gst}
-                      createdAt={settlement.createdTimestamp}
+                      createdAt={settlement.createdTimestamp.slice(0, 8)}
                     />
                   ))
                 : settlements?.settlements
@@ -119,13 +98,12 @@ class PartnerSettlements extends Component {
                       return (
                         <PartnerSettlementsRow
                           key={index}
-                          setttlementId={settlement.id}
+                          partnerName={settlement.partner.businessName}
                           amount={settlement.amount}
                           partnerAmount={settlement.partnerAmount}
-                          partnerId={settlement.partnerId}
                           commision={settlement.commision}
                           gst={settlement.gst}
-                          createdAt={settlement.createdTimestamp}
+                          createdAt={settlement.createdTimestamp.slice(0, 10)}
                         />
                       );
                     })}

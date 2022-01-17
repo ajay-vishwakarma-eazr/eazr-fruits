@@ -10,9 +10,9 @@ import {
 
 import { useParams, useHistory } from "react-router-dom";
 import CustomersNav from "../../CustomerNav";
-import CustomerDetails from "../CustomerDetails";
 import BackBtn from "../../../BackBtn";
 import { Container } from "reactstrap";
+import CreditDetails from "../CreditDetails/CreditDetails";
 const UserProfile = () => {
   const { users } = useSelector((state) => state.Users);
   const [edit, setEdit] = useState(true);
@@ -58,130 +58,129 @@ const UserProfile = () => {
   const getDisableEdit = (disableEdit) => {
     setEdit(disableEdit);
   };
-
   const onSave = () => {
     dispatch(updateUserDetails(id, formData));
   };
 
   return (
     <>
-      <div>
-        <div className="page-content customer-page ">
-          <Container fluid>
-            <BackBtn route="users" />
-            <CustomersNav id={id} />
-          </Container>
-        </div>
-        <div className="userprofile-div shadow">
-          {edit ? (
-            <i className="fa fa-user-profile-edit" onClick={() => setEdit(!edit)}></i>
-          ) : (
-            <AuthModal getDisableEdit={getDisableEdit} onSave={onSave} />
-          )}
+      <div className="page-content customer-page ">
+        <Container fluid>
+          <BackBtn route="users" />
+          <CustomersNav />
+          <div className="userprofile-div shadow">
+            {edit ? (
+              <i className="fa fa-user-edit" onClick={() => setEdit(!edit)}></i>
+            ) : (
+              <AuthModal getDisableEdit={getDisableEdit} onSave={onSave} />
+            )}
 
-          <div className="user-img">
-            <img src={selfie} alt="" />
-            <label htmlFor="profileImg">
-              <i className="fa fa-edit"></i>
-            </label>
+            <div className="user-img">
+              <img src={selfie == null ? avatar :selfie} alt="" />
+              <label htmlFor="profileImg">
+                <i className="fa fa-edit"></i>
+              </label>
+
+              <input
+                type="file"
+                id="profileImg"
+                style={{ display: " none" }}
+                onChange={(e) =>
+                  setFormData({
+                    profileImg: URL.createObjectURL(e.target.files[0]),
+                  })
+                }
+              />
+            </div>
 
             <input
-              type="file"
-              id="profileImg"
-              style={{ display: " none" }}
-              onChange={(e) =>
-                setFormData({
-                  profileImg: URL.createObjectURL(e.target.files[0]),
-                })
-              }
+              disabled={edit}
+              type="text"
+              name="fullName"
+              className="name-input"
+              value={fullName}
+              onChange={(e) => handleChange(e)}
             />
-          </div>
 
-          <input
-            disabled={edit}
-            type="text"
-            name="fullName"
-            className="name-input"
-            value={fullName}
-            onChange={(e) => handleChange(e)}
-          />
-
-          <input
-            disabled={edit}
-            type="email"
-            name="email"
-            className="email-input"
-            value={email}
-            onChange={(e) => handleChange(e)}
-          />
-
-          <div className="input-div">
-            <h6>Date Of Birth</h6>
             <input
               disabled={edit}
               type="email"
-              name="dob"
-              value={dob}
+              name="email"
+              className="email-input"
+              value={email}
               onChange={(e) => handleChange(e)}
             />
-          </div>
-          <div className="input-div">
-            <h6>Contact</h6>
-            <input
-              disabled={edit}
-              type="text"
-              name="contactNumber"
-              value={contactNumber}
-              onChange={(e) => handleChange(e)}
-            />
-          </div>
-          <div className="input-div">
-            <h6>Address</h6>
-            <textarea
-              disabled={edit}
-              name="address"
-              id=""
-              cols="30"
-              rows="2"
-              value={address}
-              onChange={(e) => handleChange(e)}
-            ></textarea>
-          </div>
 
-          <div className="input-div">
-            <h6>Pin</h6>
-            <textarea
-              disabled={edit}
-              name="pin"
-              id=""
-              cols="30"
-              rows="1"
-              value={pin}
-              onChange={(e) => handleChange(e)}
-            ></textarea>
+            <div className="input-div">
+              <h6>Date Of Birth</h6>
+              <input
+                disabled={edit}
+                type="email"
+                name="dob"
+                value={dob}
+                onChange={(e) => handleChange(e)}
+              />
+            </div>
+            <div className="input-div">
+              <h6>Contact</h6>
+              <input
+                disabled={edit}
+                type="text"
+                name="contactNumber"
+                value={contactNumber}
+                onChange={(e) => handleChange(e)}
+              />
+            </div>
+            <div className="input-div">
+              <h6>Address</h6>
+              <textarea
+                disabled={edit}
+                name="address"
+                id=""
+                cols="30"
+                rows="2"
+                value={address}
+                onChange={(e) => handleChange(e)}
+              ></textarea>
+            </div>
+
+            <div className="input-div">
+              <h6>Pin</h6>
+              <textarea
+                disabled={edit}
+                name="pin"
+                id=""
+                cols="30"
+                rows="1"
+                value={pin}
+                onChange={(e) => handleChange(e)}
+              ></textarea>
+            </div>
+            <div className="input-div">
+              <h6>PAN</h6>
+              <input
+                disabled={edit}
+                type="text"
+                name="pan"
+                value={pan}
+                onChange={(e) => handleChange(e)}
+              />
+            </div>
+            <div className="input-div">
+              <h6>Aadhaar No</h6>
+              <input
+                disabled={edit}
+                type="text"
+                name="aadhaarNo"
+                value={aadhaarNo}
+                onChange={(e) => handleChange(e)}
+              />
+            </div>
           </div>
-          <div className="input-div">
-            <h6>PAN</h6>
-            <input
-              disabled={edit}
-              type="text"
-              name="pan"
-              value={pan}
-              onChange={(e) => handleChange(e)}
-            />
-          </div>
-          <div className="input-div">
-            <h6>Aadhaar No</h6>
-            <input
-              disabled={edit}
-              type="text"
-              name="aadhaarNo"
-              value={aadhaarNo}
-              onChange={(e) => handleChange(e)}
-            />
-          </div>
-        </div>
+        </Container>
       </div>
+
+      <CreditDetails />
     </>
   );
 };

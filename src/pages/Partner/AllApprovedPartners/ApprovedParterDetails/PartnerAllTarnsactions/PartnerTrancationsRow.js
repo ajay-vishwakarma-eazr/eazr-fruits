@@ -3,35 +3,25 @@ import { Link } from "react-router-dom";
 
 //Import Breadcrumb
 
-const PartnerTrancationsRow = ({ amount, status, debit, refund, settled }) => {
-  const statusColor = () => {
-    if (refund == "true") {
-      return "#4bb543";
-    }
-    if (refund == "false") {
-      return "#df4759";
-    }
-  };
+const PartnerTrancationsRow = ({userName, amount, status, debit, refund, settled }) => {
 
   return (
     <tbody>
       <tr>
+        <td>{userName}</td>
         <td>{amount}</td>
-        <td>{status}</td>
-        <td>{debit}</td>
         <td>
-          <p
-            style={{
-              border: `1px solid ${statusColor()}`,
-              color: statusColor(),
-              borderRadius: "25px",
-              margin:"auto"
-            }}
-          >
-            {refund}
-          </p>
+          {status === 0
+            ? "initiated"
+            : status === 2
+            ? "sucess"
+            : status === 1
+            ? "failed"
+            : "on hold"}
         </td>
-        <td>{settled}</td>
+        <td>{debit === "true" ? "Yes" : "No"}</td>
+        <td>{refund === "true" ? "Yes" : "No"}</td>
+        <td>{settled === "true" ? "Yes" : "No"}</td>
       </tr>
     </tbody>
   );

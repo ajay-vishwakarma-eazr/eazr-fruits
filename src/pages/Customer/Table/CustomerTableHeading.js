@@ -9,6 +9,7 @@ const CustomerTableHeading = () => {
       <th>Gender</th>
       <th>Credit Limit</th>
       <th>Total Outstanding Amount</th>
+      <th>Kyc Verified</th>
       <th>Details</th>
       <th>Actions</th>
     </thead>

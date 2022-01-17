@@ -11,7 +11,7 @@ import {
 } from "../../../store/partners/actions";
 import { useParams } from "react-router-dom";
 const BusinessDescription = (props) => {
- const { id } = useParams();
+  const { id } = useParams();
   const [edit, setEdit] = useState(true);
 
   const [description, setBusinessDescription] = useState({
@@ -22,6 +22,7 @@ const BusinessDescription = (props) => {
   };
 
   const onSave = () => {
+    debugger;
     props.updatePartnerDetails(id, description);
   };
 
@@ -30,19 +31,6 @@ const BusinessDescription = (props) => {
       className="business-description"
       style={{ background: !edit && Colors.infoBody }}
     >
-      {/* {props.errors && props.errors.password ? (
-        <SweetAlert
-          title="Wrong Password"
-          danger
-          confirmBtnBsStyle="danger"
-          onConfirm={() => {
-            props.clearErrors();
-            // getDisableEdit(disableEdit);
-            // toggle();
-            // setSuccess_Msg(false);
-          }}
-        />
-      ) : null} */}
       <div className="heading">
         <h1>Business Description</h1>
         {edit ? (
@@ -51,10 +39,7 @@ const BusinessDescription = (props) => {
             onClick={() => setEdit(!edit)}
           ></i>
         ) : (
-          <AuthModal
-            getDisableEdit={getDisableEdit}
-            onSave={onSave}
-          />
+          <AuthModal getDisableEdit={getDisableEdit} onSave={onSave} />
         )}
       </div>
       <div>

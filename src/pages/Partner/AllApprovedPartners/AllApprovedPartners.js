@@ -66,7 +66,7 @@ class AllApprovedPartners extends Component {
     const pageVisited = this.state.pageNumber * usersPerPage;
 
     const pageCount = Math.ceil(
-      this.props.partners.partners.length / usersPerPage
+      this.props.partners.partners?.length / usersPerPage
     );
 
     const changePage = ({ selected }) => {

@@ -9,6 +9,8 @@ import {
   SET_USER,
   UPDATE_PROFILE_FAILED,
   UPDATE_PROFILE_SUCCESS,
+  GET_USER_BILL_BY_ID,
+  GET_USER_BILL_BY_ID_FAILED,
 } from "./actiontypes";
 import axios from "axios";
 import { ip } from "../../../config/config";
@@ -91,14 +93,45 @@ export const fetchUserById = (id) => {
 };
 
 
+export const fetchUserBillById = (id) => {
+  return (dispatch) => {
+    dispatch(setUserLoading());
+    axios
+      .get(`${ip}/bills/${id}`)
+      .then((res) => {
+        dispatch({
+          type: GET_USER_BILL_BY_ID,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+        dispatch({
+          type: GET_USER_BILL_BY_ID_FAILED,
+          payload: err.response.data,
+        });
+      });
+  };
+};
+
+
 export const updateUserDetails = (id, formData) => {
   return (dispatch) => {
     dispatch(setUserLoading());
     axios
-      .patch(`${ip}/users/${id}`,{...formData})
+      .patch(`${ip}/users/${id}`, { ...formData })
       .then((res) => {
-        const updateObj = res.data;
-        dispatch(UpdateProfileSuccess(updateObj));
+        axios
+          .get(`${ip}/users`)
+          .then((res) => {
+            const users = res.data;
+            dispatch(FetchUsersSuccess(users));
+          })
+          .catch((err) => {
+            console.log(err);
+            dispatch(FetchUsersFailure(err.message));
+            // alert('No data found')
+          });
       })
       .catch((err) => {
         dispatch(UpdateProfileFailed(err.message));

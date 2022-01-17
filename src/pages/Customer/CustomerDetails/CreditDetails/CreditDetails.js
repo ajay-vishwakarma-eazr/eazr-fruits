@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./credit.scss";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { updateUserDetails } from "../../../../store/adminusers/actions/actions";
 
 const CreditDetails = () => {
   const { users } = useSelector((state) => state.Users);
-
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     creditLimit: users.creditLimit,
     dueDate: users.dueDate,
@@ -19,6 +20,15 @@ const CreditDetails = () => {
       ...formData,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const handleWaveOff = () => {
+    const wave = users.fineAmount;
+
+    const waveoffamt = {
+      fineAmount: 0,
+    };
+    dispatch(updateUserDetails(users.id, waveoffamt));
   };
 
   return (
@@ -36,18 +46,20 @@ const CreditDetails = () => {
       <div className="available-credit-div">
         <h6>Available Credit</h6>
         <p>{availableCreditLimit}</p>
-      </div> 
-
-      <div className="late-fee-div">
-        <h6>Fine Amount : <span>₹ {fineAmount}</span></h6>
-
       </div>
+
       <div className="late-fee-div">
+        <h6>
+          Fine Amount : <span>₹ {fineAmount}</span>
+        </h6>
+        {/* <button onClick={handleWaveOff}>Wave Off</button> */}
+      </div>
+      {/* <div className="late-fee-div">
         <h6>
           Late Fee : <span>₹ 0</span>{" "}
         </h6>
         <button>Wave Off</button>
-      </div>
+      </div> */}
     </div>
   );
 };

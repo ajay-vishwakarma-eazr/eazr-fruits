@@ -12,11 +12,27 @@ const SingleTicket = ({
   ticketDescription,
   ticketAssignedTo,
   ticketRaisedBy,
-  ticketPriority,
-  ticketCategory,
-  ticketDue,
+  // ticketPriority,
+  // ticketCategory,
+  // ticketDue,
 }) => {
+  const status = {
+    0: "Closed",
+    1: "New",
+    2: "Open",
+  };
+
   const getStatusColor = () => {
+    // if (status[0] === "Closed") {
+    //   return "#0371e3";
+    // }
+    // if (ticketStatus[1] === "New") {
+    //   return "#eed202";
+    // }
+    // if (ticketStatus[2] === "Open") {
+    //   return "#df4759";
+    // }
+
     if (ticketStatus === "New") {
       return "#d9534f";
     } else if (ticketStatus === "Open") {
@@ -26,20 +42,50 @@ const SingleTicket = ({
     }
   };
 
+  const timeAgo = (prevDate) => {
+    const diff = Number(new Date()) - prevDate;
+    const minute = 60 * 1000;
+    const hour = minute * 60;
+    const day = hour * 24;
+    const month = day * 30;
+    const year = day * 365;
+    switch (true) {
+      case diff < minute:
+        const seconds = Math.round(diff / 1000);
+        return `${seconds} ${seconds > 1 ? "seconds" : "second"} ago`;
+      case diff < hour:
+        return Math.round(diff / minute) + " minutes ago";
+      case diff < day:
+        return Math.round(diff / hour) + " hours ago";
+      case diff < month:
+        return Math.round(diff / day) + " days ago";
+      case diff < year:
+        return Math.round(diff / month) + " months ago";
+      case diff > year:
+        return Math.round(diff / year) + " years ago";
+      default:
+        return "";
+    }
+  };
+  // console.log(timeAgo(new Date(ticketTime).getTime()));
   return (
     <div className="single-ticket-container">
       <div className="single-ticket-header">
         <div className="single-ticket-status">
-          <p>{ticketId}</p>
+          <p> {ticketId}</p>
           <span className="status" style={{ background: getStatusColor() }}>
-            {ticketStatus}
+            {ticketStatus == 0
+              ? status[0]
+              : ticketStatus == 1
+              ? status[1]
+              : status[2]}
           </span>
         </div>
         <div className="single-ticket-title">
           <h6>
             {ticketTitle}
             {"  "}
-            <span>{ticketTime}</span>
+            <span>{timeAgo(new Date(ticketTime).getTime())}</span>
           </h6>
           <p>{ticketDescription}</p>
         </div>
@@ -64,7 +110,7 @@ const SingleTicket = ({
             <h6>{ticketRaisedBy}</h6>
           </div>
         </div>
-        <div>
+        {/* <div>
           <p>Priority</p>
           <h6 style={{ color: ticketPriority === "Critical" && "red" }}>
             {ticketPriority}
@@ -73,11 +119,11 @@ const SingleTicket = ({
         <div>
           <p>Category</p>
           <h6>{ticketCategory}</h6>
-        </div>
-        <div>
+        </div> */}
+        {/* <div>
           <p>Due</p>
           <h6>{ticketDue}</h6>
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -17,8 +17,8 @@ const BrandInformation = (props) => {
   const [brandInformation, setBrandInformation] = useState({
     businessName: props.partner.businessName,
     email: props.partner.email,
-   partnerType: props.partner.partnerType.type,
-    // partnerCategory: props.partner.partnerCategory.name,
+   partnerType: props.partner.partnerType,
+    partnerCategory: props.partner.partnerCategory.name,
     averageOrderValue: props.partner.averageOrderValue,
     paymentOnline: props.partner.paymentOnline,
     paymentAtStore: props.partner.paymentAtStore,
@@ -98,19 +98,19 @@ const BrandInformation = (props) => {
           onChange={(e) =>
             setBrandInformation({
               ...brandInformation,
-              partnerType: e.target.value,
+              partnerType:e.target.value,
             })
           }
           defaultValue={brandInformation.partnerType}
         >
-          <option value="Private Limited">Private Limited</option>
-          <option value="Public Limited">Public Limited</option>
-          <option value="Proprietorship">Proprietorship</option>
+          <option value="1">Private Limited</option>
+          <option value="2">Public Limited</option>
+          {/* <option value="Proprietorship">Proprietorship</option>
           <option value="Partnership">Partnership</option>
           <option value="LLP">LLP</option>
           <option value="Trust">Trust</option>
           <option value="NGO">NGO</option>
-          <option value="Unregistered">Unregistered</option>
+          <option value="Unregistered">Unregistered</option> */}
         </select>
       </div>
       <div>
@@ -126,8 +126,8 @@ const BrandInformation = (props) => {
           }
           defaultValue={brandInformation.partnerCategory}
         >
-          <option value="Education and Learning">Education and Learning</option>
-          <option value="Health and Fitness">Health and Fitness</option>
+          <option value="Product">Product</option>
+          {/* <option value="Health and Fitness">Health and Fitness</option> */}
         </select>
       </div>
 

@@ -86,16 +86,20 @@ export const getPartnerById = (id) => {
 
 export const updatePartnerDetails = (id, updateObj) => {
   return (dispatch) => {
+    debugger;
     dispatch(setPartersLoading());
     axios
       .patch(`${ip}/partners/${id}`, {
         ...updateObj,
       })
       .then((res) => {
-        console.log("update resposnse", res.data);
+        console.log(res);
+        debugger;
         dispatch({ type: UPDATE_PARTNER, payload: res.data });
       })
       .catch((err) => {
+    debugger;
+
         dispatch({ type: UPDATE_PARTNER_FAILED, payload: err.response.data });
       });
   };

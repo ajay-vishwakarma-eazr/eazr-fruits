@@ -10,10 +10,13 @@ import { Link } from "react-router-dom";
 import BusinessDescription from "./BusinessDescription";
 import { connect } from "react-redux";
 import ClipLoader from "react-spinners/ClipLoader";
-
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 //actions
-import { getPartnerById, addTicket } from "../../../store/partners/actions";
+import {
+  getPartnerById,
+  updatePartnerDetails,
+  addTicket,
+} from "../../../store/partners/actions";
 import HoldModal from "./HoldModal";
 
 const PartnerDetails = (props) => {
@@ -21,56 +24,24 @@ const PartnerDetails = (props) => {
   useEffect(() => {
     props.getPartnerById(id);
   }, []);
-
+  let history = useHistory();
   const [success_msg, setSuccess_Msg] = useState(false);
-  const [fields, setFields] = useState({
-    // businessEmail: props.partners.partner.email,
-    // businessName: props.partners.partner.businessName,
-    // businessType: false,
-    // businessCategory: false,
-    // businessDescription: false,
-    // averageOrderValue: false,
-    // acceptPayment: false,
-    // pan: false,
-    // panName: false,
-    // businessPan: false,
-    // businessPan: false,
-    // address: false,
-    // pincode: false,
-    // city: false,
-    // state: false,
-    // beneficiaryName: false,
-    // ifscCode: false,
-    // accountNumber: false,
-    // aadharFront: false,
-    // aadharBack: false,
-    // authorizedPersonPan: false,
-    // companyPan: false,
-    // businessRegistrationProof: false,
-  });
 
-  const [remark, setRemark] = useState("");
-
-  const onTicketSubmit = (status) => {
-    let fieldsArr = [];
-    Object.keys(fields).map(function (key, index) {
-      if (fields[key] === true) {
-        fieldsArr.push(key);
-      }
-    });
-
-    props.addTicket({
-      partner: props.partners.partner._id,
-      serviceNumber: props.partners.partner.serviceNumber,
-      // serviceId: props.paartners.paartner.serviceId,
-      remark,
-      status,
-      queryItems: fieldsArr,
-      businessEmail: props.partners.partner.businessEmail,
-      sendMail: true,
-    });
+  const handleAccetPartner = () => {
+    const partner = {
+      status: 1,
+    };
+    props.updatePartnerDetails(id, partner);
+    history.push("/approved-partner");
   };
 
+  const handleRejectPartner = () => {
+    const rejectPartner = {
+      status: 2,
+    };
+    props.updatePartnerDetails(id, rejectPartner);
+    history.push("/partner-dashboard");
+  };
   let data;
 
   if (props.partners.loading === true) {
@@ -108,7 +79,13 @@ const PartnerDetails = (props) => {
               borderColor: statusColor(),
             }}
           >
-            {partner.status}
+            {partner.status === 0
+              ? "pending"
+              : partner.status === 1
+              ? "accpeted"
+              : partner.status === 2
+              ? "rejected"
+              : "on hold"}
           </h1>
         </div>
 
@@ -136,33 +113,27 @@ const PartnerDetails = (props) => {
             </div>
 
             <div className="partner-btn">
-              {partner.status.id !== "607fcc9c6e04510a48a07767" ? (
-                <button
-                  className="accept"
-                  onClick={() => onTicketSubmit("607fcc9c6e04510a48a07767")}
-                >
+              {partner.status.id !== 1 ? (
+                <button className="accept" onClick={() => handleAccetPartner()}>
                   Accept
                 </button>
               ) : null}
 
-              <button
-                className="reject"
-                onClick={() => onTicketSubmit("607d535ce36c5111dc63fe50")}
-              >
+              <button className="reject" onClick={() => handleRejectPartner()}>
                 Reject
               </button>
 
-            {partner.status.id !== "607d534de36c5111dc63fe4f" ? (
-             <HoldModal
-                fields={fields}
-                setFields={setFields}
-                remark={remark}
-                setRemark={setRemark}
-                onTicketSubmit={onTicketSubmit}
-              /> 
-          ) : null}
+              {/* {partner.status.id !== "607d534de36c5111dc63fe4f" ? (
+                <HoldModal
+                  fields={fields}
+                  setFields={setFields}
+                  remark={remark}
+                  setRemark={setRemark}
+                  onTicketSubmit={onTicketSubmit}
+                />
+              ) : null} */}
+            </div>
           </div>
-         </div>
         </div>
       </>
     );
@@ -208,6 +179,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { getPartnerById, addTicket })(
-  PartnerDetails
-);
+export default connect(mapStateToProps, {
+  getPartnerById,
+  updatePartnerDetails,
+  addTicket,
+})(PartnerDetails);

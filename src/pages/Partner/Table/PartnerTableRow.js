@@ -10,6 +10,8 @@ const PartnerTableRow = ({
   status,
   id,
 }) => {
+
+  
   const statusColor = () => {
     if (status === 0) {
       return "#0371e3";
@@ -41,7 +43,7 @@ const PartnerTableRow = ({
               borderColor: statusColor(),
             }}
           >
-            {status}
+            {status ===0 ?"pending":status ===1 ?"accpeted":status ===2 ?"rejected":"on hold"}
           </button>
         </td>
         <td className="approval-view-btn">
