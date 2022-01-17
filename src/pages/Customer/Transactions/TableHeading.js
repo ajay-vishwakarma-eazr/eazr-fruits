@@ -2,7 +2,7 @@ import React from "react";
 
 const TableHeading = () => {
   return (
-    <thead>
+    <thead style={{textAlign:'center'}}>
       <th>Transaction to</th>
       <th>Amount</th>
       <th>Status</th>

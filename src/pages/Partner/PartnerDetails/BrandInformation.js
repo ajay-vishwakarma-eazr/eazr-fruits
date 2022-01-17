@@ -98,14 +98,14 @@ const BrandInformation = (props) => {
           onChange={(e) =>
             setBrandInformation({
               ...brandInformation,
-              partnerType:e.target.value,
+              partnerType: e.target.value,
             })
           }
           defaultValue={brandInformation.partnerType}
         >
           <option value="1">Private Limited</option>
-          <option value="2">Public Limited</option>
-          {/* <option value="Proprietorship">Proprietorship</option>
+          {/*<option value="2">Public Limited</option>
+           <option value="Proprietorship">Proprietorship</option>
           <option value="Partnership">Partnership</option>
           <option value="LLP">LLP</option>
           <option value="Trust">Trust</option>

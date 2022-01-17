@@ -42,6 +42,19 @@ const PartnerDetails = (props) => {
     props.updatePartnerDetails(id, rejectPartner);
     history.push("/partner-dashboard");
   };
+
+
+const handleOnholdPartner = () => {
+  const onHoldPartner = {
+    status: 3,
+  };
+  props.updatePartnerDetails(id, onHoldPartner);
+  history.push("/partner-dashboard");
+};
+
+
+
+
   let data;
 
   if (props.partners.loading === true) {
@@ -121,6 +134,10 @@ const PartnerDetails = (props) => {
 
               <button className="reject" onClick={() => handleRejectPartner()}>
                 Reject
+              </button>
+
+              <button className="onhold" style={{background:"#eed202"}} onClick={() => handleOnholdPartner()}>
+                On hold
               </button>
 
               {/* {partner.status.id !== "607d534de36c5111dc63fe4f" ? (

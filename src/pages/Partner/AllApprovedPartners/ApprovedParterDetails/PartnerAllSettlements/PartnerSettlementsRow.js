@@ -24,7 +24,7 @@ const PartnerSettlementsRow = ({
         <td>₹ {amount}</td>
         <td>₹ {partnerAmount}</td>
         <td>{commision}</td>
-        <td>{gst}</td>
+        <td>{gst}%</td>
         <td>{createdAt}</td>
       </tr>
     </tbody>

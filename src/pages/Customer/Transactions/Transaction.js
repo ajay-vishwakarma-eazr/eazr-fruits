@@ -35,10 +35,8 @@ const Transaction = () => {
   const filterArray = () => {
     if (searchTranscation !== null && searchTranscation.length > 0) {
       const filter = transactions.filter((trans) => {
-        debugger;
         return (
-          trans?.creditScore?.includes(searchTranscation) ||
-          trans?.availableCreditLimit?.includes(searchTranscation)
+          trans?.amount.includes(searchTranscation) 
         );
       });
       setFilteredTransaction(filter);

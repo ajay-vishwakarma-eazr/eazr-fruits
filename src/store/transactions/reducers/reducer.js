@@ -9,7 +9,7 @@ import {
 
 export const initialState = {
   loading: false,
-  transactions: [],
+  transactions:null,
   errror: "",
 };
 

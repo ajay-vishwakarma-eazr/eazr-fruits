@@ -22,7 +22,6 @@ import { ip } from "../../config/config";
 export const getPartners = () => {
   return (dispatch) => {
     dispatch(setPartersLoading());
-
     axios
       .get(`${ip}/partners`)
       .then((res) => {

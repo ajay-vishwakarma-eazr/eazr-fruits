@@ -5,8 +5,8 @@ import "../../../partner.scss";
 import { connect } from "react-redux";
 import ClipLoader from "react-spinners/ClipLoader";
 //Actions
+import{getTranscationById} from "../../../../../store/transactions/actions/action"
 import ReactPaginate from "react-paginate";
-import { getTranscationById } from "../../../../../store/transactions/actions/action";
 import EmptySection from "../../../../../components/EmptySection/EmptySection";
 import PartnerTrancationsRow from "./PartnerTrancationsRow";
 import PartnerTranscationsHeading from "./PartnerTranscationsHeading";
@@ -35,8 +35,7 @@ class PartnerAllTransactions extends Component {
 
     const searchableTransactions = e.target.value;
     const filtered = this.props.transactions?.transactions.filter((filter) => {
-  debugger;
-      filter.status.includes(searchableTransactions)
+      filter?.amount.includes(searchableTransactions)
       //  ||
       //   filter?.debit?.includes(searchableTransactions.split(" ").join("")) ||
       //   filter.status

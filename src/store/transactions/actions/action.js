@@ -72,6 +72,59 @@ export const getTranscationById = (id) => {
 };
 
 
+// export const getTranscationById = (id, search) => {
+//   return (dispatch) => {
+//     dispatch(setPartnersLoading());
+//     if (search != "") {
+//       let bool = isNaN(Number(search));
+//       debugger;
+//       let url = bool
+//         ? `${ip}/transactions?filter=partnerId||eq||${id}&filter=user.fullName||$contL||${search}&or=user.email||$contL||${search}`
+//         : `${ip}/transactions?filter=partnerId||eq||${id}&filter=user.fullName||$contL||${search}&or=user.email||$contL||${search}&or=amount||$eq||${String(
+//             search
+//           )}`;
+//       axios
+//         .get(url)
+//         .then((res) => {
+//           debugger;
+//           dispatch({
+//             type: GET_TRANSACTION_BY_ID,
+//             payload: res.data,
+//           });
+//         })
+//         .catch((err) => {
+//           console.log(err.response.data);
+//           debugger;
+//           dispatch({
+//             type: GET_TRANSACTION_BY_ID_FAILED,
+//             payload: err.response.data,
+//           });
+//         });
+//     } else {
+//       debugger;
+//       axios
+//         .get(`${ip}/transactions?filter=partnerId||eq||${id}`)
+//         .then((res) => {
+//           debugger;
+//           dispatch({
+//             type: GET_TRANSACTION_BY_ID,
+//             payload: res.data,
+//           });
+//         })
+//         .catch((err) => {
+//           console.log(err.response.data);
+//           debugger;
+//           dispatch({
+//             type: GET_TRANSACTION_BY_ID_FAILED,
+//             payload: err.response.data,
+//           });
+//         });
+//     }
+//   };
+// };
+
+
+
 export const getUsersTranscationById = (id) => {
   return (dispatch) => {
     dispatch(setPartnersLoading());
