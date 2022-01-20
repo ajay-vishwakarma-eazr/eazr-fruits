@@ -37,7 +37,7 @@ const LogsNav = () => {
           Users Log
         </NavLink>
 
-        <NavLink
+        {/* <NavLink
           to="/delivery-logs"
           activeStyle={{
             borderBottom: "2px solid #0371e3",
@@ -46,7 +46,7 @@ const LogsNav = () => {
           }}
         >
           Delivery Logs
-        </NavLink>
+        </NavLink> */}
         <NavLink
           to="/support-logs"
           activeStyle={{

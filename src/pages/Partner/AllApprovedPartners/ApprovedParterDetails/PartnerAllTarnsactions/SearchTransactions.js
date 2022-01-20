@@ -13,7 +13,12 @@ const SearchPartner = ({ getSearchPartner }) => {
   return (
     <div className="search-partner">
       <label htmlFor="">Enrollment Id : </label>
-      <input type="text" placeholder="Search..." onChange={handleSearch} />
+      <input
+        type="text"
+        autocomplete="off"
+        placeholder="Search..."
+        onChange={handleSearch}
+      />
       <button onClick={handleSearch}>Search</button>
     </div>
   );

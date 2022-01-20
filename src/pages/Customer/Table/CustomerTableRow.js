@@ -47,7 +47,7 @@ const CustomerTableRow = ({
       <td>{gender}</td>
       <td>{creditLimit}</td>
       <td>{totalOutstandingAmount}</td>
-      <td>{kycVerified ===0 ? "No":"Yes"}</td>
+      <td>{kycVerified === 0 ? "No" : "Yes"}</td>
       <td>
         <Link to={`/user-transactions/${id}`}>
           <button className="view-customer-btn">View</button>
@@ -108,7 +108,7 @@ const CustomerTableRow = ({
 };
 
 // const mapStatetoProps = (state) => {
-//   debugger;
+//
 //   return {
 //     details: state.Users.users,
 //   };

@@ -36,7 +36,6 @@ const SingleTicket = ({
 
   const [modal, setModal] = useState(false);
   const toggle = () => {
-    debugger;
     setModal(!modal);
   };
 

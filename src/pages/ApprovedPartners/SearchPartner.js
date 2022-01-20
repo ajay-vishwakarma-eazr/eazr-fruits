@@ -22,6 +22,7 @@ const SearchPartner = ({ getSearchPartnerValue, filterArray }) => {
         <input
           type="text"
           value={search}
+          autocomplete="off"
           placeholder="Search for ..."
           onChange={(e) => onChange(e)}
         />

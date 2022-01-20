@@ -25,7 +25,7 @@ const DetailsNav = () => {
         >
           User
         </NavLink>
-        <NavLink
+        {/* <NavLink
           to="/delivery-modules"
           activeStyle={{
             borderBottom: "2px solid #0371e3",
@@ -34,7 +34,7 @@ const DetailsNav = () => {
           }}
         >
           Delivery
-        </NavLink>
+        </NavLink> */}
       </div>
     </div>
   );

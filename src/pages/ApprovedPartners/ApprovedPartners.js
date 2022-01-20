@@ -130,7 +130,7 @@ const changePage = ({ selected }) => {
             <ReactPaginate
               previousLabel={"Previous"}
               nextLabel={"Next"}
-              pageCount={pageCount?1:0}
+              pageCount={pageCount}
               onPageChange={changePage}
               containerClassName={"paginationBttns"}
               previousLinkClassName={"previousBttn"}

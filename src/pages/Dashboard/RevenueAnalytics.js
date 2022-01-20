@@ -10,12 +10,12 @@ class RevenueAnalytics extends Component {
       {
         name: "2020",
         type: "column",
-        data: [23, 42, 35, 27, 43, 22, 17, 31, 22, 22, 12, 16],
+        data: [8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       },
       {
         name: "2019",
         type: "line",
-        data: [23, 32, 27, 38, 27, 32, 27, 38, 22, 31, 21, 16],
+        data: [8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       },
     ],
     options: {
@@ -108,9 +108,9 @@ class RevenueAnalytics extends Component {
                     This Year :
                   </p>
                   <div className="d-inline-flex">
-                    <h5 className="mb-0 mr-2">₹ 34,254</h5>
+                    <h5 className="mb-0 mr-2">₹ 0</h5>
                     <div className="text-success">
-                      <i className="mdi mdi-menu-up font-size-14"> </i>2.1 %
+                      <i className="mdi mdi-menu-up font-size-14"> </i>0 %
                     </div>
                   </div>
                 </div>
@@ -122,7 +122,7 @@ class RevenueAnalytics extends Component {
                     Previous Year :
                   </p>
                   <div className="d-inline-flex">
-                    <h5 className="mb-0">₹ 32,695</h5>
+                    <h5 className="mb-0">₹ 0</h5>
                   </div>
                 </div>
               </Col>

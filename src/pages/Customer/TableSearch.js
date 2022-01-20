@@ -14,6 +14,7 @@ const TableSearch = ({ getSearchTransactionValue, filterArray }) => {
         type="text"
         value={search}
         placeholder="Search..."
+        autocomplete="off"
         onChange={(e) => onChange(e)}
       />
       {/* <select

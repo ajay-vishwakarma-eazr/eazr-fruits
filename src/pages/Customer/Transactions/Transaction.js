@@ -35,8 +35,11 @@ const Transaction = () => {
   const filterArray = () => {
     if (searchTranscation !== null && searchTranscation.length > 0) {
       const filter = transactions.filter((trans) => {
-        return (
-          trans?.amount.includes(searchTranscation) 
+        return (trans.partner.businessName
+          .toLowerCase()
+          .split(" ")
+          .join("")
+          .includes(searchTranscation.toLowerCase().split(" ").join(""))
         );
       });
       setFilteredTransaction(filter);

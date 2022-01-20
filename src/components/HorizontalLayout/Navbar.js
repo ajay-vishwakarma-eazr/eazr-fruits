@@ -175,12 +175,12 @@ class Navbar extends Component {
                       {this.props.t("Help and Support")}
                     </Link>
                   </li> */}
-                    <li className="nav-item">
+                    {/* <li className="nav-item">
                       <Link className="nav-link" to="/modules">
                         <i className="ri-sound-module-fill mr-2"></i>
                         {this.props.t("Modules")}
                       </Link>
-                    </li>
+                    </li> */}
                 </ul>
               </Collapse>
             </nav>

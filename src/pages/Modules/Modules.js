@@ -47,7 +47,7 @@ const Modules = () => {
           <SingleModule changeToggle={onChange} status={modules.transactions} moduleName="Transactions" moduleDbName={"transactions"} />
           <SingleModule changeToggle={onChange} status={modules.settlements} moduleName="Settlements" moduleDbName={"settlements"} />
           <SingleModule changeToggle={onChange} status={modules.myProducts} moduleName="My Products" moduleDbName={"myProducts"} />
-          <SingleModule changeToggle={onChange} status={modules.myOrders} moduleName="My Orders" moduleDbName={"myOrders"} />
+          {/* <SingleModule changeToggle={onChange} status={modules.myOrders} moduleName="My Orders" moduleDbName={"myOrders"} /> */}
           <SingleModule changeToggle={onChange} status={modules.reports} moduleName="Reports" moduleDbName={"reports"} />
           <SingleModule changeToggle={onChange} status={modules.manageQr} moduleName="Manage QR" moduleDbName={"manageQr"} />
           <SingleModule changeToggle={onChange} status={modules.settings} moduleName="Settings" moduleDbName={"settings"} />

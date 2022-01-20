@@ -35,13 +35,13 @@ class PartnerAllTransactions extends Component {
     this.setState({
       searchTransactions: e.target.value,
     });
-  
-  this.filterdata();  
-    
+
+    this.filterdata();
+
   };
 
   filterdata = () => {
-    debugger;
+
     const searchedData = this.state.searchTransactions;
     this.setState({
       transactionList: this.props.getTranscationSearch(
@@ -89,11 +89,11 @@ class PartnerAllTransactions extends Component {
               className="partner-approval-table"
             >
               <PartnerTranscationsHeading />
-              {this.state.searchTransactions
+              {this.state.Transactions
                 ? this.state.transactionList.map((item, index) => (
                     <PartnerTrancationsRow
                       key={index}
-                      userName={item.user.fullName}
+                      userName={item?.user.fullName}
                       amount={item?.amount}
                       status={item?.status}
                       debit={item?.debit.toString()}
@@ -134,7 +134,7 @@ class PartnerAllTransactions extends Component {
           <div className="partner">
             <Container fluid>
               <Card className="partner-table-approval">
-                <div className="search-partner">
+                {/* <div className="search-partner">
                   <div>
                     <label htmlFor="">Search transactions: </label>
                     <input
@@ -145,7 +145,7 @@ class PartnerAllTransactions extends Component {
                       value={this.state.searchTransactions}
                     />
                   </div>
-                </div>
+                </div> */}
 
                 <CardBody>{data}</CardBody>
 

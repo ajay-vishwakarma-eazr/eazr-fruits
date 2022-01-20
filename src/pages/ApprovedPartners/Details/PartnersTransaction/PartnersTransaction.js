@@ -134,6 +134,7 @@ class PartnersTransaction extends Component {
                   type="text"
                   placeholder="Search..."
                   onChange={this.handleSearch}
+                  autocomplete="off"
                   value={this.state.searchPartner}
                 />
               </div>

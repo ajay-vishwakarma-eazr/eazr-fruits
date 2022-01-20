@@ -19,7 +19,7 @@ const statusColor = () => {
     <tbody>
       <tr>
         <td>{userName}</td>
-        <td>{amount}</td>
+        <td>₹ {status ===2 ? amount: "-"}</td>
         <td>
           <p
             style={{

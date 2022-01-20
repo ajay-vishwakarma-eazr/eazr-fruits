@@ -114,7 +114,7 @@ class EarningReports extends Component {
                           options={this.state.options}
                           series={this.state.series}
                           type="radialBar"
-                          height="60"
+                          height="90"
                         />
                       </div>
                     </div>
@@ -122,7 +122,7 @@ class EarningReports extends Component {
                     <p className="text-muted text-truncate mb-2">
                       Weekly Earnings
                     </p>
-                    <h5>₹ 2,523</h5>
+                    <h5>₹ 0</h5>
                   </div>
                 </Col>
 
@@ -134,7 +134,7 @@ class EarningReports extends Component {
                           options={this.state.options2}
                           series={this.state.series2}
                           type="radialBar"
-                          height="60"
+                          height="90"
                         />
                       </div>
                     </div>
@@ -142,7 +142,7 @@ class EarningReports extends Component {
                     <p className="text-muted text-truncate mb-2">
                       Monthly Earnings
                     </p>
-                    <h5>₹ 11,235</h5>
+                    <h5>₹ 0</h5>
                   </div>
                 </Col>
               </Row>

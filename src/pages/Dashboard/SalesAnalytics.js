@@ -46,7 +46,7 @@ class SalesAnalytics extends Component {
                 options={this.state.options}
                 series={this.state.series}
                 type="donut"
-                height="230"
+                height="270"
               />
             </div>
 
@@ -57,7 +57,7 @@ class SalesAnalytics extends Component {
                     <i className="mdi mdi-circle text-primary font-size-10 mr-1"></i>{" "}
                     Product A
                   </p>
-                  <h5>42 %</h5>
+                  <h5>0 %</h5>
                 </div>
               </Col>
               <Col xs={4}>
@@ -66,7 +66,7 @@ class SalesAnalytics extends Component {
                     <i className="mdi mdi-circle text-success font-size-10 mr-1"></i>{" "}
                     Product B
                   </p>
-                  <h5>26 %</h5>
+                  <h5>0 %</h5>
                 </div>
               </Col>
               <Col xs={4}>
@@ -75,7 +75,7 @@ class SalesAnalytics extends Component {
                     <i className="mdi mdi-circle text-warning font-size-10 mr-1"></i>{" "}
                     Product C
                   </p>
-                  <h5>42 %</h5>
+                  <h5>0 %</h5>
                 </div>
               </Col>
             </Row>

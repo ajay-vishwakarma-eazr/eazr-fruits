@@ -34,7 +34,12 @@ class PartnerSettlements extends Component {
     });
 
     const searchableSettlements = e.target.value;
-    const filtered = this.props.settlements.settlements.filter((filter) => filter.amount.includes(searchableSettlements));
+    const filtered = this.props.settlements.settlements.filter((filter) => 
+    // return 
+    filter.partner.businessName
+    .toLowerCase()
+    .includes(searchableSettlements)) 
+    // filter.partner.partnerAmount.includes(searchableSettlements) 
     this.setState({
       settlementsList: filtered,
     });
@@ -83,12 +88,12 @@ class PartnerSettlements extends Component {
                 ? this.state.settlementsList.map((settlement, index) => (
                     <PartnerSettlementsRow
                       key={index}
-                      c
+                      partnerName={settlement.partner.businessName}
                       amount={settlement.amount}
                       partnerAmount={settlement.partnerAmount}
-                      upi={settlement.partner.upi}
+                      commision={settlement.commision}
                       gst={settlement.gst}
-                      createdAt={settlement.createdTimestamp.slice(0, 8)}
+                      createdAt={settlement.createdTimestamp.slice(0, 10)}
                     />
                   ))
                 : settlements?.settlements

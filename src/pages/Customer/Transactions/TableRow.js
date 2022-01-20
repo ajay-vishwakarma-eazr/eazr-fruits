@@ -16,7 +16,7 @@ const TableRow = ({ amount, status, partnerName, debit, createAt }) => {
   return (
     <tr>
       <td>{partnerName}</td>
-      <td>{amount}</td>
+      <td>₹ {status ===2 ? amount: "-"}</td>
       <td>
         <p
           style={{ color: statusColor(), border: `1px solid ${statusColor()}`,borderRadius:"10px" }}
