@@ -40,7 +40,7 @@ const CreditDetails = () => {
         </div>
         <div className="due-date-div">
           <h6>Due Date</h6>
-          <p>{dueDate}</p>
+          <p>{dueDate.slice(0,10)}</p>
         </div>
       </div>
       <div className="available-credit-div">

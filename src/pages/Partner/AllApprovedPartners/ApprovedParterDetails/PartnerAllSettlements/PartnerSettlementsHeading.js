@@ -7,7 +7,7 @@ const PartnerSettlementsHeading = () => {
       <th>Partner Name</th>
       <th>Amount</th>
       <th>Partner Amount</th>
-      <th>Commision</th>
+      <th>Commission</th>
       <th>GST</th>
       <th>Created At</th>
     </thead>

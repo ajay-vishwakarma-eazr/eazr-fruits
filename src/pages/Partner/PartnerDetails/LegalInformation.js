@@ -17,11 +17,8 @@ const LegalInformation = (props) => {
   const [legalInformation, setLegalInformation] = useState({
     pan: props.partner.pan,
     panName: props.partner.panName,
-    address: props.partner.address,
+    address: props.partner.city,
     businessPan: props.partner.businessPan ? props.partner.businessPan : "",
-    // pincode: props.partner.address.pincode,
-    // city: props.partner.address.city,
-    // state: props.partner.address.state,
   });
 
   const getDisableEdit = (disableEdit) => {
@@ -30,6 +27,7 @@ const LegalInformation = (props) => {
 
   const onSave = () => {
     props.updatePartnerDetails(id, legalInformation);
+    setEdit(!edit);  
   };
 
   return (

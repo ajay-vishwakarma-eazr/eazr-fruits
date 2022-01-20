@@ -30,6 +30,7 @@ const BankAccountDetails = ({ id }) => {
   };
   const onSave = () => {
     dispatch(updateBankDetails(bank[0]?.id, partnerBankDetail));
+    setEdit(!edit)
   };
 
   return (

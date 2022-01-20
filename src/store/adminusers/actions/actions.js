@@ -119,7 +119,7 @@ export const updateUserDetails = (id, formData) => {
   return (dispatch) => {
     dispatch(setUserLoading());
     axios
-      .patch(`${ip}/users/${id}`, { ...formData })
+      .patch(`${ip}/users/${id}`, {...formData })
       .then((res) => {
         axios
           .get(`${ip}/users`)
@@ -130,7 +130,6 @@ export const updateUserDetails = (id, formData) => {
           .catch((err) => {
             console.log(err);
             dispatch(FetchUsersFailure(err.message));
-            // alert('No data found')
           });
       })
       .catch((err) => {

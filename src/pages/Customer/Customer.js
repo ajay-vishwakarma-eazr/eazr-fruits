@@ -34,7 +34,6 @@ useEffect(() => {
   const filterArray = () => {
     if (searchUser !== null && searchUser.length > 0) {
       const filter = users.filter((filterUserData) => {
-        debugger;
         return (
           filterUserData?.fullName
             ?.toLowerCase()
@@ -73,21 +72,24 @@ useEffect(() => {
               >
                 <CustomerTableHeading />
                 {filteredUser
-                  ? filteredUser.map((users) => {
-                      debugger;
-                      return (
-                        <CustomerTableRow
-                          key={users.id}
-                          id={users.id}
-                          name={users.fullName}
-                          email={users.email}
-                          contact={users.contactNumber}
-                          gender={users.gender}
-                          creditLimit={users.creditLimit}
-                          totalOutstandingAmount={users.totalOutstandingAmount}
-                        />
-                      );
-                    })
+                  ? filteredUser
+                      .slice(pagesVisited, pagesVisited + usersPerPage)
+                      .map((users) => {
+                        return (
+                          <CustomerTableRow
+                            key={users.id}
+                            id={users.id}
+                            name={users.fullName}
+                            email={users.email}
+                            contact={users.contactNumber}
+                            gender={users.gender}
+                            creditLimit={users.creditLimit}
+                            totalOutstandingAmount={
+                              users.totalOutstandingAmount
+                            }
+                          />
+                        );
+                      })
                   : users
                       .slice(pagesVisited, pagesVisited + usersPerPage)
                       .map((users) => {

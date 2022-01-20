@@ -70,6 +70,7 @@ import PartnerAllTransactions from "../pages/Partner/AllApprovedPartners/Approve
 import AllApprovedPartners from "../pages/Partner/AllApprovedPartners/AllApprovedPartners";
 import PartnerSettlements from "../pages/Partner/AllApprovedPartners/ApprovedParterDetails/PartnerAllSettlements/PartnerSettlements";
 import Transaction from "../pages/Customer/Transactions/Transaction";
+import Comment from "../pages/HelpAndSupport/SupportComments/Comment";
 
 
 const authProtectedRoutes = [
@@ -132,6 +133,7 @@ const authProtectedRoutes = [
 
   //Support routes
   { path: "/support-tickets", component: Tickets },
+  { path: "/support-comment/:id", component: Comment },
   { path: "/new-tickets", component: NewTickets },
   { path: "/open-tickets", component: OpenTickets },
   { path: "/closed-tickets", component: ClosedTickets },

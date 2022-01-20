@@ -110,7 +110,7 @@ const Transaction = () => {
   } else {
     data = <EmptySection />;
   }
-  const pageCount = Math.ceil(transactions.length / usersPerPage);
+  const pageCount = Math.ceil(transactions?.length / usersPerPage);
 
   const changePage = ({ selected }) => {
     setPageNumber(selected);

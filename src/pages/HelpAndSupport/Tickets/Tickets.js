@@ -12,6 +12,7 @@ const Tickets = () => {
   const { tickets } = useSelector((state) => state.tickets);
   useEffect(() => {
     dispatch(fetchTickets());
+    console.log(tickets);
   }, []);
   return (
     <div className="page-content">
@@ -19,12 +20,12 @@ const Tickets = () => {
         <BackBtn route="#" />
         <SupportNav />
 
-        {tickets.map((ticket, index) => {
+        {tickets?.map((ticket, index) => {
           return (
             <SingleTicket
               key={index}
               ticketId={ticket.id}
-              ticketImage={ticket?.file[0]}
+               ticketImage={ticket?.file[0]}
               ticketStatus={ticket.status}
               ticketTitle={ticket.title}
               ticketTime={ticket.createdTimestamp}

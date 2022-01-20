@@ -5,7 +5,10 @@ import "../../../partner.scss";
 import { connect } from "react-redux";
 import ClipLoader from "react-spinners/ClipLoader";
 //Actions
-import{getTranscationById} from "../../../../../store/transactions/actions/action"
+import {
+  getTranscationById,
+  getTranscationSearch,
+} from "../../../../../store/transactions/actions/action";
 import ReactPaginate from "react-paginate";
 import EmptySection from "../../../../../components/EmptySection/EmptySection";
 import PartnerTrancationsRow from "./PartnerTrancationsRow";
@@ -32,31 +35,24 @@ class PartnerAllTransactions extends Component {
     this.setState({
       searchTransactions: e.target.value,
     });
+  
+  this.filterdata();  
+    
+  };
 
-    const searchableTransactions = e.target.value;
-    const filtered = this.props.transactions?.transactions.filter((filter) => {
-      filter?.amount.includes(searchableTransactions)
-      //  ||
-      //   filter?.debit?.includes(searchableTransactions.split(" ").join("")) ||
-      //   filter.status
-      //     ?.split(" ")
-      //     .join("")
-      //     ?.includes(searchableTransactions.split(" ").join("")) ||
-      //   filter.refund
-      //     ?.toLowerCase()
-      //     ?.split(" ")
-      //     ?.join("")
-      //     ?.includes(searchableTransactions.toLowerCase().split(" ").join(""));
-    });
-
+  filterdata = () => {
+    debugger;
+    const searchedData = this.state.searchTransactions;
     this.setState({
-      transactionList: filtered,
+      transactionList: this.props.getTranscationSearch(
+        this.props.match.params.id,
+        searchedData
+      ),
     });
   };
 
   render() {
     const { transactions } = this.props;
-
     const usersPerPage = 10;
     const pageVisited = this.state.pageNumber * usersPerPage;
 
@@ -77,7 +73,7 @@ class PartnerAllTransactions extends Component {
       );
     } else if (
       transactions?.transactions &&
-      transactions?.transactions.length > 0
+      transactions?.transactions?.length > 0
     ) {
       data = (
         <div className="table-rep-plugin">
@@ -94,9 +90,10 @@ class PartnerAllTransactions extends Component {
             >
               <PartnerTranscationsHeading />
               {this.state.searchTransactions
-                ? this.state.transactionList?.map((item, index) => (
+                ? this.state.transactionList.map((item, index) => (
                     <PartnerTrancationsRow
                       key={index}
+                      userName={item.user.fullName}
                       amount={item?.amount}
                       status={item?.status}
                       debit={item?.debit.toString()}
@@ -143,6 +140,7 @@ class PartnerAllTransactions extends Component {
                     <input
                       type="text"
                       placeholder="Search..."
+                      name="search"
                       onChange={this.handleSearch}
                       value={this.state.searchTransactions}
                     />
@@ -165,7 +163,7 @@ class PartnerAllTransactions extends Component {
               </Card>
             </Container>
           </div>
-        </div>{" "}
+        </div>
       </>
     );
   }
@@ -178,7 +176,9 @@ const mapStateToProps = (state) => {
 };
 
 export default withRouter(
-  connect(mapStateToProps, { getTranscationById })(PartnerAllTransactions)
+  connect(mapStateToProps, { getTranscationById, getTranscationSearch })(
+    PartnerAllTransactions
+  )
 );
 
 // export default withRouter(connect(mapStateToProps, null)(App));

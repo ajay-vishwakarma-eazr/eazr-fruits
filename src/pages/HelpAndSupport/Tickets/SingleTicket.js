@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./singleticket.scss";
-import avatar from "../../../assets/images/users/avatar-2.jpg";
 import avatar2 from "../../../assets/images/users/avatar-3.jpg";
+import { Modal, ModalBody } from "reactstrap";
+import Comment from "../SupportComments/Comment";
+import { Link } from "react-router-dom";
 
 const SingleTicket = ({
   ticketId,
@@ -23,16 +25,6 @@ const SingleTicket = ({
   };
 
   const getStatusColor = () => {
-    // if (status[0] === "Closed") {
-    //   return "#0371e3";
-    // }
-    // if (ticketStatus[1] === "New") {
-    //   return "#eed202";
-    // }
-    // if (ticketStatus[2] === "Open") {
-    //   return "#df4759";
-    // }
-
     if (ticketStatus === "New") {
       return "#d9534f";
     } else if (ticketStatus === "Open") {
@@ -40,6 +32,12 @@ const SingleTicket = ({
     } else {
       return "#5cb85c";
     }
+  };
+
+  const [modal, setModal] = useState(false);
+  const toggle = () => {
+    debugger;
+    setModal(!modal);
   };
 
   const timeAgo = (prevDate) => {
@@ -67,50 +65,58 @@ const SingleTicket = ({
         return "";
     }
   };
+
+  // const handleComments=()=>{
+  // showComment===true ? <SupportComments/> : setShowComment(false);
+  // }
+
   // console.log(timeAgo(new Date(ticketTime).getTime()));
   return (
-    <div className="single-ticket-container">
-      <div className="single-ticket-header">
-        <div className="single-ticket-status">
-          <p> {ticketId}</p>
-          <span className="status" style={{ background: getStatusColor() }}>
-            {ticketStatus == 0
-              ? status[0]
-              : ticketStatus == 1
-              ? status[1]
-              : status[2]}
-          </span>
-        </div>
-        <div className="single-ticket-title">
-          <h6>
-            {ticketTitle}
-            {"  "}
-            <span>{timeAgo(new Date(ticketTime).getTime())}</span>
-          </h6>
-          <p>{ticketDescription}</p>
-        </div>
-      </div>
-      <div className="single-ticket-footer">
-        <div className="ticket-actions">
-          <i className="mdi mdi-pin-outline"></i>
-          <i className="mdi mdi-star-outline"></i>
-          <i className="mdi mdi-message-minus-outline"></i>
-        </div>
-        <div className="ticket-assign">
-          <img src={ticketImage} alt="" />
-          <div>
-            <p>Assigned To</p>
-            <h6>{ticketAssignedTo}</h6>
+    <>
+      <div className="single-ticket-container">
+        <div className="single-ticket-header">
+          <div className="single-ticket-status">
+            <p> {ticketId}</p>
+            <span className="status" style={{ background: getStatusColor() }}>
+              {ticketStatus == 0
+                ? status[0]
+                : ticketStatus == 1
+                ? status[1]
+                : status[2]}
+            </span>
+          </div>
+          <div className="single-ticket-title">
+            <h6>
+              {ticketTitle}
+              <span>{timeAgo(new Date(ticketTime).getTime())}</span>
+            </h6>
+            <p>{ticketDescription}</p>
           </div>
         </div>
-        <div className="ticket-assign">
-          <img src={avatar2} alt="" />
-          <div>
-            <p>Raised By</p>
-            <h6>{ticketRaisedBy}</h6>
+        <div className="single-ticket-footer">
+          <div className="ticket-actions">
+            <i className="mdi mdi-pin-outline"></i>
+            <i className="mdi mdi-star-outline"></i>
+
+            <Link to={`/support-comment/${ticketId}`}>
+              <i className="mdi mdi-message-minus-outline" />
+            </Link>
           </div>
-        </div>
-        {/* <div>
+          <div className="ticket-assign">
+            <img src={ticketImage} alt="" />
+            <div>
+              <p>Assigned To</p>
+              <h6>{ticketAssignedTo}</h6>
+            </div>
+          </div>
+          <div className="ticket-assign">
+            <img src={avatar2} alt="" />
+            <div>
+              <p>Raised By</p>
+              <h6>{ticketRaisedBy} </h6>
+            </div>
+          </div>
+          {/* <div>
           <p>Priority</p>
           <h6 style={{ color: ticketPriority === "Critical" && "red" }}>
             {ticketPriority}
@@ -120,12 +126,14 @@ const SingleTicket = ({
           <p>Category</p>
           <h6>{ticketCategory}</h6>
         </div> */}
-        {/* <div>
+          {/* <div>
           <p>Due</p>
           <h6>{ticketDue}</h6>
         </div> */}
+        </div>
       </div>
-    </div>
+      {/* <Comment id={ticketId}/>  */}
+    </>
   );
 };
 

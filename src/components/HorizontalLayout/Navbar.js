@@ -96,12 +96,12 @@ class Navbar extends Component {
                       <i className="fa fa-user mr-2"></i> {this.props.t("User")}
                     </Link>
                   </li>
-                  <li className="nav-item">
+                  {/* <li className="nav-item">
                     <Link className="nav-link" to="/delivery-dashboard">
                       <i className="mdi mdi-truck-delivery mr-2"></i>{" "}
                       {this.props.t("Delivery")}
                     </Link>
-                  </li>
+                  </li> */}
                   <li className="nav-item">
                     <Link className="nav-link" to="/support-tickets">
                       <i className=" fas fa-headphones-alt mr-2"></i>{" "}
@@ -175,12 +175,12 @@ class Navbar extends Component {
                       {this.props.t("Help and Support")}
                     </Link>
                   </li> */}
-                  <li className="nav-item">
-                    <Link className="nav-link" to="/modules">
-                      <i className="ri-sound-module-fill mr-2"></i>
-                      {this.props.t("Modules")}
-                    </Link>
-                  </li>
+                    <li className="nav-item">
+                      <Link className="nav-link" to="/modules">
+                        <i className="ri-sound-module-fill mr-2"></i>
+                        {this.props.t("Modules")}
+                      </Link>
+                    </li>
                 </ul>
               </Collapse>
             </nav>

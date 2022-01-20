@@ -17,13 +17,13 @@ const PartnerTableRow = ({
       return "#0371e3";
     }
     if (status === 1) {
-      return "#eed202";
+      return "#4bb543";
     }
     if (status === 2) {
       return "#df4759";
     }
     if (status === 3) {
-      return "#4bb543";
+      return "#eed202";
     }
   };
 

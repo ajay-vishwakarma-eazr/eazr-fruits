@@ -23,9 +23,8 @@ const AuthModal = ({
         Save
       </Button>
       <Modal isOpen={modal} centered>
-        <ModalHeader toggle={toggle}></ModalHeader>
+        <ModalHeader toggle={toggle}>Save</ModalHeader>
         <ModalBody className="auth-modal-body" style={{ padding: "3rem" }}>
-          {/* <label>To make changes you need to enter your password</label> */}
           <label>Want to Save changes ?</label>
           {/* <input
             type="password"

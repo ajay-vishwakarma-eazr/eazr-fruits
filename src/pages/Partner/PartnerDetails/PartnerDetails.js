@@ -51,10 +51,6 @@ const handleOnholdPartner = () => {
   props.updatePartnerDetails(id, onHoldPartner);
   history.push("/partner-dashboard");
 };
-
-
-
-
   let data;
 
   if (props.partners.loading === true) {
@@ -74,13 +70,13 @@ const handleOnholdPartner = () => {
         return "#0371e3";
       }
       if (partner.status === 1) {
-        return "#eed202";
+        return "#4bb543";
       }
       if (partner.status === 2) {
         return "#df4759";
       }
       if (partner.status === 3) {
-        return "#4bb543";
+        return "#eed202";
       }
     };
     data = (

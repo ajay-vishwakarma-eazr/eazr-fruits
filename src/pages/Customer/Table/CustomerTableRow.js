@@ -47,7 +47,7 @@ const CustomerTableRow = ({
       <td>{gender}</td>
       <td>{creditLimit}</td>
       <td>{totalOutstandingAmount}</td>
-      <td>{kycVerified ===0 ? "NO":"YES"}</td>
+      <td>{kycVerified ===0 ? "No":"Yes"}</td>
       <td>
         <Link to={`/user-transactions/${id}`}>
           <button className="view-customer-btn">View</button>

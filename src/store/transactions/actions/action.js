@@ -72,6 +72,28 @@ export const getTranscationById = (id) => {
 };
 
 
+export const getTranscationSearch= (id,search) => {
+  return (dispatch) => {
+    dispatch(setPartnersLoading());
+    axios
+      .get(`${ip}/transactions?filter=partnerId||eq||${id}&filter=amount||$eq||${search}`)
+      .then((res) => {
+        dispatch({
+          type: GET_TRANSACTION_BY_ID,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+        dispatch({
+          type: GET_TRANSACTION_BY_ID_FAILED,
+          payload: err.response.data,
+        });
+      });
+  };
+};
+
+
 // export const getTranscationById = (id, search) => {
 //   return (dispatch) => {
 //     dispatch(setPartnersLoading());

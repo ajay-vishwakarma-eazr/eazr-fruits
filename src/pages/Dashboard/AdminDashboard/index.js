@@ -34,7 +34,7 @@ class AdminDashboard extends Component {
         {
           icon: "fas fa-users",
           title: "People Online",
-          value: "171",
+          value: "0",
           rate: "2.4%",
           route: "#",
           desc: "From previous period",

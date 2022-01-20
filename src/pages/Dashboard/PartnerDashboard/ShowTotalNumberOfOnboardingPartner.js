@@ -17,7 +17,11 @@ function ShowTotalNumberOfOnboardingPartner() {
   return (
     <>
       <div>
-        {numberOfOnboardingPartners?.filter((data) => data.status != 1)?.length}
+        {
+          !numberOfOnboardingPartners ? 0 :numberOfOnboardingPartners?.filter(
+            (data) => data.status != 1
+          )?.length
+        }
       </div>
     </>
   );

@@ -21,7 +21,7 @@ class AllApprovedPartners extends Component {
     };
   }
   componentDidMount() {
-    const test = this.props.getPartners();
+    this.props.getPartners();
   }
 
   handleSearch = (e) => {
@@ -64,7 +64,6 @@ class AllApprovedPartners extends Component {
     const { partners } = this.props;
     const usersPerPage = 10;
     const pageVisited = this.state.pageNumber * usersPerPage;
-
     const pageCount = Math.ceil(
       this.props.partners.partners?.length / usersPerPage
     );
@@ -80,7 +79,7 @@ class AllApprovedPartners extends Component {
           <ClipLoader color="#bbbbbb" loading={true} size={60} />
         </div>
       );
-    } else if (partners.partners && partners.partners.length > 0) {
+    } else if (partners.partners !== null && partners.partners.length > 0) {
       data = (
         <div className="table-rep-plugin">
           <div
@@ -97,6 +96,7 @@ class AllApprovedPartners extends Component {
               <ApprovedPartnersHeading />
               {this.state.searchPartner
                 ? this.state.partnerList
+                    .slice(pageVisited, pageVisited + usersPerPage)
                     .filter((item) => item.status === 1)
                     .map((item, index) => (
                       <ApprovedPartnersRow

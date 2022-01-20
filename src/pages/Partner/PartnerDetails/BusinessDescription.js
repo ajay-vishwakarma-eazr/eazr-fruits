@@ -22,8 +22,8 @@ const BusinessDescription = (props) => {
   };
 
   const onSave = () => {
-    debugger;
     props.updatePartnerDetails(id, description);
+    setEdit(!edit);
   };
 
   return (

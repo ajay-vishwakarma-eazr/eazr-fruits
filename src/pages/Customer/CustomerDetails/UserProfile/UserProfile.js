@@ -60,10 +60,11 @@ const UserProfile = () => {
   };
   const onSave = () => {
     dispatch(updateUserDetails(id, formData));
+    setEdit(!edit)
   };
 
   return (
-    <>
+    <>  
       <div className="page-content customer-page ">
         <Container fluid>
           <BackBtn route="users" />

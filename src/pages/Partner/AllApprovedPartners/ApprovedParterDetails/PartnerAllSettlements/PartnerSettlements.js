@@ -35,7 +35,6 @@ class PartnerSettlements extends Component {
 
     const searchableSettlements = e.target.value;
     const filtered = this.props.settlements.settlements.filter((filter) => filter.amount.includes(searchableSettlements));
-    debugger;
     this.setState({
       settlementsList: filtered,
     });

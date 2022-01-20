@@ -43,7 +43,6 @@ export const getBankDetails = (id) => async (dispatch) => {
 // };
 
 export const updateBankDetails = (id, updateObj) => {
-  debugger;
   return (dispatch) => {
     axios
       .patch(`${ip}/banks/${id}`, {

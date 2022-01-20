@@ -82,7 +82,7 @@ class Partner extends Component {
           <ClipLoader color="#bbbbbb" loading={true} size={60} />
         </div>
       );
-    } else if (partners.partners && partners.partners.length > 0) {
+    } else if (partners?.partners !== null && partners.partners?.length > 0) {
       data = (
         <div className="table-rep-plugin">
           <div
@@ -100,6 +100,7 @@ class Partner extends Component {
               {this.state.searchPartner
                 ? this.state.partnerList
                     .filter((item) => item.status != 1)
+                    .slice(pageVisited, pageVisited + usersPerPage)
                     .map((item, index) => (
                       <PartnerTableRow
                         key={index}
@@ -168,7 +169,7 @@ class Partner extends Component {
             <ReactPaginate
               previousLabel={"Previous"}
               nextLabel={"Next"}
-              pageCount={pageCount}
+              pageCount={pageCount?1:0}
               onPageChange={changePage}
               containerClassName={"paginationBttns"}
               previousLinkClassName={"previousBttn"}
