@@ -62,7 +62,7 @@ class RecentlyActivity extends Component {
                   <div>
                     <div>
                       <h5 className="font-size-13">
-                        28 Apr, 2020{" "}
+                        1 jan, 2022{" "}
                         <small className="text-muted">12:07 am</small>
                       </h5>
                     </div>
@@ -83,7 +83,7 @@ class RecentlyActivity extends Component {
                   <div>
                     <div>
                       <h5 className="font-size-13">
-                        21 Apr, 2020{" "}
+                        3 jan, 2022{" "}
                         <small className="text-muted">08:01 pm</small>
                       </h5>
                     </div>
@@ -104,7 +104,7 @@ class RecentlyActivity extends Component {
                   <div>
                     <div>
                       <h5 className="font-size-13">
-                        17 Apr, 2020{" "}
+                      8 Jan, 2022{" "}
                         <small className="text-muted">09:23 am</small>
                       </h5>
                     </div>
@@ -125,7 +125,7 @@ class RecentlyActivity extends Component {
                   <div>
                     <div>
                       <h5 className="font-size-13">
-                        11 Apr, 2020{" "}
+                        11 Jan, 2022{" "}
                         <small className="text-muted">05:10 pm</small>
                       </h5>
                     </div>
@@ -146,7 +146,7 @@ class RecentlyActivity extends Component {
                   <div>
                     <div>
                       <h5 className="font-size-13">
-                        07 Apr, 2020{" "}
+                        10 Jan, 2022{" "}
                         <small className="text-muted">12:47 pm</small>
                       </h5>
                     </div>
@@ -167,7 +167,7 @@ class RecentlyActivity extends Component {
                   <div>
                     <div>
                       <h5 className="font-size-13">
-                        05 Apr, 2020{" "}
+                        13 Jan, 2022{" "}
                         <small className="text-muted">03:09 pm</small>
                       </h5>
                     </div>
@@ -188,7 +188,7 @@ class RecentlyActivity extends Component {
                   <div>
                     <div>
                       <h5 className="font-size-13">
-                        02 Apr, 2020{" "}
+                        16 Jan, 2022{" "}
                         <small className="text-muted">12:07 am</small>
                       </h5>
                     </div>
