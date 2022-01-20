@@ -29,7 +29,7 @@ const BrandInformation = (props) => {
   };
 
   const onSave = () => {
-    props.updatePartupdatePartnerDetailsnerDetails(id, brandInformation);
+    props.updatePartnerDetails(id, brandInformation);
     setEdit(!edit)
   };
 
