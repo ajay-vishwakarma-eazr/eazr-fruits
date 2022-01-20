@@ -71,7 +71,7 @@ class AdminDashboard extends Component {
                 <RecentlyActivity />
               </Col>
               <Col xl={8}>
-                {/* <RevenueAnalytics /> */}
+                <RevenueAnalytics />
               </Col>
             </Row>
           </Container>

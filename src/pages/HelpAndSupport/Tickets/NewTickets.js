@@ -37,6 +37,7 @@ const NewTickets = () => {
               />
             );
           })}
+        <h1 style={{ fontSize: "18px", textAlign: "center" }}>No data found</h1>
       </Container>
     </div>
   );
