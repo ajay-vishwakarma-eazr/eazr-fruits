@@ -17,7 +17,7 @@ const TableSearch = ({ getSearchTransactionValue, filterArray }) => {
         autocomplete="off"
         onChange={(e) => onChange(e)}
       />
-      {/* <select
+      <select
         name=""
         id=""
         value={selectSearch}
@@ -30,7 +30,7 @@ const TableSearch = ({ getSearchTransactionValue, filterArray }) => {
         <option value="Completed">Completed Transactions</option>
         <option value="Refund">Refunded Transactions</option>
         <option value="Failed">Failed Transactions</option>
-      </select> */}
+      </select>
     </div>
   );
 };

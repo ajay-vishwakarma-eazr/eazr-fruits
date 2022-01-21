@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Modal, ModalBody,ModalHeader } from "reactstrap";
 import { connect } from "react-redux";
+import {useParams, useHistory} from "react-router-dom"
 
 //actions
 import { clearErrors } from "../../../store/partners/actions";
@@ -16,6 +17,8 @@ const AuthModal = ({
   const [success_msg, setSuccess_Msg] = useState(false);
   const disableEdit = true;
   const toggle = () => setModal(!modal);
+  let history = useHistory();
+  // const {id} = useParams();
 
   return (
     <div>
@@ -35,6 +38,7 @@ const AuthModal = ({
             className="partner-auth-btn"
             onClick={() => {
               onSave();
+              //  history.push(`/partner-approval/${id}`);
             }}
           >
             Save

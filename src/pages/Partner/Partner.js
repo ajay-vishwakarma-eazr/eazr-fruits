@@ -11,6 +11,7 @@ import ReactPaginate from "react-paginate";
 import { getPartners } from "../../store/partners/actions";
 import BackBtn from "../BackBtn";
 import EmptySection from "../../components/EmptySection/EmptySection";
+
 class Partner extends Component {
   constructor() {
     super();
@@ -105,6 +106,7 @@ class Partner extends Component {
                       <PartnerTableRow
                         key={index}
                         id={item.id}
+                        profilePicture={item.businessProfilePicture}
                         brandName={item.businessName}
                         contact={item.contactNumber}
                         email={item.email}
@@ -122,6 +124,7 @@ class Partner extends Component {
                         <PartnerTableRow
                           key={index}
                           id={item.id}
+                          profilePicture={item.businessProfilePicture}
                           brandName={item.businessName}
                           contact={item.contactNumber}
                           email={item.email}

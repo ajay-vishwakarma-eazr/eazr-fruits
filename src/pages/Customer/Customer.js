@@ -8,7 +8,7 @@ import { connect, useDispatch, useSelector } from "react-redux";
 import BackBtn from "../BackBtn";
 import ClipLoader from "react-spinners/ClipLoader";
 import EmptySection from "../../components/EmptySection/EmptySection";
-// import SearchUsers from "./SearchUsers";
+import SearchUsers from "./SearchUsers";
 import ReactPaginate from "react-paginate";
 import {
   fetchUserById,
@@ -134,10 +134,10 @@ useEffect(() => {
             <Col xs={12}>
               <Card>
                 <CardBody>
-                  {/* <SearchUsers
+                  <SearchUsers
                     getSearchUserValue={getSearchUserValue}
                     filterArray={filterArray}
-                  /> */}
+                  />
                 </CardBody>
               </Card>
               {data}

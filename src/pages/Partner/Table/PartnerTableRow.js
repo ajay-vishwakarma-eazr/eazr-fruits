@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import NoImg from "../../../assets/images/NoImg.png";
 const PartnerTableRow = ({
+  profilePicture,
   brandName,
   contact,
   email,
@@ -30,6 +32,9 @@ const PartnerTableRow = ({
   return (
     <tbody>
       <tr>
+        <td>
+          <img src={profilePicture === null ? NoImg : profilePicture} style={{borderRadius: '50%'}} alt="img" height="35" width="35" ></img>
+        </td>
         <td>{brandName}</td>
         <td>{contact}</td>
         <td>{email}</td>
@@ -43,7 +48,13 @@ const PartnerTableRow = ({
               borderColor: statusColor(),
             }}
           >
-            {status ===0 ?"pending":status ===1 ?"accpeted":status ===2 ?"rejected":"on hold"}
+            {status === 0
+              ? "pending"
+              : status === 1
+              ? "accpeted"
+              : status === 2
+              ? "rejected"
+              : "on hold"}
           </button>
         </td>
         <td className="approval-view-btn">

@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import NoImg from "../../../assets/images/NoImg.png"
 
 //Import Breadcrumb
 
 const ApprovedPartnersRow = ({
   id,
+  profilePicture,
   name,
   contact,
   email,
@@ -41,6 +43,9 @@ const ApprovedPartnersRow = ({
   return (
     <tbody>
       <tr>
+        <td style={{display:"flex", height:"50px", width:"50px", borderRadius:"25px"}}>
+          <img src={profilePicture === null ? NoImg: profilePicture} alt="img" height="50" width="50" object-fit= "container" border-radius="25" ></img>
+        </td>
         <td>{name}</td>
         <td>{contact}</td>
         <td>{email}</td>

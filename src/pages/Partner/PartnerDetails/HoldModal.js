@@ -1,17 +1,69 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Modal, ModalBody } from "reactstrap";
 import { useWindowSize } from "@react-hook/window-size";
+import { useHistory, useParams } from "react-router-dom";
 
-const HoldModal = ({
-  fields,
-  setFields,
-  remark,
-  setRemark,
-  onTicketSubmit,
-}) => {
+//Actions
+import {
+  getPartnerById,
+  updatePartnerDetails,
+  addTicket,
+} from "../../../store/partners/actions";
+import { connect, useDispatch } from "react-redux";
+
+const HoldModal = (
+  props
+  // onTicketSubmit,
+) => {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
   const [screen] = useWindowSize();
+
+  const [fields, setFields] = useState({
+    businessEmail: false,
+    businessName: false,
+    businessType: false,
+    businessCategory: false,
+    businessDescription: false,
+    averageOrderValue: false,
+    acceptPayment: false,
+    pan: false,
+    panName: false,
+    businessPan: false,
+    address: false,
+    pincode: false,
+    city: false,
+    state: false,
+    beneficiaryName: false,
+    ifscCode: false,
+    accountNumber: false,
+    aadharFront: false,
+    aadharBack: false,
+    authorizedPersonPan: false,
+    companyPan: false,
+    businessRegistrationProof: false,
+  });
+  const { id } = useParams();
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(getPartnerById(id));
+  // }, []);
+  const [remark, setRemark] = useState("");
+
+  // const PartnerDetails = (props) => {
+
+  let history = useHistory();
+  const [success_msg, setSuccess_Msg] = useState(false);
+
+  
+
+  const handleOnholdPartner = () => {
+    const onHoldPartner = {
+      status: 3,
+    };
+    props.updatePartnerDetails(id, onHoldPartner);
+    history.push("/partner-approval");
+  };
 
   return (
     <div>
@@ -370,14 +422,25 @@ const HoldModal = ({
             ></textarea>
           </div>
           <div className="checkbox-save">
-            <button onClick={() => onTicketSubmit("607d534de36c5111dc63fe4f")}>
-              Save
-            </button>
+            <button onClick={() => handleOnholdPartner()}>Save</button>
+            
           </div>
+          
         </ModalBody>
       </Modal>
     </div>
   );
 };
 
-export default HoldModal;
+const mapStateToProps = (state) => {
+  return {
+    partners: state.partners,
+  };
+};
+
+export default connect(mapStateToProps, {
+  getPartnerById,
+  updatePartnerDetails,
+  addTicket,
+})(HoldModal);
+// export default HoldModal;

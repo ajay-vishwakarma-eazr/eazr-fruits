@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import avatar from "../../assets/images/users/avatar-2.jpg";
+import nouser from "../../assets/images/nouser.png";
 import AuthModal from "../Partner/PartnerDetails/AuthModal";
 import "./adminProfile.scss";
 import "../Customer/CustomerDetails/UserProfile/userprofile.scss";
@@ -40,7 +41,7 @@ const AdminProfile = () => {
       )} */}
 
       <div className="user-img">
-        <img src={profileImg ? profileImg : avatar} alt="" />
+        <img src={profileImg ? profileImg : nouser} alt="" />
         {/* <label htmlFor="profileImg">
           <i className="fa fa-edit"></i>
         </label> */}

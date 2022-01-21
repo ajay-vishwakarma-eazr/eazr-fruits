@@ -24,15 +24,61 @@ const PartnerDetails = (props) => {
   useEffect(() => {
     props.getPartnerById(id);
   }, []);
+
   let history = useHistory();
   const [success_msg, setSuccess_Msg] = useState(false);
+
+  const [fields, setFields] = useState({
+    businessEmail: false,
+    businessName: false,
+    businessType: false,
+    businessCategory: false,
+    businessDescription: false,
+    averageOrderValue: false,
+    acceptPayment: false,
+    pan: false,
+    panName: false,
+    businessPan: false,
+    address: false,
+    pincode: false,
+    city: false,
+    state: false,
+    beneficiaryName: false,
+    ifscCode: false,
+    accountNumber: false,
+    aadharFront: false,
+    aadharBack: false,
+    authorizedPersonPan: false,
+    companyPan: false,
+    businessRegistrationProof: false,
+  });
+  const [remark, setRemark] = useState("");
+
+  // const onTicketSubmit = (status) => {
+  //   let fieldsArr = [];
+  //   Object.keys(fields).map(function (key, index) {
+  //     if (fields[key] === true) {
+  //       fieldsArr.push(key);
+  //     }
+  //   });
+
+  // props.addTicket({
+  //   partner: props.partners.partner._id,
+  //   serviceNumber: props.partners.partner.serviceNumber,
+  //   // serviceId: props.paartners.paartner.serviceId,
+  //   remark,
+  //   // status,
+  //   // queryItems: fieldsArr,
+  //   businessEmail: props.partners.partner.businessEmail,
+  //   sendMail: true,
+  // });
 
   const handleAccetPartner = () => {
     const partner = {
       status: 1,
     };
     props.updatePartnerDetails(id, partner);
-    history.push("/approved-partner");
+    // history.push("/approved-partner");
   };
 
   const handleRejectPartner = () => {
@@ -40,17 +86,16 @@ const PartnerDetails = (props) => {
       status: 2,
     };
     props.updatePartnerDetails(id, rejectPartner);
-    history.push("/partner-dashboard");
+    // history.push(`/partner-details/${id}`);
   };
 
-
-const handleOnholdPartner = () => {
-  const onHoldPartner = {
-    status: 3,
-  };
-  props.updatePartnerDetails(id, onHoldPartner);
-  history.push("/partner-dashboard");
-};
+  // const handleOnholdPartner = () => {
+  //   const onHoldPartner = {
+  //     status: 3,
+  //   };
+  //   props.updatePartnerDetails(id, onHoldPartner);
+  //   history.push("/partner-approval");
+  // };
   let data;
 
   if (props.partners.loading === true) {
@@ -132,19 +177,23 @@ const handleOnholdPartner = () => {
                 Reject
               </button>
 
-              <button className="onhold" style={{background:"#eed202"}} onClick={() => handleOnholdPartner()}>
+              {/* <button
+                className="onhold"
+                style={{ background: "#eed202" }}
+                onClick={() => handleOnholdPartner()}
+              >
                 On hold
-              </button>
+              </button> */}
 
-              {/* {partner.status.id !== "607d534de36c5111dc63fe4f" ? (
-                <HoldModal
+              {/* {partner.status.id !== "607d534de36c5111dc63fe4f" ? ( */}
+              <HoldModal
                   fields={fields}
                   setFields={setFields}
                   remark={remark}
                   setRemark={setRemark}
-                  onTicketSubmit={onTicketSubmit}
+                  // onTicketSubmit={onTicketSubmit}
                 />
-              ) : null} */}
+              {/* ) : null} */}
             </div>
           </div>
         </div>

@@ -8,7 +8,7 @@ class SalesAnalytics extends Component {
   state = {
     series: [42, 26, 15],
     options: {
-      labels: ["Product A", "Product B", "Product C"],
+      labels: ["Cipla", "Udemy", "Netmeds"],
       plotOptions: {
         pie: {
           donut: {
@@ -55,27 +55,27 @@ class SalesAnalytics extends Component {
                 <div className="text-center mt-4">
                   <p className="mb-2 text-truncate">
                     <i className="mdi mdi-circle text-primary font-size-10 mr-1"></i>{" "}
-                    Product A
+                    Cipla
                   </p>
-                  <h5>0 %</h5>
+                  <h5>42 %</h5>
                 </div>
               </Col>
               <Col xs={4}>
                 <div className="text-center mt-4">
                   <p className="mb-2 text-truncate">
                     <i className="mdi mdi-circle text-success font-size-10 mr-1"></i>{" "}
-                    Product B
+                    Udemy
                   </p>
-                  <h5>0 %</h5>
+                  <h5>26 %</h5>
                 </div>
               </Col>
               <Col xs={4}>
                 <div className="text-center mt-4">
                   <p className="mb-2 text-truncate">
                     <i className="mdi mdi-circle text-warning font-size-10 mr-1"></i>{" "}
-                    Product C
+                    Netmeds
                   </p>
-                  <h5>0 %</h5>
+                  <h5>42 %</h5>
                 </div>
               </Col>
             </Row>

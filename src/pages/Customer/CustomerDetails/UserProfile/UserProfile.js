@@ -77,7 +77,7 @@ const UserProfile = () => {
             )}
 
             <div className="user-img">
-              <img src={selfie == null ? avatar :selfie} alt="" />
+              <img src={selfie == null ? avatar :selfie} alt="img" />
               <label htmlFor="profileImg">
                 <i className="fa fa-edit"></i>
               </label>

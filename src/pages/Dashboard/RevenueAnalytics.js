@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Row, Col, Card, CardBody, ButtonGroup, Button } from "reactstrap";
-
+import { connect } from "react-redux";
 //Import Charts
 import ReactApexChart from "react-apexcharts";
+import { getTranscations } from "../../store/transactions/actions/action";
 
 class RevenueAnalytics extends Component {
   state = {
@@ -10,12 +11,12 @@ class RevenueAnalytics extends Component {
       {
         name: "2020",
         type: "column",
-        data: [8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        data: [4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       },
       {
         name: "2019",
         type: "line",
-        data: [8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        data: [4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       },
     ],
     options: {
@@ -58,6 +59,11 @@ class RevenueAnalytics extends Component {
       ],
     },
   };
+
+  componentDidMount() {
+    this.props.getTranscations();
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -108,9 +114,14 @@ class RevenueAnalytics extends Component {
                     This Year :
                   </p>
                   <div className="d-inline-flex">
-                    <h5 className="mb-0 mr-2">₹ 0</h5>
+                    <h5 className="mb-0 mr-2">
+                      ₹
+                      {this.props.transactions?.transactions
+                        .map((item) => item?.amount)
+                        .reduce((prev, curr) => prev + curr, 0)}
+                    </h5>
                     <div className="text-success">
-                      <i className="mdi mdi-menu-up font-size-14"> </i>0 %
+                      <i className="mdi mdi-menu-up font-size-14"> </i>2.1 %
                     </div>
                   </div>
                 </div>
@@ -133,5 +144,9 @@ class RevenueAnalytics extends Component {
     );
   }
 }
-
-export default RevenueAnalytics;
+const mapStateToProps = (state) => {
+  return {
+    transactions: state.transactions,
+  };
+};
+export default connect(mapStateToProps, { getTranscations })(RevenueAnalytics);

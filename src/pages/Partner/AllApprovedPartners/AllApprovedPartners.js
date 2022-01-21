@@ -102,6 +102,7 @@ class AllApprovedPartners extends Component {
                       <ApprovedPartnersRow
                         key={index}
                         id={item.id}
+                        profilePicture={item.profilePicture}
                         name={item.businessName}
                         contact={item.contactNumber}
                         email={item.email}
@@ -118,6 +119,7 @@ class AllApprovedPartners extends Component {
                         <ApprovedPartnersRow
                           key={index}
                           id={item.id}
+                          profilePicture={item.businessProfilePicture}
                           name={item.businessName}
                           contact={item.contactNumber}
                           email={item.email}

@@ -17,7 +17,7 @@ const SearchUsers = ({ getSearchUserValue, filterArray }) => {
 
   return (
     <form className="search-filter">
-      {/* <div>
+      <div>
         <h6>Search Users</h6>
         <input
           type="text"
@@ -26,7 +26,7 @@ const SearchUsers = ({ getSearchUserValue, filterArray }) => {
           onChange={(e) => onChange(e)}
         />
         <i className="fa fa-search"></i>
-      </div> */}
+      </div> 
       {/* <div>
         <h6>Transactions</h6>
         <select name="" id="">
@@ -35,8 +35,8 @@ const SearchUsers = ({ getSearchUserValue, filterArray }) => {
           <option value="More Than ₹500">More Than ₹500</option>
           <option value="More Than ₹1000">More Than ₹1000</option>
         </select>
-      </div>
-      <div>
+      </div> */}
+      {/* <div>
         <h6>Settlements</h6>
         <select name="" id="">
           <option value="All">All</option>
@@ -45,11 +45,11 @@ const SearchUsers = ({ getSearchUserValue, filterArray }) => {
           <option value="More Than ₹1000">More Than ₹1000</option>
         </select>
       </div> */}
-      {/* <div className="search-btn">
+      <div className="search-btn">
         <button type="submit" onClick={(e) => handleSubmit(e)}>
           Search
         </button>
-      </div> */}
+      </div>
     </form>
   );
 };

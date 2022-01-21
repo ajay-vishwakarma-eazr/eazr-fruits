@@ -15,8 +15,10 @@ import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 //i18n
 import { withNamespaces } from "react-i18next";
+import { FetchAdminProfile } from "../../../store/adminprofile/actions/action";
 
 // users
+import nouser from "../../../assets/images/nouser.png";
 import avatar2 from "../../../assets/images/users/avatar-2.jpg";
 import AdminProfile from "../../../pages/Admin/AdminProfile";
 
@@ -31,6 +33,7 @@ class ProfileMenu extends Component {
     };
     this.toggle = this.toggle.bind(this);
   }
+
 
   toggle() {
     this.setState((prevState) => ({
@@ -58,9 +61,10 @@ class ProfileMenu extends Component {
       const uNm = obj.email.split("@")[0];
       username = uNm.charAt(0).toUpperCase() + uNm.slice(1);
     }
+  
     const data = {
       profilePhoto: this.props.profilePhoto,
-      fullName: this.props.fullName,
+      fullName: this.props.fullName,  
     };
 
     return (
@@ -77,12 +81,16 @@ class ProfileMenu extends Component {
           >
             <img
               className="rounded-circle header-profile-user mr-1"
-              // src={data.profilePhoto}
-              src={avatar2}
+              src={
+                this.props.admin.admin.profilePhoto === null
+                  ? nouser
+                  : this.props.admin.admin.profilePhoto
+              }
+              // src={nouser}
               alt="Header avatar"
             />
             <span className="d-none d-xl-inline-block ml-1 text-transform">
-              {data.fullName}
+              {this.props.admin.admin.fullName}
             </span>
             <i className="mdi mdi-chevron-down d-none ml-1 d-xl-inline-block"></i>
           </DropdownToggle>
@@ -130,6 +138,15 @@ class ProfileMenu extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  
+  return {
+    admin: state.AdminProfile,
+  };
+};
+
 export default withRouter(
-  connect(null, { logoutUser })(withNamespaces()(ProfileMenu))
+  connect(mapStateToProps, { logoutUser, FetchAdminProfile })(
+    withNamespaces()(ProfileMenu)
+  )
 );
