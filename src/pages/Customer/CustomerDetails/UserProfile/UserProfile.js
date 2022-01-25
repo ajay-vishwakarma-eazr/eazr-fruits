@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import avatar from "../../../../assets/images/users/avatar-3.jpg";
 import AuthModal from "../../../Partner/PartnerDetails/AuthModal";
+import nouser from "../../../../assets/images/nouser.png";
 import "./userprofile.scss";
 import { connect, useDispatch, useSelector } from "react-redux";
 import {
@@ -12,6 +13,8 @@ import { useParams, useHistory } from "react-router-dom";
 import CustomersNav from "../../CustomerNav";
 import BackBtn from "../../../BackBtn";
 import { Container } from "reactstrap";
+import { withRouter } from "react-router-dom";
+import { withNamespaces } from "react-i18next";
 import CreditDetails from "../CreditDetails/CreditDetails";
 const UserProfile = () => {
   const { users } = useSelector((state) => state.Users);
@@ -31,7 +34,7 @@ const UserProfile = () => {
     pin: users.pincode,
     pan: users.pan,
     aadhaarNo: users.aadhar,
-    profileImg: avatar,
+    // profileImg: "",
     selfie: users.selfie,
   });
 
@@ -52,19 +55,21 @@ const UserProfile = () => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
+      
     });
   };
 
   const getDisableEdit = (disableEdit) => {
     setEdit(disableEdit);
   };
+
   const onSave = () => {
     dispatch(updateUserDetails(id, formData));
-    setEdit(!edit)
+    setEdit(!edit);
   };
 
   return (
-    <>  
+    <>
       <div className="page-content customer-page ">
         <Container fluid>
           <BackBtn route="users" />
@@ -77,18 +82,20 @@ const UserProfile = () => {
             )}
 
             <div className="user-img">
-              <img src={selfie == null ? avatar :selfie} alt="img" />
+              <img src={selfie == null ? nouser : selfie} alt="img" />
               <label htmlFor="profileImg">
-                <i className="fa fa-edit"></i>
+                {!edit?<i className="fa fa-edit"></i>: ""}
               </label>
 
               <input
                 type="file"
                 id="profileImg"
-                style={{ display: " none" }}
+                style={{ display: "none" }}
+                // value={selfie}
+                name="profileImg"
                 onChange={(e) =>
                   setFormData({
-                    profileImg: URL.createObjectURL(e.target.files[0]),
+                    selfie: URL.createObjectURL(e.target.files[0]),
                   })
                 }
               />
@@ -116,7 +123,7 @@ const UserProfile = () => {
               <h6>Date Of Birth</h6>
               <input
                 disabled={edit}
-                type="email"
+                type="dob"
                 name="dob"
                 value={dob}
                 onChange={(e) => handleChange(e)}
@@ -186,4 +193,17 @@ const UserProfile = () => {
   );
 };
 
-export default UserProfile;
+const mapStateToProps = (state) => {
+  return {
+    users: state.Users.users,
+  };
+};
+
+export default withRouter(
+  connect(mapStateToProps, { fetchUserById, updateUserDetails })(
+    withNamespaces()(UserProfile)
+  )
+);
+
+
+// export default UserProfile;

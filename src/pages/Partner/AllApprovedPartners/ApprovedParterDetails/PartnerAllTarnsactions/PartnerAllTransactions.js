@@ -35,19 +35,17 @@ class PartnerAllTransactions extends Component {
     this.setState({
       searchTransactions: e.target.value,
     });
+    const searchableTransactions = e.target.value;
+    const filtered = this.props.transactions.transactions.filter((filter) => {
+      return filter.user.fullName
+        .toLowerCase()
+        .split(" ")
+        .join("")
+        .includes(searchableTransactions.toLowerCase().split(" ").join(""));
+    });
 
-    this.filterdata();
-
-  };
-
-  filterdata = () => {
-
-    const searchedData = this.state.searchTransactions;
     this.setState({
-      transactionList: this.props.getTranscationSearch(
-        this.props.match.params.id,
-        searchedData
-      ),
+      transactionList: filtered,
     });
   };
 
@@ -89,18 +87,20 @@ class PartnerAllTransactions extends Component {
               className="partner-approval-table"
             >
               <PartnerTranscationsHeading />
-              {this.state.Transactions
-                ? this.state.transactionList.map((item, index) => (
-                    <PartnerTrancationsRow
-                      key={index}
-                      userName={item?.user.fullName}
-                      amount={item?.amount}
-                      status={item?.status}
-                      debit={item?.debit.toString()}
-                      refund={item?.refund.toString()}
-                      settled={item?.settled.toString()}
-                    />
-                  ))
+              {this.state.searchTransactions
+                ? this.state.transactionList
+                    .slice(pageVisited, pageVisited + usersPerPage)
+                    .map((item, index) => (
+                      <PartnerTrancationsRow
+                        key={index}
+                        userName={item.user.fullName}
+                        amount={item?.amount}
+                        status={item?.status}
+                        debit={item?.debit}
+                        refund={item?.refund}
+                        settled={item?.settled}
+                      />
+                    ))
                 : transactions?.transactions
                     .slice(pageVisited, pageVisited + usersPerPage)
                     .map((item, index) => {
@@ -110,9 +110,9 @@ class PartnerAllTransactions extends Component {
                           userName={item.user.fullName}
                           amount={item?.amount}
                           status={item?.status}
-                          debit={item?.debit.toString()}
-                          refund={item?.refunded.toString()}
-                          settled={item?.settled.toString()}
+                          debit={item?.debit}
+                          refund={item?.refunded}
+                          settled={item?.settled}
                         />
                       );
                     })}
@@ -134,21 +134,19 @@ class PartnerAllTransactions extends Component {
           <div className="partner">
             <Container fluid>
               <Card className="partner-table-approval">
-                {/* <div className="search-partner">
+                <div className="search-partner">
                   <div>
                     <label htmlFor="">Search transactions: </label>
                     <input
                       type="text"
-                      placeholder="Search..."
+                      placeholder="Search by name..."
                       name="search"
                       onChange={this.handleSearch}
                       value={this.state.searchTransactions}
                     />
                   </div>
-                </div> */}
-
+                </div>
                 <CardBody>{data}</CardBody>
-
                 <ReactPaginate
                   previousLabel={"Previous"}
                   nextLabel={"Next"}

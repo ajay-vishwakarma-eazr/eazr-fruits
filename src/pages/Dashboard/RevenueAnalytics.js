@@ -9,12 +9,12 @@ class RevenueAnalytics extends Component {
   state = {
     series: [
       {
-        name: "2020",
+        name: "2022",
         type: "column",
         data: [4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       },
       {
-        name: "2019",
+        name: "2021",
         type: "line",
         data: [4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       },

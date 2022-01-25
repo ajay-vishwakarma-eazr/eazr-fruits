@@ -78,7 +78,7 @@ const PartnerDetails = (props) => {
       status: 1,
     };
     props.updatePartnerDetails(id, partner);
-    // history.push("/approved-partner");
+    history.push("/approved-partner");
   };
 
   const handleRejectPartner = () => {
@@ -86,7 +86,7 @@ const PartnerDetails = (props) => {
       status: 2,
     };
     props.updatePartnerDetails(id, rejectPartner);
-    // history.push(`/partner-details/${id}`);
+    history.push(`/partner-approval`);
   };
 
   // const handleOnholdPartner = () => {

@@ -23,7 +23,7 @@ const ShowDocuments = ({ img }) => {
       </div>
 
       <Modal className="img-modal" isOpen={modal} centered toggle={toggle}>
-        <ModalBody className="img-modal-body">
+        <ModalBody className="img-modal-body" >
           <embed src={`${img}`} onClick={toggle}></embed>
           {fileExtension !== "pdf" && fileExtension !== "PDF" && (
             <>

@@ -4,7 +4,7 @@ import { Table, Container, Card, CardBody } from "reactstrap";
 import BackBtn from "../BackBtn";
 import ClipLoader from "react-spinners/ClipLoader";
 import CustomersNav from "../CustomerNav";
-// import TableSearch from "../TableSearch";
+import TableSearch from "../TableSearch";
 import TableHeading from "./TableHeading";
 import "./Transaction.css";
 import TableRow from "./TableRow";
@@ -58,10 +58,10 @@ const Transaction = () => {
     data = (
       <Card>
         <CardBody>
-          {/* <TableSearch
+          <TableSearch
             getSearchTransactionValue={getSearchTransactionValue}
             filterArray={filterArray}
-          /> */}
+          />
           <div className="table-rep-plugin">
             <div
               className="table-responsive mb-0"

@@ -53,7 +53,7 @@ const CustomerTableRow = ({
           <button className="view-customer-btn">View</button>
         </Link>
       </td>
-      <td>
+      <td style={{display:'flex'}}>
         <UncontrolledTooltip target={"edit"} placement="top">
           Edit
         </UncontrolledTooltip>

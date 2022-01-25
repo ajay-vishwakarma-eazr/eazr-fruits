@@ -54,7 +54,7 @@ export const getTranscationById = (id) => {
   return (dispatch) => {
     dispatch(setPartnersLoading());
     axios
-      .get(`${ip}/transactions?filter=partnerId||eq||${id}`)
+      .get(`${ip}/transactions?filter=partnerId||eq||${id} || (?page=n)`)
       .then((res) => {
         dispatch({
           type: GET_TRANSACTION_BY_ID,

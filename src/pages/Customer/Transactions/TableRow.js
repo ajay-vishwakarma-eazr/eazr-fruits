@@ -2,13 +2,13 @@ import React from "react";
 
 const TableRow = ({ amount, status, partnerName, debit, createAt }) => {
   const statusColor = () => {
-    if (status === 1) {
+    if (status === 0) {
       return "#eed202";
     }
     if (status === 2) {
       return "#4bb543";
     }
-    if (status === 3) {
+    if (status === 1) {
       return "#df4759";
     }
   };
@@ -21,10 +21,10 @@ const TableRow = ({ amount, status, partnerName, debit, createAt }) => {
         <p
           style={{ color: statusColor(), border: `1px solid ${statusColor()}`,borderRadius:"10px" }}
         >
-          {status === 0 ? "Initiated" : status === 1 ? "Failed" : "Succes"}
+          {status === 0 ? "Initiated" : status === 2 ? "Success" : "Failed"}
         </p>
       </td>
-      <td>{debit === "true" ? "Yes" : "No"}</td>
+      <td>{debit === true ? "Yes" : "No"}</td>
       <td>{createAt.slice(0, 10)}</td>
     </tr>
   );

@@ -6,19 +6,26 @@ import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 //actions
 import {
+  getPartnersCategotyTypeById,
   updatePartnerDetails,
+  getPartnersTypeById,
   clearErrors,
 } from "../../../store/partners/actions";
+import { useEffect } from "react";
 
 const BrandInformation = (props) => {
   const { id } = useParams();
   const [edit, setEdit] = useState(true);
-  
+
+  useEffect(() => {
+    //  props.getPartnersCategotyTypeById(props.partner.partnerCategoryId);
+  }, []);
+
   const [brandInformation, setBrandInformation] = useState({
     businessName: props.partner.businessName,
     email: props.partner.email,
-  //  partnerType: props.partner.partnerType,
-  //   partnerCategory: props.partner.partnerCategory.name,
+    partnerType: props.partnerType?.type,
+    partnerCategory: props.partnerCategory?.name,
     averageOrderValue: props.partner.averageOrderValue,
     paymentOnline: props.partner.paymentOnline,
     paymentAtStore: props.partner.paymentAtStore,
@@ -30,7 +37,7 @@ const BrandInformation = (props) => {
 
   const onSave = () => {
     props.updatePartnerDetails(id, brandInformation);
-    setEdit(!edit)
+    setEdit(!edit);
   };
 
   return (
@@ -38,19 +45,6 @@ const BrandInformation = (props) => {
       className="left-brand-information"
       style={{ background: !edit && Colors.infoBody }}
     >
-      {/* {props.errors && props.errors.password ? (
-        <SweetAlert
-          title="Wrong Password"
-          danger
-          confirmBtnBsStyle="danger"
-          onConfirm={() => {
-            props.clearErrors();
-            // getDisableEdit(disableEdit);
-            // toggle();
-            // setSuccess_Msg(false);
-          }}
-        />
-      ) : null} */}
       <div className="heading">
         <h1>Brand Information</h1>
 
@@ -93,25 +87,26 @@ const BrandInformation = (props) => {
       </div>
       <div>
         <h3>Business Registered as</h3>
-
         <select
           disabled={edit}
           onChange={(e) =>
             setBrandInformation({
               ...brandInformation,
-              partnerType:e.target.value,
+              partnerType: e.target.value,
             })
           }
           defaultValue={brandInformation.partnerType}
         >
-          <option value="1">Private Limited</option>
-          <option value="2">Public Limited</option>
-          <option value="Proprietorship">Proprietorship</option>
-          <option value="Partnership">Partnership</option>
-          <option value="LLP">LLP</option>
-          <option value="Trust">Trust</option>
-          <option value="NGO">NGO</option>
-          <option value="Unregistered">Unregistered</option>
+          {/* {brandInformation.partnerType?.map((e, key) => {
+            return (
+              <option key={key} value={e.id}>
+                {e.type}
+              </option>
+              );
+          })} */}
+
+          <option value={brandInformation.partnerType}>Private Limited</option>
+          {<option value="2">Public Limited</option>}
         </select>
       </div>
       <div>
@@ -191,11 +186,16 @@ const BrandInformation = (props) => {
 
 const mapStateToProps = (state) => {
   return {
+    partnerCategory: state.partners.partnerCategory,
+    partnerType: state.partners.partnerType,
     partner: state.partners.partner,
     errors: state.partners.errors,
   };
 };
 
-export default connect(mapStateToProps, { updatePartnerDetails, clearErrors })(
-  BrandInformation
-);
+export default connect(mapStateToProps, {
+  getPartnersCategotyTypeById,
+  getPartnersTypeById,
+  updatePartnerDetails,
+  clearErrors,
+})(BrandInformation);

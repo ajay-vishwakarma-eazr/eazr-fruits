@@ -17,7 +17,7 @@ const LegalInformation = (props) => {
   const [legalInformation, setLegalInformation] = useState({
     pan: props.partner.pan,
     panName: props.partner.panName,
-    address: props.partner.city,
+    address: props.partner.address.addr,
     businessPan: props.partner.businessPan ? props.partner.businessPan : "",
   });
 
@@ -97,7 +97,6 @@ const LegalInformation = (props) => {
             onChange={(e) =>
               setLegalInformation({
                 ...legalInformation,
-
                 businessPan: e.target.value,
               })
             }
@@ -124,7 +123,6 @@ const LegalInformation = (props) => {
             setLegalInformation({
               ...legalInformation,
               address: e.target.value
-
             })
           }
           />
@@ -136,7 +134,7 @@ const LegalInformation = (props) => {
 const mapStateToProps = (state) => {
   return {
     partner: state.partners.partner,
-    errors: state.partners.errors,
+    // errors: state.partners.errors,
   };
 };
 

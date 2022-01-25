@@ -38,7 +38,7 @@ const AuthModal = ({
             className="partner-auth-btn"
             onClick={() => {
               onSave();
-              //  history.push(`/partner-approval/${id}`);
+              //  history.push(`/partner-approval`);
             }}
           >
             Save

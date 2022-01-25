@@ -7,7 +7,7 @@ import { OnClickItem,setPartner } from "../../store/businessprofiles/actions/act
 //const TableRow = ({ brandName, enrollmentId, email, phone,key,partner }) => {
 const TableRow = ({ srNo, businessName, registeredId, email, contact,address ,partner}) => {
   //const history = withRouter();
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   
   const showDetails = (e) => {
   

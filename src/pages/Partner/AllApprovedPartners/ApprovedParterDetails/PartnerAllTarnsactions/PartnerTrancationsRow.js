@@ -32,9 +32,9 @@ const statusColor = () => {
             {status === 0 ? "Initiated" : status === 1 ? "Failed" : "Success"}
           </p>
        </td>
-        <td>{debit === "true" ? "Yes" : "No"}</td>
-        <td>{refund === "true" ? "Yes" : "No"}</td>
-        <td>{settled === "true" ? "Yes" : "No"}</td>
+        <td>{debit === true ? "Yes" : "No"}</td>
+        <td>{refund === true ? "Yes" : "No"}</td>
+        <td>{settled === true ? "Yes" : "No"}</td>
       </tr>
     </tbody>
   );

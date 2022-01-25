@@ -7,13 +7,13 @@ const SearchUsers = ({ getSearchUserValue, filterArray }) => {
   const onChange = (e) => {
     getSearchUserValue(e.target.value);
     setSearch(e.target.value);
+    filterArray();
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    filterArray();
-    setSearch("");
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   setSearch("");
+  // };
 
   return (
     <form className="search-filter">
@@ -45,11 +45,11 @@ const SearchUsers = ({ getSearchUserValue, filterArray }) => {
           <option value="More Than ₹1000">More Than ₹1000</option>
         </select>
       </div> */}
-      <div className="search-btn">
+      {/* <div className="search-btn">
         <button type="submit" onClick={(e) => handleSubmit(e)}>
           Search
         </button>
-      </div>
+      </div> */}
     </form>
   );
 };

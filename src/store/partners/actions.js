@@ -15,6 +15,12 @@ import {
   GET_APPROVED_PARTNERS_FAILED,
   GET_PARTNERS_TRANSACTION_BY_ID,
   GET_PARTNERS_TRANSACTION_BY_ID_FAILED,
+  GET_PARTNER_TYPE,
+  GET_PARTNER_TYPE_FAILED,
+  GET_PARTNER_CATEGORY_TYPE_FAILED,
+  GET_PARTNER_CATEGORY_TYPE,
+  PARTNER_CATEGORY_TYPE,
+  PARTNER_CATEGORY_TYPE_FAILED,
 } from "./types";
 import axios from "axios";
 import { ip } from "../../config/config";
@@ -35,27 +41,6 @@ export const getPartners = () => {
         console.log("err", err);
         dispatch({
           type: GET_PARTNERS_FAILED,
-          payload: err.response.data,
-        });
-      });
-  };
-};
-
-export const getPartnersTranscationById = (id) => {
-  return (dispatch) => {
-    dispatch(setPartersLoading());
-    axios
-      .get(`${ip}/business/transaction/all?businessPartnerId==${id}`)
-      .then((res) => {
-        dispatch({
-          type: GET_PARTNERS_TRANSACTION_BY_ID,
-          payload: res.data,
-        });
-      })
-      .catch((err) => {
-        console.log(err.response.data);
-        dispatch({
-          type: GET_PARTNERS_TRANSACTION_BY_ID_FAILED,
           payload: err.response.data,
         });
       });
@@ -84,15 +69,45 @@ export const getPartnerById = (id) => {
   };
 };
 
+// export const updatePartnerDetails = (id, updateObj) => {
+//   return (dispatch) => {
+//     dispatch(setPartersLoading());
+//     axios
+//       .patch(`${ip}/partners/${id}`, {
+//         ...updateObj,
+//       })
+//       .then((res) => {
+//         dispatch({ type: UPDATE_PARTNER, payload: res.data });
+//       })
+//       .catch((err) => {
+//         dispatch({ type: UPDATE_PARTNER_FAILED, payload: err.response.data });
+//       });
+//   };
+// };
+
 export const updatePartnerDetails = (id, updateObj) => {
   return (dispatch) => {
     dispatch(setPartersLoading());
     axios
       .patch(`${ip}/partners/${id}`, {
-      ...updateObj,
+        ...updateObj,
       })
       .then((res) => {
-        dispatch({ type: UPDATE_PARTNER, payload: res.data });
+        axios
+          .get(`${ip}/partners/${id}`)
+          .then((res) => {
+            dispatch({
+              type: GET_PARTNER_BY_ID,
+              payload: res.data,
+            });
+          })
+          .catch((err) => {
+            console.log(err.response.data);
+            dispatch({
+              type: GET_PARTNER_BY_ID_FAILED,
+              payload: err.response.data,
+            });
+          });
       })
       .catch((err) => {
         dispatch({ type: UPDATE_PARTNER_FAILED, payload: err.response.data });
@@ -116,22 +131,6 @@ export const addTicket = (data) => {
   };
 };
 
-export const getApprovedPartners = () => async (dispatch) => {
-  try {
-    const res = await axios.get(`${ip}/admin/partners/approvedpartners`);
-    dispatch({
-      type: GET_APPROVED_PARTNERS,
-      payload: res.data,
-    });
-  } catch (err) {
-    console.log("Error: " + err.message);
-    dispatch({
-      type: GET_APPROVED_PARTNERS_FAILED,
-      payload: err.response.data,
-    });
-  }
-};
-
 export const setPartersLoading = () => {
   return {
     type: PARTNERS_LOADING,
@@ -141,5 +140,46 @@ export const setPartersLoading = () => {
 export const clearErrors = () => {
   return {
     type: CLEAR_ERRORS,
+  };
+};
+
+export const getPartnersTypeById = (id) => {
+  return (dispatch) => {
+    dispatch(setPartersLoading());
+
+    axios
+      .get(`${ip}/partner-types/${id}`)
+      .then((res) => {
+        dispatch({
+          type: GET_PARTNER_TYPE,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: GET_PARTNER_TYPE_FAILED,
+          payload: err.response.data,
+        });
+      });
+  };
+};
+
+export const getPartnersCategotyTypeById = (id) => {
+  return (dispatch) => {
+    dispatch(setPartersLoading());
+    axios
+      .get(`${ip}/partner-category/${id}`)
+      .then((res) => {
+        dispatch({
+          type: PARTNER_CATEGORY_TYPE,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: PARTNER_CATEGORY_TYPE_FAILED,
+          payload: err.response.data,
+        });
+      });
   };
 };

@@ -33,6 +33,7 @@ class SalesAnalytics extends Component {
             <div className="float-right">
               <select className="custom-select custom-select-sm">
                 <option defaultValue> Nov</option>
+                <option value>Dec</option>
                 <option value>jan</option>
                 <option value="1">Feb</option>
                 <option value="2">March</option>

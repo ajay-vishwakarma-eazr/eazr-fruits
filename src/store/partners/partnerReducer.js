@@ -12,12 +12,20 @@ import {
   GET_APPROVED_PARTNERS_FAILED,
   GET_PARTNERS_TRANSACTION_BY_ID,
   GET_PARTNERS_TRANSACTION_BY_ID_FAILED,
+  GET_PARTNER_TYPE,
+  GET_PARTNER_TYPE_FAILED,
+  GET_PARTNER_CATEGORY_TYPE,
+  GET_PARTNER_CATEGORY_TYPE_FAILED,
+  PARTNER_CATEGORY_TYPE,
+  PARTNER_CATEGORY_TYPE_FAILED,
 } from "./types";
 
 const initialState = {
   partners: null,
   approvedPartners: null,
   partner: null,
+  partnerType: null,
+  partnerCategory: null,
   loading: false,
   errors: null,
 };
@@ -57,6 +65,34 @@ const login = (state = initialState, action) => {
         errors: null,
       };
     case GET_PARTNER_BY_ID_FAILED:
+      return {
+        ...state,
+        loading: false,
+        errors: action.payload,
+      };
+
+    case GET_PARTNER_TYPE:
+      return {
+        ...state,
+        loading: false,
+        partnerType: action.payload,
+        errors: null,
+      };
+    case GET_PARTNER_TYPE_FAILED:
+      return {
+        ...state,
+        loading: false,
+        errors: action.payload,
+      };
+
+    case PARTNER_CATEGORY_TYPE:
+      return {
+        ...state,
+        loading: false,
+        partnerCategory: action.payload,
+        errors: null,
+      };
+    case PARTNER_CATEGORY_TYPE_FAILED:
       return {
         ...state,
         loading: false,

@@ -102,7 +102,7 @@ class AllApprovedPartners extends Component {
                       <ApprovedPartnersRow
                         key={index}
                         id={item.id}
-                        profilePicture={item.profilePicture}
+                        profilePicture={item.businessProfilePicture}
                         name={item.businessName}
                         contact={item.contactNumber}
                         email={item.email}
