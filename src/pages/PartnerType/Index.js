@@ -1,41 +1,34 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from "reactstrap";
-import MiniWidgets from "../MiniWidgets";
-import RevenueAnalytics from "../RevenueAnalytics";
-import SalesAnalytics from "../SalesAnalytics";
-import EarningReports from "../EarningReports";
-import RecentlyActivity from "../RecentlyActivity";
-import "../dashboard.scss";
-import ShowTotalNumberOfUsers from "./ShowTotalNumberOfUsers";
+import MiniWidgets from "../Dashboard/MiniWidgets";
+import RevenueAnalytics from "../Dashboard/RevenueAnalytics";
+import SalesAnalytics from "../Dashboard/SalesAnalytics";
+import EarningReports from "../Dashboard/EarningReports";
+import RecentlyActivity from "../Dashboard/RecentlyActivity";
+import "./Style.scss";
+import TotalPartnerTypes from "./TotalPartnerTypes";
+import TotalPartnerCategories from "./TotalPartnerCategories";
 
-class UserDashboard extends Component {
+class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {
       reports: [
         {
-          icon: "fas fa-user",
-          title: "Total Users",
-          value: <ShowTotalNumberOfUsers/>,
-          route: "users",
+          icon: "fas fa-users",
+          title: "Partner Types",
+          value: <TotalPartnerTypes/>,
+          route: "partner-types",
           rate: "2.4%",
           desc: "From previous period",
         },
-        // {
-        //   icon: "fas fa-user-tie",
-        //   title: "New Users",
-        //   value: "300",
-        //   rate: "2.4%",
-        //   route: "/users",
-        //   desc: "From previous period",
-        // },
 
         {
           icon: "fas fa-users",
-          title: "Users Online",
-          value: "0",
+          title: "Partner Categories",
+          value: <TotalPartnerCategories/>,
           rate: "2.4%",
-          route: "/partner-approval",
+          route: "partner-category",
           desc: "From previous period",
         },
       ],
@@ -43,7 +36,7 @@ class UserDashboard extends Component {
   }
   render() {
     return (
-      <React.Fragment>
+      <>
         <div className="page-content dashboard">
           <Container fluid>
             <Row>
@@ -59,19 +52,19 @@ class UserDashboard extends Component {
                 <EarningReports />
               </Col>
             </Row>
-            <Row>
+            {/* <Row>
               <Col xl={4}>
                 <RecentlyActivity />
               </Col>
               <Col xl={8}>
                 <RevenueAnalytics />
               </Col>
-            </Row>
+            </Row> */}
           </Container>
         </div>
-      </React.Fragment>
+      </>
     );
   }
 }
 
-export default UserDashboard;
+export default Index;

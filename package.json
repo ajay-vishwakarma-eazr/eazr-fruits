@@ -74,6 +74,7 @@
     "sass-loader": "^12.3.0",
     "simplebar-react": "^2.1.0",
     "styled-components": "^5.0.1",
+    "sweetalert2": "^11.3.10",
     "toastr": "^2.1.4",
     "xlsx": "^0.17.0"
   },

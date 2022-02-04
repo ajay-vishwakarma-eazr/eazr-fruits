@@ -1,45 +1,40 @@
 import React, { useState } from "react";
 import Colors from "../../../components/Config/Colors";
 import AuthModal from "./AuthModal";
-import SweetAlert from "react-bootstrap-sweetalert";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
-//actions
 import {
-  getPartnersCategotyTypeById,
   updatePartnerDetails,
   getPartnersTypeById,
   clearErrors,
 } from "../../../store/partners/actions";
 import { useEffect } from "react";
-
+import { getPartnerCategory } from "../../../store/partners/PartnerCategory/action";
+import { getPartnerType } from "../../../store/partners/PartnerType/actions/action";
 const BrandInformation = (props) => {
   const { id } = useParams();
   const [edit, setEdit] = useState(true);
-
-  useEffect(() => {
-    //  props.getPartnersCategotyTypeById(props.partner.partnerCategoryId);
-  }, []);
-
   const [brandInformation, setBrandInformation] = useState({
     businessName: props.partner.businessName,
     email: props.partner.email,
-    partnerType: props.partnerType?.type,
-    partnerCategory: props.partnerCategory?.name,
+    partnerType: { id: props.partner.partnerType.id },
+    partnerCategory: { id: props.partner.partnerCategory.id },
     averageOrderValue: props.partner.averageOrderValue,
     paymentOnline: props.partner.paymentOnline,
     paymentAtStore: props.partner.paymentAtStore,
   });
 
+  useEffect(() => {
+    // props.getPartnerType();
+    props.getPartnerCategory();
+  }, [brandInformation]);
   const getDisableEdit = (disableEdit) => {
     setEdit(disableEdit);
   };
-
   const onSave = () => {
     props.updatePartnerDetails(id, brandInformation);
     setEdit(!edit);
   };
-
   return (
     <div
       className="left-brand-information"
@@ -47,7 +42,6 @@ const BrandInformation = (props) => {
     >
       <div className="heading">
         <h1>Brand Information</h1>
-
         {edit ? (
           <i
             className="mdi mdi-account-edit"
@@ -92,44 +86,44 @@ const BrandInformation = (props) => {
           onChange={(e) =>
             setBrandInformation({
               ...brandInformation,
-              partnerType: e.target.value,
+              partnerType: { id: parseInt(e.target.value) },
             })
           }
-          defaultValue={brandInformation.partnerType}
+          defaultValue={brandInformation.partnerType.id}
         >
-          {/* {brandInformation.partnerType?.map((e, key) => {
+          {props.partnerType.map((e, key) => {
             return (
-              <option key={key} value={e.id}>
+              <option key={key} value={e.id} selected>
                 {e.type}
               </option>
-              );
-          })} */}
-
-          <option value={brandInformation.partnerType}>Private Limited</option>
-          {<option value="2">Public Limited</option>}
+              // <option value={brandInformation.partnerType}>Private Limited</option>
+            );
+          })}
         </select>
       </div>
       <div>
         <h3>Business Category</h3>
-
         <select
           disabled={edit}
-          onChange={(e) =>
+          onChange={(e) => {
             setBrandInformation({
               ...brandInformation,
-              partnerCategory: e.target.value,
-            })
-          }
-          defaultValue={brandInformation.partnerCategory}
+              partnerCategory: { id: parseInt(e.target.value) },
+            });
+          }}
+          defaultValue={brandInformation.partnerCategory.id}
         >
-          <option value="Product">Product</option>
-          {/* <option value="Health and Fitness">Health and Fitness</option> */}
+          {props.partnerCategory.partnerCategory.map((e, key) => {
+            return (
+              <option key={key} value={e.id} selected>
+                {e.name}
+              </option>
+            );
+          })}
         </select>
       </div>
-
       <div>
         <h3>Average Order Value</h3>
-
         <select
           disabled={edit}
           onChange={(e) =>
@@ -190,11 +184,13 @@ const mapStateToProps = (state) => {
     partnerType: state.partners.partnerType,
     partner: state.partners.partner,
     errors: state.partners.errors,
+    partnerCategory: state.category,
   };
 };
 
 export default connect(mapStateToProps, {
-  getPartnersCategotyTypeById,
+  getPartnerType,
+  getPartnerCategory,
   getPartnersTypeById,
   updatePartnerDetails,
   clearErrors,

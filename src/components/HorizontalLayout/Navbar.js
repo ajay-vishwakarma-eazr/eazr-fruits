@@ -108,12 +108,24 @@ class Navbar extends Component {
                       {this.props.t("Support")}
                     </Link>
                   </li>
-                  <li className="nav-item">
+                  {/* <li className="nav-item">
                     <Link className="nav-link" to="/logs">
                       <i className="fas fa-align-justify mr-2"></i>{" "}
                       {this.props.t("Logs")}
                     </Link>
+                  </li> */}
+                  <li className="nav-item">
+                    <Link className="nav-link" to="partner-type">
+                      <i className="fas fa-align-justify mr-2"></i>{" "}
+                      {this.props.t("Partner Types and Categories")}
+                    </Link>
                   </li>
+                  {/* <li className="nav-item">
+                    <Link className="nav-link" to="#">
+                      <i className="fas fa-align-justify mr-2"></i>{" "}
+                      {this.props.t("PartnerCategory")}
+                    </Link>
+                  </li> */}
 
                   {/* <li className="nav-item">
                     <Link className="nav-link" to="/users">
@@ -175,7 +187,7 @@ class Navbar extends Component {
                       {this.props.t("Help and Support")}
                     </Link>
                   </li> */}
-                    {/* <li className="nav-item">
+                  {/* <li className="nav-item">
                       <Link className="nav-link" to="/modules">
                         <i className="ri-sound-module-fill mr-2"></i>
                         {this.props.t("Modules")}

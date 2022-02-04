@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Container } from "reactstrap";
 import BackBtn from "../../BackBtn";
+import EmptySection from "../../../components/EmptySection/EmptySection";
 import SupportNav from "../SupportNav";
 import { useDispatch, useSelector } from "react-redux";
 import SingleTicket from "./SingleTicket";
@@ -20,24 +21,26 @@ const NewTickets = () => {
         <BackBtn route="support-tickets" />
         <SupportNav />
 
-        {tickets
-          .filter((filtered) => filtered.status === 1)
-          .map((ticket, index) => {
-            return (
-              <SingleTicket
-                key={index}
-                ticketId={ticket.id}
-                ticketImage={ticket?.file[0]}
-                ticketStatus={ticket.status}
-                ticketTitle={ticket.title}
-                ticketTime={ticket.createdTimestamp}
-                ticketDescription={ticket.description}
-                ticketAssignedTo={ticket.title}
-                ticketRaisedBy={ticket.partner.businessName}
-              />
-            );
-          })}
-        {/* <h1 style={{ fontSize: "18px", textAlign: "center" }}>No data found</h1> */}
+        {!tickets 
+          ? tickets
+              .filter((filtered) => filtered.status === 1)
+              .map((ticket, index) => {
+                return (
+                  <SingleTicket
+                    key={index}
+                    ticketId={ticket.id}
+                    ticketImage={ticket?.file[0]}
+                    ticketStatus={ticket.status}
+                    ticketTitle={ticket.title}
+                    ticketTime={ticket.createdTimestamp}
+                    ticketDescription={ticket.description}
+                    ticketAssignedTo={ticket.title}
+                    ticketRaisedBy={ticket.partner.businessName}
+                  />
+                );
+              })
+          : <EmptySection/>
+          }
       </Container>
     </div>
   );

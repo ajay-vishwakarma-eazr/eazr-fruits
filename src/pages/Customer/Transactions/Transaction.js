@@ -10,40 +10,42 @@ import "./Transaction.css";
 import TableRow from "./TableRow";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory, Redirect } from "react-router-dom";
-import {
-  getTranscationById,
-  getUsersTranscationById,
-} from "../../../store/transactions/actions/action";
+import { getUsersTranscationById } from "../../../store/transactions/actions/action";
 import ReactPaginate from "react-paginate";
 const Transaction = () => {
-  const [searchTranscation, setSearchTransaction] = useState(null);
+  const [searchTranscation, setSearchTransaction] = useState("");
   const [filteredTransaction, setFilteredTransaction] = useState(null);
   const [pageNumber, setPageNumber] = useState(0);
-  const usersPerPage = 10;
-  const pagesVisited = pageNumber * usersPerPage;
-  let history = useHistory();
+  // const [data, setData] = useState(null);
+
+  const { transactions, loading } = useSelector((state) => state.transactions);
   const dispatch = useDispatch();
   const { id } = useParams();
   useEffect(() => {
-    dispatch(getUsersTranscationById(id));
-  }, []);
-  const { loading } = useSelector((state) => state.transactions);
-  const { transactions } = useSelector((state) => state.transactions);
+    debugger;
+    dispatch(getUsersTranscationById(id, pageNumber));
+    console.log(transactions);
+  }, [pageNumber]);
+
   const getSearchTransactionValue = (value) => {
     setSearchTransaction(value);
   };
   const filterArray = () => {
-    if (searchTranscation !== null && searchTranscation.length > 0) {
+    if (searchTranscation.data !== null && searchTranscation.data?.length > 0) {
       const filter = transactions.filter((trans) => {
-        return (trans.partner.businessName
+        return trans.partner.businessName
           .toLowerCase()
           .split(" ")
           .join("")
-          .includes(searchTranscation.toLowerCase().split(" ").join(""))
-        );
+          .includes(searchTranscation.toLowerCase().split(" ").join(""));
       });
       setFilteredTransaction(filter);
     }
+  };
+
+  const changePage = ({ selected }) => {
+    const newSelect = selected + 1;
+    setPageNumber(newSelect);
   };
 
   let data;
@@ -54,7 +56,7 @@ const Transaction = () => {
         <ClipLoader color="#bbbbbb" loading={true} size={60} />
       </div>
     );
-  } else if (transactions !== null && transactions.length > 0) {
+  } else if (transactions.data !== null && transactions.data?.length > 0) {
     data = (
       <Card>
         <CardBody>
@@ -76,7 +78,8 @@ const Transaction = () => {
               >
                 <TableHeading />
                 {filteredTransaction
-                  ? filteredTransaction.map((trans) => {
+                  ? filteredTransaction.data.map((trans) => {
+                    debugger;
                       return (
                         <TableRow
                           className="transaction-table"
@@ -89,9 +92,10 @@ const Transaction = () => {
                         />
                       );
                     })
-                  : transactions
-                      .slice(pagesVisited, pagesVisited + usersPerPage)
+                  : transactions.data
+                      // .slice(pagesVisited, pagesVisited + usersPerPage)
                       .map((trans) => {
+                        debugger;
                         return (
                           <TableRow
                             className="transaction-table"
@@ -113,11 +117,6 @@ const Transaction = () => {
   } else {
     data = <EmptySection />;
   }
-  const pageCount = Math.ceil(transactions?.length / usersPerPage);
-
-  const changePage = ({ selected }) => {
-    setPageNumber(selected);
-  };
   return (
     <div className="page-content  inner-user-page">
       <Container fluid>
@@ -125,17 +124,20 @@ const Transaction = () => {
         <CustomersNav />
         <Card>
           {data}
+          {transactions.data?.length > 0 ?
           <ReactPaginate
-            previousLabel={"Previous"}
-            nextLabel={"Next"}
-            pageCount={pageCount}
-            onPageChange={changePage}
-            containerClassName={"paginationBttns"}
-            previousLinkClassName={"previousBttn"}
-            nextLinkClassName={"nextBttn"}
-            disabledClassName={"paginationDisabled"}
-            activeClassName={"paginationActive"}
-          />
+              previousLabel={"Previous"}
+              nextLabel={"Next"}
+              pageCount={transactions.pageCount}
+              onPageChange={changePage}
+              containerClassName={"paginationBttns"}
+              previousLinkClassName={"previousBttn"}
+              nextLinkClassName={"nextBttn"}
+              disabledClassName={"paginationDisabled"}
+              activeClassName={"paginationActive"}
+            /> : (
+            ""
+          ) }
         </Card>
       </Container>
     </div>

@@ -17,7 +17,7 @@ const LegalInformation = (props) => {
   const [legalInformation, setLegalInformation] = useState({
     pan: props.partner.pan,
     panName: props.partner.panName,
-    address: props.partner.address.addr,
+    address: props.partner.address?.addr,
     businessPan: props.partner.businessPan ? props.partner.businessPan : "",
   });
 
@@ -39,7 +39,7 @@ const LegalInformation = (props) => {
         <SweetAlert
           title="Wrong Password"
           danger
-          confirmBtnBsStyle="danger"
+          confirmBtnBsStyle="danger"  
           onConfirm={() => {
             props.clearErrors();
             // getDisableEdit(disableEdit);

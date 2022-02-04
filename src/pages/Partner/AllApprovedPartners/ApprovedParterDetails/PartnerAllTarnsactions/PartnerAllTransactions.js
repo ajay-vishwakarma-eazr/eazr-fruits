@@ -22,14 +22,22 @@ class PartnerAllTransactions extends Component {
     this.state = {
       searchTransactions: "",
       transactionList: null,
-      pageNumber: 0,
+      pageNumber: 1,
+      // pageNumber: this.props.transactions.transactions.page,
     };
   }
 
-  componentDidMount() {
+  componentDidMount(pageNumber) {
     const id = this.props.match.params.id;
-    this.props.getTranscationById(id);
+    this.props.getTranscationById(id, this.state.pageNumber);
+    
   }
+  changePage = ({ selected }) => {
+    const newSelect = selected + 1;
+    this.setState({pageNumber:newSelect});
+    const id = this.props.match.params.id;
+    this.props.getTranscationById(id, this.state.pageNumber);
+  };
 
   handleSearch = (e) => {
     this.setState({
@@ -51,16 +59,6 @@ class PartnerAllTransactions extends Component {
 
   render() {
     const { transactions } = this.props;
-    const usersPerPage = 10;
-    const pageVisited = this.state.pageNumber * usersPerPage;
-
-    const pageCount = Math.ceil(
-      this.props.transactions.transactions?.length / usersPerPage
-    );
-
-    const changePage = ({ selected }) => {
-      this.setState({ pageNumber: selected });
-    };
 
     let data;
     if (transactions?.loading === true) {
@@ -70,8 +68,8 @@ class PartnerAllTransactions extends Component {
         </div>
       );
     } else if (
-      transactions?.transactions &&
-      transactions?.transactions?.length > 0
+      transactions?.transactions.data &&
+      transactions?.transactions?.data.length > 0
     ) {
       data = (
         <div className="table-rep-plugin">
@@ -88,34 +86,31 @@ class PartnerAllTransactions extends Component {
             >
               <PartnerTranscationsHeading />
               {this.state.searchTransactions
-                ? this.state.transactionList
-                    .slice(pageVisited, pageVisited + usersPerPage)
-                    .map((item, index) => (
+                ? this.state.transactionList.map((item, index) => (
+                    <PartnerTrancationsRow
+                      key={index}
+                      userName={item.user.fullName}
+                      amount={item?.amount}
+                      status={item?.status}
+                      debit={item?.debit}
+                      refund={item?.refund}
+                      settled={item?.settled}
+                    />
+                  ))
+                : transactions.transactions?.data.map((item, index) => {
+                  debugger;
+                    return (
                       <PartnerTrancationsRow
                         key={index}
                         userName={item.user.fullName}
                         amount={item?.amount}
                         status={item?.status}
                         debit={item?.debit}
-                        refund={item?.refund}
+                        refund={item?.refunded}
                         settled={item?.settled}
                       />
-                    ))
-                : transactions?.transactions
-                    .slice(pageVisited, pageVisited + usersPerPage)
-                    .map((item, index) => {
-                      return (
-                        <PartnerTrancationsRow
-                          key={index}
-                          userName={item.user.fullName}
-                          amount={item?.amount}
-                          status={item?.status}
-                          debit={item?.debit}
-                          refund={item?.refunded}
-                          settled={item?.settled}
-                        />
-                      );
-                    })}
+                    );
+                  })}
             </Table>
           </div>
         </div>
@@ -147,17 +142,21 @@ class PartnerAllTransactions extends Component {
                   </div>
                 </div>
                 <CardBody>{data}</CardBody>
+                {transactions.transactions.data?.length> 0 ?
                 <ReactPaginate
                   previousLabel={"Previous"}
                   nextLabel={"Next"}
-                  pageCount={pageCount}
-                  onPageChange={changePage}
+                  pageCount={this.props.transactions.transactions.pageCount}
+                  onPageChange={this.changePage}
                   containerClassName={"paginationBttns"}
                   previousLinkClassName={"previousBttn"}
                   nextLinkClassName={"nextBttn"}
                   disabledClassName={"paginationDisabled"}
                   activeClassName={"paginationActive"}
-                />
+                />: (
+                  ""
+                )
+  }
               </Card>
             </Container>
           </div>
@@ -168,6 +167,7 @@ class PartnerAllTransactions extends Component {
 }
 
 const mapStateToProps = (state) => {
+  debugger;
   return {
     transactions: state.transactions,
   };

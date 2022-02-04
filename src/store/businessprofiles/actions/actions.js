@@ -49,18 +49,14 @@ export const fetchPartners = () => {
   return function (dispatch) {
     dispatch(FetchPartnerRequest);
     axios
-      // .get(`${ip}/admin/businessprofiles/businessprofiles`)
       .get(`${ip}/business/profile/all`)
       .then((res) => {
-        // const users=res.data.map(user=>user.id)
         const partners = res.data;
-        // console.log(partners);
         dispatch(FetchPartnerSuccess(partners));
       })
       .catch((err) => {
         console.log(err);
         dispatch(FetchPartnerFailure(err.message));
-        // alert('No data found')
       });
   };
 };

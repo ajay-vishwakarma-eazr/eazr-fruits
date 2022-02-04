@@ -30,7 +30,7 @@ export const fetchSettlements = () => {
   return function (dispatch) {
     dispatch(FetchSettlementRequest);
     axios
-      .get(`${ip}/settlements`)
+      .get(`${ip}/settlements?id=sort,DESC`)
       .then((res) => {
         //const users=res.data.map(user=>user.id)
         const settlements = res.data;
@@ -49,11 +49,13 @@ export const setPartnersSettlementsLoading = (id) => {
   };
 };
 
-export const fetchSettlementsById = (id) => {
+export const fetchSettlementsById = (id, pageNumber) => {
   return function (dispatch) {
     dispatch(FetchSettlementRequest);
     axios
-      .get(`${ip}/settlements?filter=partnerId||eq||${id}`)
+      .get(
+        `${ip}/settlements?filter=partnerId||eq||${id}&page=${pageNumber}&limit=10&sort=id,DESC`
+      )
       .then((res) => {
         const settlements = res.data;
         dispatch(FetchSettlementSuccess(settlements));

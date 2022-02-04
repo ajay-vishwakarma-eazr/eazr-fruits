@@ -19,14 +19,21 @@ class PartnerSettlements extends Component {
     this.state = {
       searchSettlements: "",
       settlementsList: null,
-      pageNumber: 0,
+      pageNumber: 1,
     };
   }
 
   componentDidMount() {
     const id = this.props.match.params.id;
-    this.props.fetchSettlementsById(id);
+    this.props.fetchSettlementsById(id, this.state.pageNumber);
   }
+
+  changePage = ({ selected }) => {
+    const newSelect = selected + 1;
+    this.setState({ pageNumber: newSelect });
+    const id = this.props.match.params.id;
+    this.props.fetchSettlementsById(id, this.state.pageNumber);
+  };
 
   handleSearch = (e) => {
     this.setState({
@@ -34,12 +41,11 @@ class PartnerSettlements extends Component {
     });
 
     const searchableSettlements = e.target.value;
-    const filtered = this.props.settlements.settlements.filter((filter) => 
-    // return 
-    filter.partner.businessName
-    .toLowerCase()
-    .includes(searchableSettlements)) 
-    // filter.partner.partnerAmount.includes(searchableSettlements) 
+    const filtered = this.props.settlements.settlements.filter((filter) =>
+      // return
+      filter.partner.businessName.toLowerCase().includes(searchableSettlements)
+    );
+    // filter.partner.partnerAmount.includes(searchableSettlements)
     this.setState({
       settlementsList: filtered,
     });
@@ -47,17 +53,6 @@ class PartnerSettlements extends Component {
 
   render() {
     const { settlements } = this.props;
-
-    const usersPerPage = 10;
-    const pageVisited = this.state.pageNumber * usersPerPage;
-
-    const pageCount = Math.ceil(
-      this.props.settlements.settlements?.length / usersPerPage
-    );
-
-    const changePage = ({ selected }) => {
-      this.setState({ pageNumber: selected });
-    };
 
     let data;
     if (settlements?.loading === true) {
@@ -67,8 +62,8 @@ class PartnerSettlements extends Component {
         </div>
       );
     } else if (
-      settlements?.settlements &&
-      settlements?.settlements.length > 0
+      settlements?.settlements.data &&
+      settlements?.settlements.data.length > 0
     ) {
       data = (
         <div className="table-rep-plugin">
@@ -85,7 +80,7 @@ class PartnerSettlements extends Component {
             >
               <PartnerSettlementsHeading />
               {this.state.searchSettlements
-                ? this.state.settlementsList.map((settlement, index) => (
+                ? this.state.settlementsList.data.map((settlement, index) => (
                     <PartnerSettlementsRow
                       key={index}
                       partnerName={settlement.partner.businessName}
@@ -96,8 +91,8 @@ class PartnerSettlements extends Component {
                       createdAt={settlement.createdTimestamp.slice(0, 10)}
                     />
                   ))
-                : settlements?.settlements
-                    .slice(pageVisited, pageVisited + usersPerPage)
+                : settlements?.settlements.data
+                    // .slice(pageVisited, pageVisited + usersPerPage)
                     .map((settlement, index) => {
                       return (
                         <PartnerSettlementsRow
@@ -142,18 +137,22 @@ class PartnerSettlements extends Component {
                 </div>
 
                 <CardBody>{data}</CardBody>
+                {settlements.settlements.data.length>0 ?
 
                 <ReactPaginate
                   previousLabel={"Previous"}
                   nextLabel={"Next"}
-                  pageCount={pageCount}
-                  onPageChange={changePage}
+                  pageCount={this.props.settlements?.settlements.pageCount}
+                  onPageChange={this.changePage}
                   containerClassName={"paginationBttns"}
                   previousLinkClassName={"previousBttn"}
                   nextLinkClassName={"nextBttn"}
                   disabledClassName={"paginationDisabled"}
                   activeClassName={"paginationActive"}
-                />
+                />: (
+                  ""
+                )
+  }
               </Card>
             </Container>
           </div>

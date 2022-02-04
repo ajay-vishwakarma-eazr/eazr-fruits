@@ -23,6 +23,7 @@ const PartnerDetails = (props) => {
   const { id } = useParams();
   useEffect(() => {
     props.getPartnerById(id);
+    // console.log(getPartnerById);
   }, []);
 
   let history = useHistory();
@@ -191,8 +192,8 @@ const PartnerDetails = (props) => {
                   setFields={setFields}
                   remark={remark}
                   setRemark={setRemark}
-                  // onTicketSubmit={onTicketSubmit}
-                />
+                  />
+                  {/* // onTicketSubmit={onTicketSubmit} */}
               {/* ) : null} */}
             </div>
           </div>

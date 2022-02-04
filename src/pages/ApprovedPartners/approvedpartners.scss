@@ -13,6 +13,7 @@
 // }
 
 .approved-partners .card {
+  display:flex;
   background: $white-table-card;
   border-radius: $table-card-radius;
 }

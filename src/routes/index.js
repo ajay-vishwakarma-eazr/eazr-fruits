@@ -15,10 +15,13 @@ import AdminDashboard from "../pages/Dashboard/AdminDashboard";
 import DeliveryDashboard from "../pages/Dashboard/DeliveryDashboard";
 import SupportDashboard from "../pages/Dashboard/SupportDashboard";
 import Customer from "../pages/Customer/Customer";
+import PartnerTypes from "../pages/PartnerType/partnerTypes/PartnerTypes";
+import PartnerCategory from "../pages/PartnerCategory/PartnerCategory";
 import Partner from "../pages/Partner/Partner";
 // import User from "../pages/Admin/User/User";
 import HelpAndSupport from "../pages/HelpAndSupport/HelpAndSupport";
 import PartnerDetails from "../pages/Partner/PartnerDetails/PartnerDetails";
+import PartnerType from "../pages/PartnerType/Index";
 // import AllUsers from "../pages/Admin/User/User"
 import Ticket from "../pages/Partner/Ticket";
 import OnHoldDetails from "../pages/Partner/PartnerDetails/OnHold/OnHoldDetails";
@@ -77,10 +80,13 @@ const authProtectedRoutes = [
   { path: "/partner-dashboard", component: PartnerDashboard },
   { path: "/dashboard", component: AdminDashboard },
   { path: "/user-dashboard", component: UserDashboard },
+  { path: "/partner-type", component: PartnerType },
   { path: "/delivery-dashboard", component: DeliveryDashboard },
   { path: "/support-dashboard", component: SupportDashboard },
   { path: "/auth-lock-screen", component: AuthLockScreen },
   { path: "/users", component: Customer },
+  { path: "/partner-types", component: PartnerTypes },
+  { path: "/partner-category", component: PartnerCategory },
   { path: "/user-profile/:id", component: UserProfile },
   { path: "/user/:id", component: Customer },
   { path: "/user-module", component: CustomerModules },

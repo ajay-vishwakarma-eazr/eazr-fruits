@@ -1,61 +1,55 @@
-import React, { useDebugValue, useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { Container, Row, Col, Card, CardBody, Table } from "reactstrap";
 import CustomerTableHeading from "./Table/CustomerTableHeading";
 import CustomerTableRow from "./Table/CustomerTableRow";
-import { useParams } from "react-router-dom";
 import "./Table/customertable.scss";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import BackBtn from "../BackBtn";
 import ClipLoader from "react-spinners/ClipLoader";
 import EmptySection from "../../components/EmptySection/EmptySection";
-import SearchUsers from "./SearchUsers";
 import ReactPaginate from "react-paginate";
-import {
-  fetchUserById,
-  fetchUsers,
-} from "../../store/adminusers/actions/actions";
+import { fetchUsers } from "../../store/adminusers/actions/actions";
 const Customer = () => {
   const { loading } = useSelector((state) => state.Users);
   const { users } = useSelector((state) => state.Users);
-  const [searchUser, setSearchUser] = useState(null);
+  const [searchUser, setSearchUser] = useState("");
   const [filteredUser, setFilteredUser] = useState(null);
-  const [pageNumber, setPageNumber] = useState(0);
-  const usersPerPage = 10;
-  const pagesVisited = pageNumber * usersPerPage;
+  const [pageNumber, setPageNumber] = useState(1);
   const dispatch = useDispatch();
-  const { id } = useParams();
-useEffect(() => {
-    dispatch(fetchUsers());
-  }, []);
+  useEffect(() => {
+    debugger;
+    dispatch(fetchUsers(pageNumber));
+  }, [pageNumber]);
 
-  const getSearchUserValue = (value) => {
-    setSearchUser(value);
+  const handleSearch = (e) => {
+    setSearchUser(e.target.value);
+    const searchablePartner = e.target.value;
+    const filter = users.data.filter((filterUserData) => {
+      return (
+        filterUserData?.fullName
+          ?.toLowerCase()
+          ?.includes(searchablePartner?.toLowerCase()) ||
+        filterUserData?.email
+          ?.toLowerCase()
+          ?.includes(searchablePartner?.toLowerCase()) ||
+        filterUserData?.contactNumber?.includes(searchablePartner)
+      );
+    });
+    setFilteredUser(filter);
   };
-  const filterArray = () => {
-    if (searchUser !== null && searchUser.length > 0) {
-      const filter = users.filter((filterUserData) => {
-        return (
-          filterUserData?.fullName
-            ?.toLowerCase()
-            ?.includes(searchUser?.toLowerCase()) ||
-          filterUserData?.email
-            ?.toLowerCase()
-            ?.includes(searchUser?.toLowerCase()) ||
-          filterUserData?.contactNumber?.includes(searchUser)
-        );
-      });
-      setFilteredUser(filter);
-    }
+  const changePage = ({ selected }) => {
+    const newSelect = selected + 1;
+    setPageNumber(newSelect);
   };
+
   let data;
-
   if (loading === true) {
     data = (
       <div className="spinner-div">
         <ClipLoader color="#bbbbbb" loading={true} size={60} />
       </div>
     );
-  } else if (users !== null && users.length > 0) {
+  } else if (users.data !== null && users.data?.length > 0) {
     data = (
       <Card>
         <CardBody>
@@ -67,49 +61,44 @@ useEffect(() => {
             >
               <Table
                 // center
-                sttomCustomerTableHeading // bordered
+                CustomerTableHeading // bordered
                 responsive
               >
                 <CustomerTableHeading />
-                {filteredUser
-                  ? filteredUser
-                      .slice(pagesVisited, pagesVisited + usersPerPage)
-                      .map((users) => {
-                        return (
-                          <CustomerTableRow
-                            key={users.id}
-                            id={users.id}
-                            name={users.fullName}
-                            email={users.email}
-                            contact={users.contactNumber}
-                            gender={users.gender}
-                            creditLimit={users.creditLimit}
-                            totalOutstandingAmount={
-                              users.totalOutstandingAmount
-                            }
-                          />
-                        );
-                      })
-                  : users
-                      .slice(pagesVisited, pagesVisited + usersPerPage)
-                      .map((users) => {
-                        return (
-                          <CustomerTableRow
-                            key={users.id}
-                            id={users.id}
-                            name={users.fullName}
-                            email={users.email}
-                            contact={users.contactNumber}
-                            gender={users.gender}
-                            creditLimit={users.creditLimit}
-                            totalOutstandingAmount={
-                              users.totalOutstandingAmount
-                            }
-                            enabled={users.enabled}
-                            kycVerified={users.kycVerified}
-                          />
-                        );
-                      })}
+                {searchUser
+                  ? filteredUser.map((users) => {
+                      debugger;
+                      return (
+                        <CustomerTableRow
+                          key={users.id}
+                          id={users.id}
+                          name={users.fullName}
+                          email={users.email}
+                          contact={users.contactNumber}
+                          gender={users.gender}
+                          creditLimit={users.creditLimit}
+                          totalOutstandingAmount={users.totalOutstandingAmount}
+                          enabled={users.enabled}
+                          kycVerified={users.kycVerified}
+                        />
+                      );
+                    })
+                  : users.data.map((users) => {
+                      return (
+                        <CustomerTableRow
+                          key={users.id}
+                          id={users.id}
+                          name={users.fullName}
+                          email={users.email}
+                          contact={users.contactNumber}
+                          gender={users.gender}
+                          creditLimit={users.creditLimit}
+                          totalOutstandingAmount={users.totalOutstandingAmount}
+                          enabled={users.enabled}
+                          kycVerified={users.kycVerified}
+                        />
+                      );
+                    })}
               </Table>
             </div>
           </div>
@@ -120,11 +109,6 @@ useEffect(() => {
     data = <EmptySection />;
   }
 
-  const pageCount = Math.ceil(users.length / usersPerPage);
-
-  const changePage = ({ selected }) => {
-    setPageNumber(selected);
-  };
   return (
     <>
       <div className="page-content approved-partners">
@@ -134,24 +118,36 @@ useEffect(() => {
             <Col xs={12}>
               <Card>
                 <CardBody>
-                  <SearchUsers
-                    getSearchUserValue={getSearchUserValue}
-                    filterArray={filterArray}
-                  />
+                  <div className="search-filter">
+                    <div>
+                      <h6>Search Users</h6>
+                      <input
+                        type="text"
+                        value={searchUser}
+                        placeholder="Search for ..."
+                        onChange={handleSearch}
+                      />
+                      <i className="fa fa-search"></i>
+                    </div>
+                  </div>
                 </CardBody>
               </Card>
               {data}
-              <ReactPaginate
-                previousLabel={"Previous"}
-                nextLabel={"Next"}
-                pageCount={pageCount}
-                onPageChange={changePage}
-                containerClassName={"paginationBttns"}
-                previousLinkClassName={"previousBttn"}
-                nextLinkClassName={"nextBttn"}
-                disabledClassName={"paginationDisabled"}
-                activeClassName={"paginationActive"}
-              />
+              {data ? (
+                <ReactPaginate
+                  previousLabel={"Previous"}
+                  nextLabel={"Next"}
+                  pageCount={users.pageCount}
+                  onPageChange={changePage}
+                  containerClassName={"paginationBttns"}
+                  previousLinkClassName={"previousBttn"}
+                  nextLinkClassName={"nextBttn"}
+                  disabledClassName={"paginationDisabled"}
+                  activeClassName={"paginationActive"}
+                />
+              ) : (
+                ""
+              )}
             </Col>
           </Row>
         </Container>
@@ -160,12 +156,3 @@ useEffect(() => {
   );
 };
 export default Customer;
-/*const mapStateToProps = (state) => {
-  return {
-    partners: state.partners,
-  };
-};*/
-
-/*export default connect(mapStateToProps, { getApprovedPartners })(
-  ApprovedPartners
-);*/

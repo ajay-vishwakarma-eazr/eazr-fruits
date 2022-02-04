@@ -25,16 +25,18 @@ import {
 import axios from "axios";
 import { ip } from "../../config/config";
 
-export const getPartners = () => {
+export const getPartners = (pageNumber) => {
   return (dispatch) => {
     dispatch(setPartersLoading());
 
+    // ?page=${pageNumber}&limit=10&sort=id,DESC
     axios
-      .get(`${ip}/partners`)
+      .get(`${ip}/partners?page=${pageNumber}&limit=15&sort=id,DESC`)
       .then((res) => {
+        debugger;
         dispatch({
           type: GET_PARTNERS,
-          payload: res.data,
+          payload: res.data.data,
         });
       })
       .catch((err) => {

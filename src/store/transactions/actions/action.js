@@ -32,7 +32,7 @@ export const fetchTransactions = () => {
   return function (dispatch) {
     dispatch(FetchTransactionRequest);
     axios
-      .get(`${ip}/transactions`)
+      .get(`${ip}/transactions?id=sort,DESC`)
       .then((res) => {
         const transactions = res.data;
         console.log(transactions);
@@ -50,18 +50,22 @@ export const setPartnersLoading = (id) => {
   };
 };
 
-export const getTranscationById = (id) => {
+export const getTranscationById = (id, pageNumber) => {
   return (dispatch) => {
     dispatch(setPartnersLoading());
     axios
-      .get(`${ip}/transactions?filter=partnerId||eq||${id} || (?page=n)`)
+      .get(
+        `${ip}/transactions?filter=partnerId||eq||${id}&page=${pageNumber}&limit=10&sort=id,DESC `
+      )
       .then((res) => {
+        debugger;
         dispatch({
           type: GET_TRANSACTION_BY_ID,
           payload: res.data,
         });
       })
       .catch((err) => {
+        debugger;
         console.log(err.response.data);
         dispatch({
           type: GET_TRANSACTION_BY_ID_FAILED,
@@ -97,8 +101,8 @@ export const getTranscationSearch = (id, search) => {
     dispatch(setPartnersLoading());
     axios
       .get(
-        `${ip}/transactions?filter=partnerId||eq||${id}`
-        // &filter=user.fullName||$eq||{searcheData}`
+        `${ip}/transactions?filter=partnerId||eq||${id}
+        &filter.user.fullName||$eq||{searcheData}`
       )
       .then((res) => {
         dispatch({
@@ -120,7 +124,7 @@ export const getTranscationSearch = (id, search) => {
 //     dispatch(setPartnersLoading());
 //     if (search != "") {
 //       let bool = isNaN(Number(search));
-//
+
 //       let url = bool
 //         ? `${ip}/transactions?filter=partnerId||eq||${id}&filter=user.fullName||$contL||${search}&or=user.email||$contL||${search}`
 //         : `${ip}/transactions?filter=partnerId||eq||${id}&filter=user.fullName||$contL||${search}&or=user.email||$contL||${search}&or=amount||$eq||${String(
@@ -129,7 +133,7 @@ export const getTranscationSearch = (id, search) => {
 //       axios
 //         .get(url)
 //         .then((res) => {
-//
+
 //           dispatch({
 //             type: GET_TRANSACTION_BY_ID,
 //             payload: res.data,
@@ -137,18 +141,18 @@ export const getTranscationSearch = (id, search) => {
 //         })
 //         .catch((err) => {
 //           console.log(err.response.data);
-//
+
 //           dispatch({
 //             type: GET_TRANSACTION_BY_ID_FAILED,
 //             payload: err.response.data,
 //           });
 //         });
 //     } else {
-//
+
 //       axios
 //         .get(`${ip}/transactions?filter=partnerId||eq||${id}`)
 //         .then((res) => {
-//
+
 //           dispatch({
 //             type: GET_TRANSACTION_BY_ID,
 //             payload: res.data,
@@ -156,7 +160,7 @@ export const getTranscationSearch = (id, search) => {
 //         })
 //         .catch((err) => {
 //           console.log(err.response.data);
-//
+
 //           dispatch({
 //             type: GET_TRANSACTION_BY_ID_FAILED,
 //             payload: err.response.data,
@@ -166,11 +170,13 @@ export const getTranscationSearch = (id, search) => {
 //   };
 // };
 
-export const getUsersTranscationById = (id) => {
+export const getUsersTranscationById = (id, pageNumber) => {
   return (dispatch) => {
     dispatch(setPartnersLoading());
     axios
-      .get(`${ip}/transactions?filter=userId||eq||${id}`)
+      .get(
+        `${ip}/transactions?filter=userId||eq||${id}&page=${pageNumber}&limit=10&sort=id,DESC`
+      )
       .then((res) => {
         dispatch({
           type: GET_TRANSACTION_BY_ID,

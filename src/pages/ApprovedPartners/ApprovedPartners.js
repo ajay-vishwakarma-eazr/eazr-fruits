@@ -11,16 +11,14 @@ import EmptySection from "../../components/EmptySection/EmptySection";
 import { fetchPartners } from "../../store/businessprofiles/actions/actions";
 import ReactPaginate from "react-paginate";
 const ApprovedPartners = ({ getApprovedPartners }) => {
-  const [searchPartner, setSearchPartner] = useState(null);
+  const [searchPartner, setSearchPartner] = useState("");
   const [filteredPartner, setFilteredPartner] = useState(null);
-   const [pageNumber, setPageNumber] = useState(0);
-   const usersPerPage = 10;
-   const pagesVisited = pageNumber * usersPerPage;
+  const [pageNumber, setPageNumber] = useState(1);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchPartners());
-  }, []);
+    dispatch(fetchPartners(pageNumber));
+  }, [pageNumber]);
 
   const { modules } = useSelector((state) => state.partnerModules);
   const { partners } = useSelector((state) => state.businessPartner);
@@ -41,6 +39,11 @@ const ApprovedPartners = ({ getApprovedPartners }) => {
       });
       setFilteredPartner(filter);
     }
+  };
+
+  const changePage = ({ selected }) => {
+    const newSelect = selected + 1;
+    setPageNumber(newSelect);
   };
 
   let data;
@@ -84,7 +87,7 @@ const ApprovedPartners = ({ getApprovedPartners }) => {
                       );
                     })
                   : partners
-                      .slice(pagesVisited, pagesVisited + usersPerPage)
+                      // .slice(pagesVisited, pagesVisited + usersPerPage)
                       .map((partner) => {
                         const { _id, businessName, email, mobile, address } =
                           partner;
@@ -107,11 +110,11 @@ const ApprovedPartners = ({ getApprovedPartners }) => {
   } else {
     data = <EmptySection />;
   }
-const pageCount = Math.ceil(partners?.length / usersPerPage);
+  // const pageCount = Math.ceil(partners?.length / usersPerPage);
 
-const changePage = ({ selected }) => {
-  setPageNumber(selected);
-};
+  // const changePage = ({ selected }) => {
+  //   setPageNumber(selected);
+  // };
   return (
     <div className="page-content approved-partners">
       <Container fluid>
@@ -130,7 +133,7 @@ const changePage = ({ selected }) => {
             <ReactPaginate
               previousLabel={"Previous"}
               nextLabel={"Next"}
-              pageCount={pageCount}
+              pageCount={partners.pageCount}
               onPageChange={changePage}
               containerClassName={"paginationBttns"}
               previousLinkClassName={"previousBttn"}

@@ -18,12 +18,17 @@ class Partner extends Component {
     this.state = {
       searchPartner: "",
       partnerList: null,
-      pageNumber: 0,
+      pageNumber: 1,
     };
   }
   componentDidMount() {
-    this.props.getPartners();
+    this.props.getPartners(this.state.pageNumber);
   }
+  
+  changePage = ({ selected }) => {
+    const newSelect = selected + 1;
+    this.state.pageNumber(newSelect);
+  };
 
   handleSearch = (e) => {
     this.setState({
@@ -54,6 +59,7 @@ class Partner extends Component {
           .join("")
           .includes(searchablePartner.toLowerCase().split(" ").join("")) ||
         filter.contactNumber.includes(searchablePartner)
+        // filter.status
       );
     });
 
@@ -64,16 +70,16 @@ class Partner extends Component {
 
   render() {
     const { partners } = this.props;
-    const usersPerPage = 10;
-    const pageVisited = this.state.pageNumber * usersPerPage;
+    // const usersPerPage = 10;
+    // const pageVisited = this.state.pageNumber * usersPerPage;
 
-    const pageCount = Math.ceil(
-      this.props.partners.partners?.length / usersPerPage
-    );
+    // const pageCount = Math.ceil(
+    //   this.props.partners.partners?.length / usersPerPage
+    // );
 
-    const changePage = ({ selected }) => {
-      this.setState({ pageNumber: selected });
-    };
+    // const changePage = ({ selected }) => {
+    //   this.setState({ pageNumber: selected });
+    // };
 
     let data;
 
@@ -101,7 +107,7 @@ class Partner extends Component {
               {this.state.searchPartner
                 ? this.state.partnerList
                     .filter((item) => item.status != 1)
-                    .slice(pageVisited, pageVisited + usersPerPage)
+                    // .slice(pageVisited, pageVisited + usersPerPage)
                     .map((item, index) => (
                       <PartnerTableRow
                         key={index}
@@ -118,7 +124,7 @@ class Partner extends Component {
                     ))
                 : partners.partners
                     .filter((item) => item.status != 1)
-                    .slice(pageVisited, pageVisited + usersPerPage)
+                    // .slice(pageVisited, pageVisited + usersPerPage)
                     .map((item, index) => {
                       return (
                         <PartnerTableRow
@@ -172,8 +178,8 @@ class Partner extends Component {
             <ReactPaginate
               previousLabel={"Previous"}
               nextLabel={"Next"}
-              pageCount={pageCount}
-              onPageChange={changePage}
+              pageCount={this.state.pageNumber}
+              onPageChange={this.changePage}
               containerClassName={"paginationBttns"}
               previousLinkClassName={"previousBttn"}
               nextLinkClassName={"nextBttn"}

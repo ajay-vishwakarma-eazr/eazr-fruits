@@ -5,6 +5,7 @@ import SupportNav from "../SupportNav";
 import { useDispatch, useSelector } from "react-redux";
 import SingleTicket from "./SingleTicket";
 import { fetchTickets } from "../../../store/supportTickets/actions/action";
+import EmptySection from "../../../components/EmptySection/EmptySection";
 
 const OpenTickets = () => {
   // const tickets = [
@@ -74,7 +75,8 @@ const OpenTickets = () => {
       <Container fluid>
         <BackBtn route="support-tickets" />
         <SupportNav />
-        {tickets
+        {!tickets ?
+        tickets
           .filter((filtered) => filtered.status === 2)
           .map((ticket, index) => {
             return (
@@ -90,8 +92,7 @@ const OpenTickets = () => {
                 ticketRaisedBy={ticket.partner.businessName}
               />
             );
-          })}
-        {/* <h1 style={{ fontSize: "18px", textAlign: "center" }}>No data found</h1> */}
+          }): <EmptySection/>}
       </Container>
     </div>
   );

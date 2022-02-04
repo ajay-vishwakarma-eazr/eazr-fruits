@@ -38,7 +38,6 @@ const CustomerTableRow = ({
     };
     dispatch(updateUserDetails(id, banToggler));
   };
-
   return (
     <tr style={{ opacity: ban ? 0.5 : 1 }} className="customer-table-row">
       <td>{name}</td>

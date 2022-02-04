@@ -34,11 +34,11 @@ export const FetchUsersFailure = (error) => {
   };
 };
 
-export const fetchUsers = () => {
+export const fetchUsers = (pageNumber) => {
   return function (dispatch) {
     dispatch(FetchUsersRequest);
     axios
-      .get(`${ip}/users`)
+      .get(`${ip}/users?page=${pageNumber}&limit=10&sort=id,DESC`)
       .then((res) => {
         const users = res.data;
         dispatch(FetchUsersSuccess(users));
@@ -46,7 +46,6 @@ export const fetchUsers = () => {
       .catch((err) => {
         console.log(err);
         dispatch(FetchUsersFailure(err.message));
-        // alert('No data found')
       });
   };
 };
