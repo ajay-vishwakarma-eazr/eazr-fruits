@@ -45,7 +45,7 @@ const rootReducer = combineReducers({
   PartnerType: partnerTypeReducer,
 
   // partnerCategory
-  category: partnerCategoryReducer,
+  Category: partnerCategoryReducer,
 
   // AdminProfile
   AdminProfile: AdminProfileReducer,

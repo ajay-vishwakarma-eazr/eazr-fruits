@@ -8,24 +8,39 @@ import BackBtn from "../../BackBtn";
 import { useHistory } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import EmptySection from "../../../components/EmptySection/EmptySection";
-import { getPartnerType, addPartnerType } from "../../../store/partners/PartnerType/actions/action";
+import ReactPaginate from "react-paginate";
+import {
+  getPartnerType,
+  addPartnerType,
+} from "../../../store/partners/PartnerType/actions/action";
 import PartnerTypeTableRow from "./PartnerTypeTableRow";
 
 const PartnerTypes = () => {
   const [type, setType] = useState("");
+  const [pageNumber, setPageNumber] = useState(1);
   const dispatch = useDispatch();
-  const  partnerType = useSelector((state) => state.partners.partnerType);
+  const partnerType = useSelector((state) => state.partners.partnerType);
   const loading = useSelector((state) => state.partners.partnerType);
   useEffect(() => {
-    dispatch(getPartnerType());
-    console.log(partnerType);
-  }, []);
+    dispatch(getPartnerType(pageNumber));
+    // console.log(partnerType);
+  }, [pageNumber]);
 
   let history = useHistory();
   const addNewPartnerType = () => {
-    const newType = { type };
-    dispatch(addPartnerType(newType));
+    if (type === "") {
+      alert("Please enter something");
+    } else {
+      const newType = { type };
+      dispatch(addPartnerType(newType, pageNumber));
+      setType("");
+    }
     // history.push("/partner-type");
+  };
+
+  const changePage = ({ selected }) => {
+    const newSelect = selected + 1;
+    setPageNumber(newSelect);
   };
 
   let data;
@@ -36,9 +51,9 @@ const PartnerTypes = () => {
         <ClipLoader color="#bbbbbb" loading={true} size={60} />
       </div>
     );
-  } else if (partnerType !== null && partnerType?.length > 0) {
+  } else if (partnerType !== null && partnerType.data?.length > 0) {
     data = (
-      <Card style={{width:"70%"}}>
+      <Card style={{display: 'flex',width: "70%" }}>
         <CardBody>
           <div className="table-rep-plugin">
             <div
@@ -52,13 +67,14 @@ const PartnerTypes = () => {
                 responsive
               >
                 <PartnerTypesHeading />
-                {partnerType.map((type) => {
+                {partnerType.data.map((type) => {
                   return (
                     <PartnerTypeTableRow
                       key={type.id}
                       id={type.id}
                       typeName={type.type}
-                      createdTime={type.createdTimestamp.slice(0,10)}
+                      createdTime={type.createdTimestamp.slice(0, 10)}
+                      pageNumber={pageNumber}
                     />
                   );
                 })}
@@ -76,7 +92,7 @@ const PartnerTypes = () => {
     <div className="page-content approved-partners">
       <Container fluid>
         <BackBtn route="partner-type" />
-        <Row>
+        <Row xs={12}>
           <Col xs={12}>
             <Card style={{ width: "70%" }}>
               <CardBody>
@@ -102,6 +118,23 @@ const PartnerTypes = () => {
               </CardBody>
             </Card>
             {data}
+            <div style={{ width: "70%" }}>
+              {!data.length > 0 ? (
+                <ReactPaginate
+                  previousLabel={"Previous"}
+                  nextLabel={"Next"}
+                  pageCount={partnerType.pageCount}
+                  onPageChange={changePage}
+                  containerClassName={"paginationBttns"}
+                  previousLinkClassName={"previousBttn"}
+                  nextLinkClassName={"nextBttn"}
+                  disabledClassName={"paginationDisabled"}
+                  activeClassName={"paginationActive"}
+                />
+              ) : (
+                ""
+              )}
+            </div>
           </Col>
         </Row>
       </Container>
@@ -110,4 +143,3 @@ const PartnerTypes = () => {
 };
 
 export default PartnerTypes;
-// connect(mapStateToProps, { getPartnerType })(PartnerType);

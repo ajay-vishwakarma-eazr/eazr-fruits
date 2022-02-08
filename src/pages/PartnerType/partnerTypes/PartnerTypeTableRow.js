@@ -11,13 +11,14 @@ const PartnerTypeTableRow = ({
   id,
   typeName,
   createdTime,
+  pageNumber
 }) => {
   
   let history = useHistory();
   const dispatch = useDispatch();
   const  partnerType  = useSelector((state) => state.PartnerType);
   const [showModal, setShowModal] = useState(false);
-console.log(id);
+// console.log(id);
   return (
     <tr className="customer-table-row">
       <td>{id}</td>
@@ -36,6 +37,7 @@ console.log(id);
             id={id}
             type={typeName}
             created Time={createdTime}
+            pageNumber={pageNumber}
           />
         )}
         <i
@@ -47,7 +49,7 @@ console.log(id);
           class="fas fa-trash-alt"
           style={{ color: "red", fontSize: "20px" }}
           onClick={() => {
-            dispatch(deleteType(id));
+            dispatch(deleteType(id, pageNumber));
           }}
         ></i>
       </td>

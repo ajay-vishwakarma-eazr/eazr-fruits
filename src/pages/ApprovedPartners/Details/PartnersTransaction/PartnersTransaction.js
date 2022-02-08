@@ -31,7 +31,7 @@ class PartnersTransaction extends Component {
 
     const searchablePartner = e.target.value;
 
-    const filtered = this.props.partners.partners.filter((filter) => {
+    const filtered = this.props.partners.partners.data.filter((filter) => {
       return (
         filter.businessName
           .toLowerCase()

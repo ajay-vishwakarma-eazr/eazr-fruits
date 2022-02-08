@@ -41,7 +41,7 @@ class PartnerSettlements extends Component {
     });
 
     const searchableSettlements = e.target.value;
-    const filtered = this.props.settlements.settlements.filter((filter) =>
+    const filtered = this.props.settlements.settlements.data.filter((filter) =>
       // return
       filter.partner.businessName.toLowerCase().includes(searchableSettlements)
     );
@@ -79,7 +79,7 @@ class PartnerSettlements extends Component {
               className="partner-approval-table"
             >
               <PartnerSettlementsHeading />
-              {this.state.searchSettlements
+              {this.state.searchSettlements.data
                 ? this.state.settlementsList.data.map((settlement, index) => (
                     <PartnerSettlementsRow
                       key={index}

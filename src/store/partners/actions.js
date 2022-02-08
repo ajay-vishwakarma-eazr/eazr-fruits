@@ -33,7 +33,6 @@ export const getPartners = (pageNumber) => {
     axios
       .get(`${ip}/partners?page=${pageNumber}&limit=15&sort=id,DESC`)
       .then((res) => {
-        debugger;
         dispatch({
           type: GET_PARTNERS,
           payload: res.data.data,

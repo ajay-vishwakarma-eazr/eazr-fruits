@@ -75,7 +75,6 @@ import PartnerSettlements from "../pages/Partner/AllApprovedPartners/ApprovedPar
 import Transaction from "../pages/Customer/Transactions/Transaction";
 import Comment from "../pages/HelpAndSupport/SupportComments/Comment";
 
-
 const authProtectedRoutes = [
   { path: "/partner-dashboard", component: PartnerDashboard },
   { path: "/dashboard", component: AdminDashboard },

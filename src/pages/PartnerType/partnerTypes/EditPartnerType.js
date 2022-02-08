@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { updatePartnerType } from "../../../store/partners/PartnerType/actions/action";
 
-const EditPartnerType = ({ showModal, id, type }) => {
+const EditPartnerType = ({ showModal, id, type, pageNumber }) => {
   const dispatch = useDispatch();
   let history = useHistory();
   const [modal, setModal] = useState(showModal);
   const toggle = () => {
-    dispatch(updatePartnerType(id, formData));
+    dispatch(updatePartnerType(id, formData, pageNumber));
     setModal(!modal);
   };
   const [formData, setFormData] = useState({

@@ -19,6 +19,7 @@ const CustomerTableRow = ({
   totalOutstandingAmount,
   enabled,
   kycVerified,
+  pageNumber
 }) => {
   const [sweetAlerts, setSweetAlerts] = useState({
     dynamic_title: "",
@@ -36,7 +37,7 @@ const CustomerTableRow = ({
     const banToggler = {
       enabled: !enabled,
     };
-    dispatch(updateUserDetails(id, banToggler));
+    dispatch(updateUserDetails(id, banToggler, pageNumber));
   };
   return (
     <tr style={{ opacity: ban ? 0.5 : 1 }} className="customer-table-row">
@@ -68,6 +69,7 @@ const CustomerTableRow = ({
             email={email}
             contactNumber={contact}
             gender={gender}
+            pageNumber={pageNumber}
           />
         )}
         {/* <Link

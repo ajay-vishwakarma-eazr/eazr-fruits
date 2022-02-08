@@ -116,7 +116,6 @@ class AllApprovedPartners extends Component {
                     .filter((item) => item.status === 1)
                     // .slice(pageVisited, pageVisited + usersPerPage)
                     .map((item, index) => {
-                      debugger;
                       return (
                         <ApprovedPartnersRow
                           key={index}

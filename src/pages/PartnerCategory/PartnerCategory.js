@@ -17,17 +17,21 @@ const PartnerCategory = () => {
   const [name, setName] = useState("");
   const dispatch = useDispatch();
   const [pageNumber, setPageNumber] = useState(1);
-  const { partnerCategory, loading } = useSelector((state) => state.category);
+  const { partnerCategory, loading } = useSelector((state) => state.Category);
   useEffect(() => {
-    debugger;
+    console.log(partnerCategory);
     dispatch(getPartnerCategory(pageNumber));
   }, [pageNumber]);
 
   let history = useHistory();
   const addNewPartnerCategory = () => {
-    const newCategory = { name };
-    dispatch(addPartnerCategory(newCategory));
-    setName("");
+    if (name === "") {
+      alert("Please enter something");
+    } else {
+      const newCategory = { name };
+      dispatch(addPartnerCategory(newCategory, pageNumber));
+      setName("");
+    }
     // history.push("/partner-category");
   };
 
@@ -44,9 +48,9 @@ const PartnerCategory = () => {
         <ClipLoader color="#bbbbbb" loading={true} size={60} />
       </div>
     );
-  } else if (partnerCategory.data !== null && partnerCategory.length > 0) {
+  } else if (partnerCategory !== null && partnerCategory?.data?.length > 0) {
     data = (
-      <Card style={{width:"70%"}}>
+      <Card style={{ width: "70%" }}>
         <CardBody>
           <div className="table-rep-plugin">
             <div
@@ -60,13 +64,13 @@ const PartnerCategory = () => {
                 responsive
               >
                 <CategoryTableHeading />
-                {partnerCategory.map((category) => {
-                  debugger;
+                {partnerCategory.data.map((category) => {
                   return (
                     <CategoryTableRow
                       key={category.id}
                       id={category.id}
                       categoryName={category.name}
+                      pageNumber={pageNumber}
                     />
                   );
                 })}
@@ -110,21 +114,23 @@ const PartnerCategory = () => {
               </CardBody>
             </Card>
             {data}
-            {/* {partnerCategory.data ? ( */}
-            <ReactPaginate
-              previousLabel={"Previous"}
-              nextLabel={"Next"}
-              pageCount={4}
-              onPageChange={changePage}
-              containerClassName={"paginationBttns"}
-              previousLinkClassName={"previousBttn"}
-              nextLinkClassName={"nextBttn"}
-              disabledClassName={"paginationDisabled"}
-              activeClassName={"paginationActive"}
-            />
-            {/* ) : (
-              ""
-            )} */}
+            <div style={{ width: "70%" }}>
+              {!data.length > 0 ? (
+                <ReactPaginate
+                  previousLabel={"Previous"}
+                  nextLabel={"Next"}
+                  pageCount={partnerCategory.pageCount}
+                  onPageChange={changePage}
+                  containerClassName={"paginationBttns"}
+                  previousLinkClassName={"previousBttn"}
+                  nextLinkClassName={"nextBttn"}
+                  disabledClassName={"paginationDisabled"}
+                  activeClassName={"paginationActive"}
+                />
+              ) : (
+                ""
+              )}
+            </div>
           </Col>
         </Row>
       </Container>

@@ -114,14 +114,14 @@ export const fetchUserBillById = (id) => {
 };
 
 
-export const updateUserDetails = (id, formData) => {
+export const updateUserDetails = (id, formData, pageNumber) => {
   return (dispatch) => {
     dispatch(setUserLoading());
     axios
       .patch(`${ip}/users/${id}`, {...formData })
       .then((res) => {
         axios
-          .get(`${ip}/users`)
+          .get(`${ip}/users?page=${pageNumber}&limit=10&sort=id,DESC`)
           .then((res) => {
             const users = res.data;
             dispatch(FetchUsersSuccess(users));

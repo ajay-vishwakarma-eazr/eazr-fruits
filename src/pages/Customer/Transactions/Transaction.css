@@ -7,6 +7,15 @@
   justify-content: center;
 }
 
+.paginationBtns {
+  width:70%;
+  height: 85px;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .paginationBttns a {
   padding: 10px;
   margin: 8px;

@@ -174,7 +174,8 @@ class Partner extends Component {
               </select> */}
             </div>
 
-            <CardBody>{data}</CardBody>
+            {data} 
+            {!data.length >0 ?
             <ReactPaginate
               previousLabel={"Previous"}
               nextLabel={"Next"}
@@ -186,6 +187,10 @@ class Partner extends Component {
               disabledClassName={"paginationDisabled"}
               activeClassName={"paginationActive"}
             />
+            : (
+              ""
+            )
+  }
           </Card>
         </Container>
       </div>

@@ -6,12 +6,12 @@ import {
   fetchUsers,
   updateUserDetails,
 } from "../../../store/adminusers/actions/actions";
-const EditCustomer = ({ showModal, id, fullName, email, contactNumber, gender }) => {
+const EditCustomer = ({ showModal, id, fullName, email, contactNumber, gender, pageNumber }) => {
   const dispatch = useDispatch();
   let history = useHistory();
   const [modal, setModal] = useState(showModal);
   const toggle = () => {
-    dispatch(updateUserDetails(id, formData));
+    dispatch(updateUserDetails(id, formData, pageNumber));
     setModal(!modal);
   };
   const [formData, setFormData] = useState({

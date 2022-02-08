@@ -13,11 +13,13 @@ import axios from "axios";
 
 import { ip } from "../../../../config/config";
 
-export const getPartnerType = () => {
+export const getPartnerType = (pageNumber) => {
   return (dispatch) => {
     dispatch({ type: TYPE_LOADING });
     axios
-      .get(`${ip}/partner-types?sort=id,ASC`)
+      .get(
+        `${ip}/partner-types?sort=id,ASC&page=${pageNumber}&limit=10&sort=id,DESC`
+      )
       .then((res) => {
         dispatch({
           type: GET_PARTNER_TYPE,
@@ -33,13 +35,13 @@ export const getPartnerType = () => {
   };
 };
 
-export const addPartnerType = (newType) => {
+export const addPartnerType = (newType, pageNumber) => {
   return (dispatch) => {
     axios
       .post(`${ip}/partner-types`, newType)
       .then((res) => {
         axios
-          .get(`${ip}/partner-types?sort=id,ASC`)
+          .get(`${ip}/partner-types?page=${pageNumber}&limit=10&sort=id,DESC`)
           .then((res) => {
             dispatch({
               type: GET_PARTNER_TYPE,
@@ -62,13 +64,13 @@ export const addPartnerType = (newType) => {
   };
 };
 
-export const updatePartnerType = (id, updateType) => {
+export const updatePartnerType = (id, updateType, pageNumber) => {
   return (dispatch) => {
     axios
       .patch(`${ip}/partner-types/${id}?sort=id,ASC`, { ...updateType })
       .then((res) => {
         axios
-          .get(`${ip}/partner-types`)
+          .get(`${ip}/partner-types?page=${pageNumber}&limit=10&sort=id,DESC`)
           .then((res) => {
             dispatch({
               type: GET_PARTNER_TYPE,
@@ -110,13 +112,13 @@ export const updatePartnerType = (id, updateType) => {
 //   };
 // };
 
-export const deleteType = (id) => {
+export const deleteType = (id,pageNumber) => {
   return (dispatch) => {
     axios
       .delete(`${ip}/partner-types/${id}?sort=id,ASC`)
       .then((res) => {
         axios
-          .get(`${ip}/partner-types`)
+          .get(`${ip}/partner-types?page=${pageNumber}&limit=10&sort=id,DESC`)
           .then((res) => {
             dispatch({
               type: GET_PARTNER_TYPE,
@@ -138,7 +140,6 @@ export const deleteType = (id) => {
       });
   };
 };
-
 
 // export const deleteType = (id) => {
 //   return (dispatch) => {

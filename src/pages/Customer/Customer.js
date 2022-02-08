@@ -17,7 +17,6 @@ const Customer = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const dispatch = useDispatch();
   useEffect(() => {
-    debugger;
     dispatch(fetchUsers(pageNumber));
   }, [pageNumber]);
 
@@ -67,7 +66,6 @@ const Customer = () => {
                 <CustomerTableHeading />
                 {searchUser
                   ? filteredUser.map((users) => {
-                      debugger;
                       return (
                         <CustomerTableRow
                           key={users.id}
@@ -96,6 +94,7 @@ const Customer = () => {
                           totalOutstandingAmount={users.totalOutstandingAmount}
                           enabled={users.enabled}
                           kycVerified={users.kycVerified}
+                          pageNumber={pageNumber}
                         />
                       );
                     })}

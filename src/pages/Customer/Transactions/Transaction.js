@@ -16,23 +16,19 @@ const Transaction = () => {
   const [searchTranscation, setSearchTransaction] = useState("");
   const [filteredTransaction, setFilteredTransaction] = useState(null);
   const [pageNumber, setPageNumber] = useState(0);
-  // const [data, setData] = useState(null);
-
   const { transactions, loading } = useSelector((state) => state.transactions);
   const dispatch = useDispatch();
   const { id } = useParams();
   useEffect(() => {
-    debugger;
     dispatch(getUsersTranscationById(id, pageNumber));
-    console.log(transactions);
   }, [pageNumber]);
 
   const getSearchTransactionValue = (value) => {
     setSearchTransaction(value);
   };
   const filterArray = () => {
-    if (searchTranscation.data !== null && searchTranscation.data?.length > 0) {
-      const filter = transactions.filter((trans) => {
+    if (searchTranscation !== null && searchTranscation.length > 0) {
+      const filter = transactions.data.filter((trans) => {
         return trans.partner.businessName
           .toLowerCase()
           .split(" ")
@@ -49,7 +45,6 @@ const Transaction = () => {
   };
 
   let data;
-
   if (loading === true) {
     data = (
       <div className="spinner-div">
@@ -78,8 +73,7 @@ const Transaction = () => {
               >
                 <TableHeading />
                 {filteredTransaction
-                  ? filteredTransaction.data.map((trans) => {
-                    debugger;
+                  ? filteredTransaction.map((trans) => {
                       return (
                         <TableRow
                           className="transaction-table"
@@ -87,7 +81,7 @@ const Transaction = () => {
                           amount={trans?.amount}
                           status={trans.status}
                           partnerName={trans?.partner.businessName}
-                          debit={trans.debit.toString()}
+                          debit={trans.debit}
                           createAt={trans.createdTimestamp}
                         />
                       );
@@ -95,7 +89,6 @@ const Transaction = () => {
                   : transactions.data
                       // .slice(pagesVisited, pagesVisited + usersPerPage)
                       .map((trans) => {
-                        debugger;
                         return (
                           <TableRow
                             className="transaction-table"
@@ -103,7 +96,7 @@ const Transaction = () => {
                             amount={trans?.amount}
                             status={trans.status}
                             partnerName={trans?.partner.businessName}
-                            debit={trans.debit.toString()}
+                            debit={trans.debit}
                             createAt={trans.createdTimestamp}
                           />
                         );
@@ -117,6 +110,7 @@ const Transaction = () => {
   } else {
     data = <EmptySection />;
   }
+
   return (
     <div className="page-content  inner-user-page">
       <Container fluid>
@@ -124,8 +118,8 @@ const Transaction = () => {
         <CustomersNav />
         <Card>
           {data}
-          {transactions.data?.length > 0 ?
-          <ReactPaginate
+          {transactions.data?.length > 0 ? (
+            <ReactPaginate
               previousLabel={"Previous"}
               nextLabel={"Next"}
               pageCount={transactions.pageCount}
@@ -135,9 +129,10 @@ const Transaction = () => {
               nextLinkClassName={"nextBttn"}
               disabledClassName={"paginationDisabled"}
               activeClassName={"paginationActive"}
-            /> : (
+            />
+          ) : (
             ""
-          ) }
+          )}
         </Card>
       </Container>
     </div>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCategory } from "../../store/partners/PartnerCategory/action";
 import EditPartnerCategory from "./EditPartnerCategory";
-const CategoryTableRow = ({ id, categoryName }) => {
+const CategoryTableRow = ({ id, categoryName, pageNumber }) => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   return (
@@ -21,6 +21,7 @@ const CategoryTableRow = ({ id, categoryName }) => {
             showModal={showModal}
             id={id}
             name={categoryName}
+            pageNumber={pageNumber}
           />
         )}
         <i
@@ -32,7 +33,7 @@ const CategoryTableRow = ({ id, categoryName }) => {
           class="fas fa-trash-alt"
           style={{ color: "red", fontSize: "20px" }}
           onClick={() => {
-            dispatch(deleteCategory(id));
+            dispatch(deleteCategory(id, pageNumber));
           }}
         ></i>
       </td>

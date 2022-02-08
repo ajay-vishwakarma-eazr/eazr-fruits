@@ -129,7 +129,7 @@ const ApprovedPartners = ({ getApprovedPartners }) => {
                 />
               </CardBody>
             </Card>
-            {data}
+            {data} {data.length > 0 ?
             <ReactPaginate
               previousLabel={"Previous"}
               nextLabel={"Next"}
@@ -140,7 +140,10 @@ const ApprovedPartners = ({ getApprovedPartners }) => {
               nextLinkClassName={"nextBttn"}
               disabledClassName={"paginationDisabled"}
               activeClassName={"paginationActive"}
-            />
+            />: (
+              ""
+            )
+}
           </Col>
         </Row>
       </Container>

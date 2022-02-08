@@ -55,17 +55,15 @@ export const getTranscationById = (id, pageNumber) => {
     dispatch(setPartnersLoading());
     axios
       .get(
-        `${ip}/transactions?filter=partnerId||eq||${id}&page=${pageNumber}&limit=10&sort=id,DESC `
+        `${ip}/transactions?filter=partnerId||eq||${id}&page=${pageNumber}&limit=10&sort=id,DESC`
       )
       .then((res) => {
-        debugger;
         dispatch({
           type: GET_TRANSACTION_BY_ID,
           payload: res.data,
         });
       })
       .catch((err) => {
-        debugger;
         console.log(err.response.data);
         dispatch({
           type: GET_TRANSACTION_BY_ID_FAILED,
