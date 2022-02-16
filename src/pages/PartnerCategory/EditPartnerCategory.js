@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { updatePartnerCategory } from "../../store/partners/PartnerCategory/action";
+import { updatePartnerCategory } from "../../store/PartnerCategory/action";
 
 const EditPartnerCategory = ({ showModal, id, name, pageNumber }) => {
   const dispatch = useDispatch();

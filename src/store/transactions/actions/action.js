@@ -5,6 +5,8 @@ import {
   GET_TRANSACTION_BY_ID,
   GET_TRANSACTION_BY_ID_FAILED,
   PARTNERS_LOADING,
+  GET_SEARCH_TRANSACTION,
+  GET_SEARCH_TRANSACTION_FAILED,
 } from "./actiontypes";
 import axios from "axios";
 import { ip } from "../../../config/config";
@@ -94,23 +96,22 @@ export const getTranscations = () => {
   };
 };
 
-export const getTranscationSearch = (id, search) => {
+export const getPartnerTranscationSearch = (id, search) => {
   return (dispatch) => {
     dispatch(setPartnersLoading());
     axios
       .get(
-        `${ip}/transactions?filter=partnerId||eq||${id}
-        &filter.user.fullName||$eq||{searcheData}`
+        `${ip}/transactions?s={"$and": [{"partnerId":{"$eq":${id}}},{"user.fullName": {"starts":"${search}"}}]}&sort=id,DESC`
       )
       .then((res) => {
         dispatch({
-          type: GET_TRANSACTION_BY_ID,
+          type: GET_SEARCH_TRANSACTION,
           payload: res.data,
         });
       })
       .catch((err) => {
         dispatch({
-          type: GET_TRANSACTION_BY_ID_FAILED,
+          type: GET_SEARCH_TRANSACTION_FAILED,
           payload: err.response.data,
         });
       });
@@ -185,6 +186,29 @@ export const getUsersTranscationById = (id, pageNumber) => {
         console.log(err.response.data);
         dispatch({
           type: GET_TRANSACTION_BY_ID_FAILED,
+          payload: err.response.data,
+        });
+      });
+  };
+};
+
+export const getUsersSearchTranscation = (id, search) => {
+  return (dispatch) => {
+    dispatch(setPartnersLoading());
+    axios
+      .get(
+        `${ip}/transactions?s={"$and": [{"userId":{"$eq":${id}}},{"partner.businessName": {"$starts":"${search}"}}]}&sort=id,DESC`
+      )
+      .then((res) => {
+        console.log(res.data);
+        dispatch({
+          type: GET_SEARCH_TRANSACTION,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: GET_SEARCH_TRANSACTION_FAILED,
           payload: err.response.data,
         });
       });

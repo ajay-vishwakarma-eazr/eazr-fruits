@@ -4,40 +4,51 @@ import { Table, Container, Card, CardBody } from "reactstrap";
 import BackBtn from "../BackBtn";
 import ClipLoader from "react-spinners/ClipLoader";
 import CustomersNav from "../CustomerNav";
-import TableSearch from "../TableSearch";
+// import TableSearch from "../TableSearch";
 import TableHeading from "./TableHeading";
 import "./Transaction.css";
 import TableRow from "./TableRow";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory, Redirect } from "react-router-dom";
-import { getUsersTranscationById } from "../../../store/transactions/actions/action";
+import {
+  getUsersTranscationById,
+  getUsersSearchTranscation,
+} from "../../../store/transactions/actions/action";
 import ReactPaginate from "react-paginate";
 const Transaction = () => {
   const [searchTranscation, setSearchTransaction] = useState("");
   const [filteredTransaction, setFilteredTransaction] = useState(null);
   const [pageNumber, setPageNumber] = useState(0);
-  const { transactions, loading } = useSelector((state) => state.transactions);
+  const { transactions, loading, search } = useSelector(
+    (state) => state.transactions
+  );
   const dispatch = useDispatch();
   const { id } = useParams();
   useEffect(() => {
+    console.log(search);
     dispatch(getUsersTranscationById(id, pageNumber));
   }, [pageNumber]);
 
-  const getSearchTransactionValue = (value) => {
-    setSearchTransaction(value);
+  const handleSearch = (e) => {
+    setSearchTransaction(e.target.value);
+    dispatch(getUsersSearchTranscation(id, searchTranscation));
   };
-  const filterArray = () => {
-    if (searchTranscation !== null && searchTranscation.length > 0) {
-      const filter = transactions.data.filter((trans) => {
-        return trans.partner.businessName
-          .toLowerCase()
-          .split(" ")
-          .join("")
-          .includes(searchTranscation.toLowerCase().split(" ").join(""));
-      });
-      setFilteredTransaction(filter);
-    }
-  };
+
+  // const getSearchTransactionValue = (value) => {
+  //   setSearchTransaction(value);
+  // };
+  // const filterArray = () => {
+  //   if (searchTranscation !== null && searchTranscation.length > 0) {
+  //     const filter = transactions.data.filter((trans) => {
+  //       return trans.partner.businessName
+  //         .toLowerCase()
+  //         .split(" ")
+  //         .join("")
+  //         .includes(searchTranscation.toLowerCase().split(" ").join(""));
+  //     });
+  //     setFilteredTransaction(filter);
+  //   }
+  // };
 
   const changePage = ({ selected }) => {
     const newSelect = selected + 1;
@@ -55,10 +66,10 @@ const Transaction = () => {
     data = (
       <Card>
         <CardBody>
-          <TableSearch
+          {/* <TableSearch
             getSearchTransactionValue={getSearchTransactionValue}
             filterArray={filterArray}
-          />
+          /> */}
           <div className="table-rep-plugin">
             <div
               className="table-responsive mb-0"
@@ -72,8 +83,8 @@ const Transaction = () => {
                 className="transaction-table"
               >
                 <TableHeading />
-                {filteredTransaction
-                  ? filteredTransaction.map((trans) => {
+                {searchTranscation !== ""
+                  ? search.map((trans) => {
                       return (
                         <TableRow
                           className="transaction-table"
@@ -117,8 +128,22 @@ const Transaction = () => {
         <BackBtn route="users" />
         <CustomersNav />
         <Card>
+          <CardBody>
+            <div className="search-filter">
+              <div>
+                <h6>Search Transactions</h6>
+                <input
+                  type="text"
+                  value={searchTranscation}
+                  placeholder="Search for ..."
+                  onChange={handleSearch}
+                />
+                <i className="fa fa-search"></i>
+              </div>
+            </div>
+          </CardBody>
           {data}
-          {transactions.data?.length > 0 ? (
+          {transactions.data?.length > 0 && searchTranscation ==="" ? (
             <ReactPaginate
               previousLabel={"Previous"}
               nextLabel={"Next"}

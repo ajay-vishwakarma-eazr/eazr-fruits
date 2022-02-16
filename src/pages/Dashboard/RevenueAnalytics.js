@@ -107,7 +107,7 @@ class RevenueAnalytics extends Component {
                 </div>
               </Col> */}
 
-              {/* <Col sm={6}>
+              <Col sm={6}>
                 <div className="mt-4 mt-sm-0">
                   <p className="mb-2 text-muted text-truncate">
                     <i className="mdi mdi-circle text-primary font-size-10 mr-1"></i>{" "}
@@ -116,16 +116,18 @@ class RevenueAnalytics extends Component {
                   <div className="d-inline-flex">
                     <h5 className="mb-0 mr-2">
                       ₹
-                      {this.props.transactions?.transactions
-                        ?.map((item) => item?.amount)
-                        .reduce((prev, curr) => prev + curr, 0)}
+                      {Array.isArray(this.props.transactions.loading)
+                        ? this.props.transactions.transactions
+                            ?.map((item) => item?.amount)
+                            .reduce((prev, curr) => prev + curr, 0)
+                        : "loading"}
                     </h5>
                     <div className="text-success">
                       <i className="mdi mdi-menu-up font-size-14"> </i>2.1 %
                     </div>
                   </div>
                 </div>
-              </Col> */}
+              </Col>
               <Col sm={6}>
                 <div className="mt-4 mt-sm-0">
                   <p className="mb-2 text-muted text-truncate">

@@ -18,16 +18,21 @@ import {
   GET_PARTNER_CATEGORY_TYPE_FAILED,
   PARTNER_CATEGORY_TYPE,
   PARTNER_CATEGORY_TYPE_FAILED,
+  GET_SEARCH_APPROVEDPARTNERS,
+  GET_SEARCH_APPROVEDPARTNERS_FAILED,
+  GET_SEARCH_ONBOARDINGPARTNERS,
+  GET_SEARCH_ONBOARDINGPARTNERS_FAILED,
 } from "./types";
 
 const initialState = {
   partners: null,
   approvedPartners: null,
   partner: null,
-  partnerType: null,
-  partnerCategory: null,
+  partnerType: [],
+  partnerCategory: [],
   loading: false,
   errors: null,
+  searchPartner:[]
 };
 
 const login = (state = initialState, action) => {
@@ -145,6 +150,28 @@ const login = (state = initialState, action) => {
         approvedPartners: null,
         loading: false,
         errors: action.payload,
+      };
+
+    case GET_SEARCH_APPROVEDPARTNERS:
+      return {
+        ...state,
+        loading: false,
+        search: action.payload,
+      };
+    case GET_SEARCH_APPROVEDPARTNERS_FAILED:
+      return {
+        error: action.payload,
+      };
+
+    case GET_SEARCH_ONBOARDINGPARTNERS:
+      return {
+        ...state,
+        loading: false,
+        search: action.payload,
+      };
+    case GET_SEARCH_ONBOARDINGPARTNERS_FAILED:
+      return {
+        error: action.payload,
       };
 
     default:

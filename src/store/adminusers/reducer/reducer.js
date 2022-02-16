@@ -9,12 +9,15 @@ import {
   SET_USER,
   UPDATE_PROFILE_FAILED,
   UPDATE_PROFILE_SUCCESS,
+  GET_SEARCH_USER,
+  GET_SEARCH_USER_FAILED,
 } from "../actions/actiontypes";
 
 export const initialState = {
   loading: false,
   users: [],
   errror: "",
+  search:[]
 };
 
 export const UserReducer = (state = initialState, action) => {
@@ -84,6 +87,18 @@ export const UserReducer = (state = initialState, action) => {
       return {
         loading: false,
         users: newuser,
+        error: action.payload,
+      };
+
+    case GET_SEARCH_USER:
+      return {
+        ...state,
+        loading: false,
+        search: action.payload,
+      };
+    case GET_SEARCH_USER_FAILED:
+      return {
+        ...state,
         error: action.payload,
       };
 

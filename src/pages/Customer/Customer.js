@@ -8,33 +8,25 @@ import BackBtn from "../BackBtn";
 import ClipLoader from "react-spinners/ClipLoader";
 import EmptySection from "../../components/EmptySection/EmptySection";
 import ReactPaginate from "react-paginate";
-import { fetchUsers } from "../../store/adminusers/actions/actions";
+import { fetchSearchUsers, fetchUsers } from "../../store/adminusers/actions/actions";
 const Customer = () => {
   const { loading } = useSelector((state) => state.Users);
-  const { users } = useSelector((state) => state.Users);
+  const { users,search } = useSelector((state) => state.Users);
   const [searchUser, setSearchUser] = useState("");
   const [filteredUser, setFilteredUser] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchUsers(pageNumber));
+    {
+      pageNumber === undefined
+        ? dispatch(fetchUsers(1))
+        : dispatch(fetchUsers(pageNumber));
+    }
   }, [pageNumber]);
 
   const handleSearch = (e) => {
     setSearchUser(e.target.value);
-    const searchablePartner = e.target.value;
-    const filter = users.data.filter((filterUserData) => {
-      return (
-        filterUserData?.fullName
-          ?.toLowerCase()
-          ?.includes(searchablePartner?.toLowerCase()) ||
-        filterUserData?.email
-          ?.toLowerCase()
-          ?.includes(searchablePartner?.toLowerCase()) ||
-        filterUserData?.contactNumber?.includes(searchablePartner)
-      );
-    });
-    setFilteredUser(filter);
+    dispatch(fetchSearchUsers(searchUser))
   };
   const changePage = ({ selected }) => {
     const newSelect = selected + 1;
@@ -64,8 +56,9 @@ const Customer = () => {
                 responsive
               >
                 <CustomerTableHeading />
-                {searchUser
-                  ? filteredUser.map((users) => {
+                {searchUser !== ""
+                  ? 
+                   search.map((users) => {
                       return (
                         <CustomerTableRow
                           key={users.id}
@@ -132,7 +125,7 @@ const Customer = () => {
                 </CardBody>
               </Card>
               {data}
-              {data ? (
+              {data && searchUser === ""? (
                 <ReactPaginate
                   previousLabel={"Previous"}
                   nextLabel={"Next"}

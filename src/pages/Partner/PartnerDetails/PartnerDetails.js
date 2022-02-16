@@ -11,11 +11,11 @@ import BusinessDescription from "./BusinessDescription";
 import { connect } from "react-redux";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useParams, useHistory } from "react-router-dom";
-//actions
+// //actions
 import {
   getPartnerById,
-  updatePartnerDetails,
-  addTicket,
+//   updatePartnerDetails,
+//   addTicket,
 } from "../../../store/partners/actions";
 import HoldModal from "./HoldModal";
 
@@ -244,6 +244,6 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   getPartnerById,
-  updatePartnerDetails,
-  addTicket,
+  // updatePartnerDetails,
+  // addTicket,
 })(PartnerDetails);

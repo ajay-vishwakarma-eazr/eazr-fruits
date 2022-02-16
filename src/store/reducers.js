@@ -20,7 +20,7 @@ import { AdminProfileReducer } from "./adminprofile/reducer/reducer";
 import {bankReducer} from "../store/partners/Bank/bankReducer"
 import { TicketReducer } from "./supportTickets/reducers/reducer";
 // import { PartnerTypeReducer } from "./partners/PartnerType/reducers/reducer";
-import partnerCategoryReducer from "./partners/PartnerCategory/partnerCategoryReducer";
+import partnerCategoryReducer from "../store/PartnerCategory/partnerCategoryReducer";
 import partnerTypeReducer from "./partners/PartnerType/reducers/reducer";
 const rootReducer = combineReducers({
   //order
@@ -30,7 +30,7 @@ const rootReducer = combineReducers({
   products: ProductReducer,
 
   //Settlement
-  settlement: SettlementReducer,
+  settlements: SettlementReducer,
 
   // Support-Tickets
   tickets: TicketReducer,

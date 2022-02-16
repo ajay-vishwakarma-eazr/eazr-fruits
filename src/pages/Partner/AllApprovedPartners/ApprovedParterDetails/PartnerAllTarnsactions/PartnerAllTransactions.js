@@ -190,7 +190,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 //Actions
 import {
   getTranscationById,
-  getTranscationSearch,
+  getPartnerTranscationSearch,
 } from "../../../../../store/transactions/actions/action";
 import ReactPaginate from "react-paginate";
 import EmptySection from "../../../../../components/EmptySection/EmptySection";
@@ -205,7 +205,7 @@ class PartnerAllTransactions extends Component {
     this.state = {
       searchTransactions: "",
       transactionList: null,
-      pageNumber:1 
+      pageNumber: 1,
       // this.props.transactions.transactions.page,
     };
   }
@@ -218,24 +218,17 @@ class PartnerAllTransactions extends Component {
     this.setState({
       searchTransactions: e.target.value,
     });
-    const searchableTransactions = e.target.value;
-    const filtered = this.props.transactions.transactions.data.filter((filter) => {
-      return filter.user.fullName
-        .toLowerCase()
-        .split(" ")
-        .join("")
-        .includes(searchableTransactions.toLowerCase().split(" ").join(""));
-    });
-    this.setState({
-      transactionList: filtered,
-    });
+    const id = this.props.match.params.id;
+    this.props.getPartnerTranscationSearch(id, this.state.searchTransactions);
   };
 
   changePage = ({ selected }) => {
     const newSelect = selected + 1;
     this.setState({ pageNumber: newSelect });
     const id = this.props.match.params.id;
-    this.props.getTranscationById(id, newSelect);
+    this.props.getTranscationById(id,this.state.pageNumber=newSelect);
+    console.log("newSelect",newSelect);
+    console.log("pageNumber",this.state.pageNumber);
   };
 
   render() {
@@ -249,7 +242,7 @@ class PartnerAllTransactions extends Component {
         </div>
       );
     } else if (
-      transactions.transactions.data &&
+      transactions.transactions?.data &&
       transactions.transactions.data?.length > 0
     ) {
       data = (
@@ -266,8 +259,8 @@ class PartnerAllTransactions extends Component {
               className="partner-approval-table"
             >
               <PartnerTranscationsHeading />
-              {this.state.searchTransactions
-                ? this.state.transactionList.map((item, index) => (
+              {this.state.searchTransactions !==""
+                ? transactions.search.map((item, index) => (
                     <PartnerTrancationsRow
                       key={index}
                       userName={item.user.fullName}
@@ -322,10 +315,12 @@ class PartnerAllTransactions extends Component {
                   </div>
                 </div>
                 <CardBody>{data}</CardBody>
+                {(transactions.transactions.data?.length > 0 &&
+                  this.state.searchTransactions ==="") ?
                 <ReactPaginate
                   previousLabel={"Previous"}
                   nextLabel={"Next"}
-                  pageCount={this.props.transactions.transactions.pageCount}
+                  pageCount={this.props.transactions.transactions?.pageCount}
                   onPageChange={this.changePage}
                   containerClassName={"paginationBttns"}
                   previousLinkClassName={"previousBttn"}
@@ -333,6 +328,7 @@ class PartnerAllTransactions extends Component {
                   disabledClassName={"paginationDisabled"}
                   activeClassName={"paginationActive"}
                 />
+  :""}
               </Card>
             </Container>
           </div>
@@ -349,7 +345,7 @@ const mapStateToProps = (state) => {
 };
 
 export default withRouter(
-  connect(mapStateToProps, { getTranscationById, getTranscationSearch })(
+  connect(mapStateToProps, { getTranscationById, getPartnerTranscationSearch })(
     PartnerAllTransactions
   )
 );

@@ -13,7 +13,7 @@ import {
 } from "./actionTypes";
 
 const initialState = {
-  partnerCategory: null,
+  partnerCategory: [],
   loading: false,
   errors: null,
 };

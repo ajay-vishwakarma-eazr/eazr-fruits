@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteCategory } from "../../store/partners/PartnerCategory/action";
+import { deleteCategory } from "../../store/PartnerCategory/action";
 import EditPartnerCategory from "./EditPartnerCategory";
 const CategoryTableRow = ({ id, categoryName, pageNumber }) => {
   const dispatch = useDispatch();

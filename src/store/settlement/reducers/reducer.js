@@ -1,36 +1,95 @@
+// import {
+//   FETCH_SETTLEMENT_FAILURE,
+//   FETCH_SETTLEMENT_SUCCESS,
+//   FETCH_SETTLEMENT_REQUEST,
+//   GET_SEARCH_SETTLEMENTSPARTNERS,
+//   GET_SEARCH_SETTLEMENTSPARTNERS_FAILED,
+// } from "../actions/actiontypes";
 
-import{FETCH_SETTLEMENT_FAILURE,FETCH_SETTLEMENT_SUCCESS,FETCH_SETTLEMENT_REQUEST} from '../actions/actiontypes';
+// export const initialState = {
+//   loading: false,
+//   settlements: [],
+//   search: [],
+//   errror: "",
+// };
+
+// export const SettlementReducer = (state = initialState, action) => {
+//   switch (action.type) {
+//     case FETCH_SETTLEMENT_REQUEST:
+//       return {
+//         ...state,
+//         loading: true,
+//       };
+//     case FETCH_SETTLEMENT_SUCCESS:
+//       return {
+//         loading: false,
+//         settlements: action.payload,
+//         error: "",
+//       };
+//     case FETCH_SETTLEMENT_FAILURE:
+//       return {
+//         error: action.payload,
+//       };
+
+//     case GET_SEARCH_SETTLEMENTSPARTNERS:
+//       return {
+//         ...state,
+//         loading: false,
+//         search: action.payload,
+//       };
+//     case GET_SEARCH_SETTLEMENTSPARTNERS_FAILED:
+//       return {
+//         error: action.payload,
+//       };
+//     default:
+//       return state;
+//   }
+// };
 
 
-export const initialState={
-    loading:false,
-    settlements:[],
-    errror:''
-}
+import {
+  FETCH_SETTLEMENT_FAILURE,
+  FETCH_SETTLEMENT_SUCCESS,
+  FETCH_SETTLEMENT_REQUEST,
+  SEARCH_SETTLEMENT,
+  SEARCH_SETTLEMENT_FAILED,
+} from "../actions/actiontypes";
 
-export const SettlementReducer=(state=initialState,action)=>{
-    switch(action.type){
-        case FETCH_SETTLEMENT_REQUEST:
-            return {
-                ...state,
-                loading:true
-    
-            }
-            case FETCH_SETTLEMENT_SUCCESS:
-                return {
-                    loading:false,
-                    settlements:action.payload,
-                    error:''
-        
-                }
-                case FETCH_SETTLEMENT_FAILURE:
-                    return {
-                        loading:false,
-                        settlements:[],
-                        error:action.payload
-            
-                    }
-         default:
-            return state;
-    }
+export const initialState = {
+  loading: false,
+  settlements: [],
+  errror: "",
+  search: [],
+};
+
+export const SettlementReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case FETCH_SETTLEMENT_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case FETCH_SETTLEMENT_SUCCESS:
+      return {
+        loading: false,
+        settlements: action.payload,
+        error: "",
+      };
+    case FETCH_SETTLEMENT_FAILURE:
+      return {
+        error: action.payload,
+      };
+    case SEARCH_SETTLEMENT:
+      return {
+        search: action.payload,
+        loading: false,
+        error: "",
+      };
+    case SEARCH_SETTLEMENT_FAILED:
+      return {
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
 };

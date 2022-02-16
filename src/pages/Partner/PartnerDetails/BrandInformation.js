@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Colors from "../../../components/Config/Colors";
 import AuthModal from "./AuthModal";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import {
   updatePartnerDetails,
@@ -9,14 +9,15 @@ import {
   clearErrors,
 } from "../../../store/partners/actions";
 import { useEffect } from "react";
-import { getPartnerCategoryBrandInformation } from "../../../store/partners/PartnerCategory/action";
+import { getPartnerCategoryBrandInformation } from "../../../store/PartnerCategory/action";
+import { getPartnerTypeBrandInformation } from "../../../store/partners/PartnerType/actions/action";
 const BrandInformation = (props) => {
   const { id } = useParams();
   const [edit, setEdit] = useState(true);
   const [brandInformation, setBrandInformation] = useState({
     businessName: props.partner.businessName,
     email: props.partner.email,
-    // partnerType: props.partner.partnerType.type,
+    partnerType: { id: props.partner.partnerType.id },
     partnerCategory: { id: props.partner.partnerCategory.id },
     averageOrderValue: props.partner.averageOrderValue,
     paymentOnline: props.partner.paymentOnline,
@@ -25,7 +26,7 @@ const BrandInformation = (props) => {
 
   useEffect(() => {
     props.getPartnerCategoryBrandInformation();
-    console.log(props.partnerCategory);
+    props.getPartnerTypeBrandInformation();
   }, [brandInformation]);
   const getDisableEdit = (disableEdit) => {
     setEdit(disableEdit);
@@ -82,15 +83,26 @@ const BrandInformation = (props) => {
         <h3>Business Registered as</h3>
         <select
           disabled={edit}
-          onChange={(e) =>
+          onChange={(e) => {
+            debugger;
             setBrandInformation({
               ...brandInformation,
-              partnerType: e.target.value,
-            })
-          }
-          defaultValue={brandInformation.partnerType}
+              partnerType: { id: parseInt(e.target.value) },
+            });
+          }}
+          defaultValue={brandInformation.partnerType.id}
         >
-          <option value={brandInformation.partnerType}>Private Limited</option>
+          {/* {props.partnerType.data.map((e, key) => { */}
+          
+          { props.partnerType.map((e, key) => {
+            debugger;
+            return (
+              <option key={key} value={e.id} selected>
+                {e.type}
+              </option>
+            );
+          })}
+          {/* <option value={brandInformation.partnerType}>Private Limited</option> */}
         </select>
       </div>
       <div>
@@ -105,8 +117,7 @@ const BrandInformation = (props) => {
           }}
           defaultValue={brandInformation.partnerCategory.id}
         >
-          {props.partnerCategory.partnerCategory.map((e, key) => {
-            debugger;
+          { props.partnerCategory.partnerCategory.map((e, key) => {
             return (
               <option key={key} value={e.id} selected>
                 {e.name}
@@ -182,6 +193,7 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
+  getPartnerTypeBrandInformation,
   getPartnerCategoryBrandInformation,
   getPartnersTypeById,
   updatePartnerDetails,

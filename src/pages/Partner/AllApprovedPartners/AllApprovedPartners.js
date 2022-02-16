@@ -8,7 +8,10 @@ import { connect } from "react-redux";
 import ClipLoader from "react-spinners/ClipLoader";
 //Actions
 import ReactPaginate from "react-paginate";
-import { getPartners } from "../../../store/partners/actions";
+import {
+  getApprovedPartners,
+  fetchSearchApprovedPartners,
+} from "../../../store/partners/actions";
 import BackBtn from "../../BackBtn";
 import EmptySection from "../../../components/EmptySection/EmptySection";
 class AllApprovedPartners extends Component {
@@ -21,58 +24,23 @@ class AllApprovedPartners extends Component {
     };
   }
   componentDidMount() {
-    this.props.getPartners(this.state.pageNumber);
+    this.props.getApprovedPartners(this.state.pageNumber);
   }
 
   handleSearch = (e) => {
     this.setState({
       searchPartner: e.target.value,
     });
-
-    const searchablePartner = e.target.value;
-
-    const filtered = this.props.partners.partners.filter((filter) => {
-      return (
-        filter.businessName
-          .toLowerCase()
-          .split(" ")
-          .join("")
-          .includes(searchablePartner.toLowerCase().split(" ").join("")) ||
-        filter.email
-          .toLowerCase()
-          .split(" ")
-          .join("")
-          .includes(searchablePartner.toLowerCase().split(" ").join("")) ||
-        filter.contactNumber
-          .split(" ")
-          .join("")
-          .includes(searchablePartner.split(" ").join("")) ||
-        filter.plan?.name
-          .toLowerCase()
-          .split(" ")
-          .join("")
-          .includes(searchablePartner.toLowerCase().split(" ").join(""))
-      );
-    });
-
-    this.setState({
-      partnerList: filtered,
-    });
+    this.props.fetchSearchApprovedPartners(this.state.searchPartner);
   };
 
+  changePage = ({ selected }) => {
+    const newSelect = selected + 1;
+    this.setState({ pageNumber: newSelect });
+    this.props.getApprovedPartners(this.state.pageNumber=newSelect);
+  };
   render() {
     const { partners } = this.props;
-    // const usersPerPage = 10;
-    // const pageVisited = this.state.pageNumber * usersPerPage;
-    // const pageCount = Math.ceil(
-    //   this.props.partners.partners?.length / usersPerPage
-    // );
-
-    const changePage = ({ selected }) => {
-      const newSelect = selected + 1;
-      this.state.pageNumber(newSelect);
-    };
-
     let data;
     if (partners.loading === true) {
       data = (
@@ -80,7 +48,10 @@ class AllApprovedPartners extends Component {
           <ClipLoader color="#bbbbbb" loading={true} size={60} />
         </div>
       );
-    } else if (partners.partners !== null && partners.partners.length > 0) {
+    } else if (
+      partners.partners !== null &&
+      partners.partners.data.length > 0
+    ) {
       data = (
         <div className="table-rep-plugin">
           <div
@@ -95,11 +66,23 @@ class AllApprovedPartners extends Component {
               className="partner-approval-table"
             >
               <ApprovedPartnersHeading />
-              {this.state.searchPartner
-                ? this.state.partnerList
-                    // .slice(pageVisited, pageVisited + usersPerPage)
-                    .filter((item) => item.status === 1)
-                    .map((item, index) => (
+              {this.state.searchPartner !== "" 
+              // && partners.search===undefined
+                ? partners.search.map((item, index) => (
+                    <ApprovedPartnersRow
+                      key={index}
+                      id={item.id}
+                      profilePicture={item.businessProfilePicture}
+                      name={item.businessName}
+                      contact={item.contactNumber}
+                      email={item.email}
+                      description={item.businessDescription}
+                      partnerType={item.partnerType.type}
+                      plan={item.plan?.name}
+                    />
+                  ))
+                : partners.partners.data.map((item, index) => {
+                    return (
                       <ApprovedPartnersRow
                         key={index}
                         id={item.id}
@@ -111,25 +94,8 @@ class AllApprovedPartners extends Component {
                         partnerType={item.partnerType.type}
                         plan={item.plan?.name}
                       />
-                    ))
-                : partners.partners
-                    .filter((item) => item.status === 1)
-                    // .slice(pageVisited, pageVisited + usersPerPage)
-                    .map((item, index) => {
-                      return (
-                        <ApprovedPartnersRow
-                          key={index}
-                          id={item.id}
-                          profilePicture={item.businessProfilePicture}
-                          name={item.businessName}
-                          contact={item.contactNumber}
-                          email={item.email}
-                          description={item.businessDescription}
-                          partnerType={item.partnerType.type}
-                          plan={item.plan?.name}
-                        />
-                      );
-                    })}
+                    );
+                  })}
             </Table>
           </div>
         </div>
@@ -137,7 +103,7 @@ class AllApprovedPartners extends Component {
     } else {
       data = <EmptySection />;
     }
-
+    // console.log(partners.partners.data);
     return (
       <div className="page-content partner">
         <Container fluid>
@@ -163,18 +129,22 @@ class AllApprovedPartners extends Component {
               </select> */}
             </div>
 
-            <CardBody>{data}</CardBody>
-            <ReactPaginate
-              previousLabel={"Previous"}
-              nextLabel={"Next"}
-              pageCount={this.state.pageNumber}
-              onPageChange={this.changePage}
-              containerClassName={"paginationBttns"}
-              previousLinkClassName={"previousBttn"}
-              nextLinkClassName={"nextBttn"}
-              disabledClassName={"paginationDisabled"}
-              activeClassName={"paginationActive"}
-            />
+            {data}
+            {!data.length > 0 && this.state.searchPartner === "" ? (
+              <ReactPaginate
+                previousLabel={"Previous"}
+                nextLabel={"Next"}
+                pageCount={partners.partners.pageCount}
+                onPageChange={this.changePage}
+                containerClassName={"paginationBttns"}
+                previousLinkClassName={"previousBttn"}
+                nextLinkClassName={"nextBttn"}
+                disabledClassName={"paginationDisabled"}
+                activeClassName={"paginationActive"}
+              />
+            ) : (
+              ""
+            )}
           </Card>
         </Container>
       </div>
@@ -185,7 +155,11 @@ class AllApprovedPartners extends Component {
 const mapStateToProps = (state) => {
   return {
     partners: state.partners,
+    // search: state.search
   };
 };
 
-export default connect(mapStateToProps, { getPartners })(AllApprovedPartners);
+export default connect(mapStateToProps, {
+  getApprovedPartners,
+  fetchSearchApprovedPartners,
+})(AllApprovedPartners);

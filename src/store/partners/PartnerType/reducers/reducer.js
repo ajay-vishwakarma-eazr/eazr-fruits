@@ -11,7 +11,7 @@ import {
 } from "../actions/actiontypes";
 
 const initialState = {
-  partnerType: null,
+  partnerType: [],
   loading: false,
   errors: null,
 };

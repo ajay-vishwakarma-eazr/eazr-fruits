@@ -1,3 +1,182 @@
+// import React, { Component } from "react";
+// import { Card, CardBody, Container, Table } from "reactstrap";
+// import { withRouter } from "react-router-dom";
+// import "../../../partner.scss";
+// import { connect } from "react-redux";
+// import ClipLoader from "react-spinners/ClipLoader";
+// //Actions
+// import ReactPaginate from "react-paginate";
+// import EmptySection from "../../../../../components/EmptySection/EmptySection";
+// import PartnerSettlementsRow from "./PartnerSettlementsRow";
+// import PartnerSettlementsHeading from "./PartnerSettlementsHeading";
+// import BackBtn from "../../../../BackBtn";
+// import PartnerDetailsTab from "../PartnerDetailsTab/PartnerDetailsTab";
+// import {
+//   fetchSettlementsById,
+//   fetchSearchSettlements,
+// } from "../../../../../store/settlement/actions/action";
+
+// class PartnerSettlements extends Component {
+//   constructor() {
+//     super();
+//     this.state = {
+//       searchSettlements: "",
+//       settlementsList: null,
+//       pageNumber: 1,
+//     };
+//   }
+
+//   componentDidMount() {
+//     const id = this.props.match.params.id;
+//     this.props.fetchSettlementsById(id, this.state.pageNumber);
+//     console.log(this.props.settlements);
+//   }
+
+//   changePage = ({ selected }) => {
+//     const newSelect = selected + 1;
+//     this.setState({ pageNumber: newSelect });
+//     const id = this.props.match.params.id;
+//     this.props.fetchSettlementsById(
+//       this.props.match.params.id,
+//       this.state.pageNumber
+//     );
+//   };
+
+//   handleSearch = (e) => {
+//     this.setState({
+//       searchSettlements: e.target.value,
+//     });
+//     const id = this.props.match.params.id;
+//     this.props.fetchSearchSettlements(
+//       this.props.match.params.id,
+//       this.state.searchSettlements
+//     );
+//   };
+
+//   render() {
+//     let data;
+//     if (this.props.settlements.loading === true) {
+//       data = (
+//         <div className="spinner-div">
+//           <ClipLoader color="#bbbbbb" loading={true} size={60} />
+//         </div>
+//       );
+//     } else if (
+//       this.props.settlements.settlements.data &&
+//       this.props.settlements.settlements.data.length > 0
+//     ) {
+//       data = (
+//         <div className="table-rep-plugin">
+//           <div
+//             className="table-responsive mb-0"
+//             data-pattern="priority-columns"
+//           >
+//             <Table
+//               center
+//               striped
+//               // bordered
+//               responsive
+//               className="partner-approval-table"
+//             >
+//               <PartnerSettlementsHeading />
+//               {this.state.searchSettlements !== ""
+//                 ? this.props.settlements.search.map((settlement, index) => (
+//                     <PartnerSettlementsRow
+//                       key={index}
+//                       partnerName={settlement.partner.businessName}
+//                       amount={settlement.amount}
+//                       partnerAmount={settlement.partnerAmount}
+//                       commision={settlement.commision}
+//                       gst={settlement.gst}
+//                       createdAt={settlement.createdTimestamp.slice(0, 10)}
+//                     />
+//                   ))
+//                 : this.props.settlements.settlements.data.map(
+//                     (settlement, index) => {
+//                       debugger;
+//                       return (
+//                         <PartnerSettlementsRow
+//                           key={index}
+//                           partnerName={settlement.partner.businessName}
+//                           amount={settlement.amount}
+//                           partnerAmount={settlement.partnerAmount}
+//                           commision={settlement.commision}
+//                           gst={settlement.gst}
+//                           createdAt={settlement.createdTimestamp.slice(0, 10)}
+//                         />
+//                       );
+//                     }
+//                   )}
+//             </Table>
+//           </div>
+//         </div>
+//       );
+//     } else {
+//       data = <EmptySection />;
+//     }
+
+//     return (
+//       <>
+//         <div className="page-content customer-page ">
+//           <Container fluid>
+//             <BackBtn route="approved-partner" />
+//             <PartnerDetailsTab />
+//           </Container>
+//           <div className="partner">
+//             <Container fluid>
+//               <Card className="partner-table-approval">
+//                 <div className="search-partner">
+//                   <div>
+//                     <label htmlFor="">Search settlements: </label>
+//                     <input
+//                       type="text"
+//                       placeholder="Search..."
+//                       onChange={this.handleSearch}
+//                       value={this.state.searchSettlements}
+//                     />
+//                   </div>
+//                 </div>
+
+//                 <CardBody>{data}</CardBody>
+//                 {this.props.settlements.settlements.data?.length > 0 ? (
+//                   <ReactPaginate
+//                     previousLabel={"Previous"}
+//                     nextLabel={"Next"}
+//                     pageCount={this.props.settlements.settlements.pageCount}
+//                     onPageChange={this.changePage}
+//                     containerClassName={"paginationBttns"}
+//                     previousLinkClassName={"previousBttn"}
+//                     nextLinkClassName={"nextBttn"}
+//                     disabledClassName={"paginationDisabled"}
+//                     activeClassName={"paginationActive"}
+//                   />
+//                 ) : (
+//                   ""
+//                 )}
+//               </Card>
+//             </Container>
+//           </div>
+//         </div>
+//       </>
+//     );
+//   }
+// }
+
+// const mapStateToProps = (state) => {
+//   debugger;
+//   return {
+//     settlements: state.settlements,
+//   };
+// };
+
+// export default withRouter(
+//   connect(mapStateToProps, { fetchSettlementsById, fetchSearchSettlements })(
+//     PartnerSettlements
+//   )
+// );
+
+// // export default withRouter(connect(mapStateToProps, null)(App));
+
 import React, { Component } from "react";
 import { Card, CardBody, Container, Table } from "reactstrap";
 import { withRouter } from "react-router-dom";
@@ -11,7 +190,10 @@ import PartnerSettlementsRow from "./PartnerSettlementsRow";
 import PartnerSettlementsHeading from "./PartnerSettlementsHeading";
 import BackBtn from "../../../../BackBtn";
 import PartnerDetailsTab from "../PartnerDetailsTab/PartnerDetailsTab";
-import { fetchSettlementsById } from "../../../../../store/settlement/actions/action";
+import {
+  fetchSettlementsById,
+  searchPartnerSettlements,
+} from "../../../../../store/settlement/actions/action";
 
 class PartnerSettlements extends Component {
   constructor() {
@@ -26,44 +208,54 @@ class PartnerSettlements extends Component {
   componentDidMount() {
     const id = this.props.match.params.id;
     this.props.fetchSettlementsById(id, this.state.pageNumber);
+
+    // this.props.searchPartnerSettlements(id,"W");
+    // console.log(this.props.settlements);
   }
 
   changePage = ({ selected }) => {
     const newSelect = selected + 1;
     this.setState({ pageNumber: newSelect });
     const id = this.props.match.params.id;
-    this.props.fetchSettlementsById(id, this.state.pageNumber);
+    this.props.fetchSettlementsById(this.state.pageNumber=newSelect);
+    
   };
+
+  // changePage = ({ selected }) => {
+  //   const newSelect = selected + 1;
+  //   this.setState({ pageNumber: newSelect });
+  //   const id = this.props.match.params.id;
+  //   this.props.fetchSettlementsById(
+  //     this.props.match.params.id,
+  //     this.state.pageNumber
+  //   );
+  // };
 
   handleSearch = (e) => {
     this.setState({
       searchSettlements: e.target.value,
     });
-
-    const searchableSettlements = e.target.value;
-    const filtered = this.props.settlements.settlements.data.filter((filter) =>
-      // return
-      filter.partner.businessName.toLowerCase().includes(searchableSettlements)
-    );
-    // filter.partner.partnerAmount.includes(searchableSettlements)
-    this.setState({
-      settlementsList: filtered,
-    });
+    const id = this.props.match.params.id;
+    this.props.searchPartnerSettlements(id, this.state.searchSettlements);
+    // console.log(this.props.settlements.search);
+    // console.log(this.state.searchSettlements);
   };
-
+  
   render() {
     const { settlements } = this.props;
-
+    const changePage = ({ selected }) => {
+      this.setState({ pageNumber: selected });
+    };
     let data;
-    if (settlements?.loading === true) {
+    if (settlements.loading === true) {
       data = (
         <div className="spinner-div">
           <ClipLoader color="#bbbbbb" loading={true} size={60} />
         </div>
       );
     } else if (
-      settlements?.settlements.data &&
-      settlements?.settlements.data.length > 0
+      settlements.settlements &&
+      settlements.settlements.data.length > 0
     ) {
       data = (
         <div className="table-rep-plugin">
@@ -79,8 +271,8 @@ class PartnerSettlements extends Component {
               className="partner-approval-table"
             >
               <PartnerSettlementsHeading />
-              {this.state.searchSettlements.data
-                ? this.state.settlementsList.data.map((settlement, index) => (
+              {this.state.searchSettlements !== ""
+                ? settlements.settlements.search.map((settlement, index) => (
                     <PartnerSettlementsRow
                       key={index}
                       partnerName={settlement.partner.businessName}
@@ -91,21 +283,21 @@ class PartnerSettlements extends Component {
                       createdAt={settlement.createdTimestamp.slice(0, 10)}
                     />
                   ))
-                : settlements?.settlements.data
-                    // .slice(pageVisited, pageVisited + usersPerPage)
-                    .map((settlement, index) => {
-                      return (
-                        <PartnerSettlementsRow
-                          key={index}
-                          partnerName={settlement.partner.businessName}
-                          amount={settlement.amount}
-                          partnerAmount={settlement.partnerAmount}
-                          commision={settlement.commision}
-                          gst={settlement.gst}
-                          createdAt={settlement.createdTimestamp.slice(0, 10)}
-                        />
-                      );
-                    })}
+                : // null
+                  settlements.settlements.data.map((settlement, index) => {
+                    debugger;
+                    return (
+                      <PartnerSettlementsRow
+                        key={index}
+                        partnerName={settlement.partner.businessName}
+                        amount={settlement.amount}
+                        partnerAmount={settlement.partnerAmount}
+                        commision={settlement.commision}
+                        gst={settlement.gst}
+                        createdAt={settlement.createdTimestamp.slice(0, 10)}
+                      />
+                    );
+                  })}
             </Table>
           </div>
         </div>
@@ -113,7 +305,10 @@ class PartnerSettlements extends Component {
     } else {
       data = <EmptySection />;
     }
-
+    // console.log(settlements.settlements.pageCount);
+    // console.log(newSelect);
+    console.log("pageNumber",this.state.pageNumber);
+    
     return (
       <>
         <div className="page-content customer-page ">
@@ -124,35 +319,33 @@ class PartnerSettlements extends Component {
           <div className="partner">
             <Container fluid>
               <Card className="partner-table-approval">
-                <div className="search-partner">
+                {/* <div className="search-partner">
                   <div>
                     <label htmlFor="">Search settlements: </label>
                     <input
                       type="text"
-                      placeholder="Search..."
-                      onChange={this.handleSearch}
+                      placeholder="Search by name..."
                       value={this.state.searchSettlements}
+                      onChange={this.handleSearch}
                     />
                   </div>
-                </div>
-
-                <CardBody>{data}</CardBody>
-                {settlements.settlements.data.length>0 ?
-
-                <ReactPaginate
-                  previousLabel={"Previous"}
-                  nextLabel={"Next"}
-                  pageCount={this.props.settlements?.settlements.pageCount}
-                  onPageChange={this.changePage}
-                  containerClassName={"paginationBttns"}
-                  previousLinkClassName={"previousBttn"}
-                  nextLinkClassName={"nextBttn"}
-                  disabledClassName={"paginationDisabled"}
-                  activeClassName={"paginationActive"}
-                />: (
+                </div> */}
+                {data}
+                {!data.length > 0 ? (
+                  <ReactPaginate
+                    previousLabel={"Previous"}
+                    nextLabel={"Next"}
+                    pageCount={settlements.settlements.pageCount}
+                    onPageChange={changePage}
+                    containerClassName={"paginationBttns"}
+                    previousLinkClassName={"previousBttn"}
+                    nextLinkClassName={"nextBttn"}
+                    disabledClassName={"paginationDisabled"}
+                    activeClassName={"paginationActive"}
+                  />
+                ) : (
                   ""
-                )
-  }
+                )}
               </Card>
             </Container>
           </div>
@@ -163,13 +356,14 @@ class PartnerSettlements extends Component {
 }
 
 const mapStateToProps = (state) => {
+  debugger;
   return {
-    settlements: state.settlement,
+    settlements: state.settlements,
   };
 };
 
 export default withRouter(
-  connect(mapStateToProps, { fetchSettlementsById })(PartnerSettlements)
+  connect(mapStateToProps, { fetchSettlementsById, searchPartnerSettlements })(
+    PartnerSettlements
+  )
 );
-
-// export default withRouter(connect(mapStateToProps, null)(App));

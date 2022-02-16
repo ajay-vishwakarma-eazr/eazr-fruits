@@ -11,6 +11,8 @@ import {
   UPDATE_PROFILE_SUCCESS,
   GET_USER_BILL_BY_ID,
   GET_USER_BILL_BY_ID_FAILED,
+  GET_SEARCH_USER,
+  GET_SEARCH_USER_FAILED,
 } from "./actiontypes";
 import axios from "axios";
 import { ip } from "../../../config/config";
@@ -50,6 +52,29 @@ export const fetchUsers = (pageNumber) => {
   };
 };
 
+export const fetchSearchUsers = (search) => {
+  return function (dispatch) {
+    dispatch(FetchUsersRequest);
+    axios
+      .get(
+        `${ip}/users?s={"$or": [{"fullName": {"starts":"${search}"}},{"email": {"starts":"${search}"}},{"contactNumber": {"starts":"${search}"}}]}`
+      )
+      .then((res) => {
+        console.log(res.data);
+        const users = res.data;
+        dispatch({
+          type: GET_SEARCH_USER,
+          payload: users,
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: GET_SEARCH_USER_FAILED,
+          payload: err,
+        });
+      });
+  };
+};
 export const setUserLoading = () => {
   return {
     type: USER_LOADING,

@@ -21,6 +21,11 @@ import {
   GET_PARTNER_CATEGORY_TYPE,
   PARTNER_CATEGORY_TYPE,
   PARTNER_CATEGORY_TYPE_FAILED,
+  GET_SEARCH_APPROVEDPARTNERS,
+  GET_SEARCH_APPROVEDPARTNERS_FAILED,
+  GET_SEARCH_ONBOARDINGPARTNERS,
+  GET_SEARCH_ONBOARDINGPARTNERS_FAILED,
+
 } from "./types";
 import axios from "axios";
 import { ip } from "../../config/config";
@@ -29,13 +34,14 @@ export const getPartners = (pageNumber) => {
   return (dispatch) => {
     dispatch(setPartersLoading());
 
-    // ?page=${pageNumber}&limit=10&sort=id,DESC
     axios
-      .get(`${ip}/partners?page=${pageNumber}&limit=15&sort=id,DESC`)
+      // .get(`${ip}/partners?page=${pageNumber}&limit=10&sort=id,DESC`)
+      .get(`${ip}/partners?filter=status||ne||1&page=${pageNumber}&limit=10&sort=id,DESC`)
       .then((res) => {
+        debugger;
         dispatch({
           type: GET_PARTNERS,
-          payload: res.data.data,
+          payload: res.data,
         });
       })
       .catch((err) => {
@@ -43,6 +49,77 @@ export const getPartners = (pageNumber) => {
         dispatch({
           type: GET_PARTNERS_FAILED,
           payload: err.response.data,
+        });
+      });
+  };
+};
+
+export const searchOnboardingPartners = (search) => {
+  return (dispatch) => {
+    dispatch(setPartersLoading());
+
+    axios
+      // .get(`${ip}/partners?page=${pageNumber}&limit=10&sort=id,DESC`)
+      .get(
+        `${ip}/partners?filter=status||ne||1&s={"$or": [{"businessName": {"starts":"${search}"}},{"contactNumber": {"starts":"${search}"}},{"email": {"starts":"${search}"}}]}`
+      )
+      .then((res) => {
+        debugger;
+        dispatch({
+          type: GET_SEARCH_ONBOARDINGPARTNERS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log("err", err);
+        dispatch({
+          type: GET_SEARCH_ONBOARDINGPARTNERS_FAILED,
+          payload: err.response?.data,
+        });
+      });
+  };
+};
+
+export const getApprovedPartners = (pageNumber) => {
+  return (dispatch) => {
+    dispatch(setPartersLoading());
+    axios
+      .get(
+        `${ip}/partners?filter=status||eq||1&page=${pageNumber}&limit=10&sort=id,DESC`
+      )
+      .then((res) => {
+        dispatch({
+          type: GET_PARTNERS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: GET_PARTNERS_FAILED,
+          payload: err.response.data,
+        });
+      });
+  };
+};
+
+export const fetchSearchApprovedPartners = (search) => {
+  return function (dispatch) {
+    dispatch(setPartersLoading);
+    axios
+      .get(
+        `${ip}/partners?s={"$and": [{"status":{"$eq":1}},{"businessName": {"starts":"${search}"}}]}`
+      )
+      .then((res) => {
+        console.log(res.data);
+        dispatch({
+          type: GET_SEARCH_APPROVEDPARTNERS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: GET_SEARCH_APPROVEDPARTNERS_FAILED,
+          payload: err,
         });
       });
   };
@@ -61,7 +138,7 @@ export const getPartnerById = (id) => {
         });
       })
       .catch((err) => {
-        console.log(err.response.data);
+        // console.log(err.response.data);
         dispatch({
           type: GET_PARTNER_BY_ID_FAILED,
           payload: err.response.data,

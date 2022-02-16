@@ -5,12 +5,15 @@ import {
   PARTNERS_LOADING,
   GET_TRANSACTION_BY_ID,
   GET_TRANSACTION_BY_ID_FAILED,
+  GET_SEARCH_TRANSACTION,
+  GET_SEARCH_TRANSACTION_FAILED,
 } from "../actions/actiontypes";
 
 export const initialState = {
   loading: false,
-  transactions:null,
+  transactions:[],
   errror: "",
+  search:[]
 };
 
 export const transactionReducer = (state = initialState, action) => {
@@ -53,6 +56,18 @@ export const transactionReducer = (state = initialState, action) => {
         loading: false,
         errors: action.payload,
       };
+
+    case GET_SEARCH_TRANSACTION:
+      return {
+        ...state,
+        loading: false,
+        search: action.payload,
+      };
+    case GET_SEARCH_TRANSACTION_FAILED:
+      return {
+        error: action.payload,
+      };
+
     default:
       return state;
   }

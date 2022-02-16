@@ -147,7 +147,7 @@
 // };
 
 import axios from "axios";
-import { ip } from "../../../config/config";
+import { ip } from "../../config/config";
 import {
   ADD_PARTNER_CATEGORY,
   ADD_PARTNER_CATEGORY_FAILED,
@@ -168,7 +168,6 @@ export const getPartnerCategoryBrandInformation = () => {
     axios
       .get(`${ip}/partner-category?sort=id,DESC`)
       .then((res) => {
-        console.log(res);
         dispatch({
           type: GET_PARTNER_CATEGORY,
           payload: res.data,

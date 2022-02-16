@@ -34,6 +34,35 @@ export const getPartnerType = (pageNumber) => {
       });
   };
 };
+export const getPartnerTypeBrandInformation = () => {
+  return (dispatch) => {
+    dispatch({ type: TYPE_LOADING });
+    axios
+      .get(`${ip}/partner-types`)
+      axios
+      .get(
+        `${ip}/partner-types`
+      )
+      .then((res) => {
+        dispatch({
+          type: GET_PARTNER_TYPE,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: GET_PARTNER_TYPE_FAILED,
+          payload: err.response.data,
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: GET_PARTNER_TYPE_FAILED,
+          payload: err.response.data,
+        });
+      });
+  };
+};
 
 export const addPartnerType = (newType, pageNumber) => {
   return (dispatch) => {
@@ -112,7 +141,7 @@ export const updatePartnerType = (id, updateType, pageNumber) => {
 //   };
 // };
 
-export const deleteType = (id,pageNumber) => {
+export const deleteType = (id, pageNumber) => {
   return (dispatch) => {
     axios
       .delete(`${ip}/partner-types/${id}?sort=id,ASC`)

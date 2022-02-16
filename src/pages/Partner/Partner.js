@@ -8,7 +8,11 @@ import { connect } from "react-redux";
 import ClipLoader from "react-spinners/ClipLoader";
 //Actions
 import ReactPaginate from "react-paginate";
-import { getPartners } from "../../store/partners/actions";
+import {
+  getPartners,
+  getApprovedPartners,
+  searchOnboardingPartners,
+} from "../../store/partners/actions";
 import BackBtn from "../BackBtn";
 import EmptySection from "../../components/EmptySection/EmptySection";
 
@@ -27,45 +31,17 @@ class Partner extends Component {
   
   changePage = ({ selected }) => {
     const newSelect = selected + 1;
-    this.state.pageNumber(newSelect);
+    this.setState({ pageNumber : newSelect });
+    this.props.getPartners(this.state.pageNumber=newSelect);
+    // console.log("newSelect", newSelect);
+    // console.log("pageNumber",this.state.pageNumber);
   };
 
   handleSearch = (e) => {
     this.setState({
       searchPartner: e.target.value,
     });
-
-    const searchablePartner = e.target.value;
-    const filtered = this.props.partners.partners.filter((filter) => {
-      return (
-        filter.businessName
-          .toLowerCase()
-          .split(" ")
-          .join("")
-          .includes(searchablePartner.toLowerCase().split(" ").join("")) ||
-        filter.email
-          .toLowerCase()
-          .split(" ")
-          .join("")
-          .includes(searchablePartner.toLowerCase().split(" ").join("")) ||
-        filter.partnerCategory?.name
-          .toLowerCase()
-          .split(" ")
-          .join("")
-          .includes(searchablePartner.toLowerCase().split(" ").join("")) ||
-        filter.plan?.name
-          .toLowerCase()
-          .split(" ")
-          .join("")
-          .includes(searchablePartner.toLowerCase().split(" ").join("")) ||
-        filter.contactNumber.includes(searchablePartner)
-        // filter.status
-      );
-    });
-
-    this.setState({
-      partnerList: filtered,
-    });
+    this.props.searchOnboardingPartners(this.state.searchPartner);
   };
 
   render() {
@@ -89,7 +65,10 @@ class Partner extends Component {
           <ClipLoader color="#bbbbbb" loading={true} size={60} />
         </div>
       );
-    } else if (partners?.partners !== null && partners.partners?.length > 0) {
+    } else if (
+      partners.partners.data !== null &&
+      partners.partners.data.length > 0
+    ) {
       data = (
         <div className="table-rep-plugin">
           <div
@@ -104,13 +83,13 @@ class Partner extends Component {
               className="partner-approval-table"
             >
               <PartnerTableHeading />
-              {this.state.searchPartner
-                ? this.state.partnerList
-                    .filter((item) => item.status != 1)
+              {this.state.searchPartner !== ""
+                ? partners.search
+                    // .filter((item) => item.status != 1)
                     // .slice(pageVisited, pageVisited + usersPerPage)
                     .map((item, index) => (
                       <PartnerTableRow
-                        key={index}
+                        // key={index}
                         id={item.id}
                         profilePicture={item.businessProfilePicture}
                         brandName={item.businessName}
@@ -122,8 +101,8 @@ class Partner extends Component {
                         status={item.status}
                       />
                     ))
-                : partners.partners
-                    .filter((item) => item.status != 1)
+                : partners.partners.data
+                    // .filter((item) => item.status != 1)
                     // .slice(pageVisited, pageVisited + usersPerPage)
                     .map((item, index) => {
                       return (
@@ -174,23 +153,22 @@ class Partner extends Component {
               </select> */}
             </div>
 
-            {data} 
-            {!data.length >0 ?
-            <ReactPaginate
-              previousLabel={"Previous"}
-              nextLabel={"Next"}
-              pageCount={this.state.pageNumber}
-              onPageChange={this.changePage}
-              containerClassName={"paginationBttns"}
-              previousLinkClassName={"previousBttn"}
-              nextLinkClassName={"nextBttn"}
-              disabledClassName={"paginationDisabled"}
-              activeClassName={"paginationActive"}
-            />
-            : (
+            {data}
+            {!data.length > 0 && this.state.searchPartner ==="" ? (
+              <ReactPaginate
+                previousLabel={"Previous"}
+                nextLabel={"Next"}
+                pageCount={this.props.partners.partners.pageCount}
+                onPageChange={this.changePage}
+                containerClassName={"paginationBttns"}
+                previousLinkClassName={"previousBttn"}
+                nextLinkClassName={"nextBttn"}
+                disabledClassName={"paginationDisabled"}
+                activeClassName={"paginationActive"}
+              />
+            ) : (
               ""
-            )
-  }
+            )}
           </Card>
         </Container>
       </div>
@@ -199,9 +177,13 @@ class Partner extends Component {
 }
 
 const mapStateToProps = (state) => {
+  debugger;
   return {
     partners: state.partners,
   };
 };
 
-export default connect(mapStateToProps, { getPartners })(Partner);
+export default connect(mapStateToProps, {
+  getPartners,
+  searchOnboardingPartners,
+})(Partner);
