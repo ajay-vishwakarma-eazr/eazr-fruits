@@ -119,7 +119,7 @@ const PartnerTypes = () => {
             </Card>
             {data}
             <div style={{ width: "70%" }}>
-              {!data.length > 0 ? (
+              {partnerType.data?.length > 0 ? (
                 <ReactPaginate
                   previousLabel={"Previous"}
                   nextLabel={"Next"}

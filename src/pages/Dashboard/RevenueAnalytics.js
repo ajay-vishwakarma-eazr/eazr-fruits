@@ -116,7 +116,7 @@ class RevenueAnalytics extends Component {
                   <div className="d-inline-flex">
                     <h5 className="mb-0 mr-2">
                       ₹
-                      {Array.isArray(this.props.transactions.loading)
+                      {Array.isArray(this.props.transactions.transactions)
                         ? this.props.transactions.transactions
                             ?.map((item) => item?.amount)
                             .reduce((prev, curr) => prev + curr, 0)

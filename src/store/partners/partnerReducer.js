@@ -63,6 +63,7 @@ const login = (state = initialState, action) => {
       };
 
     case GET_PARTNER_BY_ID:
+
       return {
         ...state,
         loading: false,
@@ -71,8 +72,6 @@ const login = (state = initialState, action) => {
       };
     case GET_PARTNER_BY_ID_FAILED:
       return {
-        ...state,
-        loading: false,
         errors: action.payload,
       };
 

@@ -125,7 +125,7 @@ const Customer = () => {
                 </CardBody>
               </Card>
               {data}
-              {data && searchUser === ""? (
+              {users.data && searchUser === ""? (
                 <ReactPaginate
                   previousLabel={"Previous"}
                   nextLabel={"Next"}

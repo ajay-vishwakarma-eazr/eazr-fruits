@@ -25,7 +25,6 @@ import {
   GET_SEARCH_APPROVEDPARTNERS_FAILED,
   GET_SEARCH_ONBOARDINGPARTNERS,
   GET_SEARCH_ONBOARDINGPARTNERS_FAILED,
-
 } from "./types";
 import axios from "axios";
 import { ip } from "../../config/config";
@@ -36,9 +35,10 @@ export const getPartners = (pageNumber) => {
 
     axios
       // .get(`${ip}/partners?page=${pageNumber}&limit=10&sort=id,DESC`)
-      .get(`${ip}/partners?filter=status||ne||1&page=${pageNumber}&limit=10&sort=id,DESC`)
+      .get(
+        `${ip}/partners?filter=status||ne||1&page=${pageNumber}&limit=10&sort=id,DESC`
+      )
       .then((res) => {
-        debugger;
         dispatch({
           type: GET_PARTNERS,
           payload: res.data,
@@ -48,7 +48,7 @@ export const getPartners = (pageNumber) => {
         console.log("err", err);
         dispatch({
           type: GET_PARTNERS_FAILED,
-          payload: err.response.data,
+          payload: err.message,
         });
       });
   };
@@ -64,7 +64,6 @@ export const searchOnboardingPartners = (search) => {
         `${ip}/partners?filter=status||ne||1&s={"$or": [{"businessName": {"starts":"${search}"}},{"contactNumber": {"starts":"${search}"}},{"email": {"starts":"${search}"}}]}`
       )
       .then((res) => {
-        debugger;
         dispatch({
           type: GET_SEARCH_ONBOARDINGPARTNERS,
           payload: res.data,
@@ -96,7 +95,7 @@ export const getApprovedPartners = (pageNumber) => {
       .catch((err) => {
         dispatch({
           type: GET_PARTNERS_FAILED,
-          payload: err.response.data,
+          payload: err.message,
         });
       });
   };
@@ -128,7 +127,6 @@ export const fetchSearchApprovedPartners = (search) => {
 export const getPartnerById = (id) => {
   return (dispatch) => {
     dispatch(setPartersLoading());
-
     axios
       .get(`${ip}/partners/${id}`)
       .then((res) => {
@@ -138,7 +136,7 @@ export const getPartnerById = (id) => {
         });
       })
       .catch((err) => {
-        // console.log(err.response.data);
+        console.log(err.response.data);
         dispatch({
           type: GET_PARTNER_BY_ID_FAILED,
           payload: err.response.data,

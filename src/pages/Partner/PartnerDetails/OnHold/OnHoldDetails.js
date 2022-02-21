@@ -42,6 +42,7 @@ class OnHoldDetails extends Component {
         this.setState({
           loading: false,
           errors: err.response.data,
+          errors: err.message,
         });
       });
   }

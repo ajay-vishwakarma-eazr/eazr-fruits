@@ -28,7 +28,6 @@ const PartnerTableRow = ({
       return "#eed202";
     }
   };
-
   return (
     <tbody>
       <tr>

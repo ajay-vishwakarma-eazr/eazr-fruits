@@ -40,7 +40,7 @@ export const login = (contactNumber) => {
       .catch((err) => {
         dispatch({
           type: OTP_SENT_FAILED,
-          payload: err.response.data,
+          payload: err.message,
         });
       });
   };
@@ -70,7 +70,7 @@ export const verify = (contactNumber, otp, history) => {
 
         dispatch({
           type: LOGIN_USER_FAILED,
-          payload: err,
+          payload: err.message,
         });
       });
   };
@@ -90,7 +90,7 @@ export const resend = (phone, otp) => {
       .catch((err) => {
         dispatch({
           type: OTP_SENT_FAILED,
-          payload: err.response.data,
+          payload: err.message,
         });
       });
   };

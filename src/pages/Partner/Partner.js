@@ -28,13 +28,11 @@ class Partner extends Component {
   componentDidMount() {
     this.props.getPartners(this.state.pageNumber);
   }
-  
+
   changePage = ({ selected }) => {
     const newSelect = selected + 1;
-    this.setState({ pageNumber : newSelect });
-    this.props.getPartners(this.state.pageNumber=newSelect);
-    // console.log("newSelect", newSelect);
-    // console.log("pageNumber",this.state.pageNumber);
+    this.setState({ pageNumber: newSelect });
+    this.props.getPartners((this.state.pageNumber = newSelect));
   };
 
   handleSearch = (e) => {
@@ -66,7 +64,8 @@ class Partner extends Component {
         </div>
       );
     } else if (
-      partners.partners.data !== null &&
+      partners.partners.data !== null && 
+      partners.partners.data!==undefined &&
       partners.partners.data.length > 0
     ) {
       data = (
@@ -83,7 +82,7 @@ class Partner extends Component {
               className="partner-approval-table"
             >
               <PartnerTableHeading />
-              {this.state.searchPartner !== ""
+              {(this.state.searchPartner !== "" && partners.search !== undefined)
                 ? partners.search
                     // .filter((item) => item.status != 1)
                     // .slice(pageVisited, pageVisited + usersPerPage)
@@ -127,7 +126,6 @@ class Partner extends Component {
     } else {
       data = <EmptySection />;
     }
-
     return (
       <div className="page-content partner">
         <Container fluid>
@@ -154,7 +152,8 @@ class Partner extends Component {
             </div>
 
             {data}
-            {!data.length > 0 && this.state.searchPartner ==="" ? (
+            {partners.partners.data.length > 0 &&
+            this.state.searchPartner === "" ? (
               <ReactPaginate
                 previousLabel={"Previous"}
                 nextLabel={"Next"}
@@ -177,7 +176,6 @@ class Partner extends Component {
 }
 
 const mapStateToProps = (state) => {
-  debugger;
   return {
     partners: state.partners,
   };

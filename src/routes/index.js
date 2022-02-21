@@ -151,12 +151,12 @@ const publicRoutes = [
   // { path: "PartnerDetails", component: PartnerDetails },
   // { path: "DeliveryDashboard", component: DeliveryDashboard },
   // { path: "/customer", component: Customer },
-  { path: "/SettlementSettings", component: SettlementSettings },
+  // { path: "/SettlementSettings", component: SettlementSettings },
   { path: "/register", component: Register },
   { path: "/logout", component: Logout },
   { path: "/login", component: Login },
-  { path: "/forgot-password", component: ForgetPwd },
-  { path: "/ticket/:serviceId", component: Ticket },
+  // { path: "/forgot-password", component: ForgetPwd },
+  // { path: "/ticket/:serviceId", component: Ticket },
 ];
 
 export { authProtectedRoutes, publicRoutes };

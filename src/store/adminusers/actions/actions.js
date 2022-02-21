@@ -110,7 +110,8 @@ export const fetchUserById = (id) => {
         console.log(err.response.data);
         dispatch({
           type: GET_USER_BY_ID_FAILED,
-          payload: err.response.data,
+          payload: err.message,
+          // payload: err.response.data,
         });
       });
   };
@@ -132,7 +133,7 @@ export const fetchUserBillById = (id) => {
         console.log(err.response.data);
         dispatch({
           type: GET_USER_BILL_BY_ID_FAILED,
-          payload: err.response.data,
+          payload: err.message,
         });
       });
   };

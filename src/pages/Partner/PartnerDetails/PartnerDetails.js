@@ -14,8 +14,8 @@ import { useParams, useHistory } from "react-router-dom";
 // //actions
 import {
   getPartnerById,
-//   updatePartnerDetails,
-//   addTicket,
+  //   updatePartnerDetails,
+  //   addTicket,
 } from "../../../store/partners/actions";
 import HoldModal from "./HoldModal";
 
@@ -23,7 +23,6 @@ const PartnerDetails = (props) => {
   const { id } = useParams();
   useEffect(() => {
     props.getPartnerById(id);
-    // console.log(getPartnerById);
   }, []);
 
   let history = useHistory();
@@ -188,12 +187,12 @@ const PartnerDetails = (props) => {
 
               {/* {partner.status.id !== "607d534de36c5111dc63fe4f" ? ( */}
               <HoldModal
-                  fields={fields}
-                  setFields={setFields}
-                  remark={remark}
-                  setRemark={setRemark}
-                  />
-                  {/* // onTicketSubmit={onTicketSubmit} */}
+                fields={fields}
+                setFields={setFields}
+                remark={remark}
+                setRemark={setRemark}
+              />
+              {/* // onTicketSubmit={onTicketSubmit} */}
               {/* ) : null} */}
             </div>
           </div>
@@ -237,6 +236,7 @@ const PartnerDetails = (props) => {
 };
 
 const mapStateToProps = (state) => {
+
   return {
     partners: state.partners,
   };

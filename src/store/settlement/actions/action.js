@@ -51,7 +51,7 @@
 // };
 
 // export const fetchSettlementsById = (id, pageNumber) => {
-//   debugger;
+//
 //   return function (dispatch) {
 //     dispatch(FetchSettlementRequest);
 //     axios
@@ -59,13 +59,13 @@
 //         `${ip}/settlements?filter=partnerId||eq||${id}&page=${pageNumber}&limit=10&sort=id,DESC`
 //       )
 //       .then((res) => {
-//         debugger;
+//
 //         console.log(res.data);
 //         const settlements = res.data;
 //         dispatch(FetchSettlementSuccess(settlements));
 //       })
 //       .catch((err) => {
-//         debugger;
+//
 //         dispatch(FetchSettlementFailure(err.message));
 //       });
 //   };
@@ -79,7 +79,7 @@
 //         `${ip}/settlements?s={"$and": [{"partnerId":{"$eq":${id}}},{"partner.businessName": {"$starts":"${search}"}}]}`
 //       )
 //       .then((res) => {
-//         debugger;
+//
 //         console.log(res.data);
 //         dispatch({
 //           type: GET_SEARCH_SETTLEMENTSPARTNERS,
@@ -87,7 +87,7 @@
 //         });
 //       })
 //       .catch((err) => {
-//         debugger;
+//
 //         dispatch({
 //           type: GET_SEARCH_SETTLEMENTSPARTNERS_FAILED,
 //           payload: err,
@@ -157,19 +157,16 @@ export const fetchSettlementsById = (id, pageNumber) => {
         `${ip}/settlements?filter=partnerId||eq||${id}&page=${pageNumber}&limit=10&sort=id,DESC`
       )
       .then((res) => {
-        debugger;
         const settlements = res.data;
         dispatch(FetchSettlementSuccess(settlements));
       })
       .catch((err) => {
-        debugger;
         dispatch(FetchSettlementFailure(err.message));
       });
   };
 };
 
 export const searchPartnerSettlements = (id, search) => {
-  debugger;
   return function (dispatch) {
     dispatch(FetchSettlementRequest);
     axios
@@ -177,11 +174,9 @@ export const searchPartnerSettlements = (id, search) => {
         `${ip}/settlements?s={"$and": [{"partnerId":{"$eq": ${id}}}, {"partner.businessName": {"$starts": "${search}"}}]}`
       )
       .then((res) => {
-        debugger;
         dispatch({ type: SEARCH_SETTLEMENT, payload: res.data });
       })
       .catch((err) => {
-        debugger;
         dispatch({ type: SEARCH_SETTLEMENT_FAILED, payload: err });
       });
   };

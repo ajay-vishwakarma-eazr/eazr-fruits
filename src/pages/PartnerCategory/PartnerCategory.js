@@ -23,7 +23,7 @@
 //       pageNumber === undefined
 //         ? dispatch(getPartnerCategory(1))
 //         : dispatch(getPartnerCategory(pageNumber));
-      
+
 //     }
 //     console.log(partnerCategory);
 //   }, [pageNumber]);
@@ -149,21 +149,23 @@
 
 // export default PartnerCategory;
 
-
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { Card, CardBody, Row, Col, Container, Table } from "reactstrap";
 import BackBtn from "../BackBtn";
 import { useDispatch, useSelector } from "react-redux";
 import ReactPaginate from "react-paginate";
-import{getPartnerCategory,addPartnerCategory} from "../../store/PartnerCategory/action"
+import {
+  getPartnerCategory,
+  addPartnerCategory,
+} from "../../store/PartnerCategory/action";
 import EmptySection from "../../components/EmptySection/EmptySection";
 import ClipLoader from "react-spinners/ClipLoader";
 import CategoryTableHeading from "./CategoryTableHeading";
 import CategoryTableRow from "./CategoryTableRow";
 const PartnerCategory = () => {
-  const  partnerCategory = useSelector((state) => state.Category);
-  const loading  = useSelector((state) => state.category);
+  const partnerCategory = useSelector((state) => state.Category);
+  const loading = useSelector((state) => state.category);
   const [name, setName] = useState("");
   const [pageNumber, setPageNumber] = useState(1);
   const dispatch = useDispatch();
@@ -270,17 +272,21 @@ const PartnerCategory = () => {
             </Card>
             {data}
             <div style={{ width: "70%" }}>
-              <ReactPaginate
-                previousLabel={"Previous"}
-                nextLabel={"Next"}
-                pageCount={partnerCategory.partnerCategory.pageCount}
-                onPageChange={changePage}
-                containerClassName={"paginationBttns"}
-                previousLinkClassName={"previousBttn"}
-                nextLinkClassName={"nextBttn"}
-                disabledClassName={"paginationDisabled"}
-                activeClassName={"paginationActive"}
-              />
+              {partnerCategory.partnerCategory.data?.length > 0 ? (
+                <ReactPaginate
+                  previousLabel={"Previous"}
+                  nextLabel={"Next"}
+                  pageCount={partnerCategory.partnerCategory.pageCount}
+                  onPageChange={changePage}
+                  containerClassName={"paginationBttns"}
+                  previousLinkClassName={"previousBttn"}
+                  nextLinkClassName={"nextBttn"}
+                  disabledClassName={"paginationDisabled"}
+                  activeClassName={"paginationActive"}
+                />
+              ) : (
+                ""
+              )}
             </div>
           </Col>
         </Row>

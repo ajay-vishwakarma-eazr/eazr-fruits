@@ -120,10 +120,11 @@ class Login extends Component {
                                       phone: e.target.value,
                                     })
                                   }
-                                  type="text"
+                                  type="number"
                                   className="form-control font-size-16"
                                   id="phone"
                                   placeholder="Enter phone"
+                                  required
                                 />
                                 {this.props.auth.errors &&
                                 this.props.auth.errors.user ? (

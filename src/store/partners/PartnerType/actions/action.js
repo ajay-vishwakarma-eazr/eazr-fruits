@@ -29,7 +29,7 @@ export const getPartnerType = (pageNumber) => {
       .catch((err) => {
         dispatch({
           type: GET_PARTNER_TYPE_FAILED,
-          payload: err.response.data,
+          payload: err.message,
         });
       });
   };
@@ -38,11 +38,7 @@ export const getPartnerTypeBrandInformation = () => {
   return (dispatch) => {
     dispatch({ type: TYPE_LOADING });
     axios
-      .get(`${ip}/partner-types`)
-      axios
-      .get(
-        `${ip}/partner-types`
-      )
+      .get(`${ip}/partner-types?sort=id,DESC`)
       .then((res) => {
         dispatch({
           type: GET_PARTNER_TYPE,
@@ -52,13 +48,7 @@ export const getPartnerTypeBrandInformation = () => {
       .catch((err) => {
         dispatch({
           type: GET_PARTNER_TYPE_FAILED,
-          payload: err.response.data,
-        });
-      })
-      .catch((err) => {
-        dispatch({
-          type: GET_PARTNER_TYPE_FAILED,
-          payload: err.response.data,
+          payload: err.message,
         });
       });
   };

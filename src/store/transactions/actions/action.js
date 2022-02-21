@@ -66,10 +66,9 @@ export const getTranscationById = (id, pageNumber) => {
         });
       })
       .catch((err) => {
-        console.log(err.response.data);
         dispatch({
           type: GET_TRANSACTION_BY_ID_FAILED,
-          payload: err.response.data,
+          payload: err.message,
         });
       });
   };
@@ -87,10 +86,9 @@ export const getTranscations = () => {
         });
       })
       .catch((err) => {
-        console.log(err.response.data);
         dispatch({
           type: GET_TRANSACTION_BY_ID_FAILED,
-          payload: err.response.data,
+          payload: err.message,
         });
       });
   };

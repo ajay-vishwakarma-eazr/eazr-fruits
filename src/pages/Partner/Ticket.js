@@ -26,7 +26,7 @@ class Ticket extends React.Component {
       })
       .catch((err) => {
         console.log(err);
-        this.setState({ errors: err.response.data, loading: false });
+        this.setState({ errors: err.message, loading: false });
       });
   }
 

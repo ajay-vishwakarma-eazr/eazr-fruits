@@ -37,7 +37,7 @@ class AllApprovedPartners extends Component {
   changePage = ({ selected }) => {
     const newSelect = selected + 1;
     this.setState({ pageNumber: newSelect });
-    this.props.getApprovedPartners(this.state.pageNumber=newSelect);
+    this.props.getApprovedPartners((this.state.pageNumber = newSelect));
   };
   render() {
     const { partners } = this.props;
@@ -66,8 +66,7 @@ class AllApprovedPartners extends Component {
               className="partner-approval-table"
             >
               <ApprovedPartnersHeading />
-              {this.state.searchPartner !== "" 
-              // && partners.search===undefined
+              {this.state.searchPartner !== "" && partners.search !== undefined
                 ? partners.search.map((item, index) => (
                     <ApprovedPartnersRow
                       key={index}
@@ -103,7 +102,6 @@ class AllApprovedPartners extends Component {
     } else {
       data = <EmptySection />;
     }
-    // console.log(partners.partners.data);
     return (
       <div className="page-content partner">
         <Container fluid>
@@ -119,18 +117,10 @@ class AllApprovedPartners extends Component {
                   value={this.state.searchPartner}
                 />
               </div>
-
-              {/* <select name="" id="">
-                <option value="On Hold">All</option>
-                <option value="On Hold">On Hold</option>
-                <option value="Rejected">Rejected</option>
-                <option value="Accepted">Accepted</option>
-                <option value="Pending">Pending</option>
-              </select> */}
             </div>
-
             {data}
-            {!data.length > 0 && this.state.searchPartner === "" ? (
+            {partners.partners.data.length > 0 &&
+            this.state.searchPartner === "" ? (
               <ReactPaginate
                 previousLabel={"Previous"}
                 nextLabel={"Next"}

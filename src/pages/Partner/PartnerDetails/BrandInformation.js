@@ -26,7 +26,7 @@ const BrandInformation = (props) => {
 
   useEffect(() => {
     props.getPartnerCategoryBrandInformation();
-    props.getPartnerTypeBrandInformation();
+    // props.getPartnerTypeBrandInformation();
   }, [brandInformation]);
   const getDisableEdit = (disableEdit) => {
     setEdit(disableEdit);
@@ -84,7 +84,6 @@ const BrandInformation = (props) => {
         <select
           disabled={edit}
           onChange={(e) => {
-            debugger;
             setBrandInformation({
               ...brandInformation,
               partnerType: { id: parseInt(e.target.value) },
@@ -93,15 +92,16 @@ const BrandInformation = (props) => {
           defaultValue={brandInformation.partnerType.id}
         >
           {/* {props.partnerType.data.map((e, key) => { */}
-          
-          { props.partnerType.map((e, key) => {
-            debugger;
+
+          {
+          props.partnerType !== undefined ?
+          props.partnerType.map((e, key) => {
             return (
               <option key={key} value={e.id} selected>
                 {e.type}
               </option>
             );
-          })}
+          }): "loading"}
           {/* <option value={brandInformation.partnerType}>Private Limited</option> */}
         </select>
       </div>
@@ -117,13 +117,14 @@ const BrandInformation = (props) => {
           }}
           defaultValue={brandInformation.partnerCategory.id}
         >
-          { props.partnerCategory.partnerCategory.map((e, key) => {
+          { Array.isArray( props.partnerCategory.partnerCategory) ?
+          props.partnerCategory.partnerCategory.map((e, key) => {
             return (
               <option key={key} value={e.id} selected>
                 {e.name}
               </option>
             );
-          })}
+          }):"loading"}
         </select>
       </div>
       <div>
@@ -183,6 +184,7 @@ const BrandInformation = (props) => {
 };
 
 const mapStateToProps = (state) => {
+  debugger;
   return {
     partnerCategory: state.partners.partnerCategory,
     partnerType: state.partners.partnerType,
@@ -195,7 +197,7 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   getPartnerTypeBrandInformation,
   getPartnerCategoryBrandInformation,
-  getPartnersTypeById,
+  // getPartnersTypeById,
   updatePartnerDetails,
   clearErrors,
 })(BrandInformation);
