@@ -14,7 +14,7 @@ import { useParams, useHistory } from "react-router-dom";
 // //actions
 import {
   getPartnerById,
-  //   updatePartnerDetails,
+    updatePartnerDetails,
   //   addTicket,
 } from "../../../store/partners/actions";
 import HoldModal from "./HoldModal";
@@ -244,6 +244,6 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   getPartnerById,
-  // updatePartnerDetails,
+  updatePartnerDetails,
   // addTicket,
 })(PartnerDetails);

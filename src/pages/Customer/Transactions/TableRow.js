@@ -1,4 +1,5 @@
 import React from "react";
+import Moment from "react-moment";
 
 const TableRow = ({ amount, status, partnerName, debit, createAt }) => {
   const statusColor = () => {
@@ -16,16 +17,24 @@ const TableRow = ({ amount, status, partnerName, debit, createAt }) => {
   return (
     <tr>
       <td>{partnerName}</td>
-      <td>₹ {status ===2 ? amount: "-"}</td>
+      <td>₹ {status === 2 ? amount : "-"}</td>
       <td>
         <p
-          style={{ color: statusColor(), border: `1px solid ${statusColor()}`,borderRadius:"10px" }}
+          style={{
+            color: statusColor(),
+            margin: "auto",
+            border: `1px solid ${statusColor()}`,
+            borderRadius: "10px",
+          }}
         >
           {status === 0 ? "Initiated" : status === 2 ? "Success" : "Failed"}
         </p>
       </td>
-      <td>{debit === true ? "Yes" : "No"}</td>
-      <td>{createAt.slice(0, 10)}</td>
+      <td>{status === 2 && debit === true ? "Yes" : "No"}</td>
+      {/* <td>{createAt.slice(0, 16)}</td> */}
+      <td>
+        <Moment format="DD-MM-YYYY HH:mm:ss A">{createAt}</Moment>
+      </td>
     </tr>
   );
 };

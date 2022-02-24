@@ -11,13 +11,24 @@ import {
 } from "../../../store/partners/actions";
 
 const LegalInformation = (props) => {
- const { id } = useParams();
+  const { id } = useParams();
   const [edit, setEdit] = useState(true);
 
   const [legalInformation, setLegalInformation] = useState({
     pan: props.partner.pan,
     panName: props.partner.panName,
-    address: props.partner.address?.addr,
+    address:
+      props.partner.address?.addr +
+      " " +
+      props.partner.address?.city +
+      " " +
+      " " +
+      props.partner.address?.pincode +
+      " " +
+      " " +
+      props.partner.address?.state +
+      " ",
+
     businessPan: props.partner.businessPan ? props.partner.businessPan : "",
   });
 
@@ -27,9 +38,9 @@ const LegalInformation = (props) => {
 
   const onSave = () => {
     props.updatePartnerDetails(id, legalInformation);
-    setEdit(!edit);  
+    setEdit(!edit);
   };
-
+  console.log(props.partner.address);
   return (
     <div
       className="legal-information"
@@ -56,10 +67,7 @@ const LegalInformation = (props) => {
             onClick={() => setEdit(!edit)}
           ></i>
         ) : (
-          <AuthModal
-            getDisableEdit={getDisableEdit}
-            onSave={onSave}
-          />
+          <AuthModal getDisableEdit={getDisableEdit} onSave={onSave} />
         )}
       </div>
       <div>
@@ -104,28 +112,31 @@ const LegalInformation = (props) => {
         </div>
       ) : null}
 
-      
       <div>
         <h3>Address</h3>
         <textarea
           disabled={edit}
           value={
-            legalInformation.address  
+            legalInformation.address + " "
             // ",address " +
-            // legalInformation.pincode +
+            // legalInformation.address.pincode + " "
             // ",pincode " +
-            // legalInformation.city +
+            // legalInformation.city + " " +
             // ", city" +
-            // legalInformation.state +
-            // ", city"
+            // legalInformation.state +" "
+            // ", state"
           }
           onChange={(e) =>
             setLegalInformation({
               ...legalInformation,
-              address: e.target.value
+              address: e.target.value,
+              addr: e.target.value,
+              pincode: e.target.value,
+              city: e.target.value,
+              state: e.target.value,
             })
           }
-          />
+        />
       </div>
     </div>
   );

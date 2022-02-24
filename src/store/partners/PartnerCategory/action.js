@@ -72,7 +72,7 @@
 //             });
 //           })
 //           .catch((err) => {
-//             console.log(err.response.data);
+//
 //             dispatch({
 //               type: GET_PARTNER_CATEGORY_FAILED,
 //               payload: err.response.data,
@@ -319,4 +319,3 @@ export const deleteCategory = (id, pageNumber) => {
       });
   };
 };
-

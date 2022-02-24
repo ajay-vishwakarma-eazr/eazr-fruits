@@ -177,7 +177,10 @@ export const searchPartnerSettlements = (id, search) => {
         dispatch({ type: SEARCH_SETTLEMENT, payload: res.data });
       })
       .catch((err) => {
-        dispatch({ type: SEARCH_SETTLEMENT_FAILED, payload: err });
+        dispatch({
+          type: SEARCH_SETTLEMENT_FAILED,
+          payload: err.response.data,
+        });
       });
   };
 };

@@ -6,6 +6,8 @@ import {
   DELETE_PARTNER_TYPE_FAILED,
   GET_PARTNER_TYPE,
   GET_PARTNER_TYPE_FAILED,
+  GET_PARTNER_TYPE_BY_ID,
+  GET_PARTNER_TYPE_BY_ID_FAILED,
   UPDATE_TYPE,
   UPDATE_TYPE_FAILED,
 } from "./actiontypes.js";
@@ -18,7 +20,7 @@ export const getPartnerType = (pageNumber) => {
     dispatch({ type: TYPE_LOADING });
     axios
       .get(
-        `${ip}/partner-types?sort=id,ASC&page=${pageNumber}&limit=10&sort=id,DESC`
+        `${ip}/partner-types?sort=id,ASC&page=${pageNumber}&limit=10`
       )
       .then((res) => {
         dispatch({
@@ -35,6 +37,7 @@ export const getPartnerType = (pageNumber) => {
   };
 };
 export const getPartnerTypeBrandInformation = () => {
+  console.log("Partner Type");
   return (dispatch) => {
     dispatch({ type: TYPE_LOADING });
     axios

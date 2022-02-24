@@ -51,7 +51,7 @@ const PartnerTypes = () => {
         <ClipLoader color="#bbbbbb" loading={true} size={60} />
       </div>
     );
-  } else if (partnerType !== null && partnerType.data?.length > 0) {
+  } else if (partnerType !== null && partnerType?.data?.length > 0) {
     data = (
       <Card style={{display: 'flex',width: "70%" }}>
         <CardBody>
@@ -119,7 +119,7 @@ const PartnerTypes = () => {
             </Card>
             {data}
             <div style={{ width: "70%" }}>
-              {partnerType.data?.length > 0 ? (
+              {partnerType?.data?.length > 0 ? (
                 <ReactPaginate
                   previousLabel={"Previous"}
                   nextLabel={"Next"}

@@ -77,6 +77,7 @@ export const getTranscationById = (id, pageNumber) => {
 export const getTranscations = () => {
   return (dispatch) => {
     dispatch(setPartnersLoading());
+
     axios
       .get(`${ip}/transactions`)
       .then((res) => {
@@ -137,7 +138,7 @@ export const getPartnerTranscationSearch = (id, search) => {
 //           });
 //         })
 //         .catch((err) => {
-//           console.log(err.response.data);
+//
 
 //           dispatch({
 //             type: GET_TRANSACTION_BY_ID_FAILED,
@@ -156,7 +157,7 @@ export const getPartnerTranscationSearch = (id, search) => {
 //           });
 //         })
 //         .catch((err) => {
-//           console.log(err.response.data);
+//
 
 //           dispatch({
 //             type: GET_TRANSACTION_BY_ID_FAILED,
@@ -181,10 +182,9 @@ export const getUsersTranscationById = (id, pageNumber) => {
         });
       })
       .catch((err) => {
-        console.log(err.response.data);
         dispatch({
           type: GET_TRANSACTION_BY_ID_FAILED,
-          payload: err.response.data,
+          payload: err.message,
         });
       });
   };

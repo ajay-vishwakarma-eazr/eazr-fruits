@@ -81,9 +81,9 @@ export const SettlementReducer = (state = initialState, action) => {
       };
     case SEARCH_SETTLEMENT:
       return {
+        ...state,
         search: action.payload,
         loading: false,
-        error: "",
       };
     case SEARCH_SETTLEMENT_FAILED:
       return {

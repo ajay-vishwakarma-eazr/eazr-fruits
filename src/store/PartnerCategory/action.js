@@ -72,7 +72,7 @@
 //             });
 //           })
 //           .catch((err) => {
-//             console.log(err.response.data);
+//
 //             dispatch({
 //               type: GET_PARTNER_CATEGORY_FAILED,
 //               payload: err.response.data,
@@ -186,7 +186,7 @@ export const getPartnerCategory = (pageNumber) => {
   return (dispatch) => {
     dispatch({ type: CATEGORY_LOADING });
     axios
-      .get(`${ip}/partner-category?page=${pageNumber}&limit=10&sort=id,DESC`)
+      .get(`${ip}/partner-category?page=${pageNumber}&limit=10`)
       .then((res) => {
         console.log(res);
         dispatch({
@@ -319,4 +319,3 @@ export const deleteCategory = (id, pageNumber) => {
       });
   };
 };
-

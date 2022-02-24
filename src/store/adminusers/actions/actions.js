@@ -107,7 +107,6 @@ export const fetchUserById = (id) => {
         });
       })
       .catch((err) => {
-        console.log(err.response.data);
         dispatch({
           type: GET_USER_BY_ID_FAILED,
           payload: err.message,
@@ -130,7 +129,7 @@ export const fetchUserBillById = (id) => {
         });
       })
       .catch((err) => {
-        console.log(err.response.data);
+        
         dispatch({
           type: GET_USER_BILL_BY_ID_FAILED,
           payload: err.message,
@@ -140,14 +139,66 @@ export const fetchUserBillById = (id) => {
 };
 
 
-export const updateUserDetails = (id, formData, pageNumber) => {
+export const  updateUserDetails = (id, formData, pageNumber) => {
   return (dispatch) => {
     dispatch(setUserLoading());
     axios
-      .patch(`${ip}/users/${id}`, {...formData })
+      .patch(`${ip}/users/${id}?page=${pageNumber}`, {
+        ...formData,
+      })
       .then((res) => {
         axios
           .get(`${ip}/users?page=${pageNumber}&limit=10&sort=id,DESC`)
+          .then((res) => {
+            const users = res.data;
+            dispatch(FetchUsersSuccess(users));
+          })
+          .catch((err) => {
+            console.log(err);
+            dispatch(FetchUsersFailure(err.message));
+          });
+      })
+      .catch((err) => {
+        dispatch(UpdateProfileFailed(err.message));
+      });
+  };
+};
+
+export const updateUserProfile = (id, formData, pageNumber) => {
+  return (dispatch) => {
+    dispatch(setUserLoading());
+    axios
+      .patch(`${ip}/users/${id}`, {
+        ...formData,
+      })
+      .then((res) => {
+        axios
+          .get(`${ip}/users`)
+          .then((res) => {
+            const users = res.data;
+            dispatch(FetchUsersSuccess(users));
+          })
+          .catch((err) => {
+            console.log(err);
+            dispatch(FetchUsersFailure(err.message));
+          });
+      })
+      .catch((err) => {
+        dispatch(UpdateProfileFailed(err.message));
+      });
+  };
+};
+
+export const updateWaveOffAmount = (id, formData) => {
+  return (dispatch) => {
+    dispatch(setUserLoading());
+    axios
+      .patch(`${ip}/users/${id}`, {
+        ...formData,
+      })
+      .then((res) => {
+        axios
+          .get(`${ip}/users/${id}`)
           .then((res) => {
             const users = res.data;
             dispatch(FetchUsersSuccess(users));

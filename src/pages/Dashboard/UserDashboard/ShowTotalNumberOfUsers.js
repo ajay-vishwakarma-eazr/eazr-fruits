@@ -10,7 +10,7 @@ const ShowTotalNumberOfUsers = () => {
     });
   }, []);
 
-  return <>{(!numberofUsers) ? 0 :numberofUsers}</>;
+  return <>{!numberofUsers ? 0 : numberofUsers}</>;
 };
 export default ShowTotalNumberOfUsers;
 // kamlesh

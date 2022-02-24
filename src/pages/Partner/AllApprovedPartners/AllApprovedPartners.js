@@ -50,7 +50,7 @@ class AllApprovedPartners extends Component {
       );
     } else if (
       partners.partners !== null &&
-      partners.partners.data.length > 0
+      partners.partners?.data.length > 0
     ) {
       data = (
         <div className="table-rep-plugin">
@@ -115,6 +115,8 @@ class AllApprovedPartners extends Component {
                   placeholder="Search..."
                   onChange={this.handleSearch}
                   value={this.state.searchPartner}
+                  pattern="/[^a-zA-Z0-9 ]/"
+                  // pattern="[a-zA-Z0-9]+"
                 />
               </div>
             </div>

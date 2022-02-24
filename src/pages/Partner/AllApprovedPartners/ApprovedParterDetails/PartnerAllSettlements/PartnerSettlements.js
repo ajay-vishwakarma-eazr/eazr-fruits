@@ -1,4 +1,3 @@
-
 import React, { Component } from "react";
 import { Card, CardBody, Container, Table } from "reactstrap";
 import { withRouter } from "react-router-dom";
@@ -31,15 +30,15 @@ class PartnerSettlements extends Component {
     const id = this.props.match.params.id;
     this.props.fetchSettlementsById(id, this.state.pageNumber);
     // this.props.searchPartnerSettlements(id,"W");
-    console.log(this.props.settlements);
+    console.log(this.state.pageNumber);
   }
 
   handleSearch = (e) => {
     this.setState({
       searchSettlements: e.target.value,
     });
-    // const id = this.props.match.params.id;
-    // this.props.searchPartnerSettlements(id, this.state.searchSettlements);
+    const id = this.props.match.params.id;
+    this.props.searchPartnerSettlements(id, this.state.searchSettlements);
     console.log(this.state.searchSettlements);
   };
 
@@ -47,7 +46,7 @@ class PartnerSettlements extends Component {
     const newSelect = selected + 1;
     this.setState({ pageNumber: newSelect });
     const id = this.props.match.params.id;
-    this.props.fetchSettlementsById((this.state.pageNumber = newSelect));
+    this.props.fetchSettlementsById(id, (this.state.pageNumber = newSelect));
   };
 
   render() {
@@ -77,9 +76,9 @@ class PartnerSettlements extends Component {
               className="partner-approval-table"
             >
               <PartnerSettlementsHeading />
-              {
-              this.state.searchSettlements !== ""
-                ? settlements.settlements.search.map((settlement, index) => (
+
+              {this.state.searchSettlements !== ""
+                ? settlements.search?.map((settlement, index) => (
                     <PartnerSettlementsRow
                       key={index}
                       partnerName={settlement.partner.businessName}
@@ -110,6 +109,7 @@ class PartnerSettlements extends Component {
     } else {
       data = <EmptySection />;
     }
+    // console.log(settlements.search);
     return (
       <>
         <div className="page-content customer-page ">
@@ -121,7 +121,7 @@ class PartnerSettlements extends Component {
             <Container fluid>
               {/* {data} */}
               <Card className="partner-table-approval">
-                {/* <div className="search-partner">
+                <div className="search-partner">
                   <div>
                     <label htmlFor="">Search settlements: </label>
                     <input
@@ -131,10 +131,9 @@ class PartnerSettlements extends Component {
                       onChange={this.handleSearch}
                     />
                   </div>
-                </div> */}
+                </div>
                 {data}
-                {settlements.settlements?.data.length > 0 
-                &&
+                {settlements.settlements?.data.length > 0 &&
                 this.state.searchSettlements === "" ? (
                   <ReactPaginate
                     previousLabel={"Previous"}

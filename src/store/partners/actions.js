@@ -136,7 +136,6 @@ export const getPartnerById = (id) => {
         });
       })
       .catch((err) => {
-        console.log(err.response.data);
         dispatch({
           type: GET_PARTNER_BY_ID_FAILED,
           payload: err.response.data,
@@ -178,7 +177,6 @@ export const updatePartnerDetails = (id, updateObj) => {
             });
           })
           .catch((err) => {
-            console.log(err.response.data);
             dispatch({
               type: GET_PARTNER_BY_ID_FAILED,
               payload: err.response.data,

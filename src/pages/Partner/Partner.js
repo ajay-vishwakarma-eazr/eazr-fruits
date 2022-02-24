@@ -84,8 +84,6 @@ class Partner extends Component {
               <PartnerTableHeading />
               {(this.state.searchPartner !== "" && partners.search !== undefined)
                 ? partners.search
-                    // .filter((item) => item.status != 1)
-                    // .slice(pageVisited, pageVisited + usersPerPage)
                     .map((item, index) => (
                       <PartnerTableRow
                         // key={index}
@@ -101,8 +99,6 @@ class Partner extends Component {
                       />
                     ))
                 : partners.partners.data
-                    // .filter((item) => item.status != 1)
-                    // .slice(pageVisited, pageVisited + usersPerPage)
                     .map((item, index) => {
                       return (
                         <PartnerTableRow
@@ -139,6 +135,9 @@ class Partner extends Component {
                   placeholder="Search..."
                   onChange={this.handleSearch}
                   value={this.state.searchPartner}
+                  pattern="[a-zA-Z0-9]+"
+                  // minlength="4"
+                  // maxlength="10"
                 />
               </div>
 
@@ -152,7 +151,7 @@ class Partner extends Component {
             </div>
 
             {data}
-            {partners.partners.data.length > 0 &&
+            {partners.partners?.data.length > 0 &&
             this.state.searchPartner === "" ? (
               <ReactPaginate
                 previousLabel={"Previous"}

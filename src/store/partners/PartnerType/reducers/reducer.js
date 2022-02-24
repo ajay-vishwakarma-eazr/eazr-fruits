@@ -6,6 +6,8 @@ import {
   DELETE_PARTNER_TYPE_FAILED,
   GET_PARTNER_TYPE,
   GET_PARTNER_TYPE_FAILED,
+  GET_PARTNER_TYPE_BY_ID,
+  GET_PARTNER_TYPE_BY_ID_FAILED,
   UPDATE_TYPE,
   UPDATE_TYPE_FAILED,
 } from "../actions/actiontypes";
@@ -32,6 +34,19 @@ const partnerTypeReducer = (state = initialState, action) => {
         loading: false,
       };
     case GET_PARTNER_TYPE_FAILED:
+      return {
+        ...state,
+        errors: action.payload,
+      };
+
+    case GET_PARTNER_TYPE_BY_ID:
+      return {
+        ...state,
+        partnerType: action.payload,
+        errors: null,
+        loading: false,
+      };
+    case GET_PARTNER_TYPE_BY_ID_FAILED:
       return {
         ...state,
         errors: action.payload,

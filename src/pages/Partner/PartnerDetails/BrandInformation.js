@@ -26,7 +26,6 @@ const BrandInformation = (props) => {
 
   useEffect(() => {
     props.getPartnerCategoryBrandInformation();
-    // props.getPartnerTypeBrandInformation();
   }, [brandInformation]);
   const getDisableEdit = (disableEdit) => {
     setEdit(disableEdit);
@@ -93,15 +92,13 @@ const BrandInformation = (props) => {
         >
           {/* {props.partnerType.data.map((e, key) => { */}
 
-          {
-          props.partnerType !== undefined ?
-          props.partnerType.map((e, key) => {
+          {props.PartnerTypes.partnerType.data.map((e, key) => {
             return (
               <option key={key} value={e.id} selected>
                 {e.type}
               </option>
             );
-          }): "loading"}
+          })}
           {/* <option value={brandInformation.partnerType}>Private Limited</option> */}
         </select>
       </div>
@@ -117,14 +114,15 @@ const BrandInformation = (props) => {
           }}
           defaultValue={brandInformation.partnerCategory.id}
         >
-          { Array.isArray( props.partnerCategory.partnerCategory) ?
-          props.partnerCategory.partnerCategory.map((e, key) => {
-            return (
-              <option key={key} value={e.id} selected>
-                {e.name}
-              </option>
-            );
-          }):"loading"}
+          {Array.isArray(props.partnerCategory.partnerCategory)
+            ? props.partnerCategory.partnerCategory.map((e, key) => {
+                return (
+                  <option key={key} value={e.id} selected>
+                    {e.name}
+                  </option>
+                );
+              })
+            : "loading"}
         </select>
       </div>
       <div>
@@ -184,13 +182,13 @@ const BrandInformation = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  debugger;
   return {
     partnerCategory: state.partners.partnerCategory,
     partnerType: state.partners.partnerType,
     partner: state.partners.partner,
     errors: state.partners.errors,
     partnerCategory: state.Category,
+    PartnerTypes: state.PartnerType,
   };
 };
 
