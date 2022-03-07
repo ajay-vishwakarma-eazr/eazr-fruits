@@ -1,11 +1,17 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from "reactstrap";
 import MiniWidgets from "../MiniWidgets";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTickets } from "../../../store/supportTickets/actions/action";
+import ReactPaginate from "react-paginate";
+import SingleTicket from "../../HelpAndSupport/Tickets/SingleTicket";
+import profile from "../../.././assets/images/nouser.png";
 import RevenueAnalytics from "../RevenueAnalytics";
 import SalesAnalytics from "../SalesAnalytics";
 import EarningReports from "../EarningReports";
 import RecentlyActivity from "../RecentlyActivity";
 import "../dashboard.scss";
+import NumberofpartnerTickets from './TotalPartnerTickets'
 
 class SupportDashboard extends Component {
   constructor(props) {
@@ -14,27 +20,20 @@ class SupportDashboard extends Component {
       reports: [
         {
           icon: "fas fa-user",
-          title: "Total Customers",
-          value: "1452",
+          title: "Total Partner Tickets",
+          value: <NumberofpartnerTickets />,
+          route: "support-tickets",
           rate: "2.4%",
           desc: "From previous period",
         },
         {
           icon: "fas fa-user-tie",
-          title: "Total Partners",
-          value: "300",
-          rate: "2.4%",
-          desc: "From previous period",
-        },
-
-        {
-          icon: "fas fa-users",
-          title: "People Online",
+          title: "Total User Tickets",
           value: "0",
           rate: "2.4%",
           desc: "From previous period",
         },
-      ],
+      ]
     };
   }
   render() {
@@ -48,24 +47,26 @@ class SupportDashboard extends Component {
                   <MiniWidgets reports={this.state.reports} />
                 </Row>
 
+
+
                 {/* revenue Analytics */}
-                <RevenueAnalytics />
+                {/* <RevenueAnalytics /> */}
               </Col>
 
               <Col xl={4}>
                 {/* sales Analytics */}
-                <SalesAnalytics />
+                {/* <SalesAnalytics /> */}
 
                 {/* earning reports */}
-                <EarningReports />
+                {/* <EarningReports /> */}
               </Col>
             </Row>
             <Row>
               <Col xl={4}>
-                <RecentlyActivity />
+                {/* <RecentlyActivity /> */}
               </Col>
               <Col xl={8}>
-                <RevenueAnalytics />
+                {/* <RevenueAnalytics /> */}
               </Col>
             </Row>
           </Container>

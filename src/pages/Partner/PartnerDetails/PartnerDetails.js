@@ -236,7 +236,7 @@ const PartnerDetails = (props) => {
 };
 
 const mapStateToProps = (state) => {
-
+  debugger;
   return {
     partners: state.partners,
   };

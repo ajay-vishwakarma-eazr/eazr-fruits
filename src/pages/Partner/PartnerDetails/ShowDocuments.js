@@ -6,25 +6,30 @@ import FileSaver from "file-saver";
 const ShowDocuments = ({ img }) => {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
-  let fileExtension = img.split(".").pop();
+  let fileExtension = img?.split(".").pop();
+  // let fileExtension = img.split(".").pop();
 
   const downloadImg = () => {
     FileSaver.saveAs(`${img}`, img);
   };
-
+  console.log("image", img);
   return (
     <>
       <div>
         {fileExtension === "pdf" || fileExtension === "PDF" ? (
           <embed src={pdfimg} onClick={downloadImg}></embed>
         ) : (
-          <embed src={`${img}`} onClick={toggle}></embed>
+          <embed
+            
+            src={`${img}`}
+            onClick={toggle}
+          ></embed>
         )}
       </div>
 
       <Modal className="img-modal" isOpen={modal} centered toggle={toggle}>
-        <ModalBody className="img-modal-body" >
-          <embed src={`${img}`} onClick={toggle}></embed>
+        <ModalBody className="img-modal-body">
+          <img src={`${img} `} onClick={toggle}></img>
           {fileExtension !== "pdf" && fileExtension !== "PDF" && (
             <>
               <button onClick={downloadImg}>Download</button>

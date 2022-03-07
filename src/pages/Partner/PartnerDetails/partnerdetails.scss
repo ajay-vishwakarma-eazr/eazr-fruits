@@ -189,6 +189,7 @@
   overflow-x: scroll;
   justify-content: space-between;
   width: 75%;
+  flex-direction: row-reverse;
 }
 
 .document-image-div div {
@@ -332,7 +333,7 @@
   border-radius: 10px;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 200px) {
   .view-partners input,
   .view-partners textarea,
   .view-partners select {

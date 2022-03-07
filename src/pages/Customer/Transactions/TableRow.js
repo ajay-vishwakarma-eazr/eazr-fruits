@@ -9,7 +9,7 @@ const TableRow = ({ amount, status, partnerName, debit, createAt }) => {
     if (status === 2) {
       return "#4bb543";
     }
-    if (status === 1) {
+    if (status === 3) {
       return "#df4759";
     }
   };
@@ -17,7 +17,16 @@ const TableRow = ({ amount, status, partnerName, debit, createAt }) => {
   return (
     <tr>
       <td>{partnerName}</td>
-      <td>₹ {status === 2 ? amount : "-"}</td>
+      <td>
+        ₹{" "}
+        {status === 2 && amount !== null
+          ? amount
+          : status === 0 && amount !== null
+          ? amount
+          : status === 3 && amount !== null
+          ? amount
+          : "-"}
+      </td>
       <td>
         <p
           style={{
@@ -30,8 +39,7 @@ const TableRow = ({ amount, status, partnerName, debit, createAt }) => {
           {status === 0 ? "Initiated" : status === 2 ? "Success" : "Failed"}
         </p>
       </td>
-      <td>{status === 2 && debit === true ? "Yes" : "No"}</td>
-      {/* <td>{createAt.slice(0, 16)}</td> */}
+      <td>{debit === true ? "Yes" : "No"}</td>
       <td>
         <Moment format="DD-MM-YYYY HH:mm:ss A">{createAt}</Moment>
       </td>

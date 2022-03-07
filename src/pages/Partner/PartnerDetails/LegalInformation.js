@@ -18,16 +18,7 @@ const LegalInformation = (props) => {
     pan: props.partner.pan,
     panName: props.partner.panName,
     address:
-      props.partner.address?.addr +
-      " " +
-      props.partner.address?.city +
-      " " +
-      " " +
-      props.partner.address?.pincode +
-      " " +
-      " " +
-      props.partner.address?.state +
-      " ",
+      props.partner.address?.addr ,
 
     businessPan: props.partner.businessPan ? props.partner.businessPan : "",
   });
@@ -40,25 +31,11 @@ const LegalInformation = (props) => {
     props.updatePartnerDetails(id, legalInformation);
     setEdit(!edit);
   };
-  console.log(props.partner.address);
   return (
     <div
       className="legal-information"
       style={{ background: !edit && Colors.infoBody }}
     >
-      {/* {props.errors && props.errors.password ? (
-        <SweetAlert
-          title="Wrong Password"
-          danger
-          confirmBtnBsStyle="danger"  
-          onConfirm={() => {
-            props.clearErrors();
-            // getDisableEdit(disableEdit);
-            // toggle();
-            // setSuccess_Msg(false);
-          }}
-        />
-      ) : null} */}
       <div>
         <h1>Legal Information</h1>
         {edit ? (

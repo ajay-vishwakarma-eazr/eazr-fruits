@@ -190,12 +190,12 @@ export const getUsersTranscationById = (id, pageNumber) => {
   };
 };
 
-export const getUsersSearchTranscation = (id, search) => {
+export const getUsersSearchTranscation = (id, search, pageNumber) => {
   return (dispatch) => {
     dispatch(setPartnersLoading());
     axios
       .get(
-        `${ip}/transactions?s={"$and": [{"userId":{"$eq":${id}}},{"partner.businessName": {"$starts":"${search}"}}]}&sort=id,DESC`
+        `${ip}/transactions?s={"$and": [{"userId":{"$eq":${id}}},{"partner.businessName": {"$starts":"${search}"}}]}&page=${pageNumber}&limit=10&sort=id,DESC`
       )
       .then((res) => {
         console.log(res.data);

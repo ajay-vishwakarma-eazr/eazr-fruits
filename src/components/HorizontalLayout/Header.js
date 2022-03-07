@@ -114,9 +114,9 @@ class Header extends Component {
             <div className="d-flex align-items-center">
               <div className="navbar-brand-box">
                 <Link to="/" className="logo logo-dark">
-                  <span className="logo-sm">
+                  {/* <span className="logo-sm">
                     <img src={logoSmDark} alt="" height="22" />
-                  </span>
+                  </span> */}
                   <span className="logo-lg">
                     <img src={logoDark} alt="" height="20" />
                   </span>

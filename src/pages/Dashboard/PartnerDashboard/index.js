@@ -29,14 +29,14 @@ class StarterPage extends Component {
           desc: "From previous period",
           route: "/partner-approval",
         },
-        {
-          icon: "fas fa-users",
-          title: "Partners Online",
-          value: "0",
-          rate: "2.4%",
-          desc: "From previous period",
-          route: "#",
-        },
+        // {
+        //   icon: "fas fa-users",
+        //   title: "Partners Online",
+        //   value: "0",
+        //   rate: "2.4%",
+        //   desc: "From previous period",
+        //   route: "#",
+        // },
       ],
     };
   }

@@ -117,7 +117,7 @@ $font-weight-semibold: 600;
 $apex-grid-color: #f8f9fa;
 
 // Custom Font
-$font-family-secondary: "Inter", sans-serif;
+$font-family-secondary: Roboto, Arial, sans-serif;
 
 // Variables
 //
@@ -386,7 +386,7 @@ $embed-responsive-aspect-ratios: join(
 // Font, line-height, and color for body text, headings, and more.
 
 // stylelint-disable value-keyword-case
-$font-family-sans-serif: "Nunito", sans-serif;
+$font-family-sans-serif: "Roboto",Arial,sans-serif;
 $font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
   "Liberation Mono", "Courier New", monospace;
 $font-family-base: $font-family-sans-serif;

@@ -1,6 +1,16 @@
 import React, { Component } from "react";
 import { Collapse, Container } from "reactstrap";
 import { Link, withRouter } from "react-router-dom";
+import {
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+} from "reactstrap";
 
 //i18n
 import { withNamespaces } from "react-i18next";
@@ -13,8 +23,31 @@ class Navbar extends Component {
     super(props);
     this.state = {
       showSubMenu: false,
+      menu: false,
+      modal: false,
+      dropdownOpen: false,
     };
+    this.toggle = this.toggle.bind(this);
+    this.dropdownToggle = this.dropdownToggle.bind(this);
   }
+
+  dropdownToggle() {
+    this.setState((prevState) => ({
+      dropdownOpen: !prevState.dropdownOpen,
+    }));
+  }
+
+  toggle() {
+    this.setState((prevState) => ({
+      menu: !prevState.menu,
+    }));
+  }
+
+  profileToggle = () => {
+    this.setState({
+      modal: !this.state.modal,
+    });
+  };
 
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
@@ -97,29 +130,113 @@ class Navbar extends Component {
                     </Link>
                   </li>
                   {/* <li className="nav-item">
+                    <Link className="nav-link" to="/user-dashboard">
+                      <i className="fa fa-user mr-2"></i> {this.props.t("User")}
+                    </Link>
+                  </li> */}
+                  {/* <li className="nav-item">
                     <Link className="nav-link" to="/delivery-dashboard">
                       <i className="mdi mdi-truck-delivery mr-2"></i>{" "}
                       {this.props.t("Delivery")}
                     </Link>
                   </li> */}
                   <li className="nav-item">
-                    <Link className="nav-link" to="/support-tickets">
+                    <Link className="nav-link" to="partner-type">
+                      <i className="fas fa-align-justify mr-2"></i>{" "}
+                      {this.props.t("Types & Categories")}
+                    </Link>
+                  </li>
+
+                  <Dropdown
+                    isOpen={this.state.dropdownOpen}
+                    toggle={this.dropdownToggle}
+                  >
+                    <li className="nav-item">
+                      <Link
+                        className="nav-link"
+                        // to="/support-dashboard"
+                      >
+                        {/* <i className="mdi mdi-chevron-down d-none ml-1 d-xl-inline-block"></i> */}
+                        <i
+                          className=" fas fa-headphones-alt mr-2"
+                          style={{ color: "#74788d" }}
+                        ></i>{" "}
+                        {this.props.t("Support")}
+                        <i className="mdi mdi-chevron-down d-none ml-1 d-xl-inline-block"></i>
+                      </Link>
+                      {/* <ul className="sub-menu" aria-expanded="false">
+                        <li>
+                          <Link to="/support-ticket">
+                            {this.props.t("Need Help ?")}
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="/faq">{this.props.t("FAQs")}</Link>
+                        </li>
+                      </ul> */}
+                    </li>
+
+                    <DropdownMenu>
+                      <DropdownItem
+                        header
+                        style={{ display: "flex", height: "20px" }}
+                      >
+                        {" "}
+                        <Link
+                          style={{ color: "#74788d", height: 10 }}
+                          to="/support-tickets"
+                        >
+                          <h6 style={{ fontSize: "15px", color: "#74788d" }}>
+                            Partner Tickets
+                          </h6>
+                        </Link>
+                      </DropdownItem>
+                      <hr />
+                      {/* <br/> */}
+                      <DropdownItem
+                        header
+                        style={{
+                          display: "flex",
+                          height: "20px",
+                          justifyContent: "flex-start",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Link
+                          onClick={(e) => {
+                            e.preventDefault();
+                          }}
+                          style={{ color: "#74788d" }}
+                          to="/support-tickets"
+                        >
+                          <h6 style={{ fontSize: "15px", color: "#74788d" }}>
+                            User Tickets
+                          </h6>
+                        </Link>
+                        {/* onClick=
+                        {(e) => {
+                          e.preventDefault();
+                          this.setState({ appState: !this.state.appState });
+                        }}
+                        className="nav-link dropdown-toggle arrow-none" to="/#"
+                        id="topnav-apps" role="button" > */}
+                      </DropdownItem>
+                    </DropdownMenu>
+                  </Dropdown>
+
+                  {/* <li className="nav-item">
+                    <Link className="nav-link" to="/support-tickets" || to="/support-dashboard">
                       <i className=" fas fa-headphones-alt mr-2"></i>{" "}
                       {this.props.t("Support")}
                     </Link>
-                  </li>
+                  </li> */}
                   {/* <li className="nav-item">
                     <Link className="nav-link" to="/logs">
                       <i className="fas fa-align-justify mr-2"></i>{" "}
                       {this.props.t("Logs")}
                     </Link>
                   </li> */}
-                  <li className="nav-item">
-                    <Link className="nav-link" to="partner-type">
-                      <i className="fas fa-align-justify mr-2"></i>{" "}
-                      {this.props.t("Partner Types and Categories")}
-                    </Link>
-                  </li>
+
                   {/* <li className="nav-item">
                     <Link className="nav-link" to="#">
                       <i className="fas fa-align-justify mr-2"></i>{" "}

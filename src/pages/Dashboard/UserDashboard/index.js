@@ -30,14 +30,14 @@ class UserDashboard extends Component {
         //   desc: "From previous period",
         // },
 
-        {
-          icon: "fas fa-users",
-          title: "Users Online",
-          value: "0",
-          rate: "2.4%",
-          route: "#",
-          desc: "From previous period",
-        },
+        // {
+        //   icon: "fas fa-users",
+        //   title: "Users Online",
+        //   value: "0",
+        //   rate: "2.4%",
+        //   route: "#",
+        //   desc: "From previous period",
+        // },
       ],
     };
   }

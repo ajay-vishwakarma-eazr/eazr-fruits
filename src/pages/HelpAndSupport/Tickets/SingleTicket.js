@@ -1,35 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./singleticket.scss";
-import avatar2 from "../../../assets/images/users/avatar-3.jpg";
+import profile from "../../../assets/images/nouser.png";
 import { Modal, ModalBody } from "reactstrap";
 import Comment from "../SupportComments/Comment";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 const SingleTicket = ({
   ticketId,
   ticketImage,
   ticketStatus,
   ticketTitle,
+  fullName,
   ticketTime,
   ticketDescription,
   ticketAssignedTo,
   ticketRaisedBy,
+  businessProfilePicture,
+  profile,
   // ticketPriority,
   // ticketCategory,
   // ticketDue,
 }) => {
+  const dispatch = useDispatch();
   const status = {
-    0: "Closed",
-    1: "New",
-    2: "Open",
+    0: "New",
+    1: "Open",
+    2: "Closed",
   };
 
+
   const getStatusColor = () => {
-    if (ticketStatus === "New") {
+    if (ticketStatus === 2) {
       return "#d9534f";
-    } else if (ticketStatus === "Open") {
+    } else if (ticketStatus === 1) {
       return "#0371e3";
-    } else {
+    } else if (ticketStatus === 0) {
       return "#5cb85c";
     }
   };
@@ -77,16 +83,18 @@ const SingleTicket = ({
           <div className="single-ticket-status">
             <p> {ticketId}</p>
             <span className="status" style={{ background: getStatusColor() }}>
-              {ticketStatus == 0
+              {   ticketStatus == 0
                 ? status[0]
+                : ticketStatus == 2
+                ? status[2]
                 : ticketStatus == 1
-                ? status[1]
-                : status[2]}
+                ? status[1]:"error"}
             </span>
           </div>
           <div className="single-ticket-title">
             <h6>
               {ticketTitle}
+              <span>{" "}</span>
               <span>{timeAgo(new Date(ticketTime).getTime())}</span>
             </h6>
             <p>{ticketDescription}</p>
@@ -105,11 +113,14 @@ const SingleTicket = ({
             <img src={ticketImage} alt="" />
             <div>
               <p>Assigned To</p>
-              <h6>{ticketAssignedTo}</h6>
+              <h6>{fullName}</h6>
             </div>
           </div>
           <div className="ticket-assign">
-            <img src={avatar2} alt="" />
+            <img
+              src={businessProfilePicture ? businessProfilePicture : profile}
+              alt=""
+            />
             <div>
               <p>Raised By</p>
               <h6>{ticketRaisedBy} </h6>

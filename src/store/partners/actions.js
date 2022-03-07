@@ -61,6 +61,7 @@ export const searchOnboardingPartners = (search) => {
     axios
       // .get(`${ip}/partners?page=${pageNumber}&limit=10&sort=id,DESC`)
       .get(
+        // `${ip}/partners?filter=status||ne||1&filter=email||$contL||${search}&filter=contactNumber||$contL||${search}}`
         `${ip}/partners?filter=status||ne||1&s={"$or": [{"businessName": {"starts":"${search}"}},{"contactNumber": {"starts":"${search}"}},{"email": {"starts":"${search}"}}]}`
       )
       .then((res) => {

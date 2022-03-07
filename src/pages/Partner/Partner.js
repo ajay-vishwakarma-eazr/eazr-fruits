@@ -44,16 +44,6 @@ class Partner extends Component {
 
   render() {
     const { partners } = this.props;
-    // const usersPerPage = 10;
-    // const pageVisited = this.state.pageNumber * usersPerPage;
-
-    // const pageCount = Math.ceil(
-    //   this.props.partners.partners?.length / usersPerPage
-    // );
-
-    // const changePage = ({ selected }) => {
-    //   this.setState({ pageNumber: selected });
-    // };
 
     let data;
 
@@ -64,9 +54,9 @@ class Partner extends Component {
         </div>
       );
     } else if (
-      partners.partners.data !== null && 
-      partners.partners.data!==undefined &&
-      partners.partners.data.length > 0
+      partners.partners?.data !== null && 
+      partners.partners?.data!==undefined &&
+      partners.partners?.data.length > 0
     ) {
       data = (
         <div className="table-rep-plugin">
@@ -140,14 +130,6 @@ class Partner extends Component {
                   // maxlength="10"
                 />
               </div>
-
-              {/* <select name="" id="">
-                <option value="On Hold">All</option>
-                <option value="On Hold">On Hold</option>
-                <option value="Rejected">Rejected</option>
-                <option value="Accepted">Accepted</option>
-                <option value="Pending">Pending</option>
-              </select> */}
             </div>
 
             {data}

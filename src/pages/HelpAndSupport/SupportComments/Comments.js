@@ -28,17 +28,21 @@ const Comments = ({ comment }) => {
         return "";
     }
   };
+  // console.log("comment", comment.partner.businessName);
 
   return (
     <div>
       <div className="single-ticket-container">
         <div className="single-ticket-header">
-          <div className="single-ticket-status">
-            <p>Comment</p>
-          </div>
+          <div className="single-ticket-status"></div>
+          <p style={{ marginRight: "13px" }}>
+            <b>comment</b>
+          </p>
+
           <div className="single-ticket-title">
             <h6>
               <small>
+                {"  "}
                 <i class="fas fa-clock"></i>&nbsp;
                 <span>
                   {timeAgo(new Date(comment.createdTimestamp).getTime())}
@@ -53,7 +57,7 @@ const Comments = ({ comment }) => {
             <img src={<i class="fas fa-user-circle"></i>} alt="" />
             <div>
               <p>Raised By</p>
-              <h6> </h6>
+              <h6>{comment.partner?.businessName} </h6>
             </div>
           </div>
         </div>
@@ -63,4 +67,3 @@ const Comments = ({ comment }) => {
 };
 
 export default Comments;
-

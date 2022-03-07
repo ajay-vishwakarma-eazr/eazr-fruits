@@ -95,7 +95,7 @@ const PartnerCategory = () => {
   return (
     <div className="page-content approved-partners">
       <Container fluid>
-        <BackBtn route="dashboard" />
+        <BackBtn route="partner-type" />
         <Row>
           <Col xs={12}>
             <Card style={{ width: "70%" }}>

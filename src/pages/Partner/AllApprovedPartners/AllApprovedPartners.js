@@ -33,6 +33,7 @@ class AllApprovedPartners extends Component {
     });
     this.props.fetchSearchApprovedPartners(this.state.searchPartner);
   };
+  
 
   changePage = ({ selected }) => {
     const newSelect = selected + 1;
@@ -80,7 +81,7 @@ class AllApprovedPartners extends Component {
                       plan={item.plan?.name}
                     />
                   ))
-                : partners.partners.data.map((item, index) => {
+                : partners.partners?.data.map((item, index) => {
                     return (
                       <ApprovedPartnersRow
                         key={index}
@@ -89,7 +90,7 @@ class AllApprovedPartners extends Component {
                         name={item.businessName}
                         contact={item.contactNumber}
                         email={item.email}
-                        description={item.businessDescription}
+                        // description={item.businessDescription}
                         partnerType={item.partnerType.type}
                         plan={item.plan?.name}
                       />
@@ -102,6 +103,7 @@ class AllApprovedPartners extends Component {
     } else {
       data = <EmptySection />;
     }
+    
     return (
       <div className="page-content partner">
         <Container fluid>
@@ -121,7 +123,7 @@ class AllApprovedPartners extends Component {
               </div>
             </div>
             {data}
-            {partners.partners.data.length > 0 &&
+            {partners.partners?.data.length > 0 &&
             this.state.searchPartner === "" ? (
               <ReactPaginate
                 previousLabel={"Previous"}

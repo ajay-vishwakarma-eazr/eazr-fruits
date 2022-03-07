@@ -18,7 +18,7 @@ import ReactPaginate from "react-paginate";
 const Transaction = () => {
   const [searchTranscation, setSearchTransaction] = useState("");
   const [filteredTransaction, setFilteredTransaction] = useState(null);
-  const [pageNumber, setPageNumber] = useState(0);
+  const [pageNumber, setPageNumber] = useState(1);
   const { transactions, loading, search } = useSelector(
     (state) => state.transactions
   );
@@ -31,7 +31,7 @@ const Transaction = () => {
 
   const handleSearch = (e) => {
     setSearchTransaction(e.target.value);
-    dispatch(getUsersSearchTranscation(id, searchTranscation));
+    dispatch(getUsersSearchTranscation(id, searchTranscation,pageNumber));
   };
 
   // const getSearchTransactionValue = (value) => {
@@ -84,7 +84,7 @@ const Transaction = () => {
               >
                 <TableHeading />
                 {searchTranscation !== ""
-                  ? search.map((trans) => {
+                  ? search.data.map((trans) => {
                       return (
                         <TableRow
                           className="transaction-table"
@@ -106,7 +106,7 @@ const Transaction = () => {
                             key={trans.id}
                             amount={trans?.amount}
                             status={trans.status}
-                            partnerName={trans?.partner.businessName}
+                            partnerName={trans.partner?.businessName}
                             debit={trans.debit}
                             createAt={trans.createdTimestamp}
                           />

@@ -52,12 +52,12 @@ export const fetchUsers = (pageNumber) => {
   };
 };
 
-export const fetchSearchUsers = (search) => {
+export const fetchSearchUsers = (search, pageNumber) => {
   return function (dispatch) {
     dispatch(FetchUsersRequest);
     axios
       .get(
-        `${ip}/users?s={"$or": [{"fullName": {"starts":"${search}"}},{"email": {"starts":"${search}"}},{"contactNumber": {"starts":"${search}"}}]}`
+        `${ip}/users?s={"$or": [{"fullName": {"starts":"${search}"}},{"email": {"starts":"${search}"}},{"contactNumber": {"starts":"${search}"}}]}&page=${pageNumber}&limit=10`
       )
       .then((res) => {
         console.log(res.data);
@@ -70,11 +70,35 @@ export const fetchSearchUsers = (search) => {
       .catch((err) => {
         dispatch({
           type: GET_SEARCH_USER_FAILED,
-          payload: err,
+          payload: err.message,
         });
       });
   };
 };
+
+// export const fetchSearchUsers = (search, pageNumber) => {
+//   return function (dispatch) {
+//     dispatch(FetchUsersRequest);
+//     axios
+//       .get(
+//         `${ip}/users?filter=fullName||$contL||${search}&or=contactNumber||$contL||${search}&or=email||$contL||${search}&page=${pageNumber}&limit=10`
+//       )
+//       .then((res) => {
+//         console.log(res.data);
+//         const users = res.data;
+//         dispatch({
+//           type: GET_SEARCH_USER,
+//           payload: users,
+//         });
+//       })
+//       .catch((err) => {
+//         dispatch({
+//           type: GET_SEARCH_USER_FAILED,
+//           payload: err.message,
+//         });
+//       });
+//   };
+// };
 export const setUserLoading = () => {
   return {
     type: USER_LOADING,
@@ -143,7 +167,7 @@ export const  updateUserDetails = (id, formData, pageNumber) => {
   return (dispatch) => {
     dispatch(setUserLoading());
     axios
-      .patch(`${ip}/users/${id}?page=${pageNumber}`, {
+      .patch(`${ip}/users/${id}`, {
         ...formData,
       })
       .then((res) => {
@@ -164,7 +188,8 @@ export const  updateUserDetails = (id, formData, pageNumber) => {
   };
 };
 
-export const updateUserProfile = (id, formData, pageNumber) => {
+
+export const updateSearchUserDetails = (id, formData, pageNumber) => {
   return (dispatch) => {
     dispatch(setUserLoading());
     axios
@@ -173,7 +198,32 @@ export const updateUserProfile = (id, formData, pageNumber) => {
       })
       .then((res) => {
         axios
-          .get(`${ip}/users`)
+          .get(`${ip}/users?page=${pageNumber}&limit=10&sort=id,DESC`)
+          .then((res) => {
+            const users = res.data;
+            dispatch(FetchUsersSuccess(users));
+          })
+          .catch((err) => {
+            console.log(err);
+            dispatch(FetchUsersFailure(err.message));
+          });
+      })
+      .catch((err) => {
+        dispatch(UpdateProfileFailed(err.message));
+      });
+  };
+};
+
+export const updateUserProfile = (id, formData) => {
+  return (dispatch) => {
+    dispatch(setUserLoading());
+    axios
+      .patch(`${ip}/users/${id}`, {
+        ...formData,
+      })
+      .then((res) => {
+        axios
+          .get(`${ip}/users/${id}`)
           .then((res) => {
             const users = res.data;
             dispatch(FetchUsersSuccess(users));

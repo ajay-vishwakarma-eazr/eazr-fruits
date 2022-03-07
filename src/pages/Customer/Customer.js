@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { Container, Row, Col, Card, CardBody, Table } from "reactstrap";
+import { Container, Row, Col, Card, CardBody, Table, Button } from "reactstrap";
 import CustomerTableHeading from "./Table/CustomerTableHeading";
 import CustomerTableRow from "./Table/CustomerTableRow";
 import "./Table/customertable.scss";
@@ -8,7 +8,7 @@ import BackBtn from "../BackBtn";
 import ClipLoader from "react-spinners/ClipLoader";
 import EmptySection from "../../components/EmptySection/EmptySection";
 import ReactPaginate from "react-paginate";
-import { fetchSearchUsers, fetchUsers } from "../../store/adminusers/actions/actions";
+import { fetchSearchUsers, fetchUsers, updateSearchUserDetails } from "../../store/adminusers/actions/actions";
 const Customer = () => {
   const { loading } = useSelector((state) => state.Users);
   const { users,search } = useSelector((state) => state.Users);
@@ -16,7 +16,9 @@ const Customer = () => {
   const [filteredUser, setFilteredUser] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
   const dispatch = useDispatch();
+  
   useEffect(() => {
+    // console.log("users", users);
     {
       pageNumber === undefined
         ? dispatch(fetchUsers(1))
@@ -24,14 +26,19 @@ const Customer = () => {
     }
   }, [pageNumber]);
 
+  
   const handleSearch = (e) => {
     setSearchUser(e.target.value);
-    dispatch(fetchSearchUsers(searchUser))
+    dispatch(fetchSearchUsers(searchUser,pageNumber))
+    // dispatch(updateSearchUserDetails(search.id,searchUser, pageNumber));
+    
   };
+  
   const changePage = ({ selected }) => {
     const newSelect = selected + 1;
     setPageNumber(newSelect);
   };
+
 
   let data;
   if (loading === true) {
@@ -56,9 +63,10 @@ const Customer = () => {
                 responsive
               >
                 <CustomerTableHeading />
-                {searchUser !== ""
+                {
+                searchUser !== ""
                   ? 
-                   search.map((users) => {
+                   search.data.map((users) => {
                       return (
                         <CustomerTableRow
                           key={users.id}
@@ -71,6 +79,7 @@ const Customer = () => {
                           totalOutstandingAmount={users.totalOutstandingAmount}
                           enabled={users.enabled}
                           kycVerified={users.kycVerified}
+                          pageNumber={pageNumber}
                         />
                       );
                     })
@@ -100,7 +109,6 @@ const Customer = () => {
   } else {
     data = <EmptySection />;
   }
-
   return (
     <>
       <div className="page-content approved-partners">
@@ -110,7 +118,7 @@ const Customer = () => {
             <Col xs={12}>
               <Card>
                 <CardBody>
-                  <div className="search-filter">
+                  <form className="search-filter">
                     <div>
                       <h6>Search Users</h6>
                       <input
@@ -121,15 +129,24 @@ const Customer = () => {
                       />
                       <i className="fa fa-search"></i>
                     </div>
-                  </div>
+
+                    {/* <div className="search-btn">
+                      <button type="submit" 
+                      onClick={ setSearchUser }
+                      >
+                        Search
+                      </button>
+                    </div> */}
+                  </form>
                 </CardBody>
               </Card>
               {data}
-              {users.data && searchUser === ""? (
+              {/* {users || search.data === "" ? ( */}
+              {users.data && searchUser === "" ? (
                 <ReactPaginate
                   previousLabel={"Previous"}
                   nextLabel={"Next"}
-                  pageCount={users.pageCount}
+                  pageCount={ users.pageCount }
                   onPageChange={changePage}
                   containerClassName={"paginationBttns"}
                   previousLinkClassName={"previousBttn"}
