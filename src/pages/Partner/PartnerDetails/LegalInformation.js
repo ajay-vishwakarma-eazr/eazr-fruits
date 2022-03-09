@@ -17,8 +17,7 @@ const LegalInformation = (props) => {
   const [legalInformation, setLegalInformation] = useState({
     pan: props.partner.pan,
     panName: props.partner.panName,
-    address:
-      props.partner.address?.addr ,
+    address:props.partner.address ,
 
     businessPan: props.partner.businessPan ? props.partner.businessPan : "",
   });
@@ -92,25 +91,58 @@ const LegalInformation = (props) => {
       <div>
         <h3>Address</h3>
         <textarea
+          style={{ height: "20px" }}
           disabled={edit}
-          value={
-            legalInformation.address + " "
-            // ",address " +
-            // legalInformation.address.pincode + " "
-            // ",pincode " +
-            // legalInformation.city + " " +
-            // ", city" +
-            // legalInformation.state +" "
-            // ", state"
-          }
+          value={legalInformation.address.addr}
           onChange={(e) =>
             setLegalInformation({
               ...legalInformation,
-              address: e.target.value,
-              addr: e.target.value,
-              pincode: e.target.value,
-              city: e.target.value,
-              state: e.target.value,
+              address: { ...legalInformation.address, addr: e.target.value },
+            })
+          }
+        />
+      </div>
+
+      <div>
+        <h3>City</h3>
+        <textarea
+          style={{ height: "20px" }}
+          disabled={edit}
+          value={legalInformation.address.city}
+          onChange={(e) =>
+            setLegalInformation({
+              ...legalInformation,
+              address: { ...legalInformation.address, city: e.target.value },
+            })
+          }
+        />
+      </div>
+
+      <div>
+        <h3>State</h3>
+        <textarea
+          style={{ height: "20px" }}
+          disabled={edit}
+          value={legalInformation.address.state}
+          onChange={(e) =>
+            setLegalInformation({
+              ...legalInformation,
+              address: { ...legalInformation.address, state: e.target.value },
+            })
+          }
+        />
+      </div>
+
+      <div>
+        <h3>PinCode</h3>
+        <textarea
+          style={{ height: "20px" }}
+          disabled={edit}
+          value={legalInformation.address.pincode}
+          onChange={(e) =>
+            setLegalInformation({
+              ...legalInformation,
+              address: { ...legalInformation.address, pincode: e.target.value },
             })
           }
         />

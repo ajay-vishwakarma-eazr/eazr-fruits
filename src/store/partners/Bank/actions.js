@@ -19,7 +19,7 @@ export const getBankDetails = (id) => async (dispatch) => {
     console.log("Error: " + err.message);
     dispatch({
       type: GET_BANK_DETAILS_FAILED,
-      payload: err.response.data,
+      payload: err.response?.data,
     });
   }
 };

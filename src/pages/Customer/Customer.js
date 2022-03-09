@@ -6,17 +6,26 @@ import "./Table/customertable.scss";
 import { useDispatch, useSelector } from "react-redux";
 import BackBtn from "../BackBtn";
 import ClipLoader from "react-spinners/ClipLoader";
+// import Lottie from 'react-lottie';
+// import Loader from "../../assets/static/loader.json";
 import EmptySection from "../../components/EmptySection/EmptySection";
 import ReactPaginate from "react-paginate";
-import { fetchSearchUsers, fetchUsers, updateSearchUserDetails } from "../../store/adminusers/actions/actions";
+import {
+  fetchSearchUsers,
+  fetchUsers,
+  updateSearchUserDetails,
+} from "../../store/adminusers/actions/actions";
+import Lottie from "lottie-web";
 const Customer = () => {
   const { loading } = useSelector((state) => state.Users);
-  const { users,search } = useSelector((state) => state.Users);
+  const { users, search } = useSelector((state) => state.Users);
   const [searchUser, setSearchUser] = useState("");
   const [filteredUser, setFilteredUser] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
+  // const [stopped, setStopped] = useState(false);
+  // const [completed, setCompleted] = useState(false);
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     // console.log("users", users);
     {
@@ -26,23 +35,61 @@ const Customer = () => {
     }
   }, [pageNumber]);
 
-  
   const handleSearch = (e) => {
     setSearchUser(e.target.value);
-    dispatch(fetchSearchUsers(searchUser,pageNumber))
+    dispatch(fetchSearchUsers(searchUser, pageNumber));
     // dispatch(updateSearchUserDetails(search.id,searchUser, pageNumber));
-    
   };
-  
+
   const changePage = ({ selected }) => {
     const newSelect = selected + 1;
     setPageNumber(newSelect);
   };
 
+  //   const options = {
+  //   loop: false,
+  //   autoplay: true,
+  //   animationData: Loader,
+  //   rendererSettings: {
+  //     preserveAspectRatio: 'xMidYMid slice'
+  //   }
+  // };
+
+  // const handleStart = () => {
+  //   setStopped(false);
+  //   setCompleted(false);
+  // };
+  // const handleAnimationComplete = () => {
+  //   setCompleted(true);
+  //   setStopped(true);
+  // };
 
   let data;
   if (loading === true) {
     data = (
+      // <div>
+      //   <Lottie
+      //     options={options}
+      //     height="80%"
+      //     width="80%"
+      //     isStopped={stopped}
+      //     speed={4}
+      //     eventListeners={[
+      //       {
+      //         eventName: "complete",
+      //         callback: handleAnimationComplete,
+      //       },
+      //     ]}
+      //   />
+
+      //   {!completed ? (
+      //     <p>Running...</p>
+      //   ) : (
+      //     <button className="button" onClick={handleStart}>
+      //       Restart
+      //     </button>
+      //   )}
+      // </div>
       <div className="spinner-div">
         <ClipLoader color="#bbbbbb" loading={true} size={60} />
       </div>
@@ -55,18 +102,16 @@ const Customer = () => {
             <div
               className="table-responsive mb-0"
               data-pattern="priority-columns"
-              className="approved-partners-table"
-            >
+              >
               <Table
+               className="approved-partners-table"
                 // center
                 CustomerTableHeading // bordered
                 responsive
               >
                 <CustomerTableHeading />
-                {
-                searchUser !== ""
-                  ? 
-                   search.data.map((users) => {
+                {searchUser !== ""
+                  ? search.data.map((users) => {
                       return (
                         <CustomerTableRow
                           key={users.id}
@@ -146,7 +191,7 @@ const Customer = () => {
                 <ReactPaginate
                   previousLabel={"Previous"}
                   nextLabel={"Next"}
-                  pageCount={ users.pageCount }
+                  pageCount={users.pageCount}
                   onPageChange={changePage}
                   containerClassName={"paginationBttns"}
                   previousLinkClassName={"previousBttn"}

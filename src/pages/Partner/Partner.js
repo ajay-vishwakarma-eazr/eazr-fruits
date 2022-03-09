@@ -6,6 +6,8 @@ import "./partner.scss";
 import "./Table/partnerTable.scss";
 import { connect } from "react-redux";
 import ClipLoader from "react-spinners/ClipLoader";
+// import Loader from "../../assets/static/loader-blue";
+import lottie from "lottie-web";
 //Actions
 import ReactPaginate from "react-paginate";
 import {
@@ -52,6 +54,16 @@ class Partner extends Component {
         <div className="spinner-div">
           <ClipLoader color="#bbbbbb" loading={true} size={60} />
         </div>
+
+        // <lottie-player
+        //   src="https://assets3.lottiefiles.com/packages/lf20_w6xlywkv.json"
+        //   background="transparent"
+        //   speed="1"
+        //   style="width: 300px; height: 300px;"
+        //   loop
+        //   controls
+        //   autoplay
+        // ></lottie-player>
       );
     } else if (
       partners.partners?.data !== null && 

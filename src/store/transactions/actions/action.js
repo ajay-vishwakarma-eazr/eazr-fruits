@@ -79,7 +79,7 @@ export const getTranscations = () => {
     dispatch(setPartnersLoading());
 
     axios
-      .get(`${ip}/transactions`)
+      .get(`${ip}/transactions?filter=status||$eq||2`)
       .then((res) => {
         dispatch({
           type: GET_TRANSACTION_BY_ID,

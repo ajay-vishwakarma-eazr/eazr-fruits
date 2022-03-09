@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import pdfimg from "../../../assets/pdfimg.png";
+import nodata from "../../../assets/images/NoImg.png";
 import FileSaver from "file-saver";
 
-const ShowDocuments = ({ img }) => {
+const ShowDocuments = ({ img, docName }) => {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
   let fileExtension = img?.split(".").pop();
@@ -16,14 +17,19 @@ const ShowDocuments = ({ img }) => {
   return (
     <>
       <div>
-        {fileExtension === "pdf" || fileExtension === "PDF" ? (
+        {fileExtension === "pdf" || fileExtension === "PDF" ? (<div>
           <embed src={pdfimg} onClick={downloadImg}></embed>
+          <p>{docName.slice(0, 16)}</p></div>
         ) : (
-          <embed
-            
-            src={`${img}`}
-            onClick={toggle}
-          ></embed>
+          <>
+            <img
+              style={{ height: "100%", width: "100%", padding: "5px" }}
+              src={img === "" ? nodata : img}
+              onClick={img?toggle:!toggle}
+              // onClick={toggle}
+            ></img>
+            <p style={{display: "flex", justifyContent: "center", alignItems: "center"}}>{docName}</p>
+          </>
         )}
       </div>
 

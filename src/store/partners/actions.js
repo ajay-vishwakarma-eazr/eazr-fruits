@@ -133,13 +133,13 @@ export const getPartnerById = (id) => {
       .then((res) => {
         dispatch({
           type: GET_PARTNER_BY_ID,
-          payload: res.data,
+          payload: res?.data,
         });
       })
       .catch((err) => {
         dispatch({
           type: GET_PARTNER_BY_ID_FAILED,
-          payload: err.response.data,
+          payload: err.response?.data,
         });
       });
   };

@@ -120,7 +120,7 @@ class RevenueAnalytics extends Component {
                         ? this.props.transactions.transactions
                             ?.map((item) => item?.amount)
                             .reduce((prev, curr) => prev + curr, 0)
-                        : "no data"}
+                        : "0"}
                     </h5>
                     <div className="text-success">
                       <i className="mdi mdi-menu-up font-size-14"> </i>2.1 %

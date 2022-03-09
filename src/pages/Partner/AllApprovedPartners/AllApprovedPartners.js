@@ -5,6 +5,8 @@ import { Card, CardBody, Container, Table } from "reactstrap";
 import "../partner.scss";
 import "./partnerTable.scss";
 import { connect } from "react-redux";
+// import Lottie from "react-lottie";
+import animationLoader from "../../../assets/static/loader.json";
 import ClipLoader from "react-spinners/ClipLoader";
 //Actions
 import ReactPaginate from "react-paginate";
@@ -14,6 +16,7 @@ import {
 } from "../../../store/partners/actions";
 import BackBtn from "../../BackBtn";
 import EmptySection from "../../../components/EmptySection/EmptySection";
+import Lottie from "lottie-web";
 class AllApprovedPartners extends Component {
   constructor() {
     super();
@@ -40,11 +43,28 @@ class AllApprovedPartners extends Component {
     this.setState({ pageNumber: newSelect });
     this.props.getApprovedPartners((this.state.pageNumber = newSelect));
   };
+
+  defaultOptions = {
+      loop: true,
+      autoplay: true,
+      animationLoader: animationLoader,
+      rendererSettings: {
+        preserveAspectRatio: "xMidYMid slice"
+      }
+    };
   render() {
     const { partners } = this.props;
     let data;
     if (partners.loading === true) {
       data = (
+        // <div>
+        //   <Lottie
+        //     options={this.defaultOptions}
+        //     height={400}
+        //     width={400}
+        //   />
+        // </div>
+
         <div className="spinner-div">
           <ClipLoader color="#bbbbbb" loading={true} size={60} />
         </div>

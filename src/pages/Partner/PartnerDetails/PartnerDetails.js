@@ -14,7 +14,7 @@ import { useParams, useHistory } from "react-router-dom";
 // //actions
 import {
   getPartnerById,
-    updatePartnerDetails,
+  updatePartnerDetails,
   //   addTicket,
 } from "../../../store/partners/actions";
 import HoldModal from "./HoldModal";
@@ -160,6 +160,7 @@ const PartnerDetails = (props) => {
                   return (
                     <ShowDocuments
                       img={props.partners.partner?.documents[key]}
+                      docName={key}
                     />
                   );
                 }
@@ -236,7 +237,6 @@ const PartnerDetails = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  debugger;
   return {
     partners: state.partners,
   };

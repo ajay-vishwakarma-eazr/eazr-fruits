@@ -30,7 +30,7 @@ const ClosedTickets = () => {
         <BackBtn route="support-tickets" />
         <SupportNav />
 
-        {tickets.data.length >0 ? (
+        {tickets.data?.length >0 ? (
           tickets.data
             .map((ticket, index) => {
               return (

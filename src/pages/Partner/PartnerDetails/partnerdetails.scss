@@ -188,8 +188,9 @@
   display: flex;
   overflow-x: scroll;
   justify-content: space-between;
+  height:8.7rem;
   width: 75%;
-  flex-direction: row-reverse;
+  // flex-direction: row-reverse;
 }
 
 .document-image-div div {
@@ -300,7 +301,7 @@
 
 .img-modal-body {
   
-  height: 80vh;
+  height: 75vh;
   border-radius: 5px;
   padding: 0 !important;
 }
@@ -333,7 +334,21 @@
   border-radius: 10px;
 }
 
-@media (max-width: 200px) {
+@media (max-width: 350px) {
+  .img-modal-body button {
+    width: 90px;
+    background-size: cover;
+    padding:7px;
+  }
+}
+
+@media (min-width:500px) {
+  .left-brand-information {
+    margin-top: -7%;
+  }
+}
+
+@media (max-width: 500px) {
   .view-partners input,
   .view-partners textarea,
   .view-partners select {
@@ -368,11 +383,13 @@
   }
 
   .document-image-div embed {
-    padding-left: 2rem;
-    width: 40%;
+    padding-left: 0.7rem;
+    width: 100%;
+    overflow-x: scroll;
   }
   .accept-payment {
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
   }
   .remark input {
     width: 100%;
@@ -382,6 +399,8 @@
     right: 2rem;
   }
 }
+
+
 
 @media (max-width: 992px) {
   .partner-status h1 {

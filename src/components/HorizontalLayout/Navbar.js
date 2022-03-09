@@ -152,18 +152,22 @@ class Navbar extends Component {
                     toggle={this.dropdownToggle}
                   >
                     <li className="nav-item">
-                      <Link
+                      {/* <Link
+                      // to="/support-dashboard"
                         className="nav-link"
-                        // to="/support-dashboard"
-                      >
+                      > */}
+
+
                         {/* <i className="mdi mdi-chevron-down d-none ml-1 d-xl-inline-block"></i> */}
-                        <i
+                        {/* <i
                           className=" fas fa-headphones-alt mr-2"
                           style={{ color: "#74788d" }}
                         ></i>{" "}
                         {this.props.t("Support")}
                         <i className="mdi mdi-chevron-down d-none ml-1 d-xl-inline-block"></i>
-                      </Link>
+                      </Link> */}
+
+
                       {/* <ul className="sub-menu" aria-expanded="false">
                         <li>
                           <Link to="/support-ticket">

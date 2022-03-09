@@ -47,6 +47,7 @@
     "react-dropzone": "^11.4.2",
     "react-i18next": "^9.0.10",
     "react-infinite-scroll-component": "^6.1.0",
+    "react-lottie": "^1.2.3",
     "react-moment": "^1.1.1",
     "react-otp-input": "^2.3.0",
     "react-paginate": "^8.1.0",

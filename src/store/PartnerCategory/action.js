@@ -176,7 +176,7 @@ export const getPartnerCategoryBrandInformation = () => {
       .catch((err) => {
         dispatch({
           type: GET_PARTNER_CATEGORY_FAILED,
-          payload: err.response.data,
+          payload: err.response?.data,
         });
       });
   };
