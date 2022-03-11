@@ -11,9 +11,9 @@ import {
   addPartnerCategory,
 } from "../../store/PartnerCategory/action";
 import EmptySection from "../../components/EmptySection/EmptySection";
-import ClipLoader from "react-spinners/ClipLoader";
 import CategoryTableHeading from "./CategoryTableHeading";
 import CategoryTableRow from "./CategoryTableRow";
+import Loader from "../Loader/Loader";
 const PartnerCategory = () => {
   const partnerCategory = useSelector((state) => state.Category);
   const loading = useSelector((state) => state.category);
@@ -48,11 +48,9 @@ const PartnerCategory = () => {
   };
 
   let data;
-  if (loading === true) {
+  if (loading === false) {
     data = (
-      <div className="spinner-div">
-        <ClipLoader color="#bbbbbb" loading={true} size={60} />
-      </div>
+      <Loader />
     );
   } else if (
     partnerCategory.partnerCategory.data !== null &&
@@ -65,7 +63,7 @@ const PartnerCategory = () => {
             <div
               className="table-responsive mb-0"
               data-pattern="priority-columns"
-              className="approved-partners-table"
+              // className="approved-partners-table"
             >
               <Table
                 // center

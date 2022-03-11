@@ -9,7 +9,7 @@ function ShowTotalNumberOfOnboardingPartner() {
     useState();
 
   useEffect(() => {
-    axios.get(`${ip}/partners`).then((res) => {
+    axios.get(`${ip}/partners?filter=status||$ne||1`).then((res) => {
       setNumberOfOnboardingPartners(res.data);
     });
   }, []);
@@ -18,9 +18,7 @@ function ShowTotalNumberOfOnboardingPartner() {
     <>
       <div>
         {
-          !numberOfOnboardingPartners ? 0 :numberOfOnboardingPartners?.filter(
-            (data) => data.status != 1
-          )?.length
+          !numberOfOnboardingPartners ? 0 :numberOfOnboardingPartners?.length
         }
       </div>
     </>

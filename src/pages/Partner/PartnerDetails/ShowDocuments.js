@@ -16,19 +16,42 @@ const ShowDocuments = ({ img, docName }) => {
   console.log("image", img);
   return (
     <>
-      <div>
-        {fileExtension === "pdf" || fileExtension === "PDF" ? (<div>
-          <embed src={pdfimg} onClick={downloadImg}></embed>
-          <p>{docName.slice(0, 16)}</p></div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-start",
+          flexDirection: "column",
+        }}
+      >
+        {fileExtension === "pdf" || fileExtension === "PDF" ? (
+          <>
+            <embed
+              style={{ borderRadius: "15px" }}
+              src={pdfimg}
+              onClick={downloadImg}
+            ></embed>
+            <p className="document-title">
+              {docName}
+            </p>
+          </>
         ) : (
           <>
             <img
-              style={{ height: "100%", width: "100%", padding: "5px" }}
+              style={{
+                height: "100%",
+                width: "100%",
+                padding: "5px",
+                backgroundSize: "cover",
+                borderRadius: "15px",
+              }}
               src={img === "" ? nodata : img}
-              onClick={img?toggle:!toggle}
+              onClick={img ? toggle : !toggle}
               // onClick={toggle}
             ></img>
-            <p style={{display: "flex", justifyContent: "center", alignItems: "center"}}>{docName}</p>
+            <p className="document-title">
+             {docName}
+            </p>
           </>
         )}
       </div>

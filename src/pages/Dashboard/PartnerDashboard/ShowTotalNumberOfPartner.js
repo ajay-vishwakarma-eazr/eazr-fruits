@@ -5,22 +5,21 @@ import { getPartners } from "../../../store/partners/actions";
 import { ip } from "../../../config/config";
 import axios from "axios";
 function ShowTotalNumberOfPartner() {
-  const [numberOfOnboardingPartners, setNumberOfOnboardingPartners] =
+  const [numberOfApprovedPartners, setNumberOfApprovedPartners] =
     useState();
 
   useEffect(() => {
-    axios.get(`${ip}/partners`).then((res) => {
-      setNumberOfOnboardingPartners(res.data);
+    axios.get(`${ip}/partners?filter=status||$eq||1`).then((res) => {
+      setNumberOfApprovedPartners(res.data);
     });
   }, []);
 
   return (
     <>
       <div>
-        {!numberOfOnboardingPartners
+        {!numberOfApprovedPartners
           ? 0
-          : numberOfOnboardingPartners?.filter((data) => data.status === 1)
-              ?.length}
+          : numberOfApprovedPartners?.length}
       </div>
     </>
   );

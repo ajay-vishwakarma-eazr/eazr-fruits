@@ -5,9 +5,9 @@ import { Card, CardBody, Container, Table } from "reactstrap";
 import "./partner.scss";
 import "./Table/partnerTable.scss";
 import { connect } from "react-redux";
-import ClipLoader from "react-spinners/ClipLoader";
+// import ClipLoader from "react-spinners/ClipLoader";
 // import Loader from "../../assets/static/loader-blue";
-import lottie from "lottie-web";
+// import lottie from "lottie-web";
 //Actions
 import ReactPaginate from "react-paginate";
 import {
@@ -17,6 +17,7 @@ import {
 } from "../../store/partners/actions";
 import BackBtn from "../BackBtn";
 import EmptySection from "../../components/EmptySection/EmptySection";
+import Loader from "../Loader/Loader";
 
 class Partner extends Component {
   constructor() {
@@ -45,25 +46,20 @@ class Partner extends Component {
   };
 
   render() {
+
     const { partners } = this.props;
 
     let data;
 
     if (partners.loading === true) {
       data = (
-        <div className="spinner-div">
-          <ClipLoader color="#bbbbbb" loading={true} size={60} />
-        </div>
-
-        // <lottie-player
-        //   src="https://assets3.lottiefiles.com/packages/lf20_w6xlywkv.json"
-        //   background="transparent"
-        //   speed="1"
-        //   style="width: 300px; height: 300px;"
-        //   loop
-        //   controls
-        //   autoplay
-        // ></lottie-player>
+        <Loader />
+        // <div>
+        //   <Lottie options={options} height="40%" width="40%" speed={4} />
+        // </div>
+        // <div className="spinner-div">
+        //   <ClipLoader color="#bbbbbb" loading={true} size={60} />
+        // </div>
       );
     } else if (
       partners.partners?.data !== null && 

@@ -3,7 +3,7 @@ import React from "react";
 const PartnerTableHeading = () => {
   return (
     <thead className="partner-table-heading">
-      <th>Business Profile Picture</th>
+      <th>Profile Picture</th>
       <th>Brand Name</th>
       <th>Contact</th>
       <th>Email</th>

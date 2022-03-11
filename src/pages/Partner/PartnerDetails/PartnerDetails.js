@@ -9,7 +9,6 @@ import ShowDocuments from "./ShowDocuments";
 import { Link } from "react-router-dom";
 import BusinessDescription from "./BusinessDescription";
 import { connect } from "react-redux";
-import ClipLoader from "react-spinners/ClipLoader";
 import { useParams, useHistory } from "react-router-dom";
 // //actions
 import {
@@ -18,6 +17,7 @@ import {
   //   addTicket,
 } from "../../../store/partners/actions";
 import HoldModal from "./HoldModal";
+import Loader from "../../Loader/Loader";
 
 const PartnerDetails = (props) => {
   const { id } = useParams();
@@ -100,12 +100,7 @@ const PartnerDetails = (props) => {
 
   if (props.partners.loading === true) {
     data = (
-      <ClipLoader
-        color="#fff"
-        loading={true}
-        // css={override}
-        size={60}
-      />
+      <Loader />
     );
   } else if (props.partners.partner) {
     const { partner } = props.partners;
@@ -160,7 +155,7 @@ const PartnerDetails = (props) => {
                   return (
                     <ShowDocuments
                       img={props.partners.partner?.documents[key]}
-                      docName={key}
+                      docName={key.toUpperCase()}
                     />
                   );
                 }

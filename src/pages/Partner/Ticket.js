@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container } from "reactstrap";
 import axios from "axios";
 import { ip } from "../../config/config";
-import ClipLoader from "react-spinners/ClipLoader";
+import Loader from "../Loader/Loader";
 
 class Ticket extends React.Component {
   state = {
@@ -35,12 +35,7 @@ class Ticket extends React.Component {
 
     if (this.state.loading === true) {
       data = (
-        <ClipLoader
-          color="#fff"
-          loading={true}
-          // css={override}
-          size={60}
-        />
+        <Loader />
       );
     } else if (this.state.fields && this.state.fields.length > 0) {
       data = <h1>Ticket page</h1>;

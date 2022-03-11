@@ -5,7 +5,6 @@ import CustomerTableRow from "./Table/CustomerTableRow";
 import "./Table/customertable.scss";
 import { useDispatch, useSelector } from "react-redux";
 import BackBtn from "../BackBtn";
-import ClipLoader from "react-spinners/ClipLoader";
 // import Lottie from 'react-lottie';
 // import Loader from "../../assets/static/loader.json";
 import EmptySection from "../../components/EmptySection/EmptySection";
@@ -16,6 +15,7 @@ import {
   updateSearchUserDetails,
 } from "../../store/adminusers/actions/actions";
 import Lottie from "lottie-web";
+import Loader from "../Loader/Loader";
 const Customer = () => {
   const { loading } = useSelector((state) => state.Users);
   const { users, search } = useSelector((state) => state.Users);
@@ -90,9 +90,10 @@ const Customer = () => {
       //     </button>
       //   )}
       // </div>
-      <div className="spinner-div">
-        <ClipLoader color="#bbbbbb" loading={true} size={60} />
-      </div>
+      <Loader />
+      // <div className="spinner-div">
+      //   <ClipLoader color="#bbbbbb" loading={true} size={60} />
+      // </div>
     );
   } else if (users.data !== null && users.data?.length > 0) {
     data = (
@@ -104,7 +105,7 @@ const Customer = () => {
               data-pattern="priority-columns"
               >
               <Table
-               className="approved-partners-table"
+              //  className="approved-partners-table"
                 // center
                 CustomerTableHeading // bordered
                 responsive

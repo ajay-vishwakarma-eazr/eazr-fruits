@@ -3,7 +3,6 @@ import { Card, CardBody, Container, Table } from "reactstrap";
 import { withRouter } from "react-router-dom";
 import "../../../partner.scss";
 import { connect } from "react-redux";
-import ClipLoader from "react-spinners/ClipLoader";
 //Actions
 import ReactPaginate from "react-paginate";
 import EmptySection from "../../../../../components/EmptySection/EmptySection";
@@ -15,6 +14,8 @@ import {
   fetchSettlementsById,
   searchPartnerSettlements,
 } from "../../../../../store/settlement/actions/action";
+import Loader from "../../../../Loader/Loader";
+// import Nodata from "../../../../Loader/Nodata";
 
 class PartnerSettlements extends Component {
   constructor() {
@@ -54,9 +55,7 @@ class PartnerSettlements extends Component {
     let data;
     if (settlements.loading === true) {
       data = (
-        <div className="spinner-div">
-          <ClipLoader color="#bbbbbb" loading={true} size={60} />
-        </div>
+        <Loader />
       );
     } else if (
       settlements.settlements?.data &&
@@ -107,7 +106,7 @@ class PartnerSettlements extends Component {
         </div>
       );
     } else {
-      data = <EmptySection />;
+      data = <EmptySection style={{height: '100%', width:'100%'}} />;
     }
     // console.log(settlements.search);
     return (

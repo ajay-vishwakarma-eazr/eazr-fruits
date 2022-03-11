@@ -8,6 +8,7 @@ import "./OTPModal.css";
 import OtpInput from "react-otp-input";
 
 import { useWindowSize } from "@react-hook/window-size";
+import Loader from "../Loader/Loader";
 
 const OTPModal = (props) => {
   const [otp, setOtp] = useState("");
@@ -30,12 +31,12 @@ const OTPModal = (props) => {
           onClick={() => props.onLogin()}
         >
           {props.loading === true ? (
+            // <Loader />
             <ClipLoader
               color="#fff"
               loading={true}
-              // css={override}
               size={20}
-            />
+              />
           ) : (
             "Log-In"
           )}
@@ -86,10 +87,10 @@ const OTPModal = (props) => {
                 onClick={() => props.onVerify()}
               >
                 {props.verifyLoading === true ? (
+                  // <Loader />
                   <ClipLoader
                     color="#fff"
                     loading={true}
-                    // css={override}
                     size={20}
                   />
                 ) : (
@@ -106,10 +107,10 @@ const OTPModal = (props) => {
                 onClick={() => props.onLogin()}
               >
                 {props.loading === true ? (
+                  // <Loader />
                   <ClipLoader
                     color="#fff"
                     loading={true}
-                    // css={override}
                     size={20}
                   />
                 ) : (

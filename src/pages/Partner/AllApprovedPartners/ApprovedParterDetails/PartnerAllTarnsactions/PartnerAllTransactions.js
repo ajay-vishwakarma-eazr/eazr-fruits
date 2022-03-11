@@ -4,7 +4,6 @@ import { Card, CardBody, Container, Table } from "reactstrap";
 import { withRouter } from "react-router-dom";
 import "../../../partner.scss";
 import { connect } from "react-redux";
-import ClipLoader from "react-spinners/ClipLoader";
 //Actions
 import {
   getTranscationById,
@@ -16,6 +15,7 @@ import PartnerTrancationsRow from "./PartnerTrancationsRow";
 import PartnerTranscationsHeading from "./PartnerTranscationsHeading";
 import BackBtn from "../../../../BackBtn";
 import PartnerDetailsTab from "../PartnerDetailsTab/PartnerDetailsTab";
+import Loader from "../../../../Loader/Loader";
 
 class PartnerAllTransactions extends Component {
   constructor() {
@@ -55,9 +55,7 @@ class PartnerAllTransactions extends Component {
     let data;
     if (transactions?.loading === true) {
       data = (
-        <div className="spinner-div">
-          <ClipLoader color="#bbbbbb" loading={true} size={60} />
-        </div>
+        <Loader />
       );
     } else if (
       transactions.transactions?.data &&

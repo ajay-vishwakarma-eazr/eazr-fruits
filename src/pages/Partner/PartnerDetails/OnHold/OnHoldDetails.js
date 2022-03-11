@@ -6,11 +6,11 @@ import ShowDocuments from "../ShowDocuments";
 import SweetAlert from "react-bootstrap-sweetalert";
 import { ip } from "../../../../config/config";
 import axios from "axios";
-import ClipLoader from "react-spinners/ClipLoader";
 import { connect } from "react-redux";
 
 //Actions
 import { addTicket } from "../../../../store/partners/actions";
+import Loader from "../../../Loader/Loader";
 
 class OnHoldDetails extends Component {
   state = {
@@ -95,12 +95,7 @@ class OnHoldDetails extends Component {
 
     if (this.state.loading === true) {
       data = (
-        <ClipLoader
-          color="#fff"
-          loading={true}
-          // css={override}
-          size={60}
-        />
+        <Loader />
       );
     } else if (this.state.errors) {
       if (this.state.errors.error) {

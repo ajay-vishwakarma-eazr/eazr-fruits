@@ -6,7 +6,6 @@ import { useParams } from "react-router-dom";
 import { connect, useDispatch, useSelector } from "react-redux";
 import BackBtn from "../../BackBtn";
 import { useHistory } from "react-router-dom";
-import ClipLoader from "react-spinners/ClipLoader";
 import EmptySection from "../../../components/EmptySection/EmptySection";
 import ReactPaginate from "react-paginate";
 import {
@@ -14,6 +13,7 @@ import {
   addPartnerType,
 } from "../../../store/partners/PartnerType/actions/action";
 import PartnerTypeTableRow from "./PartnerTypeTableRow";
+import Loader from "../../Loader/Loader";
 
 const PartnerTypes = () => {
   const [type, setType] = useState("");
@@ -47,9 +47,7 @@ const PartnerTypes = () => {
 
   if (loading === true) {
     data = (
-      <div className="spinner-div">
-        <ClipLoader color="#bbbbbb" loading={true} size={60} />
-      </div>
+      <Loader />
     );
   } else if (partnerType !== null && partnerType?.data?.length > 0) {
     data = (
@@ -59,7 +57,7 @@ const PartnerTypes = () => {
             <div
               className="table-responsive mb-0"
               data-pattern="priority-columns"
-              className="approved-partners-table"
+              // className="approved-partners-table"
             >
               <Table
                 // center

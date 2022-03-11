@@ -4,6 +4,7 @@ import { Table, Container, Card, CardBody } from "reactstrap";
 import BackBtn from "../BackBtn";
 import ClipLoader from "react-spinners/ClipLoader";
 import CustomersNav from "../CustomerNav";
+// import DateTimeForm from "../../../pages/calendar/DateTimeForm";
 // import TableSearch from "../TableSearch";
 import TableHeading from "./TableHeading";
 import "./Transaction.css";
@@ -15,6 +16,7 @@ import {
   getUsersSearchTranscation,
 } from "../../../store/transactions/actions/action";
 import ReactPaginate from "react-paginate";
+import Loader from "../../Loader/Loader";
 const Transaction = () => {
   const [searchTranscation, setSearchTransaction] = useState("");
   const [filteredTransaction, setFilteredTransaction] = useState(null);
@@ -58,9 +60,10 @@ const Transaction = () => {
   let data;
   if (loading === true) {
     data = (
-      <div className="spinner-div">
-        <ClipLoader color="#bbbbbb" loading={true} size={60} />
-      </div>
+      <Loader />
+      // <div className="spinner-div">
+      //   <ClipLoader color="#bbbbbb" loading={true} size={60} />
+      // </div>
     );
   } else if (transactions.data !== null && transactions.data?.length > 0) {
     data = (

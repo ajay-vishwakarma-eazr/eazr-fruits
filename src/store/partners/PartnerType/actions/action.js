@@ -102,7 +102,7 @@ export const updatePartnerType = (id, updateType, pageNumber) => {
           .catch((err) => {
             dispatch({
               type: GET_PARTNER_TYPE_FAILED,
-              payload: err.response.data,
+              payload: err.message,
             });
           });
       })

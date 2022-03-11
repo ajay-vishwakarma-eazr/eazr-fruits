@@ -10,6 +10,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import EmptySection from "../../components/EmptySection/EmptySection";
 import { fetchPartners } from "../../store/businessprofiles/actions/actions";
 import ReactPaginate from "react-paginate";
+import Nodata from "../Loader/Nodata";
 const ApprovedPartners = ({ getApprovedPartners }) => {
   const [searchPartner, setSearchPartner] = useState("");
   const [filteredPartner, setFilteredPartner] = useState(null);
@@ -62,7 +63,7 @@ const ApprovedPartners = ({ getApprovedPartners }) => {
             <div
               className="table-responsive mb-0"
               data-pattern="priority-columns"
-              className="approved-partners-table"
+              // className="approved-partners-table"
             >
               <Table
                 // center
@@ -108,7 +109,7 @@ const ApprovedPartners = ({ getApprovedPartners }) => {
       </Card>
     );
   } else {
-    data = <EmptySection />;
+    data = <Nodata />;
   }
   // const pageCount = Math.ceil(partners?.length / usersPerPage);
 
