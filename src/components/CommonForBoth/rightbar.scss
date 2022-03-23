@@ -6,20 +6,20 @@
   width: 0;
 }
 .radio-toolbar label {
-    display: inline-block;
-    background-color: $gray-300;
+  display: inline-block;
+  background-color: $gray-300;
   cursor : pointer;
-    padding: 5px 10px;
-    font-size: 14px;
-    border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 4px;
 }
 .radio-toolbar input[type="radio"]:checked + label {
-    background-color:$primary;
-    border : none;
-    color : $white;
+  background-color:$primary;
+  border : none;
+  color : $white;
 }
 
-#radio-title
+#radio-title 
 {
   margin-bottom : 5px
 }

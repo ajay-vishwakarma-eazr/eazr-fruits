@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import "./credit.scss";
 import { Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
+import BackBtn from "../../../BackBtn";
 import {
   updateUserDetails,
   updateWaveOffAmount,
@@ -31,6 +32,8 @@ const CreditDetails = ({
 
   return (
     <div className="credit-details-div">
+      {/* <BackBtn route="users" /> */}
+      
       <div className="total-credit">
         <div>
           <h6>Credit Limit</h6>
@@ -50,11 +53,7 @@ const CreditDetails = ({
         <h6>
           Fine Amount : <span>₹ {fineAmount}</span>
         </h6>
-        {fineAmount !== 0 ? (
-          <button onClick={toggle}>Wave Off</button>
-        ) : (
-          ""
-        )}
+        {fineAmount !== 0 ? <button onClick={toggle}>Wave Off</button> : ""}
         <Modal centered isOpen={modal}>
           <ModalHeader toggle={toggle}>Waveoff</ModalHeader>
           <ModalBody>
@@ -89,6 +88,14 @@ const CreditDetails = ({
             </div>
           </ModalBody>
         </Modal>
+
+        {/* <CreditDetails
+          creditLimit={users.creditLimit}
+          dueDate={users.dueDate}
+          availableCreditLimit={users.availableCreditLimit}
+          fineAmount={users.fineAmount}
+          id={users.id}
+        /> */}
       </div>
     </div>
   );

@@ -31,7 +31,7 @@ class PartnerSettlements extends Component {
     const id = this.props.match.params.id;
     this.props.fetchSettlementsById(id, this.state.pageNumber);
     // this.props.searchPartnerSettlements(id,"W");
-    console.log(this.state.pageNumber);
+    // console.log(this.state.pageNumber);
   }
 
   handleSearch = (e) => {

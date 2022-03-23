@@ -13,6 +13,8 @@ import {
   GET_USER_BILL_BY_ID_FAILED,
   GET_SEARCH_USER,
   GET_SEARCH_USER_FAILED,
+  CREDIT_SCORE,
+  CREDIT_SCORE_FAILED,
 } from "./actiontypes";
 import axios from "axios";
 import { ip } from "../../../config/config";
@@ -278,3 +280,27 @@ export const setUsers = (user) => {
     payload: user,
   };
 };
+
+
+export const calculateCreditScore = (phone) => {
+  console.log("phone",phone);
+  return (dispatch) => {
+    dispatch(setUserLoading());
+    axios
+      .post(`https://eaza.eazr.in/api/get_user_score_details`, phone)
+      .then((res) => {
+        dispatch({
+          type: CREDIT_SCORE,
+          payload: res.data.score,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: CREDIT_SCORE_FAILED,
+          payload: err.message,
+        });
+      });
+  };
+};
+

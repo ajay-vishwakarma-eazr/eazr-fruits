@@ -11,13 +11,16 @@ import {
   UPDATE_PROFILE_SUCCESS,
   GET_SEARCH_USER,
   GET_SEARCH_USER_FAILED,
+  CREDIT_SCORE,
+  CREDIT_SCORE_FAILED,
+  CLEAR_DATA,
 } from "../actions/actiontypes";
 
 export const initialState = {
   loading: false,
   users: [],
   errror: "",
-  search:[]
+  search:[],
 };
 
 export const UserReducer = (state = initialState, action) => {
@@ -100,6 +103,20 @@ export const UserReducer = (state = initialState, action) => {
       return {
         ...state,
         error: action.payload,
+      };
+
+    case CREDIT_SCORE:
+      return {
+        ...state,
+        loading: false,
+        credit: action.payload,
+        errors: null,
+      };
+    case CREDIT_SCORE_FAILED:
+      return {
+        ...state,
+        loading: false,
+        errors: action.payload,
       };
 
     default:

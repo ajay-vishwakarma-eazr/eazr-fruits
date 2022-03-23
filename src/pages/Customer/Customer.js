@@ -44,52 +44,12 @@ const Customer = () => {
   const changePage = ({ selected }) => {
     const newSelect = selected + 1;
     setPageNumber(newSelect);
-  };
-
-  //   const options = {
-  //   loop: false,
-  //   autoplay: true,
-  //   animationData: Loader,
-  //   rendererSettings: {
-  //     preserveAspectRatio: 'xMidYMid slice'
-  //   }
-  // };
-
-  // const handleStart = () => {
-  //   setStopped(false);
-  //   setCompleted(false);
-  // };
-  // const handleAnimationComplete = () => {
-  //   setCompleted(true);
-  //   setStopped(true);
-  // };
+  }; 
 
   let data;
   if (loading === true) {
     data = (
-      // <div>
-      //   <Lottie
-      //     options={options}
-      //     height="80%"
-      //     width="80%"
-      //     isStopped={stopped}
-      //     speed={4}
-      //     eventListeners={[
-      //       {
-      //         eventName: "complete",
-      //         callback: handleAnimationComplete,
-      //       },
-      //     ]}
-      //   />
-
-      //   {!completed ? (
-      //     <p>Running...</p>
-      //   ) : (
-      //     <button className="button" onClick={handleStart}>
-      //       Restart
-      //     </button>
-      //   )}
-      // </div>
+      
       <Loader />
       // <div className="spinner-div">
       //   <ClipLoader color="#bbbbbb" loading={true} size={60} />
@@ -103,12 +63,13 @@ const Customer = () => {
             <div
               className="table-responsive mb-0"
               data-pattern="priority-columns"
-              >
+            >
               <Table
-              //  className="approved-partners-table"
+                 className="approved-partners-table"
                 // center
                 CustomerTableHeading // bordered
                 responsive
+                // className="customer-table"
               >
                 <CustomerTableHeading />
                 {searchUser !== ""
@@ -188,7 +149,7 @@ const Customer = () => {
               </Card>
               {data}
               {/* {users || search.data === "" ? ( */}
-              {users.data && searchUser === "" ? (
+              {users?.data && searchUser === "" ? (
                 <ReactPaginate
                   previousLabel={"Previous"}
                   nextLabel={"Next"}

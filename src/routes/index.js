@@ -69,6 +69,8 @@ import DeliveryLogs from "../pages/Logs/DeliveryLogs/DeliveryLogs";
 import SupportLogs from "../pages/Logs/SupportLogs/UsersLog";
 
 import UserProfile from "../pages/Customer/CustomerDetails/UserProfile/UserProfile";
+import CreditDetails from "../pages/Customer/CustomerDetails/CreditDetails/CreditDetails";
+import CreditScoreDetails from "../pages/Customer/CustomerDetails/CreditDetails/CreditScoreDetails"
 import PartnerAllTransactions from "../pages/Partner/AllApprovedPartners/ApprovedParterDetails/PartnerAllTarnsactions/PartnerAllTransactions";
 import AllApprovedPartners from "../pages/Partner/AllApprovedPartners/AllApprovedPartners";
 import PartnerSettlements from "../pages/Partner/AllApprovedPartners/ApprovedParterDetails/PartnerAllSettlements/PartnerSettlements";
@@ -86,7 +88,9 @@ const authProtectedRoutes = [
   { path: "/users", component: Customer },
   { path: "/partner-types", component: PartnerTypes },
   { path: "/partner-category", component: PartnerCategory },
-  { path: "/user-profile/:id", component: UserProfile },
+  { path: "/user-profile/:id/:contact", component: UserProfile },
+  { path: "/credit-details", component: CreditDetails },
+  { path: "/credit-score/:id/:contact", component: CreditScoreDetails },
   { path: "/user/:id", component: Customer },
   { path: "/user-module", component: CustomerModules },
   { path: "/user-orders", component: CustomerOrders },
@@ -115,7 +119,7 @@ const authProtectedRoutes = [
   { path: "/partner-settlements/:id", component: PartnerSettlements },
 
   //Admin Module Routes
-  { path: "/user-transactions/:id", component: Transaction },
+  { path: "/user-transactions/:id/:contact", component: Transaction },
   { path: "/help-and-support", component: HelpAndSupport },
   { path: "/partner-details/:id", component: PartnerDetails },
   { path: "/onhold-details/:serviceId", component: OnHoldDetails },

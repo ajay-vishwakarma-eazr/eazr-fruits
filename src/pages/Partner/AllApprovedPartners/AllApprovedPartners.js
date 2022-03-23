@@ -104,7 +104,7 @@ class AllApprovedPartners extends Component {
         </div>
       );
     } else {
-      data = <Nodata />;
+      data = <EmptySection />;
     }
     
     return (
