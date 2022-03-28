@@ -38,11 +38,30 @@ export const FetchUsersFailure = (error) => {
   };
 };
 
-export const fetchUsers = (pageNumber) => {
+// export const fetchUsers = (pageNumber) => {
+//   return function (dispatch) {
+//     dispatch(FetchUsersRequest);
+//     axios
+//       .get(`${ip}/users?page=${pageNumber}&limit=10&sort=id,DESC`)
+//       .then((res) => {
+//         const users = res.data;
+//         dispatch(FetchUsersSuccess(users));
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//         dispatch(FetchUsersFailure(err.message));
+//       });
+//   };
+// };
+
+export const fetchUsers = (pageNumber ) => {
+  // console.log("search",search);
   return function (dispatch) {
     dispatch(FetchUsersRequest);
     axios
-      .get(`${ip}/users?page=${pageNumber}&limit=10&sort=id,DESC`)
+      .get(
+        `${ip}/users?page=${pageNumber}&limit=10&sort=id,DESC`
+      )
       .then((res) => {
         const users = res.data;
         dispatch(FetchUsersSuccess(users));
@@ -54,12 +73,13 @@ export const fetchUsers = (pageNumber) => {
   };
 };
 
+
 export const fetchSearchUsers = (search, pageNumber) => {
   return function (dispatch) {
     dispatch(FetchUsersRequest);
     axios
       .get(
-        `${ip}/users?s={"$or": [{"fullName": {"starts":"${search}"}},{"email": {"starts":"${search}"}},{"contactNumber": {"starts":"${search}"}}]}&page=${pageNumber}&limit=10`
+        `${ip}/users?s={"$or": [{"fullName": {"contL":"${search}"}},{"email": {"contL":"${search}"}},{"contactNumber": {"contL":"${search}"}}]}&page=${pageNumber}&limit=10`
       )
       .then((res) => {
         console.log(res.data);
@@ -199,6 +219,7 @@ export const updateSearchUserDetails = (id, formData, pageNumber) => {
         ...formData,
       })
       .then((res) => {
+        debugger;
         axios
           .get(`${ip}/users?page=${pageNumber}&limit=10&sort=id,DESC`)
           .then((res) => {

@@ -1,6 +1,6 @@
 import React from "react";
 import Lottie from "react-lottie";
-import nodata from "../Loader/nodata.json";
+import nodata from "../Loader/nodata.json"
 const Nodata = () => {
   const options = {
     loop: true,

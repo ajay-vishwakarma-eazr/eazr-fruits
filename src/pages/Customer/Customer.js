@@ -38,7 +38,7 @@ const Customer = () => {
   const handleSearch = (e) => {
     setSearchUser(e.target.value);
     dispatch(fetchSearchUsers(searchUser, pageNumber));
-    // dispatch(updateSearchUserDetails(search.id,searchUser, pageNumber));
+    dispatch(updateSearchUserDetails (search.id,searchUser, pageNumber));
   };
 
   const changePage = ({ selected }) => {
@@ -67,6 +67,8 @@ const Customer = () => {
               <Table
                  className="approved-partners-table"
                 // center
+                striped
+                // bordered
                 CustomerTableHeading // bordered
                 responsive
                 // className="customer-table"
@@ -136,6 +138,8 @@ const Customer = () => {
                       />
                       <i className="fa fa-search"></i>
                     </div>
+
+                    
 
                     {/* <div className="search-btn">
                       <button type="submit" 

@@ -33,7 +33,7 @@ const Transaction = () => {
 
   const handleSearch = (e) => {
     setSearchTransaction(e.target.value);
-    dispatch(getUsersSearchTranscation(id, searchTranscation,pageNumber));
+    dispatch(getUsersSearchTranscation(id, searchTranscation, pageNumber));
   };
 
   // const getSearchTransactionValue = (value) => {
@@ -143,10 +143,12 @@ const Transaction = () => {
                 />
                 <i className="fa fa-search"></i>
               </div>
+
+              
             </div>
           </CardBody>
           {data}
-          {transactions.data?.length > 0 && searchTranscation ==="" ? (
+          {transactions.data?.length > 0 && searchTranscation === "" ? (
             <ReactPaginate
               previousLabel={"Previous"}
               nextLabel={"Next"}

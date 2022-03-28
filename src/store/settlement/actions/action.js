@@ -171,7 +171,7 @@ export const searchPartnerSettlements = (id, search) => {
     dispatch(FetchSettlementRequest);
     axios
       .get(
-        `${ip}/settlements?s={"$and": [{"partnerId":{"$eq": ${id}}}, {"partner.businessName": {"$starts": "${search}"}}]}`
+        `${ip}/settlements?s={"$and": [{"partnerId":{"$eq": ${id}}}, {"partner.businessName": {"$contL": "${search}"}}]}`
       )
       .then((res) => {
         dispatch({ type: SEARCH_SETTLEMENT, payload: res.data });

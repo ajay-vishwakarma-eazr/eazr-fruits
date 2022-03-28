@@ -74,7 +74,7 @@ class Partner extends Component {
           >
             <Table
               center
-              // striped
+              striped
               // bordered
               responsive
               className="partner-approval-table"

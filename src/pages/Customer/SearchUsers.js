@@ -27,6 +27,8 @@ const SearchUsers = ({ getSearchUserValue, filterArray }) => {
         />
         <i className="fa fa-search"></i>
       </div> 
+
+      
       {/* <div>
         <h6>Transactions</h6>
         <select name="" id="">

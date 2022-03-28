@@ -9,7 +9,7 @@ const ApprovedPartnersHeading = () => {
       <th>Email</th>
       {/* <th>Description</th> */}
       <th>Partner Type</th>
-      <th>Plan</th>
+      {/* <th>Plan</th> */}
       <th>View</th>
     </thead>
   );

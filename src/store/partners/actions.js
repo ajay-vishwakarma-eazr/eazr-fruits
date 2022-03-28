@@ -107,7 +107,7 @@ export const fetchSearchApprovedPartners = (search) => {
     dispatch(setPartersLoading);
     axios
       .get(
-        `${ip}/partners?s={"$and": [{"status":{"$eq":1}},{"businessName": {"starts":"${search}"}}]}`
+        `${ip}/partners?s={"$and": [{"status":{"$eq":1}},{"businessName": {"contL":"${search}"}}]}`
       )
       .then((res) => {
         console.log(res.data);

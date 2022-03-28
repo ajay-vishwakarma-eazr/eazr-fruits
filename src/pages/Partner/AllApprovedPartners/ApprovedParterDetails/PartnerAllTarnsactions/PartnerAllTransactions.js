@@ -129,6 +129,27 @@ class PartnerAllTransactions extends Component {
                       value={this.state.searchTransactions}
                     />
                   </div>
+
+                      {/* <select
+                    value={""}
+                    onChange={(e) =>
+                      setSelectMonthFilter(e.currentTarget.value)
+                    } */}
+                      {/* > */}
+                        {/* <option value="">0</option> */}
+                    {/* <div>
+                      <label>
+                        Select Amount {" "}
+                      <select>
+                        <option value="01">All</option>
+                        <option value="02">0-100</option>
+                        <option value="03">100-200</option>
+                        <option value="04">200-300</option>
+                        <option value="06">300-400</option>
+                        <option value="07">400-500</option>
+                      </select>
+                    </label>
+                  </div> */}
                 </div>
                 <CardBody>{data}</CardBody>
                 {transactions.transactions?.data?.length > 0 &&

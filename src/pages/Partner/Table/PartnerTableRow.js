@@ -8,7 +8,7 @@ const PartnerTableRow = ({
   email,
   type,
   category,
-  plan,
+  // plan,
   status,
   id,
 }) => {
@@ -39,7 +39,7 @@ const PartnerTableRow = ({
         <td>{email}</td>
         <td>{type}</td>
         <td>{category}</td>
-        <td>{plan}</td>
+        {/* <td>{plan}</td> */}
         <td className="approval-status-btn">
           <button
             style={{

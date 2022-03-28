@@ -100,7 +100,7 @@ export const getPartnerTranscationSearch = (id, search) => {
     dispatch(setPartnersLoading());
     axios
       .get(
-        `${ip}/transactions?s={"$and": [{"partnerId":{"$eq":${id}}},{"user.fullName": {"starts":"${search}"}}]}&sort=id,DESC`
+        `${ip}/transactions?s={"$and": [{"partnerId":{"$eq":${id}}},{"user.fullName": {"contL":"${search}"}}]}&sort=id,DESC`
       )
       .then((res) => {
         dispatch({
@@ -195,7 +195,7 @@ export const getUsersSearchTranscation = (id, search, pageNumber) => {
     dispatch(setPartnersLoading());
     axios
       .get(
-        `${ip}/transactions?s={"$and": [{"userId":{"$eq":${id}}},{"partner.businessName": {"$starts":"${search}"}}]}&page=${pageNumber}&limit=10&sort=id,DESC`
+        `${ip}/transactions?s={"$and": [{"userId":{"$eq":${id}}},{"partner.businessName": {"$contL":"${search}"}}]}&page=${pageNumber}&limit=10&sort=id,DESC`
       )
       .then((res) => {
         console.log(res.data);

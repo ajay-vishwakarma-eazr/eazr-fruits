@@ -11,6 +11,7 @@ import { useParams, withRouter } from "react-router-dom";
 import BackBtn from "../../BackBtn";
 import { calculateCreditScore } from "../../../../store/adminusers/actions/actions";
 import Loader from "../../../Loader/Loader";
+import NoCredit from "../../../Loader/NoCredit";
 
 class CreditScoreDetails extends PureComponent {
   constructor() {
@@ -73,7 +74,17 @@ class CreditScoreDetails extends PureComponent {
         </div>
       );
     } else {
-      data = <h3>No credit score given !!</h3>;
+      data = (
+        <div>
+          <div style={{marginTop:'70px'}}>
+            <NoCredit />
+          </div>
+
+          <h4 style={{ textAlign: "center", marginTop: "50px" }}>
+            No credit score given !!
+          </h4>
+        </div>
+      );
     }
     return (
       <div className="page-content approved-partners">

@@ -15,28 +15,109 @@
 
 // body {
 //   background: #000000;
-//   font-family: "Inter", sans-serif;
+//   font-family: "Roboto", sans-serif;
+// }
+// .search-partner input {
+//     background-color: #1d1d1f;
+//     border-radius: 50px;
+//     padding: 0.5rem 1rem;
+//     outline: none;
+//     border: none;
+//     margin: 0 1rem;
+//     font-weight: 600;
+// }
+// .partner .search-partner {
+//     display: flex;
+//     justify-content: space-between;
+//     background-color: #000;
+// }
+// .table-bordered th, .table-bordered td {
+//     border: .2px solid #2d3448;
+//     background-color: #1d1d1f;
+// }
+// .left-brand-information, .bank-account, .legal-information, .document-section, .business-description {
+//     border: 1px solid #c8cbd0;
+//     border-radius: 20px;
+//     padding: 0 1rem;
+//     background: #1d1d1f;
 // }
 // .accordian-bg-products {
 //   background-color: #1d1d1f !important;
 // }
 // .card {
-//   color: #fff !important;
+//   color: #1d1d1f !important;
+  
+// }
+// .search-partner label {
+//     font-size: 1rem;
+//     margin: 0;
+//     color: #fff;
+// }
+// .paginationBttns {
+//     width: auto;
+//     height: 85px;
+//     list-style: none;
+//     display: flex;
+//     flex-wrap: wrap;
+//     justify-content: center;
+//     color: #fff;
+// }
+// .view-partners input, .view-partners textarea, .view-partners select {
+//     font-size: 0.9rem;
+//     margin: 0;
+//     border: none;
+//     background: transparent;
+//     resize: none;
+//     // width: 200px;
+//     color:#fff;
+// }
+// .col-12 {
+//     flex: 0 0 100%;
+//     max-width: 100%;
+//     background-color: #1d1d1f;
 // }
 
 // .card-body {
-//     background-color:rgb(29, 29, 31)
+//     background-color:rgb(29, 29, 31);
 // }
 // .dashboard .card {
 //   border: none !important;
+  
 // }
 // .partner .card {
 //   background: rgb(29, 29, 31) !important;
+//   border-radius: 13px;
 // }
 // .table {
-//   color:#79859c;
+//   color:#fff;
+
+//   // color:#79859c;
+// }
+// .details-nav a {
+//   color:#fff;
+// }
+// body[data-topbar="dark"] #page-topbar {
+//     background-color: rgb(29,29,31);
+// }
+// .search-filter h6 {
+//     color: #fff;
+//     font-weight: 600;
+// }
+// .topnav .navbar-nav .nav-link {
+//     font-size: 15px;
+//     position: relative;
+//     padding: 1rem 1.3rem;
+//     color: #fff;
+//     font-family: "Roboto", sans-serif;
+// }
+// .text-truncate {
+//     overflow: hidden;
+//     text-overflow: ellipsis;
+//     white-space: nowrap;
+//     color: #fff;
 // }
 
+//
 .nav-link {
   cursor: pointer;
 }

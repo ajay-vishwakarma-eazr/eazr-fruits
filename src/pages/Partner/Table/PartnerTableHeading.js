@@ -9,7 +9,7 @@ const PartnerTableHeading = () => {
       <th>Email</th>
       <th>Type</th>
       <th>Category</th>
-      <th>Plan</th>
+      {/* <th>Plan</th> */}
       <th>Status</th>
       <th>View</th>
       {/* <th>Transaction</th> */}

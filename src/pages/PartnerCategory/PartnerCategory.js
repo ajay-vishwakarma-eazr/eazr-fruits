@@ -57,7 +57,7 @@ const PartnerCategory = () => {
     partnerCategory.partnerCategory.data?.length > 0
   ) {
     data = (
-      <Card style={{ width: "70%" }}>
+      <Card style={{ width: "100%" }}>
         <CardBody>
           <div className="table-rep-plugin">
             <div
@@ -96,7 +96,7 @@ const PartnerCategory = () => {
         <BackBtn route="partner-type" />
         <Row>
           <Col xs={12}>
-            <Card style={{ width: "70%" }}>
+            <Card style={{ width: "100%" }}>
               <CardBody>
                 <div className="search-filter">
                   <div>
@@ -120,7 +120,7 @@ const PartnerCategory = () => {
               </CardBody>
             </Card>
             {data}
-            <div style={{ width: "70%" }}>
+            <div style={{ width: "100%" }}>
               {partnerCategory.partnerCategory.data?.length > 0 ? (
                 <ReactPaginate
                   previousLabel={"Previous"}

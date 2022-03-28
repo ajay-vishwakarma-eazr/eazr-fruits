@@ -1,3 +1,4 @@
+import { green } from "@material-ui/core/colors";
 import React from "react";
 import Moment from "react-moment";
 
@@ -34,6 +35,7 @@ const TableRow = ({ amount, status, partnerName, debit, createAt }) => {
             margin: "auto",
             border: `1px solid ${statusColor()}`,
             borderRadius: "10px",
+            background:green
           }}
         >
           {status === 0 ? "Initiated" : status === 2 ? "Success" : "Failed"}

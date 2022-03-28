@@ -33,7 +33,7 @@ const ApprovedPartnersRow = ({
         <td>{email}</td>
         {/* <td>{description}</td> */}
         <td>{partnerType}</td>
-        <td>{plan}</td>
+        {/* <td>{plan}</td> */}
         <td className="approval-view-btn">
           <Link to={`/partner-transactions/${id}`}>
             <button>Details</button>

@@ -2,7 +2,7 @@ import React, { Component, useDebugValue, useEffect, useState } from "react";
 import { Container, Row, Col, Card, CardBody, Table } from "reactstrap";
 import PartnerTypesHeading from "./PartnerTypesHeading";
 import { useParams } from "react-router-dom";
-// import "./PartnerTypes.scss";
+import "./PartnerTypes.scss";
 import { connect, useDispatch, useSelector } from "react-redux";
 import BackBtn from "../../BackBtn";
 import { useHistory } from "react-router-dom";
@@ -51,7 +51,7 @@ const PartnerTypes = () => {
     );
   } else if (partnerType !== null && partnerType?.data?.length > 0) {
     data = (
-      <Card style={{display: 'flex',width: "70%" }}>
+      <Card style={{display: 'flex',width: "100%" }}>
         <CardBody>
           <div className="table-rep-plugin">
             <div
@@ -92,7 +92,7 @@ const PartnerTypes = () => {
         <BackBtn route="partner-type" />
         <Row xs={12}>
           <Col xs={12}>
-            <Card style={{ width: "70%" }}>
+            <Card style={{ width: "100%" }}>
               <CardBody>
                 <div className="search-filter">
                   <div>
@@ -106,7 +106,7 @@ const PartnerTypes = () => {
                   </div>
                   <div className="search-btn">
                     <button
-                      style={{ minWidth: "70%" }}
+                      style={{ minWidth: "100%" }}
                       onClick={addNewPartnerType}
                     >
                       Add Partner Type
@@ -116,7 +116,7 @@ const PartnerTypes = () => {
               </CardBody>
             </Card>
             {data}
-            <div style={{ width: "70%" }}>
+            <div style={{ width: "100%" }}>
               {partnerType?.data?.length > 0 ? (
                 <ReactPaginate
                   previousLabel={"Previous"}
