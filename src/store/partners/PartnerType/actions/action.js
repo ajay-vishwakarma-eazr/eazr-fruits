@@ -37,7 +37,6 @@ export const getPartnerType = (pageNumber) => {
   };
 };
 export const getPartnerTypeBrandInformation = () => {
-  console.log("Partner Type");
   return (dispatch) => {
     dispatch({ type: TYPE_LOADING });
     axios

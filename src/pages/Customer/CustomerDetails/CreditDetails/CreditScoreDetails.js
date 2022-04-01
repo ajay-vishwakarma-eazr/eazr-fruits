@@ -3,7 +3,7 @@ import { Container, Row, Col, Card, CardBody, Table, Button } from "reactstrap";
 import CreditTableHeading from "./CreditTableHeading";
 import CreditTableRow from "./CreditTableRow";
 import "./credit.scss";
-import { useDispatch,connect, useSelector } from "react-redux";
+import { useDispatch, connect, useSelector } from "react-redux";
 import ClipLoader from "react-spinners/ClipLoader";
 import ReactPaginate from "react-paginate";
 // import EmptySection from "../../../components/EmptySection/EmptySection";
@@ -26,10 +26,10 @@ class CreditScoreDetails extends PureComponent {
 
   render() {
     let data;
-
+debugger;
     if (this.props.credit.loading === true) {
       data = (
-          <Loader />
+        <Loader />
         // <div className="spinner-div">
         // </div>
       );
@@ -76,7 +76,7 @@ class CreditScoreDetails extends PureComponent {
     } else {
       data = (
         <div>
-          <div style={{marginTop:'70px'}}>
+          <div style={{ marginTop: "70px" }}>
             <NoCredit />
           </div>
 
@@ -91,7 +91,8 @@ class CreditScoreDetails extends PureComponent {
         <Container fluid>
           <BackBtn route="users" />
           <Row>
-            <Col xs={12}>{data}</Col>
+            <Col xs={12}>
+              {data}</Col>
           </Row>
         </Container>
       </div>

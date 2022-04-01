@@ -22,6 +22,7 @@ import { TicketReducer } from "./supportTickets/reducers/reducer";
 // import { PartnerTypeReducer } from "./partners/PartnerType/reducers/reducer";
 import partnerCategoryReducer from "../store/PartnerCategory/partnerCategoryReducer";
 import partnerTypeReducer from "./partners/PartnerType/reducers/reducer";
+import registerReducer from "./auth/register/reducer";
 const rootReducer = combineReducers({
   //order
   orders: OrderReducer,
@@ -40,6 +41,9 @@ const rootReducer = combineReducers({
 
   //users
   Users: UserReducer,
+
+  // register
+  register: registerReducer,
 
   // partnerType
   PartnerType: partnerTypeReducer,

@@ -1,4 +1,4 @@
-export const REGISTER_USER = 'register_user';
-export const REGISTER_USER_SUCCESSFUL = 'register_user_successfull';
-export const REGISTER_USER_FAILED = 'register_user_failed';
+export const REGISTER_ADMIN_SUCCESS = "REGISTER_ADMIN_SUCCESS";
+export const REGISTER_ADMIN_FAILED = "REGISTER_ADMIN_FAILED";
+export const REGISTER_ADMIN_LOADING = "REGISTER_ADMIN_LOADING";
 

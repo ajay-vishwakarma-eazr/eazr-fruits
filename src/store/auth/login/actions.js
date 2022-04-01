@@ -12,6 +12,9 @@ import {
   HIDE_OTP_MODAL,
   VERIFY_LOADING,
   SET_CURRENT_USER,
+  REGISTER_USER_SUCCESS,
+  REGISTER_USER_FAILED,
+  REGISTER_USER_LOADING,
 } from "./actionTypes";
 import axios from "axios";
 import { ip } from "../../../config/config";
@@ -46,21 +49,40 @@ export const login = (contactNumber) => {
   };
 };
 
-
+export const register = (data) => {
+  return (dispatch) => {
+    dispatch(setLoginLoading());
+    axios
+      .post(`${ip}/admins`, data)
+      .then((res) => {
+        const { accessToken } = res.data.admin;
+        const decoded = jwt_decode(accessToken);
+        dispatch({
+          type: REGISTER_USER_SUCCESS,
+          payload: decoded,
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: REGISTER_USER_FAILED,
+          payload: err.response.data.message,
+        });
+      });
+  };
+};
 
 export const verify = (contactNumber, otp, history) => {
   return (dispatch) => {
-    
-
-      axios.post(`${ip}/admins/verify-otp`, { contactNumber, otp })
-     .then((res) => {
-      const {accessToken} = res.data.admin;
+    axios
+      .post(`${ip}/admins/verify-otp`, { contactNumber, otp })
+      .then((res) => {
+        const { accessToken } = res.data.admin;
         localStorage.setItem("accessToken", accessToken);
         //Set token to auth header
         setAuthToken(accessToken);
 
         //Decode token to get user data
-         const decoded = jwt_decode(accessToken);
+        const decoded = jwt_decode(accessToken);
         dispatch(loginUserSuccessful(decoded));
         history.push("/dashboard");
         // dispatch(fetchModules());

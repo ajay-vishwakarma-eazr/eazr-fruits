@@ -224,7 +224,7 @@ class Header extends Component {
                       <Col>
                         <a
                           className="dropdown-icon-item"
-                          href="http://partner.eazr.in"
+                          href="https://partner.eazr.in"
                         >
                           <img src={partnerWeb} alt="Github" />
                           <span>{this.props.t("Partner's Web")}</span>
@@ -233,7 +233,7 @@ class Header extends Component {
                       <Col>
                         <a
                           className="dropdown-icon-item"
-                          href="http://web.eazr.in/register"
+                          href="https://web.eazr.in/register"
                         >
                           <img src={registration} alt="bitbucket" />
                           <span>{this.props.t("Register as Partner")}</span>
@@ -242,7 +242,7 @@ class Header extends Component {
                       <Col>
                         <a
                           className="dropdown-icon-item"
-                          href="http://enroll.eazr.in"
+                          href="https://enroll.eazr.in"
                         >
                           <img src={brands} alt="dribbble" />
                           <span>{this.props.t("For Merchants")}</span>
@@ -260,7 +260,8 @@ class Header extends Component {
                       <Col>
                         <a
                           className="dropdown-icon-item"
-                          href="https://eazr.in/terms-of-use/"
+                          href="https://www.itseazr.com/consumer-terms/"
+                          // href="https://eazr.in/terms-of-use/"
                         >
                           <img src={termsOfUse} alt="mail_chimp" />
                           <span>{this.props.t("Terms of Use")}</span>
@@ -269,7 +270,8 @@ class Header extends Component {
                       <Col>
                         <a
                           className="dropdown-icon-item"
-                          href="https://eazr.in/privacy-policy/"
+                          href="https://www.itseazr.com/privacy/"
+                          // href="https://eazr.in/privacy-policy/"
                         >
                           <img src={privacyPolicy} alt="slack" />
                           <span>{this.props.t("Privacy Policy")}</span>
@@ -299,13 +301,13 @@ class Header extends Component {
                 onClick={this.toggleRightbar}
                 className="dropdown d-inline-block"
               >
-                <Button
+                {/* <Button
                   type="button"
                   color="none"
                   className="header-item noti-icon right-bar-toggle waves-effect"
                 >
-                  {/* <i className="ri-settings-2-line"></i> */}
-                </Button>
+                  <i className="ri-settings-2-line"></i>
+                </Button> */}
               </div>
             </div>
           </div>

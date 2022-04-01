@@ -108,6 +108,10 @@ class PartnerAllTransactions extends Component {
       data = <EmptySection />;
     }
 
+    // <Button onClick{() => 
+    //  setState={state}
+    // }}
+
     return (
       <>
         <div className="page-content customer-page ">

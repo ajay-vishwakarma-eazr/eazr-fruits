@@ -7,6 +7,23 @@
   justify-content: center;
 }
 
+.search-user input {
+  outline: none;
+  border: none;
+  width: 60%;
+  background-color: #f1f1f6;
+  border-radius: 10px;
+
+}
+.search-filter input {
+  outline: none;
+  border: none;
+  width: 60%;
+  background-color: #f1f1f6;
+  border-radius: 10px;
+
+}
+
 .paginationBtns {
   width:70%;
   height: 85px;

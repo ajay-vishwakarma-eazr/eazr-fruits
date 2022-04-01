@@ -1,9 +1,23 @@
-import React, { Component } from "react";
-import { Row, Col, Button, Container, Label, FormGroup } from "reactstrap";
+import React, { Component, PureComponent } from "react";
+import {
+  Row,
+  Col,
+  Button,
+  Container,
+  Label,
+  FormGroup,
+  Alert,
+} from "reactstrap";
 
 // availity-reactstrap-validation
-import { AvForm, AvField } from "availity-reactstrap-validation";
-
+import {
+  AvForm,
+  AvField,
+  AvGroup,
+  AvInput,
+  AvFeedback,
+} from "availity-reactstrap-validation";
+import SweetAlert from "react-bootstrap-sweetalert";
 import { Link } from "react-router-dom";
 
 // import images
@@ -11,62 +25,35 @@ import logodark from "../../assets/images/logo-dark.png";
 import { postRegister } from "../../helpers/fackBackend_Helper";
 import { checkLogin } from "../../store/actions";
 import { ip } from "../../config/config";
+import { connect } from "react-redux";
+import { registerUserSuccess } from "../../store/auth/register/actions";
 
-class Register extends Component {
+class Register extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
+      fullName: "",
+      contactNumber: "",
       email: "",
-      phone: "",
-      roles: "",
+      adminsRoleId: "1",
     };
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({ value: event.target.value });
   }
 
   registerHandler(e) {
     e.preventDefault();
     let data = {
-      name: this.props.name,
+      contactNumber: this.state.contactNumber,
+      fullName: this.state.fullName,
       email: this.state.email,
-      phone: this.state.phone,
-      roles: this.state.roles,
+      adminsRoleId: this.state.adminsRoleId,
     };
-
-    postRegister(`${ip}/admin/auth/registeradmin`, data);
-    console.log("data >>", data);
-  }
-
-  componentDidMount() {
-    fetch(`${ip}/admin/auth/registeradmin`)
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            isLoaded: true,
-            value: result.value,
-          });
-        },
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error,
-          });
-        }
-      );
-  }
-
-  componentDidMount() {
-    // this.props.registerUserFailed("");
-    // this.props.apiError("");
-    document.body.classList.add("auth-body-bg");
+    this.props.registerUserSuccess(data);
+    console.log(this.props.register);
+    // this.setState({ fullName: "", contactNumber: "", email: "", adminsRoleId :""});
   }
 
   render() {
+    console.log("render");
     return (
       <React.Fragment>
         <div
@@ -105,32 +92,42 @@ class Register extends Component {
                             </p>
                           </div>
 
-                          {/* {this.props.successful && (
+                          {this.props.register.register ? (
                             <Alert color="success">
                               Registration Done Successfully. Please Login.
                             </Alert>
-                          )} */}
+                          ) : null}
+
+                          {this.props.register.error ? (
+                            <Alert color="danger">
+                              Error : {this.props.register.error}
+                            </Alert>
+                          ) : null}
 
                           <div className=" mt-5">
-                            <AvForm className="form-horizontal">
+                            <AvForm
+                              className="form-horizontal"
+                              onValidSubmit={(e) => this.registerHandler(e)}
+                            >
                               <FormGroup className="auth-form-group-custom mb-4">
-
                                 <i className="ri-user-2-line auti-custom-input-icon"></i>
                                 <Label htmlFor="name" className="font-size-18">
                                   Name
                                 </Label>
                                 <AvField
-                                  name="name"
-                                  value={this.state.name}
+                                  name="fullName"
+                                  value={this.state.fullName}
                                   onChange={(e) => {
-                                    this.state.name = e.target.value;
+                                    this.setState({
+                                      fullName: e.target.value,
+                                    });
                                   }}
-                                  validate={{ name: true, required: true }}
-                                  type="name"
+                                  type="text"
                                   className="form-control font-size-16"
                                   id="name"
                                   placeholder="Enter full name"
                                   autoComplete="off"
+                                  required
                                 />
                               </FormGroup>
 
@@ -146,16 +143,24 @@ class Register extends Component {
                                   name="email"
                                   value={this.state.email}
                                   onChange={(e) => {
-                                    this.state.email = e.target.value;
+                                    this.setState({
+                                      email: e.target.value,
+                                    });
                                   }}
-                                  validate={{ email: true, required: true }}
                                   type="email"
                                   className="form-control font-size-16"
                                   id="useremail"
                                   placeholder="Enter email"
                                   autoComplete="off"
+                                  required
                                 />
                               </FormGroup>
+                              {this.props.errors && (
+                                <p style={{ color: "red" }}>
+                                  {this.props.errors.email}
+                                  {this.props.errors.msg}
+                                </p>
+                              )}
 
                               <FormGroup className="auth-form-group-custom mb-4">
                                 <i className="ri-phone-line auti-custom-input-icon"></i>
@@ -163,61 +168,71 @@ class Register extends Component {
                                   phone
                                 </Label>
                                 <AvField
-                                  name="phone"
-                                  value={this.state.phone}
+                                  name="contactNumber"
+                                  value={this.state.contactNumber}
                                   onChange={(e) => {
-                                    this.state.phone = e.target.value;
-                               
-                               
+                                    // this.state.phone = e.target.value;
+                                    this.setState({
+                                      contactNumber: e.target.value,
+                                    });
                                   }}
-                                  type="text"
+                                  type="number"
                                   className="form-control font-size-16"
                                   id="phone"
                                   placeholder="Enter phone"
                                   autoComplete="off"
+                                  required
                                 />
                               </FormGroup>
                               {this.props.errors && (
                                 <p style={{ color: "red" }}>
-                                  {this.props.errors.phone}
+                                  {this.props.errors.contactNumber}
                                   {this.props.errors.msg}
                                 </p>
                               )}
 
                               <FormGroup className="auth-form-group-custom mb-4">
                                 <i className="ri-user-settings-line auti-custom-input-icon"></i>
-                                <Label htmlFor="roles" className="font-size-18">
-                                  Roles
+                                <Label
+                                  htmlFor="adminsRoleId"
+                                  className="font-size-18"
+                                >
+                                  Role
                                 </Label>
                                 <AvField
-                                  name="roles"
-                                  value={this.state.roles}
+                                  name="adminsRoleId"
+                                  value={this.state.adminsRoleId}
                                   onChange={(e) => {
-                                    this.state.roles = e.target.value;
+                                    this.setState({
+                                      adminsRoleId: e.target.value,
+                                    });
                                   }}
                                   type="select"
                                   className="form-control
                                   font-size-16"
-                                  id="roles"
+                                  id="adminsRoleId"
                                   placeholder="Select
                                   Role"
                                 >
-                                  <option>Super Admin</option>
-                                  <option>Admin</option>
+                                  <option default value="1">
+                                    Super Admin
+                                  </option>
                                 </AvField>
                               </FormGroup>
+
                               {this.props.errors && (
                                 <p style={{ color: "red" }}>
-                                  {this.props.errors.roles}
+                                  {this.props.errors}
                                 </p>
                               )}
-                              <Link to={"/login"}>
+                              <FormGroup>
+                                {/* <Link to={"/login"}> */}
                                 <div className="text-center">
                                   <Button
-                                    onClick={(e) => this.registerHandler(e)}
                                     color="primary"
                                     style={{ background: "#0371e3" }}
-                                    className="w-md waves-effect waves-light btn-block font-size-18"
+                                    className="w-md waves-effect waves-light
+                                    btn-block font-size-18"
                                     type="submit"
                                   >
                                     {/* {this.props.loading
@@ -226,7 +241,8 @@ class Register extends Component {
                                     Register
                                   </Button>
                                 </div>
-                              </Link>
+                                {/* </Link> */}
+                              </FormGroup>
                             </AvForm>
                           </div>
 
@@ -253,10 +269,19 @@ class Register extends Component {
           </Container>
         </div>
       </React.Fragment>
-      //Phone icon>> <i class="ri-phone-line"></i>
-      // user setting >> <i class="ri-user-settings-line"></i>
     );
   }
 }
 
-export default Register;
+const mapStateToProps = (state) => {
+  debugger;
+  return {
+    register: state.register,
+  };
+};
+
+export default connect(mapStateToProps, {
+  registerUserSuccess,
+})(Register);
+
+// export default Register;

@@ -35,7 +35,6 @@ class AllApprovedPartners extends Component {
     });
     this.props.fetchSearchApprovedPartners(this.state.searchPartner);
   };
-  
 
   changePage = ({ selected }) => {
     const newSelect = selected + 1;
@@ -44,14 +43,10 @@ class AllApprovedPartners extends Component {
   };
 
   render() {
-    
-
     const { partners } = this.props;
     let data;
     if (partners.loading === true) {
-      data = (
-        <Loader />
-      );
+      data = <Loader />;
     } else if (
       partners.partners !== null &&
       partners.partners?.data.length > 0
@@ -106,7 +101,7 @@ class AllApprovedPartners extends Component {
     } else {
       data = <EmptySection />;
     }
-    
+
     return (
       <div className="page-content partner">
         <Container fluid>

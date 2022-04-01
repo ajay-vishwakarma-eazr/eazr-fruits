@@ -32,7 +32,7 @@ class Partner extends Component {
     this.props.getPartners(this.state.pageNumber);
   }
 
-  changePage = ({ selected }) => {
+  changePage = ({ selected }) => {  
     const newSelect = selected + 1;
     this.setState({ pageNumber: newSelect });
     this.props.getPartners((this.state.pageNumber = newSelect));

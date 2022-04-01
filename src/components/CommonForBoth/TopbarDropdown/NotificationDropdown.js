@@ -55,6 +55,7 @@ class NotificationDropdown extends Component {
                   <h6 className="m-0"> {this.props.t("Notifications")} </h6>
                 </Col>
                 <div className="col-auto">
+                  
                   <Link to="#" className="small">
                     {" "}
                     {this.props.t("View All")}

@@ -132,7 +132,7 @@ class PartnerSettlements extends Component {
                   </div>
                 </div>
                 {data}
-                {settlements.settlements?.data.length > 0 &&
+                {settlements.settlements?.data?.length > 0 &&
                 this.state.searchSettlements === "" ? (
                   <ReactPaginate
                     previousLabel={"Previous"}

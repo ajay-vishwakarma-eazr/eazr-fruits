@@ -3457,7 +3457,7 @@ autoprefixer@^9.6.1:
     postcss "^7.0.32"
     postcss-value-parser "^4.1.0"
 
-availity-reactstrap-validation@^2.6.1:
+availity-reactstrap-validation@^2.7.1:
   version "2.7.1"
   resolved "https://registry.yarnpkg.com/availity-reactstrap-validation/-/availity-reactstrap-validation-2.7.1.tgz#6280fbdeee98a7ea5bdd8539f746e06e2c4c28b8"
   integrity sha512-XJ1riSZZ0C7V+z4/2Jdsi64aFS5Fdp/x0K5/bFCAKN2+0GmOcfF3/rBSHlB+3S3PnzWDrjikupXG9LVKzZbV7w==

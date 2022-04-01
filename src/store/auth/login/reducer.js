@@ -8,6 +8,9 @@ import {
   OTP_SENT_FAILED,
   LOGOUT_USER_FAILED,
   LOGIN_LOADING,
+  REGISTER_USER_SUCCESS,
+  REGISTER_USER_FAILED,
+  REGISTER_USER_LOADING,
 } from "./actionTypes";
 
 const initialState = {
@@ -18,6 +21,10 @@ const initialState = {
   showOtpModal: false,
   isAuthenticated: false,
   user: [],
+  fullName: "",
+  email: "",
+  contactNumber: "",
+  roles: "",
 };
 
 const login = (state = initialState, action) => {
@@ -57,6 +64,20 @@ const login = (state = initialState, action) => {
         isAuthenticated: true,
         user: action.payload.user,
       };
+
+    // case REGISTER_USER_SUCCESS:
+    //   return {
+    //     ...state,
+    //     loading: false,
+    //     user: action.payload,
+    //   };
+
+    // case REGISTER_USER_FAILED:
+    //   return {
+    //     ...state,
+    //     loading: false,
+    //     errors: action.payload,
+    //   };
 
     case LOGOUT_USER:
       return { ...state };

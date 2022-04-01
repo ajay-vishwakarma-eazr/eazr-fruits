@@ -16,7 +16,7 @@ const SearchUsers = ({ getSearchUserValue, filterArray }) => {
   // };
 
   return (
-    <form className="search-filter">
+    <form className="search-user">
       <div>
         <h6>Search Users</h6>
         <input
