@@ -42,7 +42,7 @@ const OTPModal = (props) => {
           )}
         </Button>
 
-        <Modal
+        {props.phone !== ""?<Modal
           isOpen={props.show}
           //props.show
           centered
@@ -127,7 +127,7 @@ const OTPModal = (props) => {
               </Link> */}
             </div>
           </div>
-        </Modal>
+        </Modal>:""}
       </>
     </div>
   );

@@ -53,7 +53,12 @@ class Login extends Component {
   }
 
   onLogin = () => {
+    if(this.state.phone === "") {
+      return null;
+    }
+    else {
     this.props.login(this.state.phone, this.state.otp, this.props.history);
+    }
   };
 
   
@@ -72,14 +77,14 @@ class Login extends Component {
   render() {
       return (
         <>
-          <div className="home-btn d-none d-sm-block" style={{ height: "100vh" }}>
+          {/* <div className="home-btn d-none d-sm-block" style={{ height: "100vh" }}>
           <p className="font-size-16">
             Don't have an account ?
             <Link to="/register" className="font-weight-medium text-primary">
               Register
             </Link>
           </p>
-        </div>
+        </div> */}
 
           <div>
             <Container fluid className="p-0">

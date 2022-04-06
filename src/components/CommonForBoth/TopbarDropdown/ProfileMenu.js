@@ -141,7 +141,6 @@ componentDidMount() {
 }
 
 const mapStateToProps = (state) => {
-  
   return {
     admin: state.AdminProfile,
   };
