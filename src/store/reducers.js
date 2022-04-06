@@ -46,7 +46,7 @@ const rootReducer = combineReducers({
   register: registerReducer,
 
   // partnerType
-  PartnerType: partnerTypeReducer,
+  Type: partnerTypeReducer,
 
   // partnerCategory
   Category: partnerCategoryReducer,

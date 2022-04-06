@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import "./PartnerTypes.scss";
 import { connect, useDispatch, useSelector } from "react-redux";
 import BackBtn from "../../BackBtn";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import EmptySection from "../../../components/EmptySection/EmptySection";
 import ReactPaginate from "react-paginate";
 import {
@@ -26,7 +26,7 @@ const PartnerTypes = () => {
     // console.log(partnerType);
   }, [pageNumber]);
 
-  let history = useHistory();
+  // let history = useHistory();
   const addNewPartnerType = () => {
     if (type === "") {
       alert("Please enter something");

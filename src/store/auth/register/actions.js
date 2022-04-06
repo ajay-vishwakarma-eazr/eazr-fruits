@@ -17,10 +17,12 @@ export const registerUserSuccess = (register) => {
   return (dispatch) => {
     axios
       .post(`${ip}/admins`, register, {
+
+        
         headers: {
           Authorization:
             "Bearer " +
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiY29udGFjdE51bWJlciI6Ijg5MjgzMzc3MzkiLCJ0aW1lc3RhbXAiOiIxNjQwNjc1NTk2MzQ0IiwiaWF0IjoxNjQwNjc1NTk2LCJleHAiOjE2NDkxNDI3OTZ9.RwelAgrcfTjHNV162lbqUy6hsCj3_29A0LXEhRZcbrY",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTk5LCJjb250YWN0TnVtYmVyIjoiODkyODMzNzczOSIsInRpbWVzdGFtcCI6IjE2NDkxNTU2MjA5ODMiLCJpYXQiOjE2NDkxNTU2MjAsImV4cCI6MTY1NzYyMjgyMH0.Z_Lgx9urFOKrvq8azBIGOp7VFVlU2-P4_UtV8JJdh98",
         },
       })
       .then((res) => {

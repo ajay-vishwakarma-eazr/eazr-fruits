@@ -36,6 +36,7 @@ export const getPartnerType = (pageNumber) => {
       });
   };
 };
+
 export const getPartnerTypeBrandInformation = () => {
   return (dispatch) => {
     dispatch({ type: TYPE_LOADING });

@@ -11,6 +11,7 @@ import {
 import { useEffect } from "react";
 import { getPartnerCategoryBrandInformation } from "../../../store/PartnerCategory/action";
 import { getPartnerTypeBrandInformation } from "../../../store/partners/PartnerType/actions/action";
+// import { getPartnerTypeBrand } from "../../../store/partners/PartnerType/actions/action";
 const BrandInformation = (props) => {
   const { id } = useParams();
   const [edit, setEdit] = useState(true);
@@ -26,12 +27,14 @@ const BrandInformation = (props) => {
 
   useEffect(() => {
     props.getPartnerCategoryBrandInformation();
+    // props.getPartnerTypeBrandInformation();
+    // props.getPartnerTypeBrand();
   }, [brandInformation]);
   const getDisableEdit = (disableEdit) => {
     setEdit(disableEdit);
   };
   const onSave = () => {
-    props.updatePartnerDetails(id, brandInformation);
+    props.updatePartnerDetails(brandInformation);
     setEdit(!edit);
   };
   return (
@@ -92,7 +95,7 @@ const BrandInformation = (props) => {
         >
           {/* {props.partnerType.data.map((e, key) => { */}
 
-          {props.PartnerTypes.partnerType.data.map((e, key) => {
+          {props.partnerTypes.partnerType?.data.map((e, key) => {
             return (
               <option key={key} value={e.id} selected>
                 {e.type}
@@ -183,18 +186,19 @@ const BrandInformation = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    partnerCategory: state.partners.partnerCategory,
-    partnerType: state.partners.partnerType,
+    // partnerCategory: state.partners.partnerCategory,
+    // partnerType: state.partners.partnerType,
     partner: state.partners.partner,
     errors: state.partners.errors,
     partnerCategory: state.Category,
-    PartnerTypes: state.PartnerType,
+    partnerTypes: state.Type,
   };
 };
 
 export default connect(mapStateToProps, {
   getPartnerTypeBrandInformation,
   getPartnerCategoryBrandInformation,
+  // getPartnerTypeBrand,
   // getPartnersTypeById,
   updatePartnerDetails,
   clearErrors,

@@ -26,7 +26,7 @@ class CreditScoreDetails extends PureComponent {
 
   render() {
     let data;
-debugger;
+
     if (this.props.credit.loading === true) {
       data = (
         <Loader />
@@ -91,8 +91,7 @@ debugger;
         <Container fluid>
           <BackBtn route="users" />
           <Row>
-            <Col xs={12}>
-              {data}</Col>
+            <Col xs={12}>{data}</Col>
           </Row>
         </Container>
       </div>

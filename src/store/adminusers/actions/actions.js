@@ -54,14 +54,12 @@ export const FetchUsersFailure = (error) => {
 //   };
 // };
 
-export const fetchUsers = (pageNumber ) => {
+export const fetchUsers = (pageNumber) => {
   // console.log("search",search);
   return function (dispatch) {
     dispatch(FetchUsersRequest);
     axios
-      .get(
-        `${ip}/users?page=${pageNumber}&limit=10&sort=id,DESC`
-      )
+      .get(`${ip}/users?page=${pageNumber}&limit=10&sort=id,DESC`)
       .then((res) => {
         const users = res.data;
         dispatch(FetchUsersSuccess(users));
@@ -72,7 +70,6 @@ export const fetchUsers = (pageNumber ) => {
       });
   };
 };
-
 
 export const fetchSearchUsers = (search, pageNumber) => {
   return function (dispatch) {
@@ -162,7 +159,6 @@ export const fetchUserById = (id) => {
   };
 };
 
-
 export const fetchUserBillById = (id) => {
   return (dispatch) => {
     dispatch(setUserLoading());
@@ -175,7 +171,6 @@ export const fetchUserBillById = (id) => {
         });
       })
       .catch((err) => {
-        
         dispatch({
           type: GET_USER_BILL_BY_ID_FAILED,
           payload: err.message,
@@ -184,8 +179,7 @@ export const fetchUserBillById = (id) => {
   };
 };
 
-
-export const  updateUserDetails = (id, formData, pageNumber) => {
+export const updateUserDetails = (id, formData, pageNumber) => {
   return (dispatch) => {
     dispatch(setUserLoading());
     axios
@@ -210,7 +204,6 @@ export const  updateUserDetails = (id, formData, pageNumber) => {
   };
 };
 
-
 export const updateSearchUserDetails = (id, formData, pageNumber) => {
   return (dispatch) => {
     dispatch(setUserLoading());
@@ -219,7 +212,6 @@ export const updateSearchUserDetails = (id, formData, pageNumber) => {
         ...formData,
       })
       .then((res) => {
-        debugger;
         axios
           .get(`${ip}/users?page=${pageNumber}&limit=10&sort=id,DESC`)
           .then((res) => {
@@ -287,7 +279,6 @@ export const updateWaveOffAmount = (id, formData) => {
   };
 };
 
-
 export const OnClickItem = (id) => {
   return {
     type: ONCLICK_ID,
@@ -302,14 +293,14 @@ export const setUsers = (user) => {
   };
 };
 
-
 export const calculateCreditScore = (phone) => {
-  console.log("phone",phone);
+  console.log("phone", phone);
   return (dispatch) => {
     dispatch(setUserLoading());
     axios
       .post(`https://eaza.eazr.in/api/get_user_score_details`, phone)
       .then((res) => {
+        debugger;
         dispatch({
           type: CREDIT_SCORE,
           payload: res.data.score,
@@ -324,4 +315,3 @@ export const calculateCreditScore = (phone) => {
       });
   };
 };
-

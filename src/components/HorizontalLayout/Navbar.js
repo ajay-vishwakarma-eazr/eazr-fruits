@@ -141,8 +141,8 @@ class Navbar extends Component {
                     </Link>
                   </li> */}
                   <li className="nav-item">
-                    <Link className="nav-link" to="partner-type">
-                      <i className="fas fa-align-justify mr-2"></i>{" "}
+                    <Link className="nav-link" to="/partner-type">
+                      <i className="fas fa-align-justify mr-2"></i>{""}
                       {this.props.t("Types & Categories")}
                     </Link>
                   </li>

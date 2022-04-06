@@ -176,7 +176,8 @@ class Register extends PureComponent {
                                       contactNumber: e.target.value,
                                     });
                                   }}
-                                  type="number"
+                                  type="text"
+                                  maxLength="10"
                                   className="form-control font-size-16"
                                   id="phone"
                                   placeholder="Enter phone"
@@ -274,7 +275,6 @@ class Register extends PureComponent {
 }
 
 const mapStateToProps = (state) => {
-  debugger;
   return {
     register: state.register,
   };
