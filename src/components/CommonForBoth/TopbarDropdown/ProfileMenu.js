@@ -33,7 +33,9 @@ class ProfileMenu extends Component {
     };
     this.toggle = this.toggle.bind(this);
   }
-
+componentDidMount() {
+  this.props.FetchAdminProfile();
+}
 
   toggle() {
     this.setState((prevState) => ({

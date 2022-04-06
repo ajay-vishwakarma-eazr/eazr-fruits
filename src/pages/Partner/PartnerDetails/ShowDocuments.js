@@ -13,7 +13,6 @@ const ShowDocuments = ({ img, docName }) => {
   const downloadImg = () => {
     FileSaver.saveAs(`${img}`, img);
   };
-  console.log("image", img);
   return (
     <>
       <div

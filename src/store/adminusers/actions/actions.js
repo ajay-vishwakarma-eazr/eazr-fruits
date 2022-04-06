@@ -300,7 +300,6 @@ export const calculateCreditScore = (phone) => {
     axios
       .post(`https://eaza.eazr.in/api/get_user_score_details`, phone)
       .then((res) => {
-        debugger;
         dispatch({
           type: CREDIT_SCORE,
           payload: res.data.score,

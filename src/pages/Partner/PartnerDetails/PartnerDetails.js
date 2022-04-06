@@ -10,6 +10,8 @@ import { Link } from "react-router-dom";
 import BusinessDescription from "./BusinessDescription";
 import { connect } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
+import { getPartnerCategoryBrandInformation } from "../../../store/PartnerCategory/action";
+import { getPartnerTypeBrandInformation } from "../../../store/partners/PartnerType/actions/action";
 // //actions
 import {
   getPartnerById,
@@ -23,6 +25,8 @@ const PartnerDetails = (props) => {
   const { id } = useParams();
   useEffect(() => {
     props.getPartnerById(id);
+    props.getPartnerCategoryBrandInformation();
+    props.getPartnerTypeBrandInformation();
   }, []);
 
   let history = useHistory();
@@ -99,9 +103,7 @@ const PartnerDetails = (props) => {
   let data;
 
   if (props.partners.loading === true) {
-    data = (
-      <Loader />
-    );
+    data = <Loader />;
   } else if (props.partners.partner) {
     const { partner } = props.partners;
 
@@ -238,6 +240,8 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
+  getPartnerCategoryBrandInformation,
+  getPartnerTypeBrandInformation,
   getPartnerById,
   updatePartnerDetails,
   // addTicket,

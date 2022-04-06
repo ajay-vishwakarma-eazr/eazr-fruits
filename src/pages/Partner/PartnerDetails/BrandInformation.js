@@ -11,7 +11,6 @@ import {
 import { useEffect } from "react";
 import { getPartnerCategoryBrandInformation } from "../../../store/PartnerCategory/action";
 import { getPartnerTypeBrandInformation } from "../../../store/partners/PartnerType/actions/action";
-// import { getPartnerTypeBrand } from "../../../store/partners/PartnerType/actions/action";
 const BrandInformation = (props) => {
   const { id } = useParams();
   const [edit, setEdit] = useState(true);
@@ -25,11 +24,11 @@ const BrandInformation = (props) => {
     paymentAtStore: props.partner.paymentAtStore,
   });
 
-  useEffect(() => {
-    props.getPartnerCategoryBrandInformation();
+  // useEffect(() => {
+  //   props.getPartnerCategoryBrandInformation();
     // props.getPartnerTypeBrandInformation();
     // props.getPartnerTypeBrand();
-  }, [brandInformation]);
+  // }, [brandInformation]);
   const getDisableEdit = (disableEdit) => {
     setEdit(disableEdit);
   };
@@ -95,13 +94,14 @@ const BrandInformation = (props) => {
         >
           {/* {props.partnerType.data.map((e, key) => { */}
 
-          {props.partnerTypes.partnerType?.data.map((e, key) => {
+          {props.partnerTypes.partnerType !== undefined ?
+          props.partnerTypes.partnerType.map((e, key) => {
             return (
               <option key={key} value={e.id} selected>
                 {e.type}
               </option>
             );
-          })}
+          }):"No data"}
           {/* <option value={brandInformation.partnerType}>Private Limited</option> */}
         </select>
       </div>
@@ -117,7 +117,7 @@ const BrandInformation = (props) => {
           }}
           defaultValue={brandInformation.partnerCategory.id}
         >
-          {Array.isArray(props.partnerCategory.partnerCategory)
+          {props.partnerCategory.partnerCategory !== undefined
             ? props.partnerCategory.partnerCategory.map((e, key) => {
                 return (
                   <option key={key} value={e.id} selected>
@@ -125,7 +125,7 @@ const BrandInformation = (props) => {
                   </option>
                 );
               })
-            : "loading"}
+            : "No data"}
         </select>
       </div>
       <div>
@@ -198,8 +198,6 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   getPartnerTypeBrandInformation,
   getPartnerCategoryBrandInformation,
-  // getPartnerTypeBrand,
-  // getPartnersTypeById,
   updatePartnerDetails,
   clearErrors,
 })(BrandInformation);
