@@ -197,6 +197,13 @@
   height: 6.7rem;
 }
 
+.document-images {
+  height: 100%;
+  width: auto;
+  padding: 5px;
+  background-size: cover;
+  border-radius: 15px;
+}
 .document-image-div embed {
   // padding-left: 1rem;
   // padding-top: 1rem;

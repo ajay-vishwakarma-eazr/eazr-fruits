@@ -38,18 +38,17 @@ const Customer = () => {
   const handleSearch = (e) => {
     setSearchUser(e.target.value);
     dispatch(fetchSearchUsers(searchUser, pageNumber));
-    dispatch(updateSearchUserDetails (search.id,searchUser, pageNumber));
+    dispatch(updateSearchUserDetails(search.id, searchUser, pageNumber));
   };
 
   const changePage = ({ selected }) => {
     const newSelect = selected + 1;
     setPageNumber(newSelect);
-  }; 
+  };
 
   let data;
   if (loading === true) {
     data = (
-      
       <Loader />
       // <div className="spinner-div">
       //   <ClipLoader color="#bbbbbb" loading={true} size={60} />
@@ -65,7 +64,7 @@ const Customer = () => {
               data-pattern="priority-columns"
             >
               <Table
-                 className="approved-partners-table"
+                className="approved-partners-table"
                 // center
                 striped
                 // bordered
@@ -138,8 +137,6 @@ const Customer = () => {
                       />
                       <i className="fa fa-search"></i>
                     </div>
-
-                    
 
                     {/* <div className="search-btn">
                       <button type="submit" 

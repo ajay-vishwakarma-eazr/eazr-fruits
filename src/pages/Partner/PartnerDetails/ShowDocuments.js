@@ -35,18 +35,17 @@ const ShowDocuments = ({ img, docName }) => {
           </>
         ) : (
           <>
-            <img
-              style={{
-                height: "100%",
-                width: "auto",
-                padding: "5px",
-                backgroundSize: "cover",
-                borderRadius: "15px",
-              }}
-              src={img === "" ? nodata : img}
-              onClick={img ? toggle : !toggle}
-              // onClick={toggle}
-            ></img>
+            {img === "" ? (
+              <img src={nodata} className="document-images" />
+            ) : (
+              <img
+                className="document-images"
+                
+                src={img === "" ? nodata : img}
+                onClick={toggle}
+                // onClick={toggle}
+              ></img>
+            )}
             <p className="document-title">{docName}</p>
           </>
         )}
