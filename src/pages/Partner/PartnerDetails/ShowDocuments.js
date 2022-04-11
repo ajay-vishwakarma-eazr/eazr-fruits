@@ -41,7 +41,7 @@ const ShowDocuments = ({ img, docName }) => {
               <img
                 className="document-images"
                 
-                src={img === "" ? nodata : img}
+                src={img}
                 onClick={toggle}
                 // onClick={toggle}
               ></img>
