@@ -33,7 +33,7 @@ const BrandInformation = (props) => {
     setEdit(disableEdit);
   };
   const onSave = () => {
-    props.updatePartnerDetails(brandInformation);
+    props.updatePartnerDetails(id, brandInformation);
     setEdit(!edit);
   };
   return (
@@ -94,14 +94,15 @@ const BrandInformation = (props) => {
         >
           {/* {props.partnerType.data.map((e, key) => { */}
 
-          {props.partnerTypes.partnerType !== undefined ?
-          props.partnerTypes.partnerType.map((e, key) => {
-            return (
-              <option key={key} value={e.id} selected>
-                {e.type}
-              </option>
-            );
-          }):"No data"}
+          {props.partnerTypes.brandPartnerType !== undefined
+            ? props.partnerTypes.brandPartnerType.map((e, key) => {
+                return (
+                  <option key={key} value={e.id} selected>
+                    {e.type}
+                  </option>
+                );
+              })
+            : "No data"}
           {/* <option value={brandInformation.partnerType}>Private Limited</option> */}
         </select>
       </div>
@@ -117,8 +118,8 @@ const BrandInformation = (props) => {
           }}
           defaultValue={brandInformation.partnerCategory.id}
         >
-          {props.partnerCategory.partnerCategory !== undefined
-            ? props.partnerCategory.partnerCategory.map((e, key) => {
+          {props.partnerCategory.brandPartnerCategory !== undefined
+            ? props.partnerCategory.brandPartnerCategory.map((e, key) => {
                 return (
                   <option key={key} value={e.id} selected>
                     {e.name}

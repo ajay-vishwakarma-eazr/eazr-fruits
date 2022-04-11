@@ -141,7 +141,7 @@ const PartnerDetails = (props) => {
         </div>
 
         <div className="partner-details-div">
-          <BrandInformation />
+          <BrandInformation/>
           <div className="right-partner-details-div">
             <LegalInformation />
             <BankAccountDetails id={id} />

@@ -26,20 +26,19 @@ const ShowDocuments = ({ img, docName }) => {
         {fileExtension === "pdf" || fileExtension === "PDF" ? (
           <>
             <embed
-              style={{ borderRadius: "15px" }}
+              className="document-pdf"
+              style={{ borderRadius: "15px", width: "auto" }}
               src={pdfimg}
               onClick={downloadImg}
             ></embed>
-            <p className="document-title">
-              {docName}
-            </p>
+            <p className="document-title">{docName}</p>
           </>
         ) : (
           <>
             <img
               style={{
                 height: "100%",
-                width: "100%",
+                width: "auto",
                 padding: "5px",
                 backgroundSize: "cover",
                 borderRadius: "15px",
@@ -48,9 +47,7 @@ const ShowDocuments = ({ img, docName }) => {
               onClick={img ? toggle : !toggle}
               // onClick={toggle}
             ></img>
-            <p className="document-title">
-             {docName}
-            </p>
+            <p className="document-title">{docName}</p>
           </>
         )}
       </div>

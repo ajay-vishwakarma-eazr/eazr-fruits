@@ -35,6 +35,7 @@ import ProfileMenu from "../CommonForBoth/TopbarDropdown/ProfileMenu";
 
 //Import Logos
 import logoSmLight from "../../assets/images/logo-sm-light.png";
+import picture from "../../assets/images/Picture2.png";
 import logoLight from "../../assets/images/logo-light.png";
 import logoDark from "../../assets/images/logo-dark.png";
 import logoSmDark from "../../assets/images/logo-sm-dark.png";
@@ -124,7 +125,8 @@ class Header extends Component {
 
                 <Link to="/" className="logo logo-light">
                   <span className="logo-sm">
-                    <img src={logoSmLight} alt="" height="22" />
+                    {/* <img src={picture} alt="" height="30" width="30" /> */}
+                    <img src={logoDark} alt="" height="22" />
                   </span>
                   <span className="logo-lg">
                     <img src={logoLight} alt="" height="20" />

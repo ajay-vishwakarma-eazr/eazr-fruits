@@ -34,7 +34,6 @@ export const getPartners = (pageNumber) => {
     dispatch(setPartersLoading());
 
     axios
-      // .get(`${ip}/partners?page=${pageNumber}&limit=10&sort=id,DESC`)
       .get(
         `${ip}/partners?filter=status||ne||1&page=${pageNumber}&limit=10&sort=id,DESC`
       )
@@ -59,9 +58,7 @@ export const searchOnboardingPartners = (search) => {
     dispatch(setPartersLoading());
 
     axios
-      // .get(`${ip}/partners?page=${pageNumber}&limit=10&sort=id,DESC`)
       .get(
-        // `${ip}/partners?filter=status||ne||1&filter=email||$contL||${search}&filter=contactNumber||$contL||${search}}`
         `${ip}/partners?filter=status||ne||1&s={"$or": [{"businessName": {"contL":"${search}"}},{"contactNumber": {"contL":"${search}"}},{"email": {"contL":"${search}"}}]}`
       )
       .then((res) => {
@@ -145,21 +142,6 @@ export const getPartnerById = (id) => {
   };
 };
 
-// export const updatePartnerDetails = (id, updateObj) => {
-//   return (dispatch) => {
-//     dispatch(setPartersLoading());
-//     axios
-//       .patch(`${ip}/partners/${id}`, {
-//         ...updateObj,
-//       })
-//       .then((res) => {
-//         dispatch({ type: UPDATE_PARTNER, payload: res.data });
-//       })
-//       .catch((err) => {
-//         dispatch({ type: UPDATE_PARTNER_FAILED, payload: err.response.data });
-//       });
-//   };
-// };
 
 export const updatePartnerDetails = (id, updateObj) => {
   return (dispatch) => {

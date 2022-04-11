@@ -12,6 +12,10 @@
 //   background: $input-background;
 // }
 
+.approved-partners-row {
+  width: 70%;
+}
+
 .approved-partners .card {
   display:flex;
   background: $white-table-card;
@@ -72,10 +76,11 @@
     align-items: center;
 
     button {
-      width: 100%;
+      object-fit: contain;
+      height:30px;
       background: $eazr-color;
       color: #fff;
-      padding: $button-padding;
+      padding:0 1.5rem;
       border-radius: $button-radius;
       outline: none;
       border: none;
@@ -93,5 +98,11 @@
     h6 {
       margin: 0.5rem 0;
     }
+  }
+}
+
+@media (max-width: 1024px) {
+  .approved-partners-row {
+    width: 100%;
   }
 }

@@ -68,7 +68,7 @@ const HoldModal = (
   return (
     <div>
       <Button className="hold-modal-toggler" color="warning" onClick={toggle}>
-        On Hold
+        OnHold
       </Button>
       <Modal
         isOpen={modal}

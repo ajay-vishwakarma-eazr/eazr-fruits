@@ -23,6 +23,7 @@ const UserProfile = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   useEffect(() => {
+    debugger;
     dispatch(fetchUserById(id));
   }, []);
 
@@ -31,7 +32,7 @@ const UserProfile = () => {
     email: users.email,
     dob: users.dob,
     contactNumber: users.contactNumber,
-    address: users.address,
+    // address: users.address,
     pin: users.pincode,
     pan: users.pan,
     aadhaarNo: users.aadhar,
@@ -43,7 +44,7 @@ const UserProfile = () => {
     email,
     dob,
     contactNumber,
-    address,
+    // address,
     pin,
     pan,
     aadhaarNo,
@@ -66,7 +67,7 @@ const UserProfile = () => {
     dispatch(updateUserProfile(id, formData));
     setEdit(!edit);
   };
-
+console.log("selfie",selfie);
   return (
     <>
       <div className="page-content customer-page ">
@@ -95,7 +96,7 @@ const UserProfile = () => {
                 name="profileImg"
                 onChange={(e) =>
                   setFormData({
-                    selfie: URL.createObjectURL(e.target.files[0]),
+                    selfie: URL.createObjectURL(e.target.files),
                   })
                 }
               />
@@ -139,7 +140,7 @@ const UserProfile = () => {
                 onChange={(e) => handleChange(e)}
               />
             </div>
-            <div className="input-div">
+            {/* <div className="input-div">
               <h6>Address</h6>
               <textarea
                 disabled={edit}
@@ -150,7 +151,7 @@ const UserProfile = () => {
                 value={address}
                 onChange={(e) => handleChange(e)}
               ></textarea>
-            </div>
+            </div> */}
 
             <div className="input-div">
               <h6>Pin</h6>
@@ -200,6 +201,7 @@ const UserProfile = () => {
 };
 
 const mapStateToProps = (state) => {
+  debugger;
   return {
     users: state.Users.users,
   };

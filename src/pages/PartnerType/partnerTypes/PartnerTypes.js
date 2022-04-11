@@ -2,7 +2,7 @@ import React, { Component, useDebugValue, useEffect, useState } from "react";
 import { Container, Row, Col, Card, CardBody, Table } from "reactstrap";
 import PartnerTypesHeading from "./PartnerTypesHeading";
 import { useParams } from "react-router-dom";
-import "./PartnerTypes.scss";
+import "./partnerTypes.scss";
 import { connect, useDispatch, useSelector } from "react-redux";
 import BackBtn from "../../BackBtn";
 // import { useHistory } from "react-router-dom";
@@ -90,9 +90,9 @@ const PartnerTypes = () => {
     <div className="page-content approved-partners">
       <Container fluid>
         <BackBtn route="partner-type" />
-        <Row xs={12}>
+        <Row xs={12} className="approved-partners-row">
           <Col xs={12}>
-            <Card style={{ width: "100%" }}>
+            <Card>
               <CardBody>
                 <div className="search-filter">
                   <div>
@@ -105,10 +105,7 @@ const PartnerTypes = () => {
                     />
                   </div>
                   <div className="search-btn">
-                    <button
-                      style={{ minWidth: "100%" }}
-                      onClick={addNewPartnerType}
-                    >
+                    <button onClick={addNewPartnerType}>
                       Add Partner Type
                     </button>
                   </div>

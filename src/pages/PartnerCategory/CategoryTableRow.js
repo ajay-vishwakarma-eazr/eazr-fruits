@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCategory } from "../../store/PartnerCategory/action";
 import EditPartnerCategory from "./EditPartnerCategory";
-const CategoryTableRow = ({ id, categoryName, pageNumber }) => {
+const CategoryTableRow = ({ id, categoryName, createdTime, pageNumber }) => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   return (
     <tr>
       <td>{id}</td>
       <td>{categoryName}</td>
+      <td>{createdTime}</td>
       <td
         style={{
           display: "flex",

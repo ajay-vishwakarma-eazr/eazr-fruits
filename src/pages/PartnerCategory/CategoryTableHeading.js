@@ -3,9 +3,10 @@ import React from "react";
 const CategoryTableHeading = () => {
   return (
     <thead className="customer-table-heading">
-      {/* <th>Id</th> */}
+      <th>Id</th>
       <th>Category</th>
-      <th>Actions</th>
+      <th>Created Time</th>
+      <th style={{ textAlign: "center" }}>Actions</th>
     </thead>
   );
 };

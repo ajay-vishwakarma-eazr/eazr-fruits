@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { ip } from "../../config/config";
+import { ip } from "../../../config/config";
 const ShowTotalPartnerTypes = () => {
   const [numberofPartnerTypes, setNumberofPartnerTypes] = useState(0);
   useEffect(() => {
@@ -9,9 +9,6 @@ const ShowTotalPartnerTypes = () => {
     });
   }, []);
 
-  return <>
-  {!numberofPartnerTypes ? 0 : numberofPartnerTypes}
-  </>;
+  return <>{!numberofPartnerTypes ? 0 : numberofPartnerTypes}</>;
 };
 export default ShowTotalPartnerTypes;
-// kamlesh

@@ -6,6 +6,8 @@ import {
   DELETE_PARTNER_TYPE_FAILED,
   GET_PARTNER_TYPE,
   GET_PARTNER_TYPE_FAILED,
+  GET_PARTNER_TYPE_BRAND,
+  GET_PARTNER_TYPE_BRAND_FAILED,
   GET_PARTNER_TYPE_BY_ID,
   GET_PARTNER_TYPE_BY_ID_FAILED,
   UPDATE_TYPE,
@@ -44,13 +46,13 @@ export const getPartnerTypeBrandInformation = () => {
       .get(`${ip}/partner-types?sort=id,DESC`)
       .then((res) => {
         dispatch({
-          type: GET_PARTNER_TYPE,
+          type: GET_PARTNER_TYPE_BRAND,
           payload: res.data,
         });
       })
       .catch((err) => {
         dispatch({
-          type: GET_PARTNER_TYPE_FAILED,
+          type: GET_PARTNER_TYPE_BRAND_FAILED,
           payload: err.message,
         });
       });
@@ -115,24 +117,7 @@ export const updatePartnerType = (id, updateType, pageNumber) => {
   };
 };
 
-// export const updatePartnerType = (id, updateType) => {
-//   return (dispatch) => {
-//     axios
-//       .patch(`${ip}/partner-types/${id}`, { ...updateType })
-//       .then((res) => {
-//         dispatch({
-//           type: UPDATE_TYPE,
-//           payload: res.data,
-//         });
-//       })
-//       .catch((err) => {
-//         dispatch({
-//           type: UPDATE_TYPE_FAILED,
-//           payload: err.response.data,
-//         });
-//       });
-//   };
-// };
+
 
 export const deleteType = (id, pageNumber) => {
   return (dispatch) => {
@@ -163,22 +148,4 @@ export const deleteType = (id, pageNumber) => {
   };
 };
 
-// export const deleteType = (id) => {
-//   return (dispatch) => {
-//     axios
-//       .delete(`${ip}/partner-types/${id}`)
-//       .then((res) => {
-//         console.log(res);
-//         dispatch({
-//           type: DELETE_PARTNER_TYPE,
-//           payload: res.data,
-//         });
-//       })
-//       .catch((err) => {
-//         dispatch({
-//           type: DELETE_PARTNER_TYPE_FAILED,
-//           payload: err.response.data.message,
-//         });
-//       });
-//   };
-// };
+

@@ -5,6 +5,8 @@ import {
   DELETE_PARTNER_CATEGORY,
   DELETE_PARTNER_CATEGORY_FAILED,
   GET_PARTNER_CATEGORY,
+  GET_PARTNER_CATEGORY_BRAND,
+  GET_PARTNER_CATEGORY_BRAND_FAILED,
   GET_PARTNER_CATEGORY_BY_ID,
   GET_PARTNER_CATEGORY_BY_ID_FAILED,
   GET_PARTNER_CATEGORY_FAILED,
@@ -14,6 +16,7 @@ import {
 
 const initialState = {
   partnerCategory: [],
+  brandPartnerCategory: [],
   loading: false,
   errors: null,
 };
@@ -38,6 +41,20 @@ const partnerCategoryReducer = (state = initialState, action) => {
         ...state,
         errors: action.payload,
       };
+
+    case GET_PARTNER_CATEGORY_BRAND:
+      return {
+        ...state,
+        brandPartnerCategory: action.payload,
+        errors: null,
+        loading: false,
+      };
+
+      case GET_PARTNER_CATEGORY_BRAND_FAILED:
+        return {
+          ...state,
+          errors:action.payload,
+        }
 
     case GET_PARTNER_CATEGORY_BY_ID:
       return {

@@ -77,6 +77,7 @@ const PartnerCategory = () => {
                       key={category.id}
                       id={category.id}
                       categoryName={category.name}
+                      createdTime={category.createdTimestamp.slice(0, 10)}
                       pageNumber={pageNumber}
                     />
                   );
@@ -94,9 +95,9 @@ const PartnerCategory = () => {
     <div className="page-content approved-partners">
       <Container fluid>
         <BackBtn route="partner-type" />
-        <Row>
+        <Row className="approved-partners-row">
           <Col xs={12}>
-            <Card style={{ width: "100%" }}>
+            <Card>
               <CardBody>
                 <div className="search-filter">
                   <div>
@@ -109,10 +110,7 @@ const PartnerCategory = () => {
                     />
                   </div>
                   <div className="search-btn">
-                    <button
-                      style={{ minWidth: "70%" }}
-                      onClick={addNewPartnerCategory}
-                    >
+                    <button onClick={addNewPartnerCategory}>
                       Add Partner Category
                     </button>
                   </div>

@@ -21,7 +21,7 @@ import Partner from "../pages/Partner/Partner";
 // import User from "../pages/Admin/User/User";
 import HelpAndSupport from "../pages/HelpAndSupport/HelpAndSupport";
 import PartnerDetails from "../pages/Partner/PartnerDetails/PartnerDetails";
-import PartnerType from "../pages/PartnerType/Index";
+import PartnerType from "../pages/Dashboard/TypesCategoriesDashboard/index";
 // import AllUsers from "../pages/Admin/User/User"
 import Ticket from "../pages/Partner/Ticket";
 import OnHoldDetails from "../pages/Partner/PartnerDetails/OnHold/OnHoldDetails";

@@ -135,6 +135,7 @@ const Transaction = () => {
             <div className="search-filter">
               <div>
                 <h6>Search Transactions</h6>
+                {/* <div style={{display: 'flex', flexDirection: 'row'}}> */}
                 <input
                   type="text"
                   value={searchTranscation}
@@ -142,6 +143,7 @@ const Transaction = () => {
                   onChange={handleSearch}
                 />
                 <i className="fa fa-search"></i>
+                {/* </div> */}
               </div>
 
               

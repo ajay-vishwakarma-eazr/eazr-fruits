@@ -38,24 +38,7 @@ export const FetchUsersFailure = (error) => {
   };
 };
 
-// export const fetchUsers = (pageNumber) => {
-//   return function (dispatch) {
-//     dispatch(FetchUsersRequest);
-//     axios
-//       .get(`${ip}/users?page=${pageNumber}&limit=10&sort=id,DESC`)
-//       .then((res) => {
-//         const users = res.data;
-//         dispatch(FetchUsersSuccess(users));
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//         dispatch(FetchUsersFailure(err.message));
-//       });
-//   };
-// };
-
 export const fetchUsers = (pageNumber) => {
-  // console.log("search",search);
   return function (dispatch) {
     dispatch(FetchUsersRequest);
     axios
@@ -95,29 +78,6 @@ export const fetchSearchUsers = (search, pageNumber) => {
   };
 };
 
-// export const fetchSearchUsers = (search, pageNumber) => {
-//   return function (dispatch) {
-//     dispatch(FetchUsersRequest);
-//     axios
-//       .get(
-//         `${ip}/users?filter=fullName||$contL||${search}&or=contactNumber||$contL||${search}&or=email||$contL||${search}&page=${pageNumber}&limit=10`
-//       )
-//       .then((res) => {
-//         console.log(res.data);
-//         const users = res.data;
-//         dispatch({
-//           type: GET_SEARCH_USER,
-//           payload: users,
-//         });
-//       })
-//       .catch((err) => {
-//         dispatch({
-//           type: GET_SEARCH_USER_FAILED,
-//           payload: err.message,
-//         });
-//       });
-//   };
-// };
 export const setUserLoading = () => {
   return {
     type: USER_LOADING,

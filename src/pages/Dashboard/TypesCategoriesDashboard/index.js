@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from "reactstrap";
-import MiniWidgets from "../Dashboard/MiniWidgets";
-import RevenueAnalytics from "../Dashboard/RevenueAnalytics";
-import SalesAnalytics from "../Dashboard/SalesAnalytics";
-import EarningReports from "../Dashboard/EarningReports";
-import RecentlyActivity from "../Dashboard/RecentlyActivity";
-import "./Style.scss";
-import TotalPartnerTypes from "./TotalPartnerTypes";
+import MiniWidgets from "../../Dashboard/MiniWidgets";
+import RevenueAnalytics from "../../Dashboard/RevenueAnalytics";
+import SalesAnalytics from "../../Dashboard/SalesAnalytics";
+import EarningReports from "../../Dashboard/EarningReports";
+import RecentlyActivity from "../../Dashboard/RecentlyActivity";
+import "./style.scss";
+import TotalPartnerTypes from "./ShowTotalPartnerTypes";
 import TotalPartnerCategories from "./TotalPartnerCategories";
 
-class Index extends Component {
+class Types extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,16 +17,16 @@ class Index extends Component {
         {
           icon: "fas fa-users",
           title: "Partner Types",
-          value: <TotalPartnerTypes/>,
+          value: <TotalPartnerTypes />,
           route: "partner-types",
-          rate: "2.4%",
+          rate: "3.4%",
           desc: "From previous period",
         },
 
         {
           icon: "fas fa-users",
           title: "Partner Categories",
-          value: <TotalPartnerCategories/>,
+          value: <TotalPartnerCategories />,
           rate: "2.4%",
           route: "partner-category",
           desc: "From previous period",
@@ -67,4 +67,4 @@ class Index extends Component {
   }
 }
 
-export default Index;
+export default Types;

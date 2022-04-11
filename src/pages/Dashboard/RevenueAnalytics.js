@@ -11,12 +11,12 @@ class RevenueAnalytics extends Component {
       {
         name: "2022",
         type: "column",
-        data: [4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        data: [7, 5, 6, 4, 0, 0, 0, 0, 0, 0, 0, 0],
       },
       {
         name: "2021",
         type: "line",
-        data: [4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        data: [7, 5, 6, 4, 0, 0, 0, 0, 0, 0, 0, 0],
       },
     ],
     options: {

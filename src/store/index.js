@@ -18,12 +18,32 @@ const persistConfig = {
   key: "root",
 
   storage, // define which storage to use
-//   whitelist: ["auth", "partners", "partnerModules", "Account", "Forget", "Layout",
-// "adminUsers", "businessPartner", "deliveryPartners", "orders"]
+  // whitelist: [
+    // "auth",
+    // "partners",
+    // "products",
+    // "settlements",
+    // "tickets",
+    // "Type",
+    // "bank",
+    // "transactions",
+    // "Category",
+    // "AdminProfile",
+    // "partnerModules",
+    // "Account",
+    // "Forget",
+    // "register",
+    // "Layout",
+    // "adminUsers",
+    // "businessPartner",
+    // "deliveryPartners",
+    // "orders",
+    // "Users"
+  // ],
   stateReconciler: hardSet,
 };
 
-const persistedReducer = persistReducer(persistConfig, rootReducer) // create a persisted reducer
+const persistedReducer = persistReducer(persistConfig, rootReducer); // create a persisted reducer
 const initialState = {};
 const middleware = [ReduxThunk];
 

@@ -14,6 +14,8 @@ import {
   GET_PARTNER_CATEGORY_BY_ID_FAILED,
   UPDATE_CATEGORY,
   UPDATE_CATEGORY_FAILED,
+  GET_PARTNER_CATEGORY_BRAND,
+  GET_PARTNER_CATEGORY_BRAND_FAILED,
 } from "./actionTypes";
 
 export const getPartnerCategoryBrandInformation = () => {
@@ -23,14 +25,14 @@ export const getPartnerCategoryBrandInformation = () => {
       .get(`${ip}/partner-category?sort=id,DESC`)
       .then((res) => {
         dispatch({
-          type: GET_PARTNER_CATEGORY,
+          type: GET_PARTNER_CATEGORY_BRAND,
           payload: res.data,
         });
       })
       .catch((err) => {
         dispatch({
-          type: GET_PARTNER_CATEGORY_FAILED,
-          payload: err.response?.data,
+          type: GET_PARTNER_CATEGORY_BRAND_FAILED,
+          payload: err.message,
         });
       });
   };

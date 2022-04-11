@@ -10,10 +10,13 @@ import {
   GET_PARTNER_TYPE_BY_ID_FAILED,
   UPDATE_TYPE,
   UPDATE_TYPE_FAILED,
+  GET_PARTNER_TYPE_BRAND,
+  GET_PARTNER_TYPE_BRAND_FAILED,
 } from "../actions/actiontypes";
 
 const initialState = {
   partnerType: [],
+  brandPartnerType: [],
   loading: false,
   errors: null,
 };
@@ -38,6 +41,20 @@ const partnerTypeReducer = (state = initialState, action) => {
         ...state,
         errors: action.payload,
       };
+
+    case GET_PARTNER_TYPE_BRAND:
+      return {
+        ...state,
+        brandPartnerType: action.payload,
+        errors: null,
+        loading: false,
+      };
+
+      case GET_PARTNER_TYPE_BRAND_FAILED:
+        return {
+          ...state,
+          errors:action.payload,
+        }
 
     case GET_PARTNER_TYPE_BY_ID:
       return {
