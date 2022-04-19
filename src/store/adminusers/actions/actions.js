@@ -15,6 +15,8 @@ import {
   GET_SEARCH_USER_FAILED,
   CREDIT_SCORE,
   CREDIT_SCORE_FAILED,
+  UPLOAD,
+  UPLOAD_FAILED,
 } from "./actiontypes";
 import axios from "axios";
 import { ip } from "../../../config/config";
@@ -115,6 +117,31 @@ export const fetchUserById = (id) => {
           payload: err.message,
           // payload: err.response.data,
         });
+      });
+  };
+};
+
+export const imageUpload = (id, formData) => {
+  return (dispatch) => {
+    dispatch(setUserLoading());
+    axios
+      .post(`${ip}/common/upload/${id}`, formData, {
+        body: {
+          "Content-Type": "File",
+        },
+      })
+      .then((res) => {
+        dispatch({
+          type: UPLOAD,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: UPLOAD_FAILED,
+          payload: err.message,
+        });
+        // this.errors.push(e);
       });
   };
 };

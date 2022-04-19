@@ -80,7 +80,8 @@
 }
 .view-partners input,
 .view-partners textarea,
-.view-partners select {
+.view-partners select 
+{
   font-size: 0.9rem;
   margin: 0;
   border: none;
@@ -88,6 +89,13 @@
   resize: none;
   width: 200px;
   color: #000;
+  // display: none;
+}
+
+.category-options {
+  display: flex;
+  height: 100px;
+  width:30px;
 }
 
 .auth-modal-body label {

@@ -109,6 +109,7 @@ const BrandInformation = (props) => {
       <div>
         <h3>Business Category</h3>
         <select
+          
           disabled={edit}
           onChange={(e) => {
             setBrandInformation({
@@ -121,7 +122,13 @@ const BrandInformation = (props) => {
           {props.partnerCategory.brandPartnerCategory !== undefined
             ? props.partnerCategory.brandPartnerCategory.map((e, key) => {
                 return (
-                  <option key={key} value={e.id} selected>
+                  <option
+                    style={{display:"flex",height:"20px", width: "100px" }}
+                    // className="category-options"
+                    key={key}
+                    value={e.id}
+                    selected
+                  >
                     {e.name}
                   </option>
                 );

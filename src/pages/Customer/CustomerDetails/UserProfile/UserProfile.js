@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import avatar from "../../../../assets/images/users/avatar-3.jpg";
 import AuthModal from "../../../Partner/PartnerDetails/AuthModal";
@@ -7,6 +6,7 @@ import "./userprofile.scss";
 import { connect, useDispatch, useSelector } from "react-redux";
 import {
   fetchUserById,
+  imageUpload,
   updateUserProfile,
 } from "../../../../store/adminusers/actions/actions";
 
@@ -17,16 +17,21 @@ import { Container } from "reactstrap";
 import { withRouter } from "react-router-dom";
 import { withNamespaces } from "react-i18next";
 import CreditDetails from "../CreditDetails/CreditDetails";
+import axios from "axios";
+import { ip } from "../../../../config/config";
 const UserProfile = () => {
   const { users } = useSelector((state) => state.Users);
+  const [image, setImage] = useState(null);
+  const [previewImage, setPreviewImage] = useState(null);
   const [edit, setEdit] = useState(true);
   const dispatch = useDispatch();
   const { id } = useParams();
   useEffect(() => {
-    debugger;
     dispatch(fetchUserById(id));
+    // dispatch(imageUpload(id));
   }, []);
 
+  // bodyFormData.append('image', imageFile);
   const [formData, setFormData] = useState({
     fullName: users.fullName,
     email: users.email,
@@ -48,9 +53,17 @@ const UserProfile = () => {
     pin,
     pan,
     aadhaarNo,
-    profileImg,
     selfie,
   } = formData;
+
+  // const selectFile(e) {
+  //   this.setState({
+  //     currentFile: e.target.files[0],
+  //     previewImage: URL.createObjectURL(e.target.files[0]),
+  //     progress: 0,
+  //     message: ""
+  //   });
+  // }
 
   const handleChange = (e) => {
     setFormData({
@@ -67,7 +80,7 @@ const UserProfile = () => {
     dispatch(updateUserProfile(id, formData));
     setEdit(!edit);
   };
-console.log("selfie",selfie);
+  console.log("selfie", selfie);
   return (
     <>
       <div className="page-content customer-page ">
@@ -84,19 +97,19 @@ console.log("selfie",selfie);
             <div className="user-img">
               <img src={selfie == null ? nouser : selfie} alt="img" />
               {/* <img src={ selfie } alt="img" /> */}
-              <label htmlFor="profileImg">
+              <label htmlFor="selfie">
                 {!edit ? <i className="fa fa-edit"></i> : ""}
               </label>
 
               <input
                 type="file"
-                id="profileImg"
+                id="selfie"
                 style={{ display: "none" }}
                 // value={selfie}
-                name="profileImg"
+                name="selfie"
                 onChange={(e) =>
                   setFormData({
-                    selfie: URL.createObjectURL(e.target.files),
+                    // selfie: URL.createObjectURL(e.target.files[0]),
                   })
                 }
               />
@@ -200,15 +213,4 @@ console.log("selfie",selfie);
   );
 };
 
-const mapStateToProps = (state) => {
-  debugger;
-  return {
-    users: state.Users.users,
-  };
-};
-
-export default withRouter(
-  connect(mapStateToProps, { fetchUserById, updateUserProfile })(
-    withNamespaces()(UserProfile)
-  )
-);
+export default UserProfile;

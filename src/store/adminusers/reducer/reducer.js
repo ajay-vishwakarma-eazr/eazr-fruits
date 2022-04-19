@@ -14,6 +14,8 @@ import {
   CREDIT_SCORE,
   CREDIT_SCORE_FAILED,
   CLEAR_DATA,
+  UPLOAD,
+  UPLOAD_FAILED,
 } from "../actions/actiontypes";
 
 export const initialState = {
@@ -21,6 +23,7 @@ export const initialState = {
   users: [],
   errror: "",
   search:[],
+  image:""
 };
 
 export const UserReducer = (state = initialState, action) => {
@@ -104,6 +107,19 @@ export const UserReducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
       };
+
+      case UPLOAD: 
+      return {
+        ...state,
+        loading:false,
+        image:action.payload,        
+      }
+
+      case UPLOAD_FAILED: 
+      return {
+        ...state,
+        error:action.payload,
+      }
 
     case CREDIT_SCORE:
       return {

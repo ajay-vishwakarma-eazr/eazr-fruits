@@ -56,10 +56,10 @@ export const getPartners = (pageNumber) => {
 export const searchOnboardingPartners = (search) => {
   return (dispatch) => {
     dispatch(setPartersLoading());
-
     axios
       .get(
-        `${ip}/partners?filter=status||ne||1&s={"$or": [{"businessName": {"contL":"${search}"}},{"contactNumber": {"contL":"${search}"}},{"email": {"contL":"${search}"}}]}`
+        // `${ip}/partners?filter=status||ne||1&s={"$or": [{"businessName": {"contL":"${search}"}},{"contactNumber": {"contL":"${search}"}},{"email": {"contL":"${search}"}}]}`
+        `${ip}/partners?s={"$and": [{"status":{"$ne":1}},{"businessName": {"contL":"${search}"}}]}`
       )
       .then((res) => {
         dispatch({

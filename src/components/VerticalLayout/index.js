@@ -55,9 +55,9 @@ class Layout extends Component {
   componentDidMount() {
     // Scroll Top to 0
     window.scrollTo(0, 0);
-    let currentage = this.capitalizeFirstLetter(this.props.location.pathname);
+    let currentPage = this.capitalizeFirstLetter(this.props.location.pathname);
 
-    document.title = currentage + " | Eazr";
+    document.title = currentPage + " | Eazr";
     if (this.props.leftSideBarTheme) {
       this.props.changeSidebarTheme(this.props.leftSideBarTheme);
     }

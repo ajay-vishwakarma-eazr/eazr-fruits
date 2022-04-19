@@ -53,9 +53,9 @@ class Layout extends Component {
     window.scrollTo(0, 0);
 
     const title = this.props.location.pathname;
-    let currentage = title.charAt(1).toUpperCase() + title.slice(2);
+    let currentPage = title.charAt(1).toUpperCase() + title.slice(2);
 
-    document.title = currentage + " | Eazr";
+    document.title = currentPage + " | Eazr";
 
     this.props.changeLayout("horizontal");
     if (this.props.topbarTheme) {

@@ -18,3 +18,5 @@ export const GET_SEARCH_USER_FAILED = " GET_SEARCH_USER_FAILED";
 export const CREDIT_SCORE = " CREDIT_SCORE";
 export const CREDIT_SCORE_FAILED = " CREDIT_SCORE_FAILED";
 export const CLEAR_DATA = " CLEAR_DATA";
+export const UPLOAD = " UPLOAD";
+export const UPLOAD_FAILED = " UPLOAD_FAILED";

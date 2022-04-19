@@ -18,8 +18,8 @@
 .search-filter input {
   outline: none;
   border: none;
-  width: 100%;
-  background-color: #f1f1f6;
+  width: 60%;
+  background-color: #dfdfe8;
   border-radius: 15px;
 }
 

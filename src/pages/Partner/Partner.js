@@ -168,7 +168,7 @@ const mapStateToProps = (state) => {
   return {
     partners: state.partners,
   };
-};
+}; 
 
 export default connect(mapStateToProps, {
   getPartners,
