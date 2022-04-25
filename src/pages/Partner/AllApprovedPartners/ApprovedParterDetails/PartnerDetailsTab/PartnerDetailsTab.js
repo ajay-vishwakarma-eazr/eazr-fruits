@@ -18,6 +18,17 @@ const PartnerDetailsTab = (props) => {
           Transactions
         </NavLink>
 
+        {/* <NavLink
+          to={`/partner-initiated-transactions/${id}`}
+          activeStyle={{
+            borderBottom: "2px solid #0371e3",
+            color: "#0371e3",
+            fontWeight: "bold",
+          }}
+        >
+          Initiated transactions
+        </NavLink> */}
+
         <NavLink
           to={`/partner-settlements/${id}`}
           activeStyle={{
@@ -28,6 +39,7 @@ const PartnerDetailsTab = (props) => {
         >
           Settlements
         </NavLink>
+
         {/* <NavLink
           to="/user-reports"
           activeStyle={{
@@ -38,6 +50,7 @@ const PartnerDetailsTab = (props) => {
         >
           Order
         </NavLink> */}
+
         {/* <NavLink
           to="/user-reports"
           activeStyle={{

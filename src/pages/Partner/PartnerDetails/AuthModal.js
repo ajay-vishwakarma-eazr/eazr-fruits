@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Modal, ModalBody,ModalHeader } from "reactstrap";
 import { connect } from "react-redux";
 import {useParams, useHistory} from "react-router-dom"
+import "./partnerdetails.scss";
 
 //actions
 import { clearErrors } from "../../../store/partners/actions";

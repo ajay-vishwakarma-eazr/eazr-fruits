@@ -72,6 +72,7 @@ import UserProfile from "../pages/Customer/CustomerDetails/UserProfile/UserProfi
 import CreditDetails from "../pages/Customer/CustomerDetails/CreditDetails/CreditDetails";
 import CreditScoreDetails from "../pages/Customer/CustomerDetails/CreditDetails/CreditScoreDetails"
 import PartnerAllTransactions from "../pages/Partner/AllApprovedPartners/ApprovedParterDetails/PartnerAllTarnsactions/PartnerAllTransactions";
+// import PartnerInitiatedTransactions from "../pages/Partner/AllApprovedPartners/ApprovedParterDetails/PartnerAllTarnsactions/PartnerInitiatedTransactions";
 import AllApprovedPartners from "../pages/Partner/AllApprovedPartners/AllApprovedPartners";
 import PartnerSettlements from "../pages/Partner/AllApprovedPartners/ApprovedParterDetails/PartnerAllSettlements/PartnerSettlements";
 import Transaction from "../pages/Customer/Transactions/Transaction";
@@ -116,6 +117,7 @@ const authProtectedRoutes = [
   { path: "/partner-approval", component: Partner },
   { path: "/approved-partner", component: AllApprovedPartners },
   { path: "/partner-transactions/:id", component: PartnerAllTransactions },
+  // { path: "/partner-initiated-transactions/:id", component: PartnerInitiatedTransactions },
   { path: "/partner-settlements/:id", component: PartnerSettlements },
 
   //Admin Module Routes

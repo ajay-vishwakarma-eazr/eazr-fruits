@@ -91,7 +91,7 @@ const LegalInformation = (props) => {
       <div>
         <h3>Address</h3>
         <textarea
-          style={{ height: "20px" }}
+          style={{ height: "40px" }}
           disabled={edit}
           value={legalInformation.address.addr}
           onChange={(e) =>

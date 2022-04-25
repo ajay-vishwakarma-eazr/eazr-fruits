@@ -20,13 +20,13 @@ import CreditDetails from "../CreditDetails/CreditDetails";
 import axios from "axios";
 import { ip } from "../../../../config/config";
 const UserProfile = () => {
-  const { users } = useSelector((state) => state.Users);
-  const [image, setImage] = useState(null);
+  const { users, imageUpload } = useSelector((state) => state.Users);
+  const [image, setImage] = useState({ preview: "", raw: "" });
   const [previewImage, setPreviewImage] = useState(null);
   const [edit, setEdit] = useState(true);
   const dispatch = useDispatch();
   const { id } = useParams();
-  useEffect(() => {
+  useEffect((data) => {
     dispatch(fetchUserById(id));
     // dispatch(imageUpload(id));
   }, []);
@@ -56,7 +56,7 @@ const UserProfile = () => {
     selfie,
   } = formData;
 
-  // const selectFile(e) {
+  // const selectFile = (e) => {
   //   this.setState({
   //     currentFile: e.target.files[0],
   //     previewImage: URL.createObjectURL(e.target.files[0]),
@@ -69,6 +69,11 @@ const UserProfile = () => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
+    });
+
+    dispatch(imageUpload(selfie));
+    setFormData({
+      selfie: selfie,
     });
   };
 
@@ -109,7 +114,7 @@ const UserProfile = () => {
                 name="selfie"
                 onChange={(e) =>
                   setFormData({
-                    // selfie: URL.createObjectURL(e.target.files[0]),
+                    selfie: URL.createObjectURL(e.target.files[0]),
                   })
                 }
               />
@@ -143,6 +148,7 @@ const UserProfile = () => {
                 onChange={(e) => handleChange(e)}
               />
             </div>
+
             <div className="input-div">
               <h6>Contact</h6>
               <input
@@ -153,6 +159,7 @@ const UserProfile = () => {
                 onChange={(e) => handleChange(e)}
               />
             </div>
+
             {/* <div className="input-div">
               <h6>Address</h6>
               <textarea
@@ -178,6 +185,7 @@ const UserProfile = () => {
                 onChange={(e) => handleChange(e)}
               ></textarea>
             </div>
+
             <div className="input-div">
               <h6>PAN</h6>
               <input
@@ -188,6 +196,7 @@ const UserProfile = () => {
                 onChange={(e) => handleChange(e)}
               />
             </div>
+
             <div className="input-div">
               <h6>Aadhaar No</h6>
               <input

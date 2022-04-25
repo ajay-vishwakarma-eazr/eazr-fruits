@@ -4,7 +4,7 @@ const ApprovedPartnersHeading = () => {
   return (
     <thead className="partner-table-heading">
       <th>Profile Picture</th>
-      <th>Name</th>
+      <th>Brand Name</th>
       <th>Contact</th>
       <th>Email</th>
       {/* <th>Description</th> */}

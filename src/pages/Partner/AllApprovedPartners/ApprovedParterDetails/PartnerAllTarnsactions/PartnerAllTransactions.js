@@ -11,6 +11,12 @@ import {
 } from "../../../../../store/transactions/actions/action";
 import ReactPaginate from "react-paginate";
 import EmptySection from "../../../../../components/EmptySection/EmptySection";
+import {
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from "reactstrap";
 import PartnerTrancationsRow from "./PartnerTrancationsRow";
 import PartnerTranscationsHeading from "./PartnerTranscationsHeading";
 import BackBtn from "../../../../BackBtn";
@@ -20,10 +26,12 @@ import Loader from "../../../../Loader/Loader";
 class PartnerAllTransactions extends Component {
   constructor() {
     super();
+    this.toggle = this.toggle.bind(this);
     this.state = {
       searchTransactions: "",
       transactionList: null,
       pageNumber: 1,
+      dropdownOpen: false,
       // this.props.transactions.transactions.page,
     };
   }
@@ -39,6 +47,11 @@ class PartnerAllTransactions extends Component {
     const id = this.props.match.params.id;
     this.props.getPartnerTranscationSearch(id, this.state.searchTransactions);
   };
+  toggle() {
+    this.setState((prevState) => ({
+      dropdownOpen: !prevState.dropdownOpen,
+    }));
+  }
 
   changePage = ({ selected }) => {
     const newSelect = selected + 1;
@@ -54,9 +67,7 @@ class PartnerAllTransactions extends Component {
 
     let data;
     if (transactions?.loading === true) {
-      data = (
-        <Loader />
-      );
+      data = <Loader />;
     } else if (
       transactions.transactions?.data &&
       transactions.transactions.data?.length > 0
@@ -108,7 +119,7 @@ class PartnerAllTransactions extends Component {
       data = <EmptySection />;
     }
 
-    // <Button onClick{() => 
+    // <Button onClick{() =>
     //  setState={state}
     // }}
 
@@ -134,14 +145,35 @@ class PartnerAllTransactions extends Component {
                     />
                   </div>
 
-                      {/* <select
+                  {/* <select>
+                    <option value="All transactions">All transactions</option>
+                    <option value="Initiated transactions">Initiated transactions</option>
+                    <option value="Failed transactions">Failed transactions</option>
+                  </select> */}
+
+                  {/* <Dropdown
+                    isOpen={this.state.dropdownOpen} 
+                    toggle={this.toggle}
+                  >
+                    <DropdownToggle caret>Transactions</DropdownToggle>
+                    <DropdownMenu>
+                      <DropdownItem> Failed transactions </DropdownItem>
+                      <DropdownItem divider />
+                      <DropdownItem> Initiated transaction </DropdownItem>
+                      <DropdownItem disabled>Action</DropdownItem>
+                      <DropdownItem>Another Action</DropdownItem>
+                      <DropdownItem>Another Action</DropdownItem>
+                    </DropdownMenu>
+                  </Dropdown> */}
+
+                  {/* <select
                     value={""}
                     onChange={(e) =>
                       setSelectMonthFilter(e.currentTarget.value)
                     } */}
-                      {/* > */}
-                        {/* <option value="">0</option> */}
-                    {/* <div>
+                  {/* > */}
+                  {/* <option value="">0</option> */}
+                  {/* <div>
                       <label>
                         Select Amount {" "}
                       <select>
@@ -192,4 +224,3 @@ export default withRouter(
     PartnerAllTransactions
   )
 );
-

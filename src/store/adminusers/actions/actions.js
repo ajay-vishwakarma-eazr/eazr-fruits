@@ -121,15 +121,44 @@ export const fetchUserById = (id) => {
   };
 };
 
-export const imageUpload = (id, formData) => {
-  return (dispatch) => {
-    dispatch(setUserLoading());
+// export const imageUpload = (id, formData) => {
+//   return (dispatch) => {
+//     dispatch(setUserLoading());
+//     axios
+//       .post(`${ip}/common/upload/${id}`, formData, {
+//         body: {
+//           "Content-Type": "File",
+//           ...formData
+//         },
+//       })
+//       .then((res) => {
+//         dispatch({
+//           type: UPLOAD,
+//           payload: res.data,
+//         });
+//       })
+//       .catch((err) => {
+//         dispatch({
+//           type: UPLOAD_FAILED,
+//           payload: err.message,
+//         });
+//         // this.errors.push(e);
+//       });
+//   };
+// };
+
+export const imageUpload = (data) => {
+  return  (dispatch) => {
+    const formData = new FormData();
+    formData.append("file",data);
+    // dispatch(setUserLoading());
     axios
-      .post(`${ip}/common/upload/${id}`, formData, {
-        body: {
-          "Content-Type": "File",
-        },
-      })
+      .post(`${ip}/common/upload`, formData) 
+        // body: {
+        //   "Content-Type": "File",
+        //   ...formData,
+        // },
+      
       .then((res) => {
         dispatch({
           type: UPLOAD,

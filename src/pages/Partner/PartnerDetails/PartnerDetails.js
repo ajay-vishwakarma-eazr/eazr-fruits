@@ -27,6 +27,7 @@ const PartnerDetails = (props) => {
     props.getPartnerById(id);
     props.getPartnerCategoryBrandInformation();
     props.getPartnerTypeBrandInformation();
+    console.log("render 30");
   }, []);
 
   let history = useHistory();
@@ -77,7 +78,7 @@ const PartnerDetails = (props) => {
   //   sendMail: true,
   // });
 
-  const handleAccetPartner = () => {
+  const handleAcceptPartner = () => {
     const partner = {
       status: 1,
     };
@@ -166,7 +167,7 @@ const PartnerDetails = (props) => {
 
             <div className="partner-btn">
               {partner.status.id !== 1 ? (
-                <button className="accept" onClick={() => handleAccetPartner()}>
+                <button className="accept" onClick={() => handleAcceptPartner()}>
                   Accept
                 </button>
               ) : null}

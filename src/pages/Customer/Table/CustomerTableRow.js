@@ -103,6 +103,7 @@ const CustomerTableRow = ({
             {sweetAlerts.dynamic_description}
           </SweetAlert>
         ) : null}
+
       </td>
     </tr>
   );

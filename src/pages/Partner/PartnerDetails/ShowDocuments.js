@@ -35,7 +35,7 @@ const ShowDocuments = ({ img, docName }) => {
           </>
         ) : (
           <>
-            {img === "" ? (
+            {img === "" || img === null? (
               <img src={nodata} className="document-images" />
             ) : (
               <img
@@ -43,7 +43,6 @@ const ShowDocuments = ({ img, docName }) => {
                 
                 src={img}
                 onClick={toggle}
-                // onClick={toggle}
               ></img>
             )}
             <p className="document-title">{docName}</p>

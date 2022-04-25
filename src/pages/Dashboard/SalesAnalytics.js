@@ -30,7 +30,7 @@ class SalesAnalytics extends Component {
       <React.Fragment>
         <Card>
           <CardBody>
-            <div className="float-right">
+             <div className="float-right">
               <select className="custom-select custom-select-sm">
                 <option defaultValue> Nov</option>
                 <option value>Dec</option>

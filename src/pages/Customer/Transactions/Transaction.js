@@ -36,22 +36,6 @@ const Transaction = () => {
     dispatch(getUsersSearchTranscation(id, searchTranscation, pageNumber));
   };
 
-  // const getSearchTransactionValue = (value) => {
-  //   setSearchTransaction(value);
-  // };
-  // const filterArray = () => {
-  //   if (searchTranscation !== null && searchTranscation.length > 0) {
-  //     const filter = transactions.data.filter((trans) => {
-  //       return trans.partner.businessName
-  //         .toLowerCase()
-  //         .split(" ")
-  //         .join("")
-  //         .includes(searchTranscation.toLowerCase().split(" ").join(""));
-  //     });
-  //     setFilteredTransaction(filter);
-  //   }
-  // };
-
   const changePage = ({ selected }) => {
     const newSelect = selected + 1;
     setPageNumber(newSelect);

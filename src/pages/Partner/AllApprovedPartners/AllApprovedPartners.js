@@ -60,6 +60,7 @@ class AllApprovedPartners extends Component {
             <Table
               center
               striped
+              // dark
               // bordered
               responsive
               className="partner-approval-table"
@@ -106,38 +107,38 @@ class AllApprovedPartners extends Component {
       <div className="page-content partner">
         <Container fluid>
           <BackBtn route="partner-dashboard" />
-          <Card className="partner-table-approval">
-            <div className="search-partner">
-              <div>
-                <label htmlFor="">Search Partner: </label>
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  onChange={this.handleSearch}
-                  value={this.state.searchPartner}
-                  pattern="/[^a-zA-Z0-9 ]/"
-                  // pattern="[a-zA-Z0-9]+"
-                />
+            <Card className="partner-table-approval">
+              <div className="search-partner">
+                <div>
+                  <label htmlFor="">Search Partner: </label>
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    onChange={this.handleSearch}
+                    value={this.state.searchPartner}
+                    pattern="/[^a-zA-Z0-9 ]/"
+                    // pattern="[a-zA-Z0-9]+"
+                  />
+                </div>
               </div>
-            </div>
-            {data}
-            {partners.partners?.data.length > 0 &&
-            this.state.searchPartner === "" ? (
-              <ReactPaginate
-                previousLabel={"Previous"}
-                nextLabel={"Next"}
-                pageCount={partners.partners.pageCount}
-                onPageChange={this.changePage}
-                containerClassName={"paginationBttns"}
-                previousLinkClassName={"previousBttn"}
-                nextLinkClassName={"nextBttn"}
-                disabledClassName={"paginationDisabled"}
-                activeClassName={"paginationActive"}
-              />
-            ) : (
-              ""
-            )}
-          </Card>
+              {data}
+              {partners.partners?.data.length > 0 &&
+              this.state.searchPartner === "" ? (
+                <ReactPaginate
+                  previousLabel={"Previous"}
+                  nextLabel={"Next"}
+                  pageCount={partners.partners.pageCount}
+                  onPageChange={this.changePage}
+                  containerClassName={"paginationBttns"}
+                  previousLinkClassName={"previousBttn"}
+                  nextLinkClassName={"nextBttn"}
+                  disabledClassName={"paginationDisabled"}
+                  activeClassName={"paginationActive"}
+                />
+              ) : (
+                ""
+              )}
+            </Card>
         </Container>
       </div>
     );
