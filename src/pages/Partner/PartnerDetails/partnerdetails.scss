@@ -259,7 +259,7 @@
   padding: $button-padding !important;
   border-radius: $button-radius !important;
   font-weight: $font-weight-bold !important;
-  margin: -2rem 0 !important;
+  margin: -2rem 0 -.98rem !important;
 }
 .auth-modal-toggler:hover {
   opacity: $button-opacity;

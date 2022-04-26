@@ -16,7 +16,7 @@ const BankAccountDetails = ({ id }) => {
   const [edit, setEdit] = useState(true);
   useEffect(() => {
     dispatch(getBankDetails(id));
-  }, []);
+  }, [id]);
 
   const [partnerBankDetail, setPartnerBankDetails] = useState({
     bankName: bank[0]?.bankName,
