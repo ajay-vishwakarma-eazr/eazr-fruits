@@ -26,9 +26,8 @@ const PartnerDetails = (props) => {
   useEffect(() => {
     props.getPartnerById(id);
     props.getPartnerCategoryBrandInformation();
-    props.getPartnerTypeBrandInformation();
-    console.log("render 30");
-  }, []);
+    props.getPartnerTypeBrandInformation()
+  }, [id]);
 
   let history = useHistory();
   const [success_msg, setSuccess_Msg] = useState(false);

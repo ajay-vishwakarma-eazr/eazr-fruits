@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import Colors from "../../../components/Config/Colors";
 import AuthModal from "./AuthModal";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,7 +14,7 @@ const BankAccountDetails = ({ id }) => {
   const { bank } = useSelector((state) => state.bank);
   const dispatch = useDispatch();
   const [edit, setEdit] = useState(true);
-  useEffect(() => {
+  useLayoutEffect(() => {
     dispatch(getBankDetails(id));
   }, [id]);
 

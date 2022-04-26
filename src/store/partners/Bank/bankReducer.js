@@ -3,19 +3,30 @@ import {
   GET_BANK_DETAILS_FAILED,
   UPDATE_BANK,
   UPDATE_BANK_FAILED,
+  BANK_LOADING,
+
 } from "./type";
 
 const initialState = {
-  errors: null,
+  loading: false,
+  error: null,
   bank: [],
 };
 export const bankReducer = (state = initialState, action) => {
   switch (action.type) {
+    
+    case BANK_LOADING:
+      return {
+        ...state,
+        loading: true,
+      };
+
     case GET_BANK_DETAILS:
       return {
         ...state,
         bank: action.payload,
         error: null,
+        loading: false,
       };
     case GET_BANK_DETAILS_FAILED:
       return {
