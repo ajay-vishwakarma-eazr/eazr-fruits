@@ -25,8 +25,8 @@ const PartnerDetails = (props) => {
   const { id } = useParams();
   useEffect(() => {
     props.getPartnerById(id);
-    // props.getPartnerCategoryBrandInformation();
-    // props.getPartnerTypeBrandInformation();
+    props.getPartnerCategoryBrandInformation();
+    props.getPartnerTypeBrandInformation();
   }, []);
 
   useEffect(() => {

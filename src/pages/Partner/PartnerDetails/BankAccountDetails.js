@@ -50,7 +50,7 @@ const BankAccountDetails = ({ id }) => {
     <>
       {loading === true ? (
         <Loader />
-      ) : (
+      ) :(bank[0]!==undefined)? (
         <div
           className="bank-account"
           style={{ background: !edit && Colors.infoBody }}
@@ -133,7 +133,7 @@ const BankAccountDetails = ({ id }) => {
             />
           </div>
         </div>
-      )}
+      ):<h1 style={{fontSize:"1rem",color:"red"}}>Reload it !! </h1>}
     </>
   );
 };
