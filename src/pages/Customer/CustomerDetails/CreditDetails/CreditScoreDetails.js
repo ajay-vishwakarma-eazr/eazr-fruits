@@ -12,6 +12,7 @@ import BackBtn from "../../BackBtn";
 import { calculateCreditScore } from "../../../../store/adminusers/actions/actions";
 import Loader from "../../../Loader/Loader";
 import NoCredit from "../../../Loader/NoCredit";
+import CustomersNav from "../../CustomerNav";
 
 class CreditScoreDetails extends PureComponent {
   constructor() {
@@ -94,7 +95,9 @@ class CreditScoreDetails extends PureComponent {
       <div className="page-content approved-partners">
         <Container fluid>
           <BackBtn route="users" />
+          <CustomersNav />
           <Row>
+
             <Col xs={12}>{data}</Col>
           </Row>
         </Container>
