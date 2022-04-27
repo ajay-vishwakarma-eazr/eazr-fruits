@@ -20,14 +20,22 @@ import {
 } from "../../../store/partners/actions";
 import HoldModal from "./HoldModal";
 import Loader from "../../Loader/Loader";
-
+import {clearBankDetails} from "../../../store/partners/Bank/actions"
 const PartnerDetails = (props) => {
   const { id } = useParams();
   useEffect(() => {
     props.getPartnerById(id);
-    props.getPartnerCategoryBrandInformation();
-    props.getPartnerTypeBrandInformation()
-  }, [id]);
+    // props.getPartnerCategoryBrandInformation();
+    // props.getPartnerTypeBrandInformation();
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      props.clearBankDetails();
+      console.log("componentwillunmount");
+    };  
+  }, []);
+
 
   let history = useHistory();
   const [success_msg, setSuccess_Msg] = useState(false);
@@ -141,7 +149,7 @@ const PartnerDetails = (props) => {
         </div>
 
         <div className="partner-details-div">
-          <BrandInformation/>
+          <BrandInformation />
           <div className="right-partner-details-div">
             <LegalInformation />
             <BankAccountDetails id={id} />
@@ -166,7 +174,10 @@ const PartnerDetails = (props) => {
 
             <div className="partner-btn">
               {partner.status.id !== 1 ? (
-                <button className="accept" onClick={() => handleAcceptPartner()}>
+                <button
+                  className="accept"
+                  onClick={() => handleAcceptPartner()}
+                >
                   Accept
                 </button>
               ) : null}
@@ -244,5 +255,6 @@ export default connect(mapStateToProps, {
   getPartnerTypeBrandInformation,
   getPartnerById,
   updatePartnerDetails,
+  clearBankDetails,
   // addTicket,
 })(PartnerDetails);

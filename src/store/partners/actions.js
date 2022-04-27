@@ -25,6 +25,7 @@ import {
   GET_SEARCH_APPROVEDPARTNERS_FAILED,
   GET_SEARCH_ONBOARDINGPARTNERS,
   GET_SEARCH_ONBOARDINGPARTNERS_FAILED,
+  CLEAR_PARTNER,
 } from "./types";
 import axios from "axios";
 import { ip } from "../../config/config";
@@ -142,7 +143,12 @@ export const getPartnerById = (id) => {
   };
 };
 
+export const clearPartner=()=>{
 
+  return {
+    type:CLEAR_PARTNER
+  }
+}
 export const updatePartnerDetails = (id, updateObj) => {
   return (dispatch) => {
     dispatch(setPartersLoading());

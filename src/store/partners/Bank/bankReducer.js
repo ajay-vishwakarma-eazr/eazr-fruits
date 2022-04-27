@@ -4,7 +4,7 @@ import {
   UPDATE_BANK,
   UPDATE_BANK_FAILED,
   BANK_LOADING,
-
+  CLEAR_BANK_DETAILS,
 } from "./type";
 
 const initialState = {
@@ -14,12 +14,17 @@ const initialState = {
 };
 export const bankReducer = (state = initialState, action) => {
   switch (action.type) {
-    
     case BANK_LOADING:
       return {
         ...state,
         loading: true,
+        // bank: [],
       };
+
+      case CLEAR_BANK_DETAILS :
+        return {
+          bank:[]
+        }
 
     case GET_BANK_DETAILS:
       return {

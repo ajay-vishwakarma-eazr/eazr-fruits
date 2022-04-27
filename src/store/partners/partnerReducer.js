@@ -22,6 +22,7 @@ import {
   GET_SEARCH_APPROVEDPARTNERS_FAILED,
   GET_SEARCH_ONBOARDINGPARTNERS,
   GET_SEARCH_ONBOARDINGPARTNERS_FAILED,
+  CLEAR_PARTNER,
 } from "./types";
 
 const initialState = {
@@ -43,10 +44,9 @@ const login = (state = initialState, action) => {
         loading: true,
         errors: null,
       };
-    case CLEAR_ERRORS:
+    case CLEAR_PARTNER:
       return {
-        ...state,
-        errors: null,
+       partner:[]
       };
     case GET_PARTNERS:
       return {
@@ -63,7 +63,6 @@ const login = (state = initialState, action) => {
       };
 
     case GET_PARTNER_BY_ID:
-
       return {
         ...state,
         loading: false,

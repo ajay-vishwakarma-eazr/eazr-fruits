@@ -6,6 +6,7 @@ import {
   UPDATE_BANK,
   UPDATE_BANK_FAILED,
   BANK_LOADING,
+  CLEAR_BANK_DETAILS,
 } from "./type";
 
 export const setBankLoading = () => {
@@ -15,7 +16,7 @@ export const setBankLoading = () => {
 };
 
 export const getBankDetails = (id) => async (dispatch) => {
- 
+ console.log("id",id);
   try {
     dispatch({ type:BANK_LOADING})
     const res = await axios.get(`${ip}/banks?filter=partnerId||$eq||${id}`);
@@ -27,11 +28,16 @@ export const getBankDetails = (id) => async (dispatch) => {
     console.log("Error: " + err.message);
     dispatch({
       type: GET_BANK_DETAILS_FAILED,
-      payload: err.response?.data,
+      payload: err.message,
     });
   }
 };
 
+export const clearBankDetails = () => {
+return {
+  type:CLEAR_BANK_DETAILS
+}
+}
 // export const getBankDetails = (id) => {
 //   return (dispatch) => {
 //     dispatch(setBankLoading(id));
