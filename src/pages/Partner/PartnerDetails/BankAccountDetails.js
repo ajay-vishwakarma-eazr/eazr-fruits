@@ -16,7 +16,6 @@ const BankAccountDetails = ({ id }) => {
   const { bank, loading } = useSelector((state) => state.bank);
   const dispatch = useDispatch();
   const [edit, setEdit] = useState(true);
-  debugger;
   const [partnerBankDetail, setPartnerBankDetails] = useState({
     bankName: bank[0]?.bankName,
     beneficiaryName: bank[0]?.beneficiaryName,
@@ -27,7 +26,6 @@ const BankAccountDetails = ({ id }) => {
   useEffect(() => {
     dispatch(getBankDetails(id));
     dispatch(clearBankDetails(id));
-    debugger;
    
   }, [id]);
 
