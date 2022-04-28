@@ -27,12 +27,12 @@ const BankAccountDetails = ({ id }) => {
     dispatch(getBankDetails(id));
    }, []);
 
-  // useEffect(() => {
-  //   return () => {
-  //     // dispatch(clearBankDetails());
-  //      console.log("componentwillunmount");
-  //   };
-  // }, []);
+  useEffect(() => {
+    return () => {
+      dispatch(clearBankDetails());
+       console.log("componentwillunmount");
+    };
+  }, []);
 
 
   console.log("bank",bank[0]?.partnerId,"partnerId",id);
