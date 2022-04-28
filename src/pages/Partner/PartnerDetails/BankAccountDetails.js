@@ -23,11 +23,9 @@ const BankAccountDetails = ({ id }) => {
     accountNumber: bank[0]?.accountNumber,
   });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     dispatch(getBankDetails(id));
-    dispatch(clearBankDetails(id));
-   
-  }, [id]);
+   }, []);
 
   // useEffect(() => {
   //   return () => {
@@ -50,10 +48,10 @@ const BankAccountDetails = ({ id }) => {
     <>
       {loading === true ? (
         <Loader />
-      ) :(bank[0]!==undefined)? (
+      ) :(bank[0]!==undefined && bank[0]!==null)? (
         <div
-          className="bank-account"
-          style={{ background: !edit && Colors.infoBody }}
+            className="bank-account"
+            style={{ background: !edit && Colors.infoBody }}
         >
           {/* {props.errors && props.errors.password ? (
         <SweetAlert

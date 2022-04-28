@@ -8,6 +8,7 @@ import BankAccountDetails from "./BankAccountDetails";
 import ShowDocuments from "./ShowDocuments";
 import { Link } from "react-router-dom";
 import BusinessDescription from "./BusinessDescription";
+import { getBankDetails } from "../../../store/partners/Bank/actions";
 import { connect } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { getPartnerCategoryBrandInformation } from "../../../store/PartnerCategory/action";
@@ -20,22 +21,27 @@ import {
 } from "../../../store/partners/actions";
 import HoldModal from "./HoldModal";
 import Loader from "../../Loader/Loader";
-import {clearBankDetails} from "../../../store/partners/Bank/actions"
+import { clearBankDetails } from "../../../store/partners/Bank/actions";
 const PartnerDetails = (props) => {
   const { id } = useParams();
   useEffect(() => {
     props.getPartnerById(id);
     props.getPartnerCategoryBrandInformation();
     props.getPartnerTypeBrandInformation();
+    // props.getBankDetails(id);
   }, []);
 
   useEffect(() => {
     return () => {
-      props.clearBankDetails();
+      props.getPartnerById(id);
+      // props.clearBankDetails();
       console.log("componentwillunmount");
-    };  
+    };
   }, []);
 
+  // useEffect(() => {
+  //   return <BankAccountDetails id={id} />;
+  // }, [id]);
 
   let history = useHistory();
   const [success_msg, setSuccess_Msg] = useState(false);
@@ -256,5 +262,6 @@ export default connect(mapStateToProps, {
   getPartnerById,
   updatePartnerDetails,
   clearBankDetails,
-  // addTicket,
+  // getBankDetails,
+
 })(PartnerDetails);

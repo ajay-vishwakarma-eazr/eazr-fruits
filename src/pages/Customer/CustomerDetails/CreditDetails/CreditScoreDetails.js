@@ -97,7 +97,6 @@ class CreditScoreDetails extends PureComponent {
           <BackBtn route="users" />
           <CustomersNav />
           <Row>
-
             <Col xs={12}>{data}</Col>
           </Row>
         </Container>
