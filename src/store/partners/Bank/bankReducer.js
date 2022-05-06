@@ -41,6 +41,7 @@ export const bankReducer = (state = initialState, action) => {
     case UPDATE_BANK:
       return {
         ...state,
+        loading:false,
         bank: action.payload,
       };
 

@@ -1,6 +1,6 @@
 .paginationBttns {
   width:auto;
-  height: 40px;
+  height: 85px;
   list-style: none;
   display: flex;
   flex-wrap: wrap;
@@ -59,8 +59,13 @@
   background-color: #eff2f7;
 }
 
-/* @media (min-width: 900px) {
-   .transaction-table {
-    margin-right: 0;
+@media (max-width: 250px) {
+  .paginationBttns {
+    width: auto;
+    height: auto;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
   }
-} */
+}

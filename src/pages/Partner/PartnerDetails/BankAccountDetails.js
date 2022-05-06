@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
 import Colors from "../../../components/Config/Colors";
 import AuthModal from "./AuthModal";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, connect } from "react-redux";
 import SweetAlert from "react-bootstrap-sweetalert";
 import Loader from "../../Loader/Loader";
 
@@ -16,6 +16,7 @@ const BankAccountDetails = ({ id }) => {
   const { bank, loading } = useSelector((state) => state.bank);
   const dispatch = useDispatch();
   const [edit, setEdit] = useState(true);
+  
   const [partnerBankDetail, setPartnerBankDetails] = useState({
     bankName: bank[0]?.bankName,
     beneficiaryName: bank[0]?.beneficiaryName,
@@ -23,20 +24,6 @@ const BankAccountDetails = ({ id }) => {
     accountNumber: bank[0]?.accountNumber,
   });
 
-  useLayoutEffect(() => {
-    dispatch(getBankDetails(id));
-   }, []);
-
-  useEffect(() => {
-    return () => {
-      dispatch(clearBankDetails());
-       console.log("componentwillunmount");
-    };
-  }, []);
-
-
-  console.log("bank",bank[0]?.partnerId,"partnerId",id);
- 
   const getDisableEdit = (disableEdit) => {
     setEdit(disableEdit);
   };
@@ -46,12 +33,10 @@ const BankAccountDetails = ({ id }) => {
   };
   return (
     <>
-      {loading === true ? (
-        <Loader />
-      ) :(bank[0]!==undefined && bank[0]!==null)? (
+      
         <div
-            className="bank-account"
-            style={{ background: !edit && Colors.infoBody }}
+          className="bank-account"
+          style={{ background: !edit && Colors.infoBody }}
         >
           {/* {props.errors && props.errors.password ? (
         <SweetAlert
@@ -81,7 +66,7 @@ const BankAccountDetails = ({ id }) => {
             <h3>Bank Name</h3>
             <input
               disabled={edit}
-              value={partnerBankDetail?.bankName}
+              value={partnerBankDetail.bankName}
               onChange={(e) =>
                 setPartnerBankDetails({
                   ...partnerBankDetail,
@@ -131,7 +116,6 @@ const BankAccountDetails = ({ id }) => {
             />
           </div>
         </div>
-      ):<h1 style={{fontSize:"1rem",color:"red"}}>Reload it !! </h1>}
     </>
   );
 };

@@ -40,7 +40,10 @@ const CustomerTableRow = ({
     dispatch(updateUserDetails(id, banToggler, pageNumber));
   };
   return (
-    <tr style={{ opacity: ban ? 0.5 : 1 }} className="customer-table-row">
+    <tr
+      style={{ opacity: ban ? 0.5 : 1, background: "#f8f9fa" }}
+      className="customer-table-row"
+    >
       <td>{name}</td>
       <td>{email}</td>
       <td>{contact}</td>
@@ -53,7 +56,7 @@ const CustomerTableRow = ({
           <button className="view-customer-btn">View</button>
         </Link>
       </td>
-      <td style={{display:'flex'}}>
+      <td style={{ display: "flex" }}>
         <UncontrolledTooltip target={"edit"} placement="top">
           Edit
         </UncontrolledTooltip>
@@ -103,7 +106,6 @@ const CustomerTableRow = ({
             {sweetAlerts.dynamic_description}
           </SweetAlert>
         ) : null}
-
       </td>
     </tr>
   );

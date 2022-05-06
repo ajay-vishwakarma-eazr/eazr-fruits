@@ -9,7 +9,7 @@ const CreditTableRow = ({
   finAppList,
 }) => {
   return (
-    <tr style={{ textAlign: "center" }}>
+    <tr style={{ textAlign: "center", background:"#f8f9fa" }}>
       <td>{contactScore}</td>
       <td>{deviceScore}</td>
       <td>{Location_Score}</td>

@@ -57,7 +57,6 @@ const Customer = () => {
   } else if (users.data !== null && users.data?.length > 0) {
     data = (
       <Card>
-        <CardBody>
           <div className="table-rep-plugin">
             <div
               className="table-responsive mb-0"
@@ -111,7 +110,6 @@ const Customer = () => {
               </Table>
             </div>
           </div>
-        </CardBody>
       </Card>
     );
   } else {
@@ -124,7 +122,7 @@ const Customer = () => {
           <BackBtn route="dashboard" />
           <Row>
             <Col xs={12}>
-              <Card>
+              <Card style={{ backgroundColor: "#f4f5f6" }}>
                 <CardBody>
                   <form className="search-filter">
                     <div>

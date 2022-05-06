@@ -22,7 +22,6 @@ const EditPartnerType = ({ showModal, id, type, pageNumber }) => {
       [e.target.name]: e.target.value,
     });
   };
-
   return (
     <div className="">
       <Modal isOpen={modal} toggle={toggle} centered className="">

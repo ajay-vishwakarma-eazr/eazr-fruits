@@ -71,10 +71,10 @@ const UserProfile = () => {
       [e.target.name]: e.target.value,
     });
 
-    dispatch(imageUpload(selfie));
-    setFormData({
-      selfie: selfie,
-    });
+    // dispatch(imageUpload(selfie));
+    // setFormData({
+    //   selfie: selfie,
+    // });
   };
 
   const getDisableEdit = (disableEdit) => {

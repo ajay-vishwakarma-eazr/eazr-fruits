@@ -16,9 +16,9 @@ export const setBankLoading = () => {
 };
 
 export const getBankDetails = (id) => async (dispatch) => {
- console.log("id",id);
+  //  console.log("id",id);
   try {
-    dispatch({ type:BANK_LOADING})
+    dispatch({ type: BANK_LOADING });
     const res = await axios.get(`${ip}/banks?filter=partnerId||$eq||${id}`);
     dispatch({
       type: GET_BANK_DETAILS,
@@ -34,47 +34,10 @@ export const getBankDetails = (id) => async (dispatch) => {
 };
 
 export const clearBankDetails = () => {
-return {
-  type:CLEAR_BANK_DETAILS
-}
-}
-// export const getBankDetails = (id) => {
-//   return (dispatch) => {
-//     dispatch(setBankLoading(id));
-//     axios
-//       .get(`${ip}/banks?filter=partnerId||$eq||${id}`)
-//       .then((res) => {
-//         dispatch({
-//           type: GET_BANK_DETAILS,
-//           payload: res.data,
-//         });
-//       })
-//       .catch((err) => {
-//         dispatch({
-//           type: GET_BANK_DETAILS_FAILED,
-//           payload: err.message,
-//         });
-//       });
-//   };
-// };
-
-
-
-// export const updateBankDetails = (id,data) => async (dispatch) => {
-//   try {
-//     const res = await axios.get(`${ip}/banks/${id}`).then((res));
-//     dispatch({
-//       type: GET_BANK_DETAILS,
-//       payload: res.data,
-//     });
-//   } catch (err) {
-//     console.log("Error: " + err.message);
-//     dispatch({
-//       type: GET_BANK_DETAILS_FAILED,
-//       payload: err.response.data,
-//     });
-//   }
-// };
+  return {
+    type: CLEAR_BANK_DETAILS,
+  };
+};
 
 export const updateBankDetails = (id, updateObj) => {
   return (dispatch) => {

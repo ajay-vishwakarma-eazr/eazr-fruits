@@ -21,9 +21,10 @@ import {
 export const initialState = {
   loading: false,
   users: [],
-  errror: "",
+  errors: "",
   search:[],
-  image:""
+  image:"",
+  credit:[]
 };
 
 export const UserReducer = (state = initialState, action) => {

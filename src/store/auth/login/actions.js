@@ -76,6 +76,7 @@ export const verify = (contactNumber, otp, history) => {
     axios
       .post(`${ip}/admins/verify-otp`, { contactNumber, otp })
       .then((res) => {
+        // console.log(res.data.message);
         const { accessToken } = res.data.admin;
         localStorage.setItem("accessToken", accessToken);
         //Set token to auth header
@@ -92,7 +93,7 @@ export const verify = (contactNumber, otp, history) => {
 
         dispatch({
           type: LOGIN_USER_FAILED,
-          payload: err.message,
+          payload: err.response?.data.message,
         });
       });
   };

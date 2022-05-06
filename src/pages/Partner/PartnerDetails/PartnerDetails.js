@@ -28,20 +28,15 @@ const PartnerDetails = (props) => {
     props.getPartnerById(id);
     props.getPartnerCategoryBrandInformation();
     props.getPartnerTypeBrandInformation();
-    // props.getBankDetails(id);
+    props.getBankDetails(id);
   }, []);
 
   useEffect(() => {
-    return () => {
-      props.getPartnerById(id);
-      // props.clearBankDetails();
+    return () => {  
+      props.clearBankDetails();
       console.log("componentwillunmount");
     };
   }, []);
-
-  // useEffect(() => {
-  //   return <BankAccountDetails id={id} />;
-  // }, [id]);
 
   let history = useHistory();
   const [success_msg, setSuccess_Msg] = useState(false);
@@ -158,7 +153,11 @@ const PartnerDetails = (props) => {
           <BrandInformation />
           <div className="right-partner-details-div">
             <LegalInformation />
-            <BankAccountDetails id={id} />
+            {props.bank.loading === true ? (
+              <Loader />
+            ) : (
+              <BankAccountDetails id={id} />
+            )}
           </div>
         </div>
         <BusinessDescription />
@@ -253,6 +252,7 @@ const PartnerDetails = (props) => {
 const mapStateToProps = (state) => {
   return {
     partners: state.partners,
+    bank: state.bank,
   };
 };
 
@@ -262,6 +262,5 @@ export default connect(mapStateToProps, {
   getPartnerById,
   updatePartnerDetails,
   clearBankDetails,
-  // getBankDetails,
-
+  getBankDetails,
 })(PartnerDetails);

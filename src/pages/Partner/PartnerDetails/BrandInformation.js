@@ -97,7 +97,7 @@ const BrandInformation = (props) => {
           {props.partnerTypes.brandPartnerType !== undefined
             ? props.partnerTypes.brandPartnerType.map((e, key) => {
                 return (
-                  <option key={key} value={e.id} selected>
+                  <option key={key} value={e.id} defaultValue>
                     {e.type}
                   </option>
                 );
@@ -127,7 +127,7 @@ const BrandInformation = (props) => {
                     // className="category-options"
                     key={key}
                     value={e.id}
-                    selected
+                    defaultValue
                   >
                     {e.name}
                   </option>
