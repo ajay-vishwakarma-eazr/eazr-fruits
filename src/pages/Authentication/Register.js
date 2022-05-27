@@ -48,9 +48,20 @@ class Register extends PureComponent {
       adminsRoleId: this.state.adminsRoleId,
     };
     this.props.registerUserSuccess(data);
+
+    if (this.props.register.register !== "") {
+      alert("Registration done successfully Pplease login");
+      this.props.history.push("/login");
+    }
+    else {
+      return null;
+    }
+  
     console.log(this.props.register);
     // this.setState({ fullName: "", contactNumber: "", email: "", adminsRoleId :""});
   }
+
+  componentDidUpdate(){}
 
   render() {
     console.log("render");

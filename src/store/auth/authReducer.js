@@ -14,18 +14,19 @@ import {
   VERIFY_LOADING,
   SET_CURRENT_USER,
   SET_PARTNER_MODULES,
+  CLEAR_ERROR,
 } from "./login/actionTypes";
 import { isEmpty } from "../../validations/isEmpty";
 
 const initialState = {
-  loginError: "a",
-  message: null,
+  // loginError: "",
+  isAuthenticated: false,
+  // user: {},
+  message: "",
   loading: false,
   verifyLoading: false,
-  errors: null,
+  errors: {},
   showOtpModal: false,
-  user: null,
-  isAuthenticated: false,
 };
 
 const login = (state = initialState, action) => {
@@ -34,12 +35,12 @@ const login = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
-        errors: null,
+        errors: {},
       };
     case VERIFY_LOADING:
       return {
         ...state,
-        errors: null,
+        errors: {},
         verifyLoading: true,
       };
     case SHOW_OTP_MODAL:
@@ -58,7 +59,7 @@ const login = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        errors: null,
+        errors: action.payload,
         showOtpModal: true,
       };
 
@@ -66,6 +67,7 @@ const login = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+        showOtpModal: true,
         errors: action.payload,
       };
 
@@ -97,6 +99,7 @@ const login = (state = initialState, action) => {
         ...state,
         loading: false,
         verifyLoading: false,
+        showOtpModal:true,
         errors: action.payload,
       };
     case LOGOUT_USER:
@@ -111,11 +114,18 @@ const login = (state = initialState, action) => {
       return { ...state };
     case LOGOUT_USER_FAILED:
       return { ...state, loading: false, errors: action.payload };
+
     case API_ERROR:
-      return {
+      state = {
         ...state,
         loading: false,
         loginError: action.payload,
+      };
+      break;
+
+    case CLEAR_ERROR:
+      return {
+        errors: [],
       };
 
     default:

@@ -91,10 +91,10 @@ export const addPartnerType = (newType, pageNumber) => {
 export const updatePartnerType = (id, updateType, pageNumber) => {
   return (dispatch) => {
     axios
-      .patch(`${ip}/partner-types/${id}?sort=id,ASC`, { ...updateType })
+      .patch(`${ip}/partner-types/${id}?sort=id,DESC`, { ...updateType })
       .then((res) => {
         axios
-          .get(`${ip}/partner-types?page=${pageNumber}&limit=10&sort=id,DESC`)
+          .get(`${ip}/partner-types?page=${pageNumber}&limit=10&sort=id,ASC`)
           .then((res) => {
             dispatch({
               type: GET_PARTNER_TYPE,
@@ -122,10 +122,10 @@ export const updatePartnerType = (id, updateType, pageNumber) => {
 export const deleteType = (id, pageNumber) => {
   return (dispatch) => {
     axios
-      .delete(`${ip}/partner-types/${id}?sort=id,ASC`)
+      .delete(`${ip}/partner-types/${id}`)
       .then((res) => {
         axios
-          .get(`${ip}/partner-types?page=${pageNumber}&limit=10&sort=id,DESC`)
+          .get(`${ip}/partner-types?page=${pageNumber}&limit=10&sort=id,ASC`)
           .then((res) => {
             dispatch({
               type: GET_PARTNER_TYPE,

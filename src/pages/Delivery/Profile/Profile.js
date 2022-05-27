@@ -168,7 +168,7 @@ const Profile = () => {
               type="text"
               name="contact"
               value={contact}
-              placeholder="9XXXXXXXXXX"
+              placeholder="9XXXXXXXXX"
               onChange={(e) => handleChange(e)}
             />
           </div>

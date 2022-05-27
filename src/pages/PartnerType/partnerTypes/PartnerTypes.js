@@ -38,6 +38,10 @@ const PartnerTypes = () => {
     // history.push("/partner-type");
   };
 
+  const Handler = ()=> {
+    console.warn("Good");
+  }
+
   const changePage = ({ selected }) => {
     const newSelect = selected + 1;
     setPageNumber(newSelect);
@@ -85,7 +89,6 @@ const PartnerTypes = () => {
   } else {
     data = <EmptySection />;
   }
-
   return (
     <div className="page-content approved-partners">
       <Container fluid>

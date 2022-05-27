@@ -15,6 +15,20 @@
   cursor: pointer;
 }
 
+// .partner {
+  .search-filter {
+    display: flex;
+    justify-content: space-between;
+    select {
+      background: $table-input-background;
+      padding: $input-padding;
+      border-radius: $button-radius;
+      outline: none;
+      border: 1px solid $admin-border-color;
+    }
+  }
+// }
+
 .customer-table-row .mdi-account-edit {
   color: $eazr-color;
 }

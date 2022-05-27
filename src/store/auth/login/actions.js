@@ -15,6 +15,7 @@ import {
   REGISTER_USER_SUCCESS,
   REGISTER_USER_FAILED,
   REGISTER_USER_LOADING,
+  CLEAR_ERROR,
 } from "./actionTypes";
 import axios from "axios";
 import { ip } from "../../../config/config";
@@ -38,12 +39,13 @@ export const login = (contactNumber) => {
       .then((res) => {
         dispatch({
           type: OTP_SENT,
+          payload:res.data.message
         });
       })
       .catch((err) => {
         dispatch({
           type: OTP_SENT_FAILED,
-          payload: err.message,
+          payload: err.data.message,
         });
       });
   };
@@ -71,11 +73,12 @@ export const register = (data) => {
   };
 };
 
-export const verify = (contactNumber, otp, history) => {
-  return (dispatch) => {
-    axios
-      .post(`${ip}/admins/verify-otp`, { contactNumber, otp })
-      .then((res) => {
+export const verify = (contactNumber, otp, history) => async (dispatch) => {
+  try {
+    const res = await axios.post(`${ip}/admins/verify-otp`, {
+       contactNumber, otp 
+      });
+      if (res.data.admin !== null) {
         // console.log(res.data.message);
         const { accessToken } = res.data.admin;
         localStorage.setItem("accessToken", accessToken);
@@ -87,17 +90,15 @@ export const verify = (contactNumber, otp, history) => {
         dispatch(loginUserSuccessful(decoded));
         history.push("/dashboard");
         // dispatch(fetchModules());
-      })
-      .catch((err) => {
-        console.log(err);
-
-        dispatch({
-          type: LOGIN_USER_FAILED,
-          payload: err.response?.data.message,
+      } else {
+        throw res.data.message;
+      }} catch (error) {
+        dispatch ({
+          type:LOGIN_USER_FAILED,
+          payload:error
         });
-      });
+      }
   };
-};
 
 export const resend = (phone, otp) => {
   return (dispatch) => {
@@ -119,7 +120,7 @@ export const resend = (phone, otp) => {
   };
 };
 
-//Set logged in user
+//Set logged in userloginUserSuccessful
 export const setCurrentUser = (decoded) => {
   return {
     type: SET_CURRENT_USER,
@@ -169,5 +170,11 @@ export const showOtpModal = () => {
 export const hideOtpModal = () => {
   return {
     type: HIDE_OTP_MODAL,
+  };
+};
+
+export const clearError = () => {
+  return {
+    type: CLEAR_ERROR,
   };
 };

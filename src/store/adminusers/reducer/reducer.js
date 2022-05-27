@@ -21,7 +21,7 @@ import {
 export const initialState = {
   loading: false,
   users: [],
-  errors: "",
+  errors: {},
   search:[],
   image:"",
   credit:[]
@@ -33,7 +33,8 @@ export const UserReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
-        errors: null,
+        errors: {},
+        credit:[]
       };
     case FETCH_USERS_REQUEST:
       return {
@@ -61,7 +62,7 @@ export const UserReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         users: action.payload,
-        errors: null,
+        errors: {},
       };
     case GET_USER_BY_ID_FAILED:
       return {
@@ -127,7 +128,7 @@ export const UserReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         credit: action.payload,
-        errors: null,
+        errors: {},
       };
     case CREDIT_SCORE_FAILED:
       return {

@@ -29,6 +29,12 @@
     padding-top: 28px;
     padding-left: 60px;
   }
+  
+    .form-control-number::-webkit-outer-spin-button,
+      .form-control-number::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
 
   label {
     position: absolute;

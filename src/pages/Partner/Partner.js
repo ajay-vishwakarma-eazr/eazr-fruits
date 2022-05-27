@@ -32,7 +32,7 @@ class Partner extends Component {
     this.props.getPartners(this.state.pageNumber);
   }
 
-  changePage = ({ selected }) => {  
+  changePage = ({ selected }) => {
     const newSelect = selected + 1;
     this.setState({ pageNumber: newSelect });
     this.props.getPartners((this.state.pageNumber = newSelect));
@@ -46,7 +46,6 @@ class Partner extends Component {
   };
 
   render() {
-
     const { partners } = this.props;
 
     let data;
@@ -62,8 +61,8 @@ class Partner extends Component {
         // </div>
       );
     } else if (
-      partners.partners?.data !== null && 
-      partners.partners?.data!==undefined &&
+      partners.partners?.data !== null &&
+      partners.partners?.data !== undefined &&
       partners.partners?.data.length > 0
     ) {
       data = (
@@ -81,13 +80,28 @@ class Partner extends Component {
               className="partner-approval-table"
             >
               <PartnerTableHeading />
-              {(this.state.searchPartner !== "" && partners.search !== undefined)
-                ? partners.search
-                    .map((item, index) => (
+              {this.state.searchPartner !== "" && partners.search !== undefined
+                ? partners.search.map((item, index) => (
+                    <PartnerTableRow
+                      // key={index}
+                      id={item.id}
+                      profilePicture={item?.businessProfilePicture}
+                      brandName={item.businessName}
+                      contact={item.contactNumber}
+                      email={item.email}
+                      type={item.partnerType?.type}
+                      category={item.partnerCategory?.name}
+                      plan={item.plan?.name}
+                      status={item.status}
+                    />
+                  ))
+                : partners.partners.data.map((item, index) => {
+                  debugger;
+                    return (
                       <PartnerTableRow
-                        // key={index}
+                        key={index}
                         id={item.id}
-                        profilePicture={item.businessProfilePicture}
+                        profilePicture={item?.businessProfilePicture}
                         brandName={item.businessName}
                         contact={item.contactNumber}
                         email={item.email}
@@ -96,24 +110,8 @@ class Partner extends Component {
                         plan={item.plan?.name}
                         status={item.status}
                       />
-                    ))
-                : partners.partners.data
-                    .map((item, index) => {
-                      return (
-                        <PartnerTableRow
-                          key={index}
-                          id={item.id}
-                          profilePicture={item.businessProfilePicture}
-                          brandName={item.businessName}
-                          contact={item.contactNumber}
-                          email={item.email}
-                          type={item.partnerType?.type}
-                          category={item.partnerCategory?.name}
-                          plan={item.plan?.name}
-                          status={item.status}
-                        />
-                      );
-                    })}
+                    );
+                  })}
             </Table>
           </div>
         </div>
@@ -169,7 +167,7 @@ const mapStateToProps = (state) => {
   return {
     partners: state.partners,
   };
-}; 
+};
 
 export default connect(mapStateToProps, {
   getPartners,

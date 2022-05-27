@@ -42,7 +42,7 @@ export const getPartnerCategory = (pageNumber) => {
   return (dispatch) => {
     dispatch({ type: CATEGORY_LOADING });
     axios
-      .get(`${ip}/partner-category?page=${pageNumber}&limit=10`)
+      .get(`${ip}/partner-category?page=${pageNumber}&limit=10&sort=id,ASC`)
       .then((res) => {
         console.log(res);
         dispatch({
@@ -120,7 +120,7 @@ export const updatePartnerCategory = (id, updateCategory, pageNumber) => {
       .then((res) => {
         axios
           .get(
-            `${ip}/partner-category?page=${pageNumber}&limit=10&sort=id,DESC`
+            `${ip}/partner-category?page=${pageNumber}&limit=10&sort=id,ASC`
           )
           .then((res) => {
             dispatch({
@@ -152,7 +152,7 @@ export const deleteCategory = (id, pageNumber) => {
       .then((res) => {
         axios
           .get(
-            `${ip}/partner-category?page=${pageNumber}&limit=10&sort=id,DESC`
+            `${ip}/partner-category?page=${pageNumber}&limit=10&sort=id,ASC`
           )
           .then((res) => {
             dispatch({

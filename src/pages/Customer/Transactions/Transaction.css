@@ -18,9 +18,9 @@
 .search-filter input {
   outline: none;
   border: none;
-  width: 60%;
+  width: 100%;
   background-color: #dfdfe8;
-  border-radius: 15px;
+  border-radius: 10px;
 }
 
 .paginationBtns {

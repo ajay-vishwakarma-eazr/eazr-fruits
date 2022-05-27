@@ -29,7 +29,7 @@ const PartnerDetails = (props) => {
     props.getPartnerCategoryBrandInformation();
     props.getPartnerTypeBrandInformation();
     props.getBankDetails(id);
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     return () => {  

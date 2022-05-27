@@ -24,25 +24,26 @@ class CreditScoreDetails extends PureComponent {
     const calScore = { phone: contact };
     this.props.calculateCreditScore(calScore);
   }
-
+  
   render() {
+    const  creditDetails  = this.props;
     let data;
 
-    if (this.props.credit.loading === true) {
+    if (creditDetails.credit.loading === true) {
       data = (
         <Loader />
+        );
         // <div className="spinner-div">
         // </div>
-      );
     } else if (
-      this.props.credit.credit !== "null" &&
-      this.props.credit.credit !== undefined
+      creditDetails.credit.credit !== "null" &&
+      creditDetails.credit.credit !== undefined
     ) {
       data = (
         <div className="table-rep-plugin">
           <div
-            className="table-responsive mb-0"
-            data-pattern="priority-columns"
+            // className="table-responsive mb-0"
+            // data-pattern="priority-columns"
           >
             <Table
               center
@@ -52,24 +53,30 @@ class CreditScoreDetails extends PureComponent {
               // className="search-partner"
             >
               <CreditTableHeading />
-              {[this.props.credit.credit].map((creditData, index) => {
+              {[creditDetails.credit.credit].map((creditData, index) => {
                 return (
-                  <CreditTableRow 
+                  <CreditTableRow
                     key={index}
                     contactScore={creditData[`Contact score`]}
                     deviceScore={creditData.Device_Score}
                     Location_Score={creditData.Location_Score}
                     numberOfFinapps={creditData[`Number of financial apps`]}
                     financialapp_score={creditData.financialapp_score}
-                    finAppList={this.props.credit.credit[
+                    finAppList={creditDetails.credit.credit[
                       "financial app list"
                     ]?.map((data) => {
                       return <p>{data}</p>;
                     })}
                     contacts={Object.entries(
-                      this.props.credit.credit["Top_5_contacts"]
+                      creditDetails.credit.credit == "" ||
+                        creditDetails.credit.credit["Top_5_contacts"]
                     ).map((key) => {
-                      return <p>{key}</p>;
+                      return(
+                      <div style={{display:"flex", justifyContent:"space-between"}}>
+                        <p style={{fontWeight:"bold"}}>{key[0]}</p>
+                        <p>{key[1]}</p>
+                      </div>
+                      )
                     })}
                   />
                 );
@@ -91,6 +98,7 @@ class CreditScoreDetails extends PureComponent {
         </div>
       );
     }
+    console.log("Loading");
     return (
       <div className="page-content partner">
         <Container fluid>

@@ -9,7 +9,7 @@ const CreditTableHeading = () => {
       <th>Number Of Financial Apps</th>
       <th>Financial App Score</th>
       <th>Financial App List</th>
-      <th style={{ textAlign: "left"}}>Contact List</th>
+      <th style={{ textAlign: "center"}}>Contact List</th>
     </thead>
   );
 };

@@ -12,7 +12,7 @@ import {
   updateBankDetails,
 } from "../../../store/partners/Bank/actions";
 
-const BankAccountDetails = ({ id }) => {
+const BankAccountDetails = (props) => {
   const { bank, loading } = useSelector((state) => state.bank);
   const dispatch = useDispatch();
   const [edit, setEdit] = useState(true);
@@ -28,7 +28,7 @@ const BankAccountDetails = ({ id }) => {
     setEdit(disableEdit);
   };
   const onSave = () => {
-    dispatch(updateBankDetails(bank[0]?.id, partnerBankDetail));
+    dispatch(updateBankDetails( bank[0]?.id || bank.id, partnerBankDetail));
     setEdit(!edit);
   };
   return (

@@ -86,6 +86,7 @@ export const setUserLoading = () => {
   };
 };
 
+
 export const UpdateProfileSuccess = (user) => {
   return {
     type: UPDATE_PROFILE_SUCCESS,

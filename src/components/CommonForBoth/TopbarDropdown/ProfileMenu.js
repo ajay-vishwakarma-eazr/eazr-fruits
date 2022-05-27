@@ -89,7 +89,7 @@ componentDidMount() {
                   : this.props.admin.admin.profilePhoto
               }
               // src={nouser}
-              alt="Header avatar"
+              alt="avatar"
             />
             <span className="d-none d-xl-inline-block ml-1 text-transform">
               {this.props.admin.admin.fullName}

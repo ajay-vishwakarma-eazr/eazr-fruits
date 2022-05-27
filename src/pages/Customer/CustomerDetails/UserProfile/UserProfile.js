@@ -85,7 +85,7 @@ const UserProfile = () => {
     dispatch(updateUserProfile(id, formData));
     setEdit(!edit);
   };
-  console.log("selfie", selfie);
+  // console.log("selfie", selfie);
   return (
     <>
       <div className="page-content customer-page ">

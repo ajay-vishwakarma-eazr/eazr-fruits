@@ -120,51 +120,51 @@ const Customer = () => {
       <div className="page-content approved-partners">
         <Container fluid>
           <BackBtn route="dashboard" />
-          <Row>
-            <Col xs={12}>
-              <Card style={{ backgroundColor: "#f4f5f6" }}>
-                <CardBody>
-                  <form className="search-filter">
-                    <div>
-                      <h6>Search Users</h6>
-                      <input
-                        type="text"
-                        value={searchUser}
-                        placeholder="Search for ..."
-                        onChange={handleSearch}
-                      />
-                      <i className="fa fa-search"></i>
-                    </div>
+          {/* <Row> */}
+          {/* <Col xs={12}> */}
+          <Card style={{ backgroundColor: "#f4f5f6" }}>
+            <CardBody>
+              <form className="search-filter">
+                <div style={{ display: "flex", padding: "10px" }}>
+                  <h6>Search Users</h6>
+                  <input
+                    type="text"
+                    value={searchUser}
+                    placeholder="Search for ..."
+                    onChange={handleSearch}
+                  />
+                  {/* <i className="fa fa-search"></i> */}
+                </div>
 
-                    {/* <div className="search-btn">
+                {/* <div className="search-btn">
                       <button type="submit" 
                       onClick={ setSearchUser }
                       >
                         Search
                       </button>
                     </div> */}
-                  </form>
-                </CardBody>
-              </Card>
-              {data}
-              {/* {users || search.data === "" ? ( */}
-              {users?.data && searchUser === "" ? (
-                <ReactPaginate
-                  previousLabel={"Previous"}
-                  nextLabel={"Next"}
-                  pageCount={users.pageCount}
-                  onPageChange={changePage}
-                  containerClassName={"paginationBttns"}
-                  previousLinkClassName={"previousBttn"}
-                  nextLinkClassName={"nextBttn"}
-                  disabledClassName={"paginationDisabled"}
-                  activeClassName={"paginationActive"}
-                />
-              ) : (
-                ""
-              )}
-            </Col>
-          </Row>
+              </form>
+            </CardBody>
+            {data}
+            {/* {users || search.data === "" ? ( */}
+            {users?.data && searchUser === "" ? (
+              <ReactPaginate
+                previousLabel={"Previous"}
+                nextLabel={"Next"}
+                pageCount={users.pageCount}
+                onPageChange={changePage}
+                containerClassName={"paginationBttns"}
+                previousLinkClassName={"previousBttn"}
+                nextLinkClassName={"nextBttn"}
+                disabledClassName={"paginationDisabled"}
+                activeClassName={"paginationActive"}
+              />
+            ) : (
+              ""
+            )}
+            {/* </Col> */}
+            {/* </Row> */}
+          </Card>
         </Container>
       </div>
     </>

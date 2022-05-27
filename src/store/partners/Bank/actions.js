@@ -41,6 +41,7 @@ export const clearBankDetails = () => {
 
 export const updateBankDetails = (id, updateObj) => {
   return (dispatch) => {
+    // dispatch(setBankLoading());
     axios
       .patch(`${ip}/banks/${id}`, {
         ...updateObj,

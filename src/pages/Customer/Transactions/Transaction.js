@@ -27,7 +27,7 @@ const Transaction = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   useEffect(() => {
-    console.log(search);
+    // console.log(search);
     dispatch(getUsersTranscationById(id, pageNumber));
   }, [pageNumber]);
 
